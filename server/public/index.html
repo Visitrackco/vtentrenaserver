@@ -1,0 +1,287 @@
+ 
+ <style>
+    .contenedor {
+             font-family: Arial, Helvetica, sans-serif;
+             font-size: 14px;
+             width: 90%;
+             margin: auto;
+         }
+    
+        .contenedor td {
+             border: 1px solid #333;
+             padding: 5px;
+         }
+     
+         
+         .t {
+             width: 100%;
+             border-collapse: collapse;
+         }
+         
+         .t td {
+             border: 1px solid #333;
+             padding: 5px;
+         }
+         
+         .none {
+             padding: 0px !important;
+             border: 0px !important;
+         }
+         
+         .titulo {
+             padding: 0 8px;
+             font-size: 11px;
+         }
+    
+         .titulo {
+              background: #fafafa;
+         }
+    
+    .firma{
+        width:80px;
+        height:80px;
+        padding:5px;
+    }
+    
+        .auto-style1 {
+            height: 146px;
+        }
+    
+        .center {
+            text-align: center;
+        }
+    
+        .bold {
+            font-weight: bold;
+        }
+    
+    .t{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .t tr {
+        page-break-inside: avoid;
+    }
+    
+    
+    .cc1 .vt_signature{
+        width: 150px !important;
+    }
+    
+    .cc1 .vt_picture{
+        width: 150px !important;
+    }
+    
+    .cc2 .vt_picture{
+        width: 150px !important;
+    }
+    
+    .mitad{
+         width: 50%;
+    }
+    
+    .verde{
+                                           background: #E2EFD9;
+                                       }
+                                   
+                                       .colorVerde{
+                                           color: #385624;
+                                       }
+    
+                                       .o td{
+              border: 0px !important;
+         }
+    
+         .colorBorder{
+              border-top: 2px solid #188A57;
+         }
+  
+         .campo {
+              width: 300px;
+              border: 1px solid #333;
+              outline: none;
+              border-radius: 10px;
+              background: #f3f3f3;
+              text-align: center;
+              padding: 10px;
+              margin-bottom: 10px;
+         }
+  
+         .cuer tr:nth-child(even) {
+              background: #f1f1f1;
+         }
+
+         #lista tr:nth-child(even) {
+             background-color: #f3f3f3;
+         }
+    
+    </style>
+    <div class="contenedor">
+        
+    <table border="0" class="t">
+    
+        <thead>
+            <tr>
+                <td class="none">
+                    <table class="t">
+                          <tr>
+                              <td class="none" style="width: 50%;"> <h3 style="width: 300px;">REPORTE HISTORICO DE MAQUINAS</h3></td>
+                              <td class="none" style="width: 50%; text-align: right;"><img width="310px;" src="https://i.ibb.co/02SmT9t/Captura-de-pantalla-2019-01-03-a-la-s-6-39-40-p-m.png" alt="Logo Rapiaseo"> </td></tr>
+                    </table>
+                </td>
+            </tr>
+        </thead>
+  
+    
+        <tbody>
+  
+         <tr>
+              <td class="none">
+                   <table class="t">
+                  
+                        <tr class="despedir">
+                             <td class="none">
+                                  <select name="" id="formularios" class="campo">
+                                       <option value="Seleccionar Máquina">Seleccionar Máquina</option>
+                                  </select>
+                             </td>
+                        </tr>
+                        <tr>
+                             <td colspan="2" class="none">
+                                  <table class="t" >
+                                    <tr style="background: #1179B9; color:#fff;">
+                                        <td class="center bold" style="width: 150px;">Fecha de Retiro</td>
+                                        <td class="center bold">Sale de</td>
+                                        <td class="center bold" style="width: 150px;">Fecha de Entrada</td>
+                                        <td class="center bold">Entra A:</td>
+                                        <td class="center bold" style="width: 150px;">Tipo de Maq.</td>
+                                        <td class="center bold" style="width: 80px;">Número</td>
+                                    </tr>
+                                       <tbody id="lista">
+  
+                                       </tbody>
+                                       
+                                  </table>
+                             </td>
+                        </tr>
+  
+                   </table>
+              </td>
+         </tr>
+    
+         </tbody>
+    </table>
+  
+    
+    </div>
+
+    <script type="text/template" id="datos">
+       
+                            <tr >
+                                <td class="center bold" style="width: 150px;"><%= item1 %></td>
+                                <td class="center bold"><%= item2 %></td>
+                                <td class="center bold" style="width: 150px;"><%= item3 %></td>
+                                <td class="center bold"><%= item4 %></td>
+                                <td class="center bold" style="width: 150px;"><%= item5 %></td>
+                                <td class="center bold" style="width: 80px;"><%= item6 %></td>
+                            </tr>
+                            <tr>
+                                <%= novedades %>
+                            </tr>
+    </script>
+  
+  <script type="text/javascript">
+    /*-----------------------------------------------
+    - Execute here the custom actions on the file, like to get totals,
+    - complete some fields, apply design, etc.
+    ------------------------------------------------*/
+    /*
+     la data del credito hijo de ActivityID, y field es el campo que necesito extraer
+  
+    */
+  
+    function LoadMyCustoms(response, lan, filters) {
+        try {
+  
+         moment.locale('es');
+  
+            var data_ = [];
+  
+           
+            for (var i = 0; i<response.length; i++) {
+              $.each(response[i].data, function (j, dat) {
+                        data_.push(dat);
+                    });
+            }
+  
+            var filtro_personas = [] // arreglo para generar la busqueda por cada indice(personas)
+  
+            var unicos = _.unique(_.map(data_, function(l) { return l.frm_formname}));
+            console.log(unicos, unicos.length);
+
+            $.each(unicos, function(i, item){
+                $("#formularios").append('<option value="' + item + '">' + item + '</option>')
+            })
+
+            $("#formularios").on('change', function(){
+                $("#formularios option[value='" + $(this).val() + "']").attr('selected', 'selected');
+                    app.isHtml = true;
+                $("#lista").html('');
+                var data = _.where(data_, {frm_formname: $(this).val()});
+
+                console.log(data);
+
+                $.each(data, function(d, dat){
+                    console.log(dat)
+                    
+                    var html = '';
+                    if ((typeof dat.act_novedades !== 'undefined' && dat.act_novedades !== '') || (typeof dat.act_novedadese !== 'undefined' && dat.act_novedadese !== ''))  {
+
+                        if (typeof dat.act_novedadese === 'undefined' && dat.act_novedadese === '') {
+                            dat.act_novedadese = ''
+                            console.log(dat.act_novedadese, 'entre')
+                        }
+
+                        if (typeof dat.act_novedades === 'undefined' && dat.act_novedades === '') {
+                            dat.act_novedades = ''
+                            console.log(dat.act_novedades, 'sale')
+                        }
+                        
+                         html = '<td colspan="3" style="background:#FFFAED; "><strong  style="background: #FFF1C9;">Novedades Salida</strong><br><p style="margin-bottom: 0px; color: #333;">' + dat.act_novedades + '</p></td><td colspan="3" style="background:#FFFAED; "><strong  style="background: #FFF1C9;">Novedades Entrada</strong><br><p style="margin-bottom: 0px; color: #333;">' + dat.act_novedadese + '</p></td>';
+                    }
+
+                    console.log(html,'todo')
+                    var template = _.template($("#datos").html(), {
+                        item1: dat.act_fecharetiro + ' ' + dat.act_hora,
+                        item2: dat.act_sale,
+                        item3: typeof dat.act_fechadeingreso === 'undefined' ? dat.act_fechaingreso : dat.act_fechadeingreso + ' ' + typeof dat.act_horadeentrada === 'undefined' ? dat.act_horaentrada  : dat.act_horadeentrada,
+                        item4: dat.act_entra,
+                        item5: dat.ass_name,
+                        item6: dat.ass_numero,
+                        novedades: html
+                    });
+
+                    $("#lista").append(template);
+                })
+
+
+            })
+     
+            
+        } catch (exc) {
+            console.log("ucmycustoms_report", "ppal", exc);
+        }
+  
+    }
+    app.AfterLoadMyCustom = function (response, lan, filters) {
+        try {
+            return LoadMyCustoms(response, lan, filters);
+        } catch (exc) {
+            app.excManager("ucmycustoms_report", "AfterLoad", exc);
+        }
+    }
+  
+  </script>
+  
+  

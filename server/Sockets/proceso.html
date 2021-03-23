@@ -1,0 +1,1092 @@
+<style>
+    .container{
+        width: 100%;
+    }
+
+    .activity{
+        background: #fff;
+        border-bottom: 1px solid #000;
+
+    }
+
+    .table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+
+    .table td, .table th{
+        padding: 1em;
+        border:1px solid #000;
+        font-size: 1.2em;
+    }
+    
+  
+
+    .title{
+        width: 100%;
+        padding: 1em;
+        background: #C6E1F3;
+        margin-bottom: 1em;
+        border:1px solid #000;
+    }
+
+    .total{
+        width: 100%;
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-bottom: 1em;
+        padding: 1em;
+    }
+
+    .gray{
+        background: #f1f1f1;
+    }
+
+    .r{
+        background: #fff;
+        padding: 20px 30px;
+        font-size: 1.1em;
+
+        
+    }
+    thead{
+        margin-bottom: 1em;
+    }
+
+    .my {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #000;
+    }
+    
+</style>
+
+
+   
+     <div class="container">
+
+
+            <table border="0" class="table" cellspadding="0" cellspacing="0">
+                  <thead>
+
+                          <tr style=" ">
+                              <td style="border-bottom: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important;  border-top: hidden !important;" colspan="2">
+                                  <p style="margin-top: 10px"></p>
+                              </td>
+                          </tr>
+          
+                          <tr>
+                              <!-- 
+                      
+                      <td style="border: hidden"><img width="230px;" src="https://app01.imbanaco.com.co/FacturacionHtml/Imagenes/Logo.png" alt="Logo Imabanco"></td> -->
+          
+                              <td style=" border-right:0px;"> <img width="310px;" src="https://i.ibb.co/02SmT9t/Captura-de-pantalla-2019-01-03-a-la-s-6-39-40-p-m.png" alt="Logo Rapiaseo"> </td>
+                              <td style=" text-align: center; border-left:0px; border-right:1px solid #000; font-size:1.5em;"><b>INFORME DE GESTIÓN
+                              SATISFACCIÓN DEL CLIENTE
+                              CENTRO MEDICO IMBANACO - AÑO <span class="anno"></span></b>
+                              </td>
+                          </tr>
+                          <tr>
+                              <th colspan="2" style="display:none;font-size: 1.3em" id="" class="total"></th>
+                          </tr>
+          
+                      </thead>
+                    
+                    
+                    
+                    <tbody >
+                              <tr>
+                                  <td colspan="2" style="  border-left: 1px solid #000; border-right: 1px solid #000; text-align: left; font-size: 1.4em; font-weight: bold; padding:1em 2em;">INDICADOR DE GESTIÓN: &nbsp; SATISFACCIÓN DEL CLIENTE</td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2"style="padding:1em 2em; border:0px;  border-left: 1px solid #000; border-right: 1px solid #000; text-align: left; font-size: 1.5em; font-weight: bold;">PERIODO: &nbsp; <b style="text-transform: uppercase;" id="tfecha"></b></td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2" style="padding:1em 2em; border:0px; border-left: 1px solid #000; border-right: 1px solid #000; font-size: 1.3em;">
+                                      <p>El indicador mide la satisfacción del servicio de aseo hospitalario, desinfección y conservación de instalaciones administrativas y asistenciales prestado por RAPIASEO S.A.S. en el CENTRO MEDICO IMBANACO con el propósito de identificar
+                                          oportunidades que contribuyan al mejoramiento continuo de los procesos.</p>
+              
+                                      <p>Se genera con los resultados de las encuestas realizadas aleatoriamente al personal administrativo y asistencial, en los diferentes servicios.</p>
+              
+                                      <p>A continuación, se presentan los resultados obtenidos para el mes de <span id="mesfil"></span> del <span class="anno"></span>
+                                      </p>
+                                  </td>
+                              </tr>
+              
+                              <tr>
+                                  <td style="padding:1em 2em; border:0px; border-left: 1px solid #000; border-right: 1px solid #000; padding:0px;" colspan="2">
+                                      <table class="my" style=" width:100%; border:0px;">
+                                          <tr>
+                                              <td colspan="3" style="border:0px;">
+                                                  <h4 > RESULTADO <span style="text-transform: uppercase;" id="tfecha2"></span> </h4>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="width:10%; padding:1em; border:0px !important;"></td>
+                                              <td style="width:80%; border:0px !important; padding:0; ">
+                                                  <table class="my">
+                                                      <tr>
+                                                          <td style="padding:3px; text-align:center;" rowspan="3">CMI</td>
+                                                          <td style="padding:3px; text-align:center;">% DE SATISFACCIÓN GENERAL</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td style="padding:3px; text-align:center;"><span id="totalpor"></span> %</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td style="padding:3px; text-align:center;"># ENCUESTAS <span id="total"></span></td>
+                                                      </tr>
+                                                  </table>
+                                              </td>
+                                              <td style="width:10%; padding:1em; border:0px !important;"></td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+              
+                              <tr >
+                                      <td colspan="2" style="padding:1em 2em; border:0px; border-left: 1px solid #000; border-right: 1px solid #000;  font-size: 1.3em;">
+                                          <p>La percepción del <b id="otro"></b>  % de las personas encuestadas en CMI es que el servicio prestado es satisfactorio (según los criterios de calificación muy bueno/ bueno). Sin embargo, se fortalecerá el factor de <span id="factores"></span>
+                                          </p>
+                                      </td>
+                                  </tr>
+
+
+                              <tr>
+                                      <td style="padding:1em 2em; border:0px; border-left: 1px solid #000; border-right: 1px solid #000;  padding:0px;" colspan="2">
+                                          <table class="my" style=" width:100%; border:0px;">
+                                              
+                                              <tr>
+                                                  <td style="width:10%; padding:1em; border:0px !important;"></td>
+                                                  <td style="width:80%; border:0px !important; padding:0; ">
+                                                      <table class="my">
+                                                          <tr>
+                                                              <td style="padding:3px; text-align:center;" id="estadistica"></td>
+                                                          </tr>
+                                                          
+                                                      </table>
+                                                  </td>
+                                                  <td style="width:10%; padding:1em; border:0px !important;"></td>
+                                              </tr>
+                                          </table>
+                                      </td>
+                                  </tr>
+
+                                  <tr style="  border-bottom: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; ">
+                                          <td colspan="2" style="padding:1em 2em; border:0px;  font-size: 1.3em;">
+                                              <p><b>Nota: </b> En la medición (gráfico de barras) no se tienen en cuenta las encuestas sin diligenciar.
+                                              </p>
+                                          </td>
+                                      </tr>
+
+                                      <tr style="page-break-after:always;">
+                                              <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                                  <p style="margin-top: 10px"></p>
+                                              </td>
+                                          </tr>
+
+                          <tr style="page-break-inside:avoid;">
+                                  <td colspan="2">1. Servicio (aseo de superficies y equipos)</td>
+                              </tr>
+                              <tr style="page-break-inside:avoid;">
+                                  <td style="width: 60%" id="divGrafica">
+                                      <div id="" class="grafica"></div>
+                                  </td>
+                                  <td id="r1" class="r"> </td>
+                              </tr>
+                              <tr style="page-break-inside:avoid;">
+                                  <td>
+                                      <div id="divGrafica2" class="grafica"></div>
+                                  </td>
+                                  <td id="r2" class="r"> </td>
+                              </tr>
+                              <tr >
+                                  <td colspan="2" id="global1"></td>
+                              </tr>
+                              <tr >
+                                      <td colspan="2">Análisis: Para el factor de servicio se obtuvo un <span id="porc1"> </span> de cumplimiento en general frente a la limpieza de escritorios y superficies.</td>
+                                  </tr>
+                                  <tr style="page-break-after:always;">
+                                          <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                              <p style="margin-top: 10px"></p>
+                                          </td>
+                                      </tr>
+              
+                              <tr style="page-break-inside:avoid;">
+                                  <td colspan="2"> 2. Técnicas de aseo(Barrido y trapeado)</td>
+                              </tr>
+                              
+              
+              
+                              <tr style="page-break-inside:avoid;">
+                                  <td>
+                                      <div id="divGrafica3" class="grafica"></div>
+                                  </td>
+                                  <td id="r3" class="r"> </td>
+                              </tr>
+              
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica4" class="grafica"></div>
+                                  </td>
+                                  <td id="r4" class="r"> </td>
+                              </tr>
+                              <tr style="page-break-inside:avoid;">
+                                    <td>
+                                        <div id="divGrafica5" class="grafica"></div>
+                                    </td>
+                                    <td id="r5" class="r"> </td>
+                                </tr>
+                              <tr style="page-break-after:always;">
+                                      <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                          <p style="margin-top: 10px"></p>
+                                      </td>
+                                  </tr>
+                             
+                              <tr >
+                                  <td colspan="2" id="global2"></td>
+                              </tr>
+                              <tr >
+                                      <td colspan="2">Análisis: Para el factor de técnicas de aseo (barrido y trapeado) se obtuvo un <span id="porc2"> </span> de cumplimiento en general frente a la limpieza de los pisos.</td>
+                                  </tr>
+                                  <tr >
+                                          <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                              <p style="margin-top: 10px"></p>
+                                          </td>
+                                      </tr>
+
+              
+                              <tr style="page-break-inside:avoid;">
+                                  <td colspan="2"> 3. Técnicas de aseo (Cuarto de baño)</td>
+                              </tr>
+                              <tr style="page-break-inside:avoid;">
+                                  <td>
+                                      <div id="divGrafica6" class="grafica"></div>
+                                  </td>
+                                  <td id="r6" class="r"> </td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica7" class="grafica"></div>
+                                  </td>
+                                  <td id="r7" class="r"> </td>
+                              </tr>
+
+                              <tr style="page-break-after:always;">
+                                    <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important;" colspan="2">
+                                        <p style="margin-top: 10px"></p>
+                                    </td>
+                                </tr>
+                              <tr >
+                                  <td colspan="2" id="global3"></td>
+                              </tr>
+
+                              <tr >
+                                      <td colspan="2">Análisis: Para el factor de técnicas de aseo (cuarto de baño) se obtuvo un <span id="porc3"> </span> de cumplimiento en general frente a la limpieza de baños.</td>
+                                  </tr>
+                                  
+              
+              
+                              <tr>
+                                  <td colspan="2"> 4. Personal(Aptitud de servicio)</td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica8" class="grafica"></div>
+                                  </td>
+                                  <td id="r8" class="r"> </td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica9" class="grafica"></div>
+                                  </td>
+                                  <td id="r9" class="r"> </td>
+                              </tr>
+                              <tr style="page-break-after:always;">
+                                    <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                        <p style="margin-top: 10px"></p>
+                                    </td>
+                                </tr>
+                            <tr >
+
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica10" class="grafica"></div>
+                                  </td>
+                                  <td id="r10" class="r"> </td>
+                              </tr>
+
+                             
+                                  <td>
+                                      <div id="divGrafica11" class="grafica"></div>
+                                  </td>
+                                  <td id="r11" class="r"> </td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2" id="global4"></td>
+                              </tr>
+                              <tr >
+                                      <td colspan="2">Análisis: Para el factor personal (Aptitud de servicio) se obtuvo un <span id="porc4"> </span> de cumplimiento en general frente a la aptitud del servicio. </td>
+                                  </tr>
+              
+                                  <tr style="page-break-after:always;">
+                                          <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important;  " colspan="2">
+                                              <p style="margin-top: 10px"></p>
+                                          </td>
+                                      </tr>
+              
+                              <tr >
+                                  <td colspan="2">5. Supervisión de servicio </td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica12" class="grafica"></div>
+                                  </td>
+                                  <td id="r12" class="r"> </td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica13" class="grafica"></div>
+                                  </td>
+                                  <td id="r13" class="r"> </td>
+                              </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica14" class="grafica"></div>
+                                  </td>
+                                  <td id="r14" class="r"> </td>
+                              </tr>
+                              <tr style="page-break-after:always;">
+                                      <td style="border-top: 1px solid #000 !important;  border-left: hidden !important;  border-right: hidden !important; " colspan="2">
+                                          <p style="margin-top: 10px"></p>
+                                      </td>
+                                  </tr>
+                              <tr >
+                                  <td>
+                                      <div id="divGrafica15" class="grafica"></div>
+                                  </td>
+                                  <td id="r15" class="r"> </td>
+                              </tr>
+              
+                              <tr >
+                                  <td colspan="2" id="global5"></td>
+                              </tr>
+
+                              <tr >
+                                      <td colspan="2">Análisis: Para el factor de supervisión de servicio se obtuvo un <span id="porc5"></span>  de cumplimiento en general frente a la frecuencia de supervisión, presentación personal, conocimiento técnico y atención solicitudes.</td>
+                                  </tr>
+
+                                 
+              
+                              <tr >
+                                  <td colspan="2">
+                                      <div id="divGrafica16" class="grafica"></div>
+                                  </td>
+              
+                              </tr>
+                    </tbody>
+                     
+                 </table>
+     </div>
+ <script type="text/javascript">
+  
+  
+  
+  /*-----------------------------------------------
+  - Execute here the custom actions on the file, like to get totals,
+  - complete some fields, apply design, etc.
+  ------------------------------------------------*/
+  /*
+  la data del credito hijo de ActivityID, y field es el campo que necesito extraer
+  
+  */
+  
+  function LoadMyCustoms(response, lan, filters) {
+  try {
+  
+        //google.charts.load("current", {packages: ["corechart"]});
+      google.charts.load('45', { 'packages': ['corechart'], 'language': lan });
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+
+  
+      function drawChart() {
+        moment.locale('es');
+        var filter_to;
+                  var filter_from;
+                  if (typeof (filters) != 'undefined') {
+                      filter_to = moment(moment(filters.dateto).format('YYYY-MM-DD'));
+                      filter_from = moment(moment(filters.datefrom).format('YYYY-MM-DD'));
+                      //console.log(filter_from._i, " hasta ", filter_to._i);
+  
+                      filter_from = moment(filter_from._i);
+                      filter_to = moment(filter_to._i);
+                  }
+  
+                  //console.log(filters);
+
+                  $("#mesfil").html(moment(filter_from).format("MMMM"));
+                  $(".anno").html(moment(filter_from).format("YYYY"));
+                  var diference = filter_to.diff(filter_from, 'days') + 1;
+                  var message;
+                  if (diference == 1) {
+                      message = " dia"
+                  } else {
+                      message = " dias"
+                  }
+
+        var dateTitle = document.getElementById("tfecha");
+                  dateTitle.innerHTML = 'De ' + moment(filter_from).format("MMMM - DD -YYYY") + ' &nbsp <b>Hasta</b> ' + moment(filter_to).format("MMMM - DD -YYYY") + '&nbsp &nbsp <b>' + diference + message + '';
+
+                        var dateTitle2 = document.getElementById("tfecha2");
+                  dateTitle2.innerHTML = 'De ' + moment(filter_from).format("MMMM - DD -YYYY") + ' &nbsp <b>Hasta</b> ' + moment(filter_to).format("MMMM - DD -YYYY") + '&nbsp &nbsp <b>' + diference + message + '';
+  
+          var data_ = [];
+          $.each(response[0].data, function (j, dat) {
+              var datos = {};
+              //aqui le agrego los campos que me faltan
+              datos["actividadNumero"] = dat["MarkerID"];
+              datos["limpiezaescrito"] = dat["act_limpiezaescrito"];
+              datos["r1"] = dat["act_recomendaciones1"];
+              datos["limpiezasuper"] = dat["act_limpiezasuper"];
+              datos["r2"] = dat["act_recomendaciones"];
+              datos["pisos"] = dat["act_pisos"];
+              datos["r3"] = dat["act_recomendaciones2"];
+              datos["sinreguero"] = dat["act_sinreguero"];
+              datos["r4"] = dat["act_recomendacionesare"];
+              datos["barrido"] = dat["act_barrido"];
+              datos["r5"] = dat["act_recomendacionesbarr"];
+              datos["sanitarios"] = dat["act_sanitarios"];
+              datos["r6"] = dat["act_recomendacioneslimp"];
+              datos["dotacion"] = dat["act_dotacion"];
+              datos["r7"] = dat["act_recomendacionesdota"];
+              datos["actitudservicio"] = dat["act_actitudservicio"];
+              datos["r8"] = dat["act_recomendacionesact"];
+              datos["atencionoportuna"] = dat["act_atencionoportuna"];
+              datos["r9"] = dat["act_recomendacionesat"];
+              datos["tiempoatencion"] = dat["act_tiempoatencion"];
+              datos["r10"] = dat["act_recomendacionestiem"];
+              datos["presentacion"] = dat["act_presentacion"];
+              datos["r11"] = dat["act_recomendacionespers"];
+              datos["frecuenciasuper"] = dat["act_frecuenciasuper"];
+              datos["r12"] = dat["act_recomendacionesfre"];
+              datos["presentacionper"] = dat["act_presentacionper"];
+              datos["r13"] = dat["act_recomendacionespre"];
+              datos["conocimientotec"] = dat["act_conocimentotec"];
+              datos["r14"] = dat["act_recomendacionescono"];
+              datos["atencionsoli"] = dat["act_atencionsoli"];
+              datos["r15"] = dat["act_recomendacionesate"];
+              datos["calificaciongeneral"] = dat["act_calificaciongeneral"];
+            
+  console.log(datos["atencionsoli"]);
+              data_.push(datos);
+  
+  
+          });
+  
+          var arrayLe = [];
+          var arrayLsp = [];
+          var arrayp = [];
+          var arraysr = [];
+          var arrayb = [];
+          var arrays = [];
+          var arraydt = [];
+          var arrayas = [];
+          var arrayao = [];
+          var arrayta = [];
+          var arraypr = [];
+          var arrayfs = [];
+          var arraypp = [];
+          var arrayct = [];
+          var arrayass = [];
+          var arraycg = [];
+          var r1 = [];
+          var r2 = [];
+          var r3 = [];
+          var r4 = [];
+          var r5 = [];
+          var r6 = [];
+          var r7 = [];
+          var r8 = [];
+          var r9 = [];
+          var r10 = [];
+          var r11 = [];
+          var r12 = [];
+          var r13 = [];
+          var r14 = [];
+          var r15 = [];
+  
+          var datos_ = _.unique(_.map(data_, function (l) { return l.actividadNumero; }));
+          var sum = 0;
+          $.each(datos_, function (i, dat) {
+              var dataAll = _.where(data_, { actividadNumero: dat });
+              arrayLe.push(dataAll[0].limpiezaescrito);
+              arrayLsp.push(dataAll[0].limpiezasuper);
+              arrayp.push(dataAll[0].pisos);
+              arraysr.push(dataAll[0].sinreguero);
+              arrays.push(dataAll[0].sanitarios);
+              arrayb.push(dataAll[0].barrido);
+              arraydt.push(dataAll[0].dotacion);
+              arrayas.push(dataAll[0].actitudservicio);
+              arrayao.push(dataAll[0].atencionoportuna);
+              arrayta.push(dataAll[0].tiempoatencion);
+              arraypr.push(dataAll[0].presentacion);
+              arrayfs.push(dataAll[0].frecuenciasuper);
+              arraypp.push(dataAll[0].presentacionper);
+              arrayct.push(dataAll[0].conocimientotec);
+              arrayass.push(dataAll[0].atencionsoli);
+              arraycg.push(dataAll[0].calificaciongeneral);
+  
+              r1.push({r:dataAll[0].r1,i:dataAll[0].limpiezaescrito})
+              r2.push({r:dataAll[0].r2,i:dataAll[0].limpiezasuper})
+              r3.push({r:dataAll[0].r3,i:dataAll[0].pisos})
+              r4.push({r:dataAll[0].r4,i:dataAll[0].sinreguero})
+              r5.push({r:dataAll[0].r5,i:dataAll[0].sanitarios})
+              r6.push({r:dataAll[0].r6,i:dataAll[0].barrido})
+              r7.push({r:dataAll[0].r7,i:dataAll[0].dotacion})
+              r8.push({r:dataAll[0].r8,i:dataAll[0].actitudservicio})
+              r9.push({r:dataAll[0].r9,i:dataAll[0].atencionoportuna})
+              r10.push({r:dataAll[0].r10,i:dataAll[0].tiempoatencion})
+              r11.push({r:dataAll[0].r11,i:dataAll[0].presentacion})
+              r12.push({r:dataAll[0].r12,i:dataAll[0].frecuenciasuper})
+              r13.push({r:dataAll[0].r13,i:dataAll[0].conocimientotec})
+  
+              r14.push({r:dataAll[0].r14,i:dataAll[0].atencionsoli})
+              r15.push({r:dataAll[0].r14,i:dataAll[0].limpiezaescrito})
+  
+              sum++;
+          });
+  
+          console.log(r1);
+  
+          function range(array, element){
+              cont = 0;
+             
+  
+              array.forEach(function(t) {
+                  if (t == element) {
+                      cont++;
+                  }
+              });
+  
+              return cont;
+          }
+  
+          
+  
+          var array1 = [range(arrayLe, 'MB'), range(arrayLe, 'B'), range(arrayLe, 'R'), range(arrayLe, 'M')];
+          var array2 = [range(arrayLsp, 'MB'), range(arrayLsp, 'B'), range(arrayLsp, 'R'), range(arrayLsp, 'M')];
+          var array3 = [range(arrayp, 'MB'), range(arrayp, 'B'), range(arrayp, 'R'), range(arrayp, 'M')];
+          var array4 = [range(arraysr, 'MB'), range(arraysr, 'B'), range(arraysr, 'R'), range(arraysr, 'M')];
+          var array5 = [range(arrays, 'MB'), range(arrays, 'B'), range(arrays, 'R'), range(arrays, 'M')];
+          var array6 = [range(arraydt, 'MB'), range(arraydt, 'B'), range(arraydt, 'R'), range(arraydt, 'M')];
+          var array7 = [range(arrayas, 'MB'), range(arrayas, 'B'), range(arrayas, 'R'), range(arrayas, 'M')];
+          var array8 = [range(arrayao, 'MB'), range(arrayao, 'B'), range(arrayao, 'R'), range(arrayao, 'M')];
+          var array9 = [range(arrayta, 'MB'), range(arrayta, 'B'), range(arrayta, 'R'), range(arrayta, 'M')];
+          var array10 = [range(arraypr, 'MB'), range(arraypr, 'B'), range(arraypr, 'R'), range(arraypr, 'M')];
+          var array11 = [range(arrayfs, 'MB'), range(arrayfs, 'B'), range(arrayfs, 'R'), range(arrayfs, 'M')];
+          var array12 = [range(arraypp, 'MB'), range(arraypp, 'B'), range(arraypp, 'R'), range(arraypp, 'M')];
+          var array13 = [range(arrayct, 'MB'), range(arrayct, 'B'), range(arrayct, 'R'), range(arrayct, 'M')];
+          var array14 = [range(arrayass, 'MB'), range(arrayass, 'B'), range(arrayass, 'R'), range(arrayass, 'M')];
+          var array15 = [range(arraycg, 'MB'), range(arraycg, 'B'), range(arraycg, 'R'), range(arraycg, 'M')];
+          var array16 = [range(arrayb, 'MB'), range(arrayb, 'B'), range(arrayb, 'R'), range(arrayb, 'M')];
+  
+  
+           function draww(array, div, color, pregunta){
+                var porc1 = parseFloat((array[0] * 100) / sum);
+                var porc2 = parseFloat((array[1] * 100) / sum);
+                var porc3 = parseFloat((array[2] * 100) / sum);
+                var porc4 = parseFloat((array[3] * 100) / sum);
+              var tab = google.visualization.arrayToDataTable([
+                  ['Calificacion', pregunta, { role: 'annotation' }, { role: 'annotation' }],
+                  ['MB', array[0], porc1.toFixed(1) + '%',  'Cant. ' + array[0]],
+                  ['B', array[1],  porc2.toFixed(1) + '%',  'Cant. ' + array[1]],
+                  ['R', array[2],  porc3.toFixed(1) + '%',  'Cant. ' + array[2]],
+                  ['M', array[3],  porc4.toFixed(1) + '%',  'Cant. ' + array[3]]
+              ]);
+  
+              var options = {
+                  height: 300,
+                  fontSize: 14,
+                  annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                  width: 100 + '%',
+                  legend: { position: 'top', maxLines: 3, textStyle: { fontSize: 25, fontColor: "#000000" } },
+                  bar: { groupWidth: '50%' },
+                  
+                  hAxis: {
+        title:"Calificación"
+      },
+  
+      vAxis: {
+        title:"Cantidad de personas"
+      },
+                  colors: [color]
+              };
+  
+              var chart = new google.visualization.ColumnChart(document.getElementById(div));
+              chart.draw(tab, options);
+          }
+  
+          draww(array1, "divGrafica", "#ADCF89", "Limpieza de Escritorio");
+          draww(array2, "divGrafica2", "#55ABDF", "Limpieza de Superficies");
+          draww(array3, "divGrafica3", "#FFDD80", "Limpieza de Pisos");
+          draww(array4, "divGrafica4", "#63A1A6", "Sin Reguero Pisos");
+          draww(array16, "divGrafica5", "#E98D85", "Barrido y Trapeado");
+          draww(array5, "divGrafica6", "#D6E7C4", "Limpieza de Sanitarios");
+          draww(array6, "divGrafica7", "#ADCF89", "Dotación");
+          draww(array7, "divGrafica8", "#D6E7C4", "Actitud Servicio");
+          draww(array8, "divGrafica9", "#ADCF89", "Atención Oportuna");
+          draww(array9, "divGrafica10", "#E98D85", "Tiempo Atención");
+          draww(array10, "divGrafica11", "#ADCF89", "Presentación personal");
+          draww(array11, "divGrafica12", "#63A1A6", "Frecuencia Supervisión");
+          draww(array12, "divGrafica13", "#FFDD80", "Presentación Personal Supervisor");
+          draww(array13, "divGrafica14", "#D6C4E7", "Conocimiento Técnico");
+          draww(array14, "divGrafica15", "#FEAE7B", "Atención Solicitudes");
+          draww(array15, "divGrafica16", "#C0A4DA", "Calificación General");
+  
+          document.getElementById("total").textContent = sum;
+         
+     
+         function recomend(div, array, texto) {
+            var porc1 = parseFloat((array[0] * 100) / sum);
+            var porc2 = parseFloat((array[1] * 100) / sum);
+            var porc3 = parseFloat((array[2] * 100) / sum);
+            var porc4 = parseFloat((array[3] * 100) / sum);
+
+            document.getElementById(div).innerHTML = "El " + porc1.toFixed(1) + "% de las personas encuestadas perciben  "+ texto +" como “Muy bueno”, El " + porc2.toFixed(1) + "% como “bueno”, el " + porc3.toFixed(1) + "% lo percibe como “regular” y el " + porc4.toFixed(1) + "% lo percibe como “Malo”.";
+         }
+         recomend("r1", array1, 'el aseo de superficies y equipos (Limpieza de escritorios, sillas, mesas, teléfonos, rincones)');
+        recomend("r2", array2, 'el aseo de superficies de ventanas, paredes, techos, divisiones');
+        recomend("r3", array3, 'el aseo  de técnicas de aseo (Barrido y trapeado, Pisos del área limpios sin residuos)');
+        recomend("r4", array4, 'el aseo de técnicas de aseo (Barrido y trapeado, Pisos del área sin regueros');
+        recomend("r5", array16, 'el aseo de técnicas de aseo (Barrido y trapeado)');
+        recomend("r6", array5, 'el aseo de técnicas de aseo cuarto de baño (Sanitarios limpios)');
+        recomend("r7", array6, 'el aseo de técnicas de aseo cuarto de baño (Dotación de jabón, toallas de papel y papel dotación de jabón, toallas de papel y papel higiénico.)');
+        recomend("r8", array7, 'la actitud del servicio del personal ');
+        recomend("r9", array8, ' la atención oportuna del servicio del personal');
+        recomend("r10", array9, ' el tiempo de atención del personal');
+        recomend("r11", array10, ' la presentación personal');
+        recomend("r12", array11, ' la supervisión (que incluye aspectos como frecuencia de supervisión)');
+        recomend("r13", array12, 'la supervisión (que incluye aspectos como presentación personal)');
+        recomend("r14", array13, 'la supervisión (que incluye aspectos como conocimiento técnico)');
+        recomend("r15", array14, 'la supervisión (que incluye aspectos como atención de solicitudes)');
+
+
+        // graficas *********************************************************************************************
+
+
+
+
+
+
+
+
+
+
+        function draww2(div, pregunta){
+                var porc1 = (parseFloat((array1[0] * 100) / sum) + parseFloat((array2[0] * 100) / sum)) / 2;
+                var porc2 = (parseFloat((array1[1] * 100) / sum) + parseFloat((array2[1] * 100) / sum)) / 2;
+                var porc3 = (parseFloat((array1[2] * 100) / sum) + parseFloat((array2[2] * 100) / sum)) / 2;
+                var porc4 = (parseFloat((array1[3] * 100) / sum) + parseFloat((array2[3] * 100) / sum)) / 2;
+              var tab = google.visualization.arrayToDataTable([
+                  ['Calificación', pregunta, { role: 'annotation' }],
+                  ['MB', Math.round(porc1), porc1.toFixed(1) + '%'],
+                  ['B', Math.round(porc2), porc2.toFixed(1) + '%'],
+                  ['R', Math.round(porc3), porc3.toFixed(1) + '%'],
+                  ['M', Math.round(porc4), porc4.toFixed(1) + '%']
+              ]);
+  
+              var options = {
+                  height: 300,
+                  fontSize: 14,
+                  width: 100 + '%',
+                  annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                  legend: { position: 'top', maxLines: 3, textStyle: { fontSize: 25 } },
+                  bar: { groupWidth: '50%' },
+                  
+                  hAxis: {
+                        title:"Calificación"
+                    },
+                
+                    vAxis: {
+                        title:"Cantidad de personas"
+                    },
+                  colors: ["#FFA875"]
+              };
+  
+              var chart = new google.visualization.ColumnChart(document.getElementById(div));
+              chart.draw(tab, options);
+          }
+
+
+
+           function draww3(div, pregunta) {
+                      var porc1 = (parseFloat((array3[0] * 100) / sum) + parseFloat((array4[0] * 100) / sum) + parseFloat((array5[0] * 100) / sum)) / 3;
+                      var porc2 = (parseFloat((array3[1] * 100) / sum) + parseFloat((array4[1] * 100) / sum) + parseFloat((array5[1] * 100) / sum)) / 3;
+                      var porc3 = (parseFloat((array3[2] * 100) / sum) + parseFloat((array4[2] * 100) / sum) + parseFloat((array5[2] * 100) / sum)) / 3;
+                      var porc4 = (parseFloat((array3[3] * 100) / sum) + parseFloat((array4[3] * 100) / sum) + parseFloat((array5[3] * 100) / sum)) / 3;
+                      var tab = google.visualization.arrayToDataTable([
+                          ['Calificación', pregunta, {
+                              role: 'annotation'
+                          }],
+                          ['MB', Math.round(porc1), porc1.toFixed(1) + '%'],
+                          ['B', Math.round(porc2), porc2.toFixed(1) + '%'],
+                          ['R', Math.round(porc3), porc3.toFixed(1) + '%'],
+                          ['M', Math.round(porc4), porc4.toFixed(1) + '%']
+                      ]);
+  
+                      var options = {
+                          height: 300,
+                          fontSize: 14,
+                          width: 100 + '%',
+                          annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                    legend: {
+                              position: 'top',
+                              maxLines: 3,
+                              textStyle: {
+                                  fontSize: 25
+                              }
+                          },
+                          bar: {
+                              groupWidth: '50%'
+                          },
+  
+                          hAxis: {
+                              title: "Calificación"
+                          },
+  
+                          vAxis: {
+                              title: "Cantidad de personas"
+                          },
+                          colors: ["#FFA875"]
+                      };
+  
+                      var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                      chart.draw(tab, options);
+                  }
+  
+                  function draww4(div, pregunta) {
+                      var porc1 = (parseFloat((array6[0] * 100) / sum) + parseFloat((array7[0] * 100) / sum)) / 2;
+                      var porc2 = (parseFloat((array6[1] * 100) / sum) + parseFloat((array7[1] * 100) / sum)) / 2;
+                      var porc3 = (parseFloat((array6[2] * 100) / sum) + parseFloat((array7[2] * 100) / sum)) / 2;
+                      var porc4 = (parseFloat((array6[3] * 100) / sum) + parseFloat((array7[3] * 100) / sum)) / 2;
+                      var tab = google.visualization.arrayToDataTable([
+                          ['Calificación', pregunta, {
+                              role: 'annotation'
+                          }],
+                          ['MB', Math.round(porc1), porc1.toFixed(1) + '%'],
+                          ['B', Math.round(porc2), porc2.toFixed(1) + '%'],
+                          ['R', Math.round(porc3), porc3.toFixed(1) + '%'],
+                          ['M', Math.round(porc4), porc4.toFixed(1) + '%']
+                      ]);
+  
+                      var options = {
+                          height: 300,
+                          fontSize: 14,
+                          width: 100 + '%',
+                          annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                          legend: {
+                              position: 'top',
+                              maxLines: 3,
+                              textStyle: {
+                                  fontSize: 25
+                              }
+                          },
+                          bar: {
+                              groupWidth: '50%'
+                          },
+  
+                          hAxis: {
+                              title: "Calificación"
+                          },
+  
+                          vAxis: {
+                              title: "Cantidad de personas"
+                          },
+                          colors: ["#FFA875"]
+                      };
+  
+                      var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                      chart.draw(tab, options);
+                  }
+  
+                  function draww5(div, pregunta) {
+                      var porc1 = (parseFloat((array8[0] * 100) / sum) + parseFloat((array9[0] * 100) / sum) + parseFloat((array10[0] * 100) / sum) + parseFloat((array11[0] * 100) / sum)) / 4;
+                      var porc2 = (parseFloat((array8[1] * 100) / sum) + parseFloat((array9[1] * 100) / sum) + parseFloat((array10[1] * 100) / sum) + parseFloat((array11[1] * 100) / sum)) / 4;
+                      var porc3 = (parseFloat((array8[2] * 100) / sum) + parseFloat((array9[2] * 100) / sum) + parseFloat((array10[2] * 100) / sum) + parseFloat((array11[2] * 100) / sum)) / 4;
+                      var porc4 = (parseFloat((array8[3] * 100) / sum) + parseFloat((array9[3] * 100) / sum) + parseFloat((array10[3] * 100) / sum) + parseFloat((array11[3] * 100) / sum)) / 4;
+                      var tab = google.visualization.arrayToDataTable([
+                          ['Calificación', pregunta, {
+                              role: 'annotation'
+                          }],
+                          ['MB', Math.round(porc1), porc1.toFixed(1) + '%'],
+                          ['B', Math.round(porc2), porc2.toFixed(1) + '%'],
+                          ['R', Math.round(porc3), porc3.toFixed(1) + '%'],
+                          ['M', Math.round(porc4), porc4.toFixed(1) + '%']
+                      ]);
+  
+                      var options = {
+                          height: 300,
+                          fontSize: 14,
+                          width: 100 + '%',
+                          annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                          legend: {
+                              position: 'top',
+                              maxLines: 3,
+                              textStyle: {
+                                  fontSize: 25
+                              }
+                          },
+                          bar: {
+                              groupWidth: '50%'
+                          },
+  
+                          hAxis: {
+                              title: "Calificación"
+                          },
+  
+                          vAxis: {
+                              title: "Cantidad de personas"
+                          },
+                          colors: ["#FFA875"]
+                      };
+  
+                      var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                      chart.draw(tab, options);
+                  }
+  
+  
+  
+  
+                  function draww6(div, pregunta) {
+                      var porc1 = (parseFloat((array12[0] * 100) / sum) + parseFloat((array13[0] * 100) / sum) + parseFloat((array14[0] * 100) / sum) + parseFloat((array15[0] * 100) / sum)) / 4;
+                      var porc2 = (parseFloat((array12[1] * 100) / sum) + parseFloat((array13[1] * 100) / sum) + parseFloat((array14[1] * 100) / sum) + parseFloat((array15[1] * 100) / sum)) / 4;
+                      var porc3 = (parseFloat((array12[2] * 100) / sum) + parseFloat((array13[2] * 100) / sum) + parseFloat((array14[2] * 100) / sum) + parseFloat((array15[2] * 100) / sum)) / 4;
+                      var porc4 = (parseFloat((array12[3] * 100) / sum) + parseFloat((array13[3] * 100) / sum) + parseFloat((array14[3] * 100) / sum) + parseFloat((array15[3] * 100) / sum)) / 4;
+                      var tab = google.visualization.arrayToDataTable([
+                          ['Calificación', pregunta, {
+                              role: 'annotation'
+                          }],
+                          ['MB', Math.round(porc1), porc1.toFixed(1) + '%'],
+                          ['B', Math.round(porc2), porc2.toFixed(1) + '%'],
+                          ['R', Math.round(porc3), porc3.toFixed(1) + '%'],
+                          ['M', Math.round(porc4), porc4.toFixed(1) + '%']
+                      ]);
+  
+                      var options = {
+                          height: 300,
+                          fontSize: 14,
+                          width: 100 + '%',
+                          annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                          legend: {
+                              position: 'top',
+                              maxLines: 3,
+                              textStyle: {
+                                  fontSize: 25
+                              }
+                          },
+                          bar: {
+                              groupWidth: '50%'
+                          },
+  
+                          hAxis: {
+                              title: "Calificación"
+                          },
+  
+                          vAxis: {
+                              title: "Cantidad de personas"
+                          },
+                          colors: ["#FFA875"]
+                      };
+  
+                      var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                      chart.draw(tab, options);
+                  }
+  
+  
+  
+  
+                  draww2("global1", "Promedio satisfacción por servicio");
+                  draww3("global2", "Técnicas de aseo(Barrido y trapeado)");
+                  draww4("global3", "Técnicas de aseo (Cuarto de baño)");
+                  draww5("global4", "Personal(Aptitud de servicio)");
+                  draww6("global5", "Supervisión de servicio ");
+
+
+
+                  function draww7(div) {
+                    var porc1 = (parseFloat((array12[0] * 100) / sum) + parseFloat((array13[0] * 100) / sum) + parseFloat((array14[0] * 100) / sum) + parseFloat((array15[0] * 100) / sum)) / 4;
+                      var porc2 = (parseFloat((array12[1] * 100) / sum) + parseFloat((array13[1] * 100) / sum) + parseFloat((array14[1] * 100) / sum) + parseFloat((array15[1] * 100) / sum)) / 4;
+                      var porc3 = (parseFloat((array12[2] * 100) / sum) + parseFloat((array13[2] * 100) / sum) + parseFloat((array14[2] * 100) / sum) + parseFloat((array15[2] * 100) / sum)) / 4;
+                      var porc4 = (parseFloat((array12[3] * 100) / sum) + parseFloat((array13[3] * 100) / sum) + parseFloat((array14[3] * 100) / sum) + parseFloat((array15[3] * 100) / sum)) / 4;
+                      var total5 = parseFloat((porc1 + porc2) - porc3);
+
+                      var porc5 = (parseFloat((array8[0] * 100) / sum) + parseFloat((array9[0] * 100) / sum) + parseFloat((array10[0] * 100) / sum) + parseFloat((array11[0] * 100) / sum)) / 4;
+                      var porc6 = (parseFloat((array8[1] * 100) / sum) + parseFloat((array9[1] * 100) / sum) + parseFloat((array10[1] * 100) / sum) + parseFloat((array11[1] * 100) / sum)) / 4;
+                      var porc7 = (parseFloat((array8[2] * 100) / sum) + parseFloat((array9[2] * 100) / sum) + parseFloat((array10[2] * 100) / sum) + parseFloat((array11[2] * 100) / sum)) / 4;
+                      var porc8 = (parseFloat((array8[3] * 100) / sum) + parseFloat((array9[3] * 100) / sum) + parseFloat((array10[3] * 100) / sum) + parseFloat((array11[3] * 100) / sum)) / 4;
+                      var total4 = parseFloat((porc5 + porc6) - porc7);
+
+                      var porc9 = (parseFloat((array6[0] * 100) / sum) + parseFloat((array7[0] * 100) / sum)) / 2;
+                      var porc10 = (parseFloat((array6[1] * 100) / sum) + parseFloat((array7[1] * 100) / sum)) / 2;
+                      var porc11 = (parseFloat((array6[2] * 100) / sum) + parseFloat((array7[2] * 100) / sum)) / 2;
+                      var porc12 = (parseFloat((array6[3] * 100) / sum) + parseFloat((array7[3] * 100) / sum)) / 2;
+                      var total3 = parseFloat((porc9 + porc10) - porc11);
+
+                      var porc14 = (parseFloat((array3[0] * 100) / sum) + parseFloat((array4[0] * 100) / sum) + parseFloat((array5[0] * 100) / sum)) / 3;
+                      var porc15 = (parseFloat((array3[1] * 100) / sum) + parseFloat((array4[1] * 100) / sum) + parseFloat((array5[1] * 100) / sum)) / 3;
+                      var porc16 = (parseFloat((array3[2] * 100) / sum) + parseFloat((array4[2] * 100) / sum) + parseFloat((array5[2] * 100) / sum)) / 3;
+                      var porc17 = (parseFloat((array3[3] * 100) / sum) + parseFloat((array4[3] * 100) / sum) + parseFloat((array5[3] * 100) / sum)) / 3;
+                      var total2 = parseFloat((porc14 + porc15) - porc16);
+
+                     var porc18 = (parseFloat((array1[0] * 100) / sum) + parseFloat((array2[0] * 100) / sum)) / 2;
+                    var porc19 = (parseFloat((array1[1] * 100) / sum) + parseFloat((array2[1] * 100) / sum)) / 2;
+                    var porc20 = (parseFloat((array1[2] * 100) / sum) + parseFloat((array2[2] * 100) / sum)) / 2;
+                    var porc21 = (parseFloat((array1[3] * 100) / sum) + parseFloat((array2[3] * 100) / sum)) / 2;
+                    var total1 = parseFloat((porc18 + porc19) - porc20);
+
+                    document.getElementById("porc1").textContent = total1.toFixed(1);
+                    document.getElementById("porc2").textContent = total2.toFixed(1);
+                    document.getElementById("porc3").textContent = total3.toFixed(1);
+                    document.getElementById("porc4").textContent = total4.toFixed(1);
+                    document.getElementById("porc5").textContent = total5.toFixed(1);
+
+                    if(total5 < 90) {
+                        $("#factores").append("<b>Suspervisión de servicios </b>");
+                    }
+
+                    if(total4 < 90) {
+                        $("#factores").append("<b>Perrsonal(Aptitud de servicio) </b>");
+                    }
+
+                    if(total3 < 90) {
+                        $("#factores").append("<b>Técnicas de aseo (Cuarto de Baño) </b>");
+                    }
+
+
+                    if(total2 < 90) {
+                        $("#factores").append("<b>Técnicas de aseo(Barrido y trapeado) </b>");
+                    }
+
+                    if(total1 < 90) {
+                        $("#factores").append("<b>Servicio(aseo de superficies y equipos) </b>");
+                    }
+
+                    var totalM = (total1 + total2 + total3 + total4 + total5) / 5;
+
+                    document.getElementById("totalpor").textContent = totalM.toFixed(1);
+                    document.getElementById("otro").textContent = totalM.toFixed(1);
+
+                    var data = google.visualization.arrayToDataTable([
+                        ["Element", "Porcentaje", { role: "style" } ],
+                        ["5. Supervisión de servicios", total5, "#7CB0C7"],
+                        ["4. Personal (Aptitud de servicio)", total4, "#7CB0C7"],
+                        ["3. Técnicas de aseo (Cuarto de Baño)", total3, "#7CB0C7"],
+                        ["2. Técnicas de aseo(Barrido y trapeado)", total2, "color: #7CB0C7"],
+                        ["1. Servicio(aseo de superficies y equipos)", total1, "#7CB0C7"],
+                    ]);
+
+                    var view = new google.visualization.DataView(data);
+                    view.setColumns([0, 1,
+                                    { calc: "stringify",
+                                        sourceColumn: 1,
+                                        type: "string",
+                                        role: "annotation" },
+                                    2]);
+
+                    var options = {
+                        title: "Satisfacción general por factores",
+                        width: 100 + '%',
+                        height: 400,
+                        bar: {groupWidth: '50%'},
+                        bars: 'horizontal',
+                        legend: {
+                            position: 'none'
+                        },
+                        chartArea: {
+            left: 300,
+            top: 40,
+            bottom: 80,
+            height: '80%'
+          },
+                        annotations: {
+                    highContrast: false,
+                    textStyle: {
+                        auraColor: 'none',
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                    },
+                        hAxis: {
+                            minValue: 0,
+                            maxValue: 100
+                        }
+                    };
+                    var chart = new google.visualization.BarChart(document.getElementById(div));
+                    chart.draw(view, options);
+                }
+
+draww7("estadistica");
+  
+  
+  
+      }
+      
+      
+  } catch (exc) {
+      console.log("ucmycustoms_report", "ppal", exc);
+  }
+  
+  }
+  app.AfterLoadMyCustom = function (response, lan, filters) {
+  try {
+      return LoadMyCustoms(response, lan, filters);
+  } catch (exc) {
+      app.excManager("ucmycustoms_report", "AfterLoad", exc);
+  }
+  }
+  
+  </script>

@@ -1,0 +1,933 @@
+ 
+ <style>
+  .contenedor {
+           font-family: Arial, Helvetica, sans-serif;
+           font-size: 14px;
+           width: 90%;
+           margin: auto;
+       }
+  
+      .contenedor td {
+           border: 1px solid #333;
+           padding: 5px;
+       }
+   
+       
+       .t {
+           width: 100%;
+           border-collapse: collapse;
+       }
+       
+       .t td {
+           border: 1px solid #333;
+           padding: 5px;
+       }
+       
+       .none {
+           padding: 0px !important;
+           border: 0px !important;
+       }
+       
+       .titulo {
+           padding: 0 8px;
+           font-size: 11px;
+       }
+  
+       .titulo {
+            background: #fafafa;
+       }
+  
+  .firma{
+      width:80px;
+      height:80px;
+      padding:5px;
+  }
+  
+      .auto-style1 {
+          height: 146px;
+      }
+  
+      .center {
+          text-align: center;
+      }
+  
+      .bold {
+          font-weight: bold;
+      }
+  
+  .t{
+      width: 100%;
+      border-collapse: collapse;
+  }
+  
+  .t tr {
+      page-break-inside: avoid;
+  }
+  
+  
+  .cc1 .vt_signature{
+      width: 150px !important;
+  }
+  
+  .cc1 .vt_picture{
+      width: 150px !important;
+  }
+  
+  .cc2 .vt_picture{
+      width: 150px !important;
+  }
+  
+  .mitad{
+       width: 50%;
+  }
+  
+  .verde{
+                                         background: #E2EFD9;
+                                     }
+                                 
+                                     .colorVerde{
+                                         color: #385624;
+                                     }
+  
+                                     .o td{
+            border: 0px !important;
+       }
+  
+       .colorBorder{
+            border-top: 2px solid #188A57;
+       }
+
+       .campo {
+            width: 300px;
+            border: 0px;
+            outline: none;
+            border-radius: 10px;
+            background: #CBD9E3;
+            text-align: center;
+            padding: 10px;
+       }
+
+       .cuer tr:nth-child(even) {
+            background: #f1f1f1;
+       }
+  
+  </style>
+  <div class="contenedor">
+      
+  <table border="0" class="t">
+  
+      <thead>
+          <tr><td style="padding-bottom:30px; padding-top:30px; border: 0px;">
+              <table border="1" style="width:100%; border-collapse:collapse">
+                  <tr>
+                      <td rowspan="3" class="center "><img width="150px;" src='https://s3.amazonaws.com/logocompanies/A10B3A25-A7A4-44C3-A80D-CC62C13E2812.jpeg' alt="Logo">
+                      </td>
+                   <td rowspan="3" class="center"><h3>REPORTE CONTROL INGRESO Y SALIDA</h3></td>
+                  <td style="width: 120px !important; background: #f1f1f1;">FECHA</td><td style="width: 200px !important;">16-03-2020 </td></tr>
+                  <tr> <td style="width: 120px !important; background: #f1f1f1;">VERSIÓN</td><td style="width: 200px !important;">001</td></tr>
+                  <tr><td style="width: 120px !important; background: #f1f1f1;">CÓDIGO</td><td style="width: 200px !important;"></td></tr>
+                 
+                      <tr>
+                          <td style="border: 0px; color: red; text-align: right;" colspan="4">Reporte Neduer</td>
+                      </tr>
+              </table>
+              </td></tr>
+      </thead>
+
+  
+      <tbody>
+
+       <tr>
+            <td class="none">
+                 <table class="t">
+                  <tr>
+                      <td class="titulo center bold mitad">Tipo</td>
+                      <td class=" center bold mitad">
+                          <select name="" id="tipo" class="campo">
+                              <option value="Seleccione el tipo">Seleccione el tipo</option>
+                              <option value="Reporte Neduer Cali">Reporte Neduer Cali</option>
+                              <option value="Reporte Neduer Bolivar">Reporte Neduer Bolivar</option>
+                              <option value="Reporte Neduer Medellín">Reporte Neduer Medellín</option>
+                          </select>
+                      </td>
+                 </tr>
+                      <tr class="despedir">
+                           <td class="titulo center bold mitad">Usuario</td>
+                           <td class="titulo center bold mitad">Seleccionados</td>
+                      </tr>
+                      <tr class="despedir">
+                           <td class="center">
+                                <select name="" id="personas" class="campo">
+                                     <option value="Agregar persona">Agregar persona</option>
+                                </select>
+                           </td>
+
+                           <td class="bold" id="selection"></td>
+                      </tr>
+                      <tr>
+                           <td colspan="2" class="none">
+                                <table class="t" >
+                                     <tbody id="lista">
+
+                                     </tbody>
+                                     
+                                </table>
+                           </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="2" class="none">
+                             <table class="t" >
+                                  <tr>
+                                    <td style="background-color: #f1f1f1;" class="center bold"><h3>Pendientes por diligenciar el control de ingreso o salida en Neduer</h3></td>
+                                  </tr>
+                                  <tbody id="pending">
+
+                                  </tbody>
+                                  
+                             </table>
+                        </td>
+                   </tr>
+                 </table>
+            </td>
+       </tr>
+  
+       </tbody>
+  </table>
+
+  <script type="text/template" id="span">
+       <span style="border-radius: 20px; display: inline-block; padding: 8px; background: #B0C5D5; color: #135281; margin-right: 5px; margin-bottom: 5px;"><%= item %><div class="cerrados" id="id<%= i %>" iduser="<%= item %>" style=" display: inline-block;margin-left: 5px; background: #135281; color: #fff; height: 25px; width: 25px ; border-radius: 100%; text-align: center;">X</div></span>
+  </script>
+
+  <script type="text/template" id="info">
+      <tr>
+           <td class="none">
+                <table class="t">
+                 <tr>
+                      <td class="titulo center bold" colspan="6"><h4><%= persona %></h4></td>
+                 </tr>
+       
+                 <tr>
+                      <td class="titulo center bold" colspan="3">Control Ingreso</td>
+                      <td class="titulo center bold" colspan="3">Control Salida</td>
+                 </tr>
+       
+                 <tr>
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #FFEEC1; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Fecha</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Hora</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Operativo</td>
+                                <td class="center bold" style="background: #FFEEC1; ">Ubicacion</td>
+                           </table>
+                      </td>
+
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #F8D9D5; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #F8D9D5; width: 100px;">Fecha</td>
+                                <td class="center bold" style="background: #F8D9D5; width: 100px;">Hora</td>
+                                <td class="center bold" style="background: #F8D9D5; width: 100px;">Operativo</td>
+                                <td class="center bold" style="background: #F8D9D5; ">Ubicacion</td>
+                           </table>
+                      </td>
+                 </tr>
+       
+                 <tr>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista1<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista2<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                 </tr>
+       
+                </table>
+           </td>
+      </tr>
+
+       
+  </script>
+
+  <script type="text/template" id="pendientes">
+    <tr>
+      <td class="none">
+           <table class="t">
+            <tr>
+                 <td ><span style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; background: yellow;"></span> <strong style="margin-left: 10px;"><%= persona %></strong></td>
+            </tr>
+        </table>
+      </td>
+    </tr>
+  </script>
+
+
+
+  <script type="text/template" id="info2">
+      <tr>
+           <td class="none">
+                <table class="t">
+                 <tr>
+                      <td class="titulo center bold" colspan="6"><h4><%= persona %></h4></td>
+                 </tr>
+       
+                 <tr>
+                      <td class="titulo center bold" colspan="3">Control Ingreso</td>
+                      <td class="titulo center bold" colspan="3">Control Salida</td>
+                 </tr>
+       
+                 <tr>
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #FFEEC1; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #FFEEC1; ">Fecha</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Hora</td>
+                           </table>
+                      </td>
+
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #F8D9D5; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #F8D9D5; ">Fecha</td>
+                                <td class="center bold" style="background: #F8D9D5; width: 100px;">Hora</td>
+                           </table>
+                      </td>
+                 </tr>
+       
+                 <tr>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista1<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista2<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                 </tr>
+       
+                </table>
+           </td>
+      </tr>
+
+       
+  </script>
+
+
+
+  <script type="text/template" id="info3">
+      <tr>
+           <td class="none">
+                <table class="t">
+                 <tr>
+                      <td class="titulo center bold" colspan="6"><h4><%= persona %></h4></td>
+                 </tr>
+       
+                 <tr>
+                      <td class="titulo center bold" colspan="3">Control Ingreso</td>
+                      <td class="titulo center bold" colspan="3">Control Salida</td>
+                 </tr>
+       
+                 <tr>
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #FFEEC1; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #FFEEC1; ">Fecha</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Hora</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Mapa Acti.</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Mapa Cli.</td>
+                           </table>
+                      </td>
+
+                      <td class="none" colspan="3">
+                           <table class="t">
+                               <td class="center bold" style="background: #F8D9D5; width: 30px;">Eva.</td>
+                                <td class="center bold" style="background: #F8D9D5; ">Fecha</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Mapa Acti.</td>
+                                <td class="center bold" style="background: #FFEEC1; width: 100px;">Mapa Cli.</td>
+                           </table>
+                      </td>
+                 </tr>
+       
+                 <tr>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista1<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                      <td class="center bold none" colspan="3"  style="vertical-align: top;">
+                           <table class="t">
+                                <tbody class="cuer" id="infoLista2<%= i %>">
+                                
+                                </tbody>
+                           </table>
+                      </td>
+                 </tr>
+       
+                </table>
+           </td>
+      </tr>
+
+       
+  </script>
+  
+  
+  </div>
+
+<script type="text/javascript">
+  /*-----------------------------------------------
+  - Execute here the custom actions on the file, like to get totals,
+  - complete some fields, apply design, etc.
+  ------------------------------------------------*/
+  /*
+   la data del credito hijo de ActivityID, y field es el campo que necesito extraer
+
+  */
+
+  function LoadMyCustoms(response, lan, filters) {
+      try {
+
+       moment.locale('es');
+
+          var data_1 = [];
+          var data_2 = [];
+          var data_ = [];
+
+          var personas = [];
+          var tipo = '';
+
+          $(".despedir").css({
+                      opacity: 0
+                  })
+
+          var todos = [];
+
+          for (var i = 0; i<=5; i++) {
+            $.each(response[i].data, function (j, dat) {
+                      todos.push(dat);
+                  });
+          }
+
+          var filtro_personas = [] // arreglo para generar la busqueda por cada indice(personas)
+
+          var usuarios = ['AGUAS DEL BOSQUE MEDELLIN JOBANI','AGUAS DEL BOSQUE MEDELLIN SEBASTIAN ','AGUAS DEL BOSQUE MEDELLIN WILSON ','ALMENDROS DEL CASTILLO  NEDUER','BOSQUES DE LA VIGA NEDUER','BOSQUES DEL CASTILLO  NEDUER','CALASANIA DEL SOL MEDELLIN ESTEBAN','CALASANIA DEL SOL MEDELLIN JUAN CARLOS','CENTRO MEDICO IMBANACO  NEDUER-CALI','CR MULTICENTRO UNIDAD 12 CALI-NEDUER','CR VALGARDA CALI-NEDUER','CR. HACIENDA MANZANA 10 CALI- NEDUER ','CR. SENDEROS DE LA PRADERA NEDUER-CALI','DIANA CORDOBA NEDUER','FABIO ALZATE  SUPERVISOR BOGOTA','GILMAR  DIRECTOR COMERCIAL','GUALANDAI PLAZA  CALI NEDUER','HERRERIA5 NEDUER','Keylyn Muñoz Castro  Asistente Administrativo y Comercial','LOTTO APARTAMENTOS MEDEILLIN CLAUDIA','MAGENTA B NEDUER ','MANANTIAL DE LAS MERCEDES  CALI-NEDUER','MANGENTA A NEDUER ','MIRADOR DEL AGUACATAL  NEDUER','MORELIA NEDUER','NARANJOS  NEDUER- CALI','OFICINAS VIRTUALES -MEDELLIN OVIRTULAES','OFICINAS VIRTUALES MEDELLIN SANDRA','PAISAJES  NEDUER','PARMALAT NEDUER-CALI','PORTALES  NEDUER','QUINTAS DE SANTA MARIA 3- BOGOTA  JESUS ARISTIGUIETA','QUINTAS DE SANTA MARIA 3- BOGOTA MARTHA VEGA','QUINTAS DE SANTA MARIA 3-BOGOTA LUIS BENAVIDES','SAJAMA  NEDUER','SAMAN DEL RIO  NEDUER','SAN MARINO  NEDUER ','SANTA MARTHA DE LOS CABALLEROS NEDUER','SOL DEL CAMPO NEDUER ','SUPERVISOR MEDELLIN ANDRES RAMIREZ','SUPERVISORA  SUPERVISORA WENDY','TORRES DE GRANADA NEDUER-CALI','TORRES DE SAN JUAN  NEDUER ','TRANSPORTADOR  NEDUER ','TURPIAL  NEDUER ','U.R GUAYABALIA ETAPA 2 MEDELLIN JHON','VILLA DE LAS MERCEDES  CALI-NEDUER','ZAIRE NEDUER'];
+
+          personas = _.unique(_.map(todos, function(l) { return l.frm_createdby}));
+
+
+          function exportItems(arr1, arr2) {
+                // arr2 es el arreglo con los items definidos y arr1 los que seleccionaron en el MD
+     
+                 var arrExport = arr2; // array que se exporta cuando termina la funcion, contiene los items que faltaron por diligenciar
+            
+                 $.each(arr1, function(i, item){
+                     arrExport = arrExport.filter(function(itemChild) {
+                         return itemChild !== item;
+                     })
+                 })
+     
+                 return arrExport;
+     
+            }
+
+            var pendientes = exportItems(personas, usuarios);
+          
+            console.log(pendientes);
+
+            $.each(pendientes, function(i, item) {
+                var templatependiente = _.template($("#pendientes").html(), {
+                  persona: item
+                })
+
+                $("#pending").append(templatependiente);
+            })
+
+            
+   
+          $("#tipo").on('change', function(e){
+              app.isHtml= true;
+              data_1 = [];
+              data_2 = [];
+              data_ = [];
+              filtro_personas = [];
+              $("#personas").html('');
+              $("#personas").append('<option value="Agregar persona">Agregar persona</option>');
+              personas = [];
+              $("#lista").html('')
+              $("#selection").html('')
+
+              tipo = $(this).val();
+
+              if ($(this).val() === 'Seleccione el tipo') {
+                  $(".despedir").css({
+                      opacity: 0
+                  })
+
+                  
+              } else if ($(this).val() === 'Reporte Neduer Cali') {
+                  $(".despedir").css({
+                      opacity: 1
+                  })
+
+                  
+                  //console.log(response[0].data);
+                  $.each(response[0].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_1.push(dat);
+                      data_.push(dat);
+                  });
+
+                  $.each(response[1].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_2.push(dat);
+                      data_.push(dat);
+                  });
+
+
+
+                  personas = _.unique(_.map(data_, function(l) { return l.frm_createdby}));
+
+              //  console.log(personas, data_2);
+
+
+             
+
+            console.log(pendientes);
+
+                  $.each(personas, function(i, item){
+                      $("#personas").append('<option value="' + item + '">' + item + '</option>');
+                  });
+              } else if ($(this).val() === 'Reporte Neduer Bolivar') {
+                  $(".despedir").css({
+                      opacity: 1
+                  })
+                  
+                  //console.log(response[0].data);
+                  $.each(response[2].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_1.push(dat);
+                      data_.push(dat);
+                  });
+
+                  $.each(response[3].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_2.push(dat);
+                      data_.push(dat);
+                  });
+
+
+
+                  personas = _.unique(_.map(data_, function(l) { return l.frm_createdby}));
+
+              //  console.log(personas, data_2);
+
+                  $.each(personas, function(i, item){
+                      $("#personas").append('<option value="' + item + '">' + item + '</option>');
+                  });
+              } else if ($(this).val() === 'Reporte Neduer Medellín') {
+                  $(".despedir").css({
+                      opacity: 1
+                  })
+                  
+                  //console.log(response[0].data);
+                  $.each(response[4].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_1.push(dat);
+                      data_.push(dat);
+                  });
+
+                  $.each(response[5].data, function (j, dat) {
+                      dat.fecha = moment(dat.act_fecha).format("YYYY-MM-DD");
+                      data_2.push(dat);
+                      data_.push(dat);
+                  });
+
+
+
+                  personas = _.unique(_.map(data_, function(l) { return l.frm_createdby}));
+
+              //  console.log(personas, data_2);
+
+                  $.each(personas, function(i, item){
+                      $("#personas").append('<option value="' + item + '">' + item + '</option>');
+                  });
+              }
+          })
+
+         
+
+          function renderingPersonas(arr) {
+
+               $.each(arr, function(i, item){
+                    var template = _.template($("#span").html(), {
+                         item: item,
+                         i: i
+                    })
+                 $("#selection").append(template);
+               })
+          }
+
+
+          function renderingPersonasTemplate(arr) {
+
+                 $.each(arr, function(i, item){
+                      var template = _.template($("#info").html(), {
+                           persona: item,
+                           i: i
+                      })
+                      $("#lista").append(template);
+
+                      var dataIngreso = _.where(data_1, {frm_createdby: item});
+                      var dataIngresoOrder = _.sortBy(dataIngreso, 'fecha');
+
+                      var dataSalida = _.where(data_2, {frm_createdby: item});
+                      var dataSalidaOrder = _.sortBy(dataSalida, 'fecha');
+
+                      console.log(dataIngresoOrder);
+
+                      $.each(dataIngresoOrder, function(j, dat){
+
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+
+                       
+                           var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  style="width: 100px;">' + dat.act_fecha + '</td><td class="center bold"  style="width: 100px;">' + dat.act_hora + '</td> <td class="center bold"  style="width: 100px;">' + dat.act_operativo + '</td><td class="center bold" nowrap ><a target="_blank" href="' + dat.act_ubicacion + '">Ir al mapa</a></td></tr>';
+
+                           $("#infoLista1"+ i).append(html);
+                      })
+
+                      $.each(dataSalidaOrder, function(j, dat){
+
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+
+                           var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  style="width: 100px;">' + dat.act_fecha + '</td><td class="center bold"  style="width: 100px;">' + dat.act_hora + '</td> <td class="center bold"  style="width: 100px;">' + dat.act_operativo + '</td><td class="center bold" nowrap><a target="_blank" href="' + dat.act_ubicacion + '">Ir al mapa</a></td></tr>';
+
+                           $("#infoLista2"+ i).append(html);
+                      })
+
+                 })
+            }
+
+
+
+
+            function renderingPersonasTemplatee(arr) {
+                  $("#lista").html('');
+
+                 $.each(arr, function(i, item){
+                      var template = _.template($("#info2").html(), {
+                           persona: item,
+                           i: i
+                      })
+                      $("#lista").append(template);
+
+                      var dataIngreso = _.where(data_1, {frm_createdby: item});
+                      var dataIngresoOrder = _.sortBy(dataIngreso, 'fecha');
+
+                      var dataSalida = _.where(data_2, {frm_createdby: item});
+                      var dataSalidaOrder = _.sortBy(dataSalida, 'fecha');
+
+                      console.log(dataIngresoOrder);
+
+                      $.each(dataIngresoOrder, function(j, dat){
+
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+                         
+
+                            var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  ">' + dat.act_fecha + '</td><td class="center bold" style="width: 100px;">' + dat.act_hora + '</td> </tr>';
+
+                           $("#infoLista1"+ i).append(html);
+                      })
+
+                      $.each(dataSalidaOrder, function(j, dat){
+
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+                         
+
+                           var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  >' + dat.act_fecha + '</td><td class="center bold" style="width: 100px;">' + dat.act_hora + '</td> </tr>';
+
+                           $("#infoLista2"+ i).append(html);
+                      })
+
+                 })
+            }
+
+
+
+
+            function renderingPersonasTemplateee(arr) {
+                  $("#lista").html('');
+
+                 $.each(arr, function(i, item){
+                      var template = _.template($("#info3").html(), {
+                           persona: item,
+                           i: i
+                      })
+                      $("#lista").append(template);
+
+                      var dataIngreso = _.where(data_1, {frm_createdby: item});
+                      var dataIngresoOrder = _.sortBy(dataIngreso, 'fecha');
+
+                      var dataSalida = _.where(data_2, {frm_createdby: item});
+                      var dataSalidaOrder = _.sortBy(dataSalida, 'fecha');
+
+                      console.log(dataIngresoOrder);
+
+                      $.each(dataIngresoOrder, function(j, dat){
+
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+                         
+
+                          var urlActi = 'https://www.openstreetmap.org/?mlat='+ dat.frm_latitude +'&mlon='+ dat.frm_longitude +'#map=16/'+ dat.frm_latitude +'/'+ dat.frm_longitude +'';
+''
+
+                      var urlLoc = 'https://www.openstreetmap.org/?mlat='+ dat.loc_latitude +'&mlon='+ dat.loc_longitude +'#map=16/'+ dat.loc_latitude +'/'+ dat.loc_longitude +'';
+            
+                         
+
+                           var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  >' + dat.act_fecha + '</td><td class="center bold" style="width: 100px;">' + dat.act_hora + '</td> <td class="center bold" style="width: 100px;"><a href="' + urlActi + '" target="_blank">Ir</a></td> <td class="center bold" style="width: 100px;"><a href="' + urlLoc + '" target="_blank">Ir</a></td> </tr>';
+
+                           $("#infoLista1"+ i).append(html);
+                      })
+
+                      $.each(dataSalidaOrder, function(j, dat){
+                          var estado = '';
+                          if ( dat.frm_latitude === '0.00000000' ||  dat.frm_longitude === '0.00000000' || dat.loc_latitude === '0.00000000'  || dat.loc_longitude === '0.00000000' ) {
+                              estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                          } else {
+                              var frm={
+                                  lat1: dat.frm_latitude,
+                                  lon1: dat.frm_longitude,
+                                  lat2: dat.loc_latitude,
+                                  lon2: dat.loc_longitude
+                             }
+                             console.log(frm + ' frm salida');
+                             distance = parseFloat(app.findDistance(frm).km);
+                             console.log(distance + ' distancia');
+
+                        
+                             if (distance != null && distance > 0.5) {
+                                  console.log("TIENE ERROR ");
+
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: red;"></span>';
+                             } else {
+                                  estado = '<span style="border-radius: 100%; display: inline-block; width: 25px; height: 25px; background: #829A38;"></span>';
+                             }
+                          }
+
+                          var urlActi = 'https://www.openstreetmap.org/?mlat='+ dat.frm_latitude +'&mlon='+ dat.frm_longitude +'#map=16/'+ dat.frm_latitude +'/'+ dat.frm_longitude +'';
+''
+
+       var urlLoc = 'https://www.openstreetmap.org/?mlat='+ dat.loc_latitude +'&mlon='+ dat.loc_longitude +'#map=16/'+ dat.loc_latitude +'/'+ dat.loc_longitude +'';
+
+                         
+
+                           var html = '<tr><td class="center bold"  style="width: 30px;">' + estado + '</td><td class="center bold"  >' + dat.act_fecha + '</td><td class="center bold" style="width: 100px;">' + dat.act_hora + '</td> <td class="center bold" style="width: 100px;"><a href="' + urlActi + '" target="_blank">Ir</a></td> <td class="center bold" style="width: 100px;"><a href="' + urlLoc + '" target="_blank">Ir</a></td> </tr>';
+
+                           $("#infoLista2"+ i).append(html);
+                      })
+
+                 })
+            }
+
+
+          $("#personas").on('change', function(e) {
+               var persona = $(this).val();
+               e.stopPropagation()
+               
+
+               $("#selection").html('')
+               $("#lista").html('')
+
+
+               var saber = filtro_personas.find(function(item) {
+                    return item === persona;
+               })
+
+               if (typeof saber === 'undefined') {
+                 filtro_personas.push(persona);
+               } 
+               if (tipo === 'Reporte Neduer Cali') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplate(filtro_personas);
+               } else if (tipo === 'Reporte Neduer Bolivar') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplatee(filtro_personas);
+               } else if (tipo === 'Reporte Neduer Medellín') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplateee(filtro_personas);
+               }
+
+              
+
+
+             // renderingPersonasTemplate(filtro_personas);
+               
+          })
+
+          $(document).on('click', '.cerrados', function(e) {
+
+                           
+            var persona = $(this).attr('iduser');
+
+            $("#selection").html('')
+            $("#lista").html('')
+
+
+
+            filtro_personas = filtro_personas.filter(function(item) {
+                 return item !== persona;
+            })
+            if (tipo === 'Reporte Neduer Cali') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplate(filtro_personas);
+               } else if (tipo === 'Reporte Neduer Bolivar') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplatee(filtro_personas);
+               } else if (tipo === 'Reporte Neduer Medellín') {
+                  renderingPersonas(filtro_personas);
+                  renderingPersonasTemplateee(filtro_personas);
+               }
+
+            })
+
+      } catch (exc) {
+          console.log("ucmycustoms_report", "ppal", exc);
+      }
+
+  }
+  app.AfterLoadMyCustom = function (response, lan, filters) {
+      try {
+          return LoadMyCustoms(response, lan, filters);
+      } catch (exc) {
+          app.excManager("ucmycustoms_report", "AfterLoad", exc);
+      }
+  }
+
+</script>
+

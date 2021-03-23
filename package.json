@@ -1,0 +1,27 @@
+{
+  "name": "backendchat",
+  "version": "1.0.0",
+  "description": "aplicativo web para capacitaciones online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Santiago - Visitrack SAS",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "download": "^8.0.0",
+    "download-file": "^0.1.5",
+    "excel4node": "^1.7.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "html-pdf": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.28",
+    "mongoose": "^5.9.10",
+    "node-cron": "^2.0.3",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {}
+}
