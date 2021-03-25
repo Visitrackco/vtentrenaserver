@@ -15,7 +15,7 @@ const fs = require('fs');
 router.post('/vtentrena/user/admin', (req, res) => {
      const body = req.body;
 
-     if (!body.data.login || !body.data.password || !body.name) {
+     if (!body.login || !body.password || !body.name) {
           return res.json({
                status: 'error',
                err: 'User information is incomplete, please check'
@@ -23,8 +23,8 @@ router.post('/vtentrena/user/admin', (req, res) => {
      }
 
      let myUser = new UsersAdmin({
-          login: body.data.login,
-          password: body.data.password,
+          login: body.login,
+          password: body.password,
           name: body.name,
           dateCreatedUser: moment().utc()
      });
