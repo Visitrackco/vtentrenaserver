@@ -375,6 +375,8 @@ router.post('/vtentrena/user/login', (req, res) => {
                })
           }
 
+          console.log('entramos');
+
                if (usersAdmins.find((user) => user.login === body.data.login && user.password === body.data.password)) {
 
                     let dataUser = usersAdmins.filter((user) => user.login === body.data.login && user.password === body.data.password)[0];
