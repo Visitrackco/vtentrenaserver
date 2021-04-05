@@ -26,7 +26,7 @@ const AnswerEntrenaSchema = new Schema({
      },
      userAnswer: {
           type: Schema.Types.ObjectId,
-          ref: 'usersbasicentrena'
+          ref: 'usersbasicsentrena'
      },
      parentDesigner: {
           type: Schema.Types.ObjectId,

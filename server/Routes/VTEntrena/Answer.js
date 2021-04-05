@@ -267,6 +267,8 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
      console.log('Entrando')
 
      AnswerSchema.find({_id: _id})
+     .populate('parentDesigner')
+     .populate('userAnswer')
           .exec((error, answers) => {
           if (error) {
                return res.json({
@@ -278,8 +280,118 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
           if (answers.length > 0) {
                
                const content = `
-               <h1>Título en el PDF creado con el paquete html-pdf</h1>
-               <p>Total de puntos por examen ${answers[0].JSONEntrena.tot}</p>
+               <html>
+
+<head>
+    <style type='text/css'>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            color: black;
+            display: table;
+            font-family: Georgia, serif;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .container {
+            border: 20px solid #00ab4c;
+            width: 750px;
+            height: 650px;
+            display: table-cell;
+            vertical-align: middle;
+            position: relative;
+        }
+        
+        .logo {
+            color: #00ab4c;
+            margin-bottom: 0px;
+        }
+        
+        .marquee {
+            color: #00ab4c;
+            font-size: 48px;
+            margin-top: 0%;
+        }
+        
+        .assignment {
+            margin: 20px;
+        }
+        
+        .person {
+            border-bottom: 2px solid black;
+            font-size: 32px;
+            font-style: italic;
+            margin: 20px auto;
+            width: 400px;
+        }
+        
+        .fecha {
+            border-bottom: 2px solid black;
+            font-size: 20px;
+            font-style: italic;
+            margin: 20px auto;
+            width: 300px;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+        }
+        
+        .firma {
+            border-bottom: 2px solid black;
+            font-size: 20px;
+            font-style: italic;
+            margin: 20px auto;
+            width: 300px;
+            position: absolute;
+            bottom: 40px;
+            left: 450px;
+        }
+        
+        .reason {
+            margin: 20px;
+            margin-bottom: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="http://imgfz.com/i/nd7kf4M.png">
+        </div>
+
+        <div class="marquee">
+            Hace Certificar a:
+        </div>
+
+        <div class="person">
+        ${answers[0].userAnswer.name}
+        </div>
+
+        <div class="reason">
+            por completar satifactoriamente el curso virtual para ${answers[0].parentDesigner.name} 
+        </div>
+
+        <div class="fecha">
+        ${moment().format("MM-DD-YYYY")}
+        </div>
+
+
+        <div class="firma">
+            <img src="http://imgfz.com/i/gsDZ5kp.png" alt="">
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
                `;
 
                const name = _id + moment().format('YYYYMMDDHHmmss') + '.pdf'
