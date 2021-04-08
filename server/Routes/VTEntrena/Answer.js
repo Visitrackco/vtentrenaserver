@@ -430,7 +430,7 @@ router.get('/vtentrena/designer/answer/download/', (req, res) => {
  });
 
 
- router.get('/vtentrena/designer/answer/download/files', (req, res) => {
+ router.get('/vtentrena/designer/answer/download/files/', (req, res) => {
      console.log(req.query.path)
      console.log(req.query.name)
       res.download(path.join(__dirname, '../../public/uploads/Entrenamientos/', req.query.path), req.query.name, (err) => {
