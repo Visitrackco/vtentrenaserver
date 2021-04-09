@@ -294,7 +294,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             color: black;
             display: table;
             font-family: Georgia, serif;
-            font-size: 14px;
+            font-size: 14px ;
           
         }
         
@@ -306,6 +306,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             display: table-cell;
             vertical-align: middle;
             position: relative;
+            font-size: 14px !important;
         }
         
         .logo {
