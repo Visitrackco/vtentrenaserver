@@ -316,7 +316,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
         
         .marquee {
             color: #00ab4c;
-            font-size: 24px;
+            font-size: 32px;
             margin-top: 0%;
         }
         
@@ -326,7 +326,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
         
         .person {
             border-bottom: 2px solid black;
-            font-size: 32px;
+            font-size: 30px;
             font-style: italic;
             margin: 20px auto;
             width: 400px;
@@ -351,7 +351,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             width: 150px;
             position: absolute;
             bottom: 40px;
-            left: 250px;
+            right: 40px;
         }
         
         .reason {
@@ -364,7 +364,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
 <body>
     <div class="container">
         <div class="logo">
-            <img src="https://www.vtentrena.com/uploads/servientrega.png" width="90%">
+            <img src="https://www.vtentrena.com/uploads/servientrega.png" width="98%">
         </div>
 
         <div class="marquee">
