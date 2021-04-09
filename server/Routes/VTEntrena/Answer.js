@@ -316,7 +316,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
         
         .marquee {
             color: #00ab4c;
-            font-size: 48px;
+            font-size: 24px;
             margin-top: 0%;
         }
         
@@ -334,10 +334,10 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
         
         .fecha {
             border-bottom: 2px solid black;
-            font-size: 20px;
+            font-size: 14px;
             font-style: italic;
             margin: 20px auto;
-            width: 300px;
+            width: 150px;
             position: absolute;
             bottom: 40px;
             left: 40px;
@@ -345,13 +345,13 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
         
         .firma {
             border-bottom: 2px solid black;
-            font-size: 20px;
+            font-size: 14px;
             font-style: italic;
             margin: 20px auto;
-            width: 300px;
+            width: 150px;
             position: absolute;
             bottom: 40px;
-            left: 450px;
+            left: 250px;
         }
         
         .reason {
