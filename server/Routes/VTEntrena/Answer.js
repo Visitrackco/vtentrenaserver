@@ -294,13 +294,13 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             color: black;
             display: table;
             font-family: Georgia, serif;
-            font-size: 22px;
+            font-size: 14px;
             text-align: center;
         }
         
         .container {
             border: 20px solid #00ab4c;
-            width: 750px;
+            width: 90%;
             height: 650px;
             display: table-cell;
             vertical-align: middle;
