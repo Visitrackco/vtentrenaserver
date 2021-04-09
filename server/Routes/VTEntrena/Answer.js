@@ -295,10 +295,11 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             display: table;
             font-family: Georgia, serif;
             font-size: 14px;
-            text-align: center;
+          
         }
         
         .container {
+          text-align: center;
             border: 20px solid #00ab4c;
             width: 90%;
             height: 650px;
@@ -362,7 +363,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
 <body>
     <div class="container">
         <div class="logo">
-            <img src="https://www.vtentrena.com/uploads/servientrega.png">
+            <img src="https://www.vtentrena.com/uploads/servientrega.png" width="90%">
         </div>
 
         <div class="marquee">
