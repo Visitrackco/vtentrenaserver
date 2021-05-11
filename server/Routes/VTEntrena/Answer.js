@@ -280,7 +280,9 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
           if (answers.length > 0) {
                
                const content = `
-               <html>
+               
+
+<html>
 
 <head>
     <style type='text/css'>
@@ -294,30 +296,47 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             color: black;
             display: table;
             font-family: Georgia, serif;
-            font-size: 14px ;
-          
+            font-size: 14px;
         }
         
         .container {
-          text-align: center;
-            border: 20px solid #00ab4c;
+            text-align: center;
+            border: 25px solid rgb(194, 177, 177);
             width: 90%;
-            height: 650px;
+            height: 500px;
             display: table-cell;
             vertical-align: middle;
             position: relative;
             font-size: 14px !important;
+            background-image: url('http://imgfz.com/i/hatFqfX.jpeg');
+            align-items: center;
         }
         
         .logo {
+            position: relative;
             color: #00ab4c;
             margin-bottom: 0px;
+            bottom: 80px;
+        }
+        
+        .caja {
+            border: 30px solid rgb(255, 255, 255);
+            height: 40em;
+            position: relative;
+            box-shadow: 7px 7px 7px grey;
+        }
+        
+        .texto {
+            right: 0px;
+            bottom: 0px;
+            position: absolute;
         }
         
         .marquee {
             color: #00ab4c;
             font-size: 32px;
-            margin-top: 0%;
+            position: relative;
+            top: -70;
         }
         
         .assignment {
@@ -362,33 +381,39 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
 </head>
 
 <body>
+
     <div class="container">
-        <div class="logo">
-            <img src="https://www.vtentrena.com/uploads/servientrega.png" width="98%">
+        <div class="caja">
+            <div class="logo">
+                <img src="https://www.vtentrena.com/uploads/servientrega.png" width="98%">
+            </div>
+
+            <div class="marquee">
+                 Certifica a:
+            </div>
+
+            <div class="person">
+            ${answers[0].userAnswer.name}
+            </div>
+
+            <div class="reason">
+                por completar satifactoriamente el curso virtual ppara la generación de guias del Sistema KIWI de Servientrega Internacional INC.
+            </div>
+
+            <div class="fecha">
+            ${moment().format("MM-DD-YYYY")}
+            </div>
+            <div class="texto">
+                3047 NW 107 AVE, DORAL FL
+            </div>
+
+
+            <div class="firma">
+
+            </div>
         </div>
-
-        <div class="marquee">
-            Hace Certificar a:
-        </div>
-
-        <div class="person">
-        ${answers[0].userAnswer.name}
-        </div>
-
-        <div class="reason">
-            por completar satifactoriamente el curso virtual para ${answers[0].parentDesigner.name} 
-        </div>
-
-        <div class="fecha">
-        ${moment().format("MM-DD-YYYY")}
-        </div>
-
-
-        <div class="firma">
-           
-        </div>
-
     </div>
+
 
 
 </body>
