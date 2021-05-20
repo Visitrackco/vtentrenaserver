@@ -330,12 +330,14 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
              z-index: 1;
              left: 0px;
              top: 0px;
+             opacity: .2;
         }
         
         .texto {
             right: 0px;
             bottom: 0px;
             position: absolute;
+            z-index: 2;
         }
         
         .marquee {
@@ -343,10 +345,12 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             font-size: 32px;
             position: relative;
             top: -70;
+            z-index: 2;
         }
         
         .assignment {
             margin: 20px;
+            z-index: 2;
         }
         
         .person {
@@ -355,6 +359,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             font-style: italic;
             margin: 20px auto;
             width: 400px;
+            z-index: 2;
         }
         
         .fecha {
@@ -366,6 +371,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             position: absolute;
             bottom: 40px;
             left: 40px;
+            z-index: 2;
         }
         
         .firma {
