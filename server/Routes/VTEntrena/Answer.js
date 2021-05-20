@@ -308,7 +308,6 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             vertical-align: middle;
             position: relative;
             font-size: 14px !important;
-            background-image: url('http://imgfz.com/i/hatFqfX.jpeg');
             align-items: center;
         }
         
@@ -324,6 +323,13 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             height: 40em;
             position: relative;
             box-shadow: 7px 7px 7px grey;
+        }
+
+        .foto {
+             position: absolute;
+             z-index: 1;
+             left: 0px;
+             top: 0px;
         }
         
         .texto {
@@ -371,11 +377,13 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             position: absolute;
             bottom: 40px;
             right: 40px;
+            z-index: 2;
         }
         
         .reason {
             margin: 20px;
             margin-bottom: 120px;
+            z-index: 2;
         }
     </style>
 </head>
@@ -384,6 +392,8 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
 
     <div class="container">
         <div class="caja">
+
+        <img class="foto" src="https://www.vtentrena.com/uploads/fondo.jpg" width="98%">
             <div class="logo">
                 <img src="https://www.vtentrena.com/uploads/servientrega.png" width="98%">
             </div>
