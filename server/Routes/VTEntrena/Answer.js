@@ -413,7 +413,7 @@ router.get('/vtentrena/designer/answer/pdf/', [verifyToken], (req, res) => {
             </div>
 
             <div class="reason">
-                por completar satifactoriamente el curso virtual ppara la generación de guias del Sistema KIWI de Servientrega Internacional INC.
+                por completar satifactoriamente el curso virtual para la generación de guias del Sistema KIWI de Servientrega Internacional INC.
             </div>
 
             <div class="fecha">
