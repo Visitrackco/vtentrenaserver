@@ -764,32 +764,34 @@ router.get('/vtentrena/pdf2/', (req, res) => {
      
                 </div>
                `;
+
+                const name = moment().format('YYYYMMDDHHmmss') + '.pdf'
+
+                pdf.create(content).toFile(path.resolve(__dirname, '../../public/uploads/pdf/', name), function(err, j) {
+                    if (err) {
+                        return res.json({
+                            status: 'error',
+                            error: 'Export Failed'
+                        })
+                    } else {
+                        return res.json({
+                            status: 'ok',
+                            path: name
+                        })
+                    }
+
+
+
+
+
+                })
             }
 
 
 
             // dgdfgdf
 
-            const name = moment().format('YYYYMMDDHHmmss') + '.pdf'
 
-            pdf.create(content).toFile(path.resolve(__dirname, '../../public/uploads/pdf/', name), function(err, j) {
-                if (err) {
-                    return res.json({
-                        status: 'error',
-                        error: 'Export Failed'
-                    })
-                } else {
-                    return res.json({
-                        status: 'ok',
-                        path: name
-                    })
-                }
-
-
-
-
-
-            })
 
         });
 
