@@ -265,10 +265,8 @@ router.get('/vtentrena/pdf2/', (req, res) => {
 
     let token = req.query.tkn;
 
-    console.log('Entrando', token)
+    console.log('Entrando', token, axios)
 
-    const params = new URLSearchParams({ foo: 'bar' });
-    params.append('extraparam', 'value');
     axios.post('https://api2.visitrack.com/api/Surveys/Activity', {
 
         AccessToken: token,
