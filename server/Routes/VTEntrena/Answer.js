@@ -9,8 +9,7 @@ const newLog = new UserLog();
 const pdf = require('html-pdf');
 const path = require('path');
 const fs = require('fs');
-const axios = require('axios');
-
+const axios = require('axios').default;
 
 router.post('/vtentrena/designer/answer', [verifyToken], (req, res) => {
     const body = req.body;
@@ -266,34 +265,34 @@ router.get('/vtentrena/pdf2/', (req, res) => {
 
     let token = req.query.tkn;
 
-    console.log('Entrando')
+    console.log('Entrando', token)
 
-    axios({
-            method: 'post',
-            url: 'https://api2.visitrack.com/api/Surveys/Activity',
-            data: {
-                AccessToken: token,
-                ActivityID: req.query.id,
-                ListValues: false
+    const params = new URLSearchParams({ foo: 'bar' });
+    params.append('extraparam', 'value');
+    axios.post('https://api2.visitrack.com/api/Surveys/Activity', {
+
+        AccessToken: token,
+        ActivityID: req.query.id,
+        ListValues: false
+
+    }).then((response) => {
+        console.log(response)
+
+        if (response.Values) {
+
+            var fecha = response.Values.filter((item) => item.apiId == 'FECHA');
+            var hora = response.Values.filter((item) => item.apiId == 'HORA');
+
+            if (fecha.length > 0) {
+                fecha = fecha[0].Value
             }
-        })
-        .then((response) => {
 
-            if (response.Values) {
-
-                var fecha = response.Values.filter((item) => item.apiId == 'FECHA');
-                var hora = response.Values.filter((item) => item.apiId == 'HORA');
-
-                if (fecha.length > 0) {
-                    fecha = fecha[0].Value
-                }
-
-                if (hora.length > 0) {
-                    hora = hora[0].Value
-                }
+            if (hora.length > 0) {
+                hora = hora[0].Value
+            }
 
 
-                const content = `
+            const content = `
                <style>
      *{
      
@@ -765,35 +764,35 @@ router.get('/vtentrena/pdf2/', (req, res) => {
                 </div>
                `;
 
-                const name = moment().format('YYYYMMDDHHmmss') + '.pdf'
+            const name = moment().format('YYYYMMDDHHmmss') + '.pdf'
 
-                pdf.create(content).toFile(path.resolve(__dirname, '../../public/uploads/pdf/', name), function(err, j) {
-                    if (err) {
-                        return res.json({
-                            status: 'error',
-                            error: 'Export Failed'
-                        })
-                    } else {
-                        return res.json({
-                            status: 'ok',
-                            path: name
-                        })
-                    }
-
-
+            pdf.create(content).toFile(path.resolve(__dirname, '../../public/uploads/pdf/', name), function(err, j) {
+                if (err) {
+                    return res.json({
+                        status: 'error',
+                        error: 'Export Failed'
+                    })
+                } else {
+                    return res.json({
+                        status: 'ok',
+                        path: name
+                    })
+                }
 
 
 
-                })
-            }
+
+
+            })
+        }
 
 
 
-            // dgdfgdf
+        // dgdfgdf
 
 
 
-        });
+    });
 
 
 
