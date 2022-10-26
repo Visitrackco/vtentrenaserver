@@ -280,6 +280,7 @@ router.get('/vtentrena/pdf2/', (req, res) => {
         .then((response) => {
 
             if (response.Values) {
+
                 var fecha = response.Values.filter((item) => item.apiId == 'FECHA');
                 var hora = response.Values.filter((item) => item.apiId == 'HORA');
 
