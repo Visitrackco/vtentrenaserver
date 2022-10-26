@@ -267,12 +267,14 @@ router.get('/vtentrena/pdf2/', (req, res) => {
 
     console.log('Entrando', token, axios)
 
-    axios.post('https://api2.visitrack.com/api/Surveys/Activity', {
-
-        AccessToken: token,
-        ActivityID: req.query.id,
-        ListValues: false
-
+    axios({
+        method: 'post',
+        url: 'https://api2.visitrack.com/api/Surveys/Activity',
+        data: {
+            AccessToken: token,
+            ActivityID: req.query.id,
+            ListValues: false
+        }
     }).then((response) => {
         console.log(response)
 
