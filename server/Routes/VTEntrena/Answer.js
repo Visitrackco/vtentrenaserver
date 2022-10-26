@@ -270,7 +270,7 @@ router.get('/vtentrena/pdf2/', (req, res) => {
 
     axios({
             method: 'post',
-            url: '/user/12345',
+            url: 'https://api2.visitrack.com/api/Surveys/Activity',
             data: {
                 AccessToken: token,
                 ActivityID: req.query.id,
