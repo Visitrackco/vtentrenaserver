@@ -3,25 +3,29 @@ const Schema = mongoose.Schema;
 const moment = require('moment-timezone');
 
 const UsersEntrenaSchema = new Schema({
-     dateCreatedUser: {
-          type: Date
-     },
-     login: {
-          type: String,
-          default: ''
-     },
-     password: {
-          type: String,
-          default: ''
-     },
-     name: {
-          type: String,
-          default: ''
-     },
-     role: {
-          type: String,
-          default: 'ADMIN_ENTRENA'
-     }
+    dateCreatedUser: {
+        type: Date
+    },
+    login: {
+        type: String,
+        default: ''
+    },
+    password: {
+        type: String,
+        default: ''
+    },
+    name: {
+        type: String,
+        default: ''
+    },
+    role: {
+        type: String,
+        default: 'ADMIN_ENTRENA'
+    },
+    logo: {
+        type: String,
+        default: ''
+    }
 })
 
 module.exports = mongoose.model('usersadminentrena', UsersEntrenaSchema);

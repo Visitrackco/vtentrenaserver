@@ -16,6 +16,10 @@ app.use(require('./Routes/index.js'));
 
 app.use(express.static(path.resolve(__dirname, 'public')))
 
+// echo Set PATH /Users/visitracksas/.zprofile   
+// echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+// eval "$(/opt/homebrew/bin/brew shellenv)"  
+
 // Sockets
 module.exports.io = SokectIO(server);
 require('./Sockets/socket');
