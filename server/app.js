@@ -8,6 +8,7 @@ const SokectIO = require('socket.io');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const axios = require('axios').default;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,7 +27,7 @@ require('./Sockets/socket');
 
 require('./Jobs/UsersEntrena.js');
 
-console.log('hola mundo en visitrack')
+console.log('hola mundo en visitrack', axios)
 
 mongoose.connect('mongodb://localhost:27017/repository', { useCreateIndex: true, useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true }, (err) => {
     if (err) {
