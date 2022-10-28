@@ -3277,7 +3277,8 @@ const environments = {
     URL_API: 'https://api.visitrack.com/api/',
     URL_NODE: 'https://www.vtentrena.com',
     // URL_NODE: 'http://localhost:3000',
-    URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
+    //   URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
+    URL_RESORCES: 'https://www.vtentrena.com/uploads/Entrenamientos/'
     //https://www.vtentrena.com/
 };
 
@@ -3307,7 +3308,8 @@ const environments = {
     URL_API: 'https://api.visitrack.com/api/',
     URL_NODE: 'https://www.vtentrena.com',
     // URL_NODE: 'http://localhost:3000',
-    URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
+    //   URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
+    URL_RESORCES: 'https://www.vtentrena.com/uploads/Entrenamientos/'
     //https://www.vtentrena.com/
 };
 /*
