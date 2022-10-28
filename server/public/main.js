@@ -3275,8 +3275,8 @@ const environment = {
 const environments = {
     URL_CLUUD: 'https://cloud.visitrack.com/',
     URL_API: 'https://api.visitrack.com/api/',
-    // URL_NODE: 'https://www.vtentrena.com'
-    URL_NODE: 'http://localhost:3000',
+    URL_NODE: 'https://www.vtentrena.com',
+    // URL_NODE: 'http://localhost:3000',
     URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
     //https://www.vtentrena.com/
 };
@@ -3305,8 +3305,8 @@ const environment = {
 const environments = {
     URL_CLUUD: 'https://cloud.visitrack.com/',
     URL_API: 'https://api.visitrack.com/api/',
-    // URL_NODE: 'https://www.vtentrena.com'
-    URL_NODE: 'http://localhost:3000',
+    URL_NODE: 'https://www.vtentrena.com',
+    // URL_NODE: 'http://localhost:3000',
     URL_RESORCES: 'http://localhost:3000/uploads/Entrenamientos/'
     //https://www.vtentrena.com/
 };
