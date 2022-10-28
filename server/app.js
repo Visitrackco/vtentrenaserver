@@ -25,6 +25,8 @@ app.use(express.static(path.resolve(__dirname, 'public')))
 module.exports.io = SokectIO(server);
 require('./Sockets/socket');
 
+
+
 require('./Jobs/UsersEntrena.js');
 
 console.log('hola mundo en visitrack 2.0')
