@@ -1,0 +1,1145 @@
+<style>
+    .font-cant {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    
+    .font-header {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        vertical-align: central;
+    }
+    
+    .header {
+        background-color: darkgreen;
+        height: 40px;
+    }
+    
+    .interrow {
+        background-color: #aef3a1;
+    }
+    
+    .tarjetas {
+        display: flex;
+    }
+    
+    .tarjetas .tarjeta {
+        width: 30%;
+        margin: 10px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    
+    .tarjetas .tarjeta2 {
+        width: 95%;
+        margin: 10px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    
+    .tarjetas .tarjeta h4 {
+        margin: 5px;
+        text-align: center;
+    }
+    
+    td {
+        text-align: center;
+    }
+    
+    .statistic-box {
+        height: 180px !important;
+    }
+    
+    .statistic-box>div {
+        height: 180px !important;
+        background: none;
+    }
+    /* #486891 */
+    
+    .statistic-box.blue {
+        background-image: url("http://imgfz.com/i/FBTKalo.jpeg") !important;
+        /* background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png"); */
+    }
+</style>
+<script>
+    //construccion del html
+    app.dashProcess = function(data) {
+        try {
+            $('#dash_custom_content').show(); //pongo visible para poner filtros al lado izquierdo abajo de la selección de los dashboard
+            console.log("init data---->", data);
+
+
+            ///////////////////////////////////////////// GRID MOTIVOS MEDELLIN ////////////////////////////////////////////////
+            $("#grid_motivos_rionegro").kendoGrid({
+                toolbar: ["excel"],
+                excel: {
+                    fileName: "consolidado-maquinarias.xlsx",
+                    proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: {
+                    data: []
+                },
+                dataBound: function() {
+                    try {
+
+                    } catch (exc) {
+                        app.excManager("dashProcess", "GridView.dataBound2", exc);
+                    }
+                },
+                selectable: "row",
+                height: 550,
+                groupable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderGroupable')
+                    }
+                },
+                columns: [{
+                    field: "motivo",
+                    title: "MOTIVO RIONEGRO",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#F9E7D2 "
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+                    isdownload: true,
+
+                }, {
+                    field: "cantidad",
+                    title: "CANTIDAD",
+                    width: 120,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#F9E7D2"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+
+                }, {
+                    field: "oportunamente",
+                    title: "CANTIDAD ATENDIDA OPORTUNAMENTE",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#F9E7D2"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }, {
+                    field: "promedio",
+                    title: "PROMEDIO DE TIEMPOS",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#F9E7D2"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: app.language.getLabel('StartsWith'),
+                            eq: app.language.getLabel('IsEqualTo'),
+                            neq: app.language.getLabel('IsNotEqualTo'),
+                            contains: app.language.getLabel('Contains')
+                        }
+                    },
+                    messages: {
+                        info: app.language.getLabel('FilterHeader'), // sets the text on top of the filter menu
+                        filter: app.language.getLabel('FilterButton'), // sets the text for the "Filter" button
+                        clear: app.language.getLabel('FilterClear'), // sets the text for the "Clear" button
+                    }
+                },
+                sortable: true,
+                columnMenu: false,
+                divisionable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderDivisionable')
+                    }
+                },
+                pageable: {
+                    messages: {
+                        display: " {2} " + app.language.getLabel('TotalRecords'),
+                        empty: app.language.getLabel('NoRecordsDisplay'),
+                        itemsPerPage: app.language.getLabel('ItemsPerPage'),
+                        first: app.language.getLabel('FirstPage'),
+                        previous: app.language.getLabel('PreviousPage'),
+                        next: app.language.getLabel('NextPage'),
+                        last: app.language.getLabel('LastPage'),
+                        refresh: app.language.getLabel('Refresh')
+                    },
+                    buttonCount: 10,
+                    refresh: true,
+                    previousNext: true,
+                    info: true,
+                    pageSizes: [25, 50, 100, 200, 500, 1000]
+                },
+                resizable: false,
+                scrollable: {
+                    virtual: false
+                }
+            });
+
+
+            $("#grid_tecnicos").kendoGrid({
+                toolbar: ["excel"],
+                excel: {
+                    fileName: "consolidado-actividades.xlsx",
+                    proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: {
+                    data: []
+                },
+                dataBound: function() {
+                    try {
+
+                    } catch (exc) {
+                        app.excManager("dashProcess", "GridView.dataBound2", exc);
+                    }
+                },
+                selectable: "row",
+                height: 550,
+                groupable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderGroupable')
+                    }
+                },
+                columns: [{
+                    field: "MarkerID",
+                    title: "Id actividad",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    template: '<center><a class="cursorPointer lnkOpen" title="Número de Actividad: #=MarkerID #" onclick="app.showPDF(\'#=GUID #\');">#= MarkerID # </a></center>',
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+                    isdownload: true
+                }, {
+                    field: "frm_createdby",
+                    title: "creado por",
+                    width: 200,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+
+                }, {
+                    field: "act_fecha_inicio_del_servicio_tim",
+                    title: "Fecha Inicio servicio",
+                    width: 200,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    }
+                }, {
+                    field: "act_fechafin_del_servicio_tim",
+                    title: "Fecha final servicio",
+                    width: 200,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    }
+                }, {
+                    field: "hora_completada",
+                    title: "Duracion de la actividad (minutos)",
+                    width: 200,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    }
+                }, {
+                    field: "loc_name",
+                    title: "Linea",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+
+
+                }, {
+                    field: "ass_name",
+                    title: "Equipo",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+
+
+                }, {
+                    field: "act_tipomto",
+                    title: "Tipo De Mantenimiento",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+
+
+                }, {
+                    field: "act_mantenimento_de",
+                    title: "Mantenimiento De",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align:center;"
+                    },
+
+
+                }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: app.language.getLabel('StartsWith'),
+                            eq: app.language.getLabel('IsEqualTo'),
+                            neq: app.language.getLabel('IsNotEqualTo'),
+                            contains: app.language.getLabel('Contains')
+                        }
+                    },
+                    messages: {
+                        info: app.language.getLabel('FilterHeader'), // sets the text on top of the filter menu
+                        filter: app.language.getLabel('FilterButton'), // sets the text for the "Filter" button
+                        clear: app.language.getLabel('FilterClear'), // sets the text for the "Clear" button
+                    }
+                },
+                sortable: true,
+                columnMenu: false,
+                divisionable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderDivisionable')
+                    }
+                },
+                pageable: {
+                    messages: {
+                        display: " {2} " + app.language.getLabel('TotalRecords'),
+                        empty: app.language.getLabel('NoRecordsDisplay'),
+                        itemsPerPage: app.language.getLabel('ItemsPerPage'),
+                        first: app.language.getLabel('FirstPage'),
+                        previous: app.language.getLabel('PreviousPage'),
+                        next: app.language.getLabel('NextPage'),
+                        last: app.language.getLabel('LastPage'),
+                        refresh: app.language.getLabel('Refresh')
+                    },
+                    buttonCount: 10,
+                    refresh: true,
+                    previousNext: true,
+                    info: true,
+                    pageSizes: [25, 50, 100, 200, 500, 1000]
+                },
+                resizable: false,
+                scrollable: {
+                    virtual: false
+                }
+            });
+
+            ///////////////////////////////////////////// GRID 2 DATA DE MAQUINAS ////////////////////////////////////////////////
+            $("#grid_maquinas").kendoGrid({
+                toolbar: ["excel"],
+                excel: {
+                    fileName: "consolidado-maquinarias.xlsx",
+                    proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: {
+                    data: []
+                },
+                dataBound: function() {
+                    try {
+
+                    } catch (exc) {
+                        app.excManager("dashProcess", "GridView.dataBound2", exc);
+                    }
+                },
+                selectable: "row",
+                height: 550,
+                groupable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderGroupable')
+                    }
+                },
+                columns: [{
+                    field: "maquina",
+                    title: "Maquinas",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+                    isdownload: true,
+
+                }, {
+                    field: "cantidad_mantenimientos",
+                    title: "Cantida De Mantenimientos",
+                    width: 120,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+
+                }, {
+                    field: "cantidad_correctivos",
+                    title: "Cantidad De Mantenimientos Correctivos",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }, {
+                    field: "cantidad_preventivo",
+                    title: "Cantidad De Mantenimientos Preventivo",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: app.language.getLabel('StartsWith'),
+                            eq: app.language.getLabel('IsEqualTo'),
+                            neq: app.language.getLabel('IsNotEqualTo'),
+                            contains: app.language.getLabel('Contains')
+                        }
+                    },
+                    messages: {
+                        info: app.language.getLabel('FilterHeader'), // sets the text on top of the filter menu
+                        filter: app.language.getLabel('FilterButton'), // sets the text for the "Filter" button
+                        clear: app.language.getLabel('FilterClear'), // sets the text for the "Clear" button
+                    }
+                },
+                sortable: true,
+                columnMenu: false,
+                divisionable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderDivisionable')
+                    }
+                },
+                pageable: {
+                    messages: {
+                        display: " {2} " + app.language.getLabel('TotalRecords'),
+                        empty: app.language.getLabel('NoRecordsDisplay'),
+                        itemsPerPage: app.language.getLabel('ItemsPerPage'),
+                        first: app.language.getLabel('FirstPage'),
+                        previous: app.language.getLabel('PreviousPage'),
+                        next: app.language.getLabel('NextPage'),
+                        last: app.language.getLabel('LastPage'),
+                        refresh: app.language.getLabel('Refresh')
+                    },
+                    buttonCount: 10,
+                    refresh: true,
+                    previousNext: true,
+                    info: true,
+                    pageSizes: [25, 50, 100, 200, 500, 1000]
+                },
+                resizable: false,
+                scrollable: {
+                    virtual: false
+                }
+            });
+
+
+            app.dash_refreshdata(data);
+
+        } catch (exc) {
+            console.log("exc dashProcess", exc)
+        }
+    }
+
+    //metodo de refresco de la data
+    app.dash_refreshdata = function(data) {
+        console.log("refresh---->", data);
+        app.dash_refreshlocaldata(data);
+    }
+
+    app.dash_refreshlocaldata = function(data1_) {
+        setTimeout(function() {
+            try {
+
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    moment.locale('es');
+                    $('#tecnicos_content').empty();
+                    $('#tecnicos_content').html('');
+                    $('span#cantidad').html('');
+                    $('span#completadas').html('');
+                    $('span#progreso').html('');
+                    $('span#rechazadas').html('');
+                    $('span#cantidad_total').html('');
+                    $('span#cantidad_rionegro').html('');
+                    $('span#cantidad_medellin').html('');
+                    var data_maquinas = [];
+                    var data_motivos_rionegro = [];
+
+
+                    // var template = _.template($('#template-tecnico-header').html(), {});
+                    // $('#tecnicos_content').append(template);
+
+                    var data_tecnico = _.where(data1_[1], {
+                        estado_name: "PENDIENTE POR ASIGNAR"
+                    });
+
+                    /////////////////////////////// ORGANIZACION DE LA DATA /////////////////////////////////
+                    data_general = []
+                    $.each(data1_.data[0].data, function(j, dat) {
+                        dat.inicio_actividad = moment(dat.act_fecha_inicio_del_servicio_tim).format("YYYY-MM-DD HH:mm");
+                        if (dat.inicio_actividad == "" || dat.inicio_actividad == 'undefined') {
+                            dat.inicio_actividad = moment(dat.act_fechahora_del_servicio).format("YYYY-MM-DD HH:mm");
+                        }
+                        dat.fin_actividad = moment(dat.act_fechafin_del_servicio_tim).format("YYYY-MM-DD HH:mm");
+                        if (dat.fin_actividad == "" || dat.fin_actividad == 'undefined') {
+                            dat.fin_actividad = moment(dat.frm_updatedon).format("YYYY-MM-DD HH:mm");
+                        }
+                        dat.hora_completada = moment(dat.fin_actividad).diff(moment(dat.inicio_actividad), 'minutes');
+
+                        if (dat.hora_completada < 0 || isNaN(dat.hora_completada)) {
+                            dat.hora_completada = 0;
+                        }
+                        dat.hora_fecha_formulario = moment(dat["act_fecha"] + " " + dat["act_hora"]).format("YYYY-MM-DD HH:mm");
+                        dat.act_fechallegaorigen = moment(dat.act_fechallegaorigen).format("YYYY-MM-DD HH:mm");
+                        dat.act_fechallegadadestino = moment(dat.act_fechallegadadestino, "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm");
+                        dat.llegada_servicio = (moment(dat["act_fechallegadadestino"])).diff((moment(dat["act_fechallegaorigen"])), "minutes");
+                        dat.minutos_fechaFormulario_fechaOrigen = (moment(dat["act_fechallegaorigen"])).diff((moment(dat["hora_fecha_formulario"])), "minutes");
+                        data_general.push(dat);
+                    });
+
+                    var motivos_rionegro = ['TRANSPORTAR PACIENTE', 'TRANSPORTAR MEDICAMENTOS', 'TRANSPORTAR DOCUMENTOS ASISTENCIALES (NO PUEDEN ESPERAR LA RUTA)',
+                        'TRANSPORTAR MUESTRAS (NO PUEDEN IR EN EL TUBO NEUMÁTICO)', ' TRANSPORTAR EQUIPOS', ' TRANSPORTAR MOBILIARIO',
+                        'TRANSPORTAR HEMOCOMPONENTES GENERALES', 'TRANSPORTAR HISTORIA CLÍNICA', ' TRANSPORTAR DOCUMENTOS ADMINISTRATIVOS (NO PUEDEN ESPERAR LA RUTA)',
+                        'TRANSPORTAR KIT DE OXIGENO'
+                    ];
+                    var maquinas = _.unique(_.map(data_general, function(l) {
+                        return l.ass_name
+                    }));
+
+                    var tecnicos_ = _.unique(_.map(data_general, function(l) {
+                        return l.act_tecnico
+                    }));
+
+                    var destino_rionegro = _.unique(_.map(data_general, function(l) {
+                        return l.act_destino_rionegro
+                    }));
+
+                    var cantidad_rionegro = _.where(data_general, {
+                        "act_hospital": "HOSPITAL DE RIONEGRO"
+                    });
+
+                    var cantidad_medellin = _.where(data_general, {
+                        "act_hospital": "HOSPITAL DE MEDELLIN"
+                    });
+
+
+                    ////////////////////////////////////////////// FUNCIONES ////////////////////////////////
+
+                    function cantidadMantenimientos(data, maquinas) {
+                        var data_filtrada = _.where(data, {
+                            "ass_name": maquinas
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadCorrectivos(data, maquinas) {
+                        var data_filtrada = _.where(data, {
+                            "ass_name": maquinas,
+                            "act_tipomto": "CORRECTIVO"
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadPreventivo(data, maquinas) {
+                        var data_filtrada = _.where(data, {
+                            "ass_name": maquinas,
+                            "act_tipomto": "PREVENTIVO"
+                        });
+
+                        return data_filtrada.length
+                    }
+
+
+                    function cantidadActividades(data, tecnico) {
+                        var data_filtrada = _.where(data, {
+                            "act_tecnico": tecnico,
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadActividadesFinalizadas(data, tecnico) {
+                        var data_filtrada = _.where(data, {
+                            "act_tecnico": tecnico,
+                        }).filter(function(l) {
+                            return l.frm_statuscompany == "MANTENIENTO FINALIZADO" || l.frm_statuscompany == "Completed"
+                        }).length;
+
+                        return data_filtrada
+                    }
+
+                    function CantidadMotivosMdellin(data, motivo) {
+                        var data_filtrada = _.where(data, {
+                            "act_motivos_medellin": motivo,
+                        })
+                        return data_filtrada.length
+                    }
+
+                    console.log("data_general ---> ", data_general)
+
+                    function CantidadMotivosRionegro(data, motivo) {
+                        var data_filtrada = _.where(data, {
+                            act_motivos_rionegro: motivo
+                        });
+                        return data_filtrada.length
+                    }
+
+                    function calcular_solicitudes_oportunamente_rionegro(data, motivo) {
+                        var data_filtrada = _.where(data, {
+                            "act_motivos_rionegro": motivo,
+                        });
+
+                        var data_atendida_oportunamente = 0;
+                        var data_no_atendida_oportunamente = 0;
+                        $.each(data_filtrada, function(num, dat) {
+                                switch (dat.act_motivos_rionegro.trim()) {
+                                    case "TRANSPORTAR PACIENTE":
+                                        if (dat.tiempo_llegada_Mensajero < 10) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+
+                                    case "TRANSPORTAR MEDICAMENTOS":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+
+                                    case "TRANSPORTAR DOCUMENTOS ASISTENCIALES (NO PUEDEN ESPERAR LA RUTA)":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+
+                                    case "TRANSPORTAR MUESTRAS (NO PUEDEN IR EN EL TUBO NEUMÁTICO)":
+                                        if (dat.tiempo_llegada_Mensajero < 10) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR EQUIPOS":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR MOBILIARIO":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR HEMOCOMPONENTES GENERALES":
+                                        if (dat.tiempo_llegada_Mensajero < 10) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR HISTORIA CLÍNICA":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR DOCUMENTOS ADMINISTRATIVOS (NO PUEDEN ESPERAR LA RUTA)":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    case "TRANSPORTAR KIT DE OXIGENO":
+                                        if (dat.tiempo_llegada_Mensajero < 20) {
+                                            data_atendida_oportunamente++;
+                                        } else {
+                                            data_no_atendida_oportunamente++;
+                                        }
+                                        break;
+                                    default:
+                                        data_no_atendida_oportunamente++;
+                                        break;
+                                }
+                            })
+                            // if (token == 'oportunamente') {
+                            //     return ((data_atendida_oportunamente / data_camillero.length) * 100).toFixed(2);
+                            // } else if (token == 'no_oportunamente') {
+                            //     return ((data_no_atendida_oportunamente / data_camillero.length) * 100).toFixed(2);
+                            // }
+                        return data_atendida_oportunamente;
+                    }
+
+                    function CantidadDEstino(data, destino) {
+                        var data_filtrada = _.where(data, {
+                            "act_destino_rionegro": destino,
+                        });
+
+                        return data_filtrada.legend
+                    }
+
+
+                    function tiempoPromedioSolicitudRionegro(data, motivo) {
+                        var data_filtrada = _.where(data, {
+                            "act_motivos_rionegro": motivo
+                        });
+                        var tiempo_promedio_total = 0;
+                        data_filtrada.forEach(function(val) {
+                            if (val.minutos_fechaFormulario_fechaOrigen != "Invalid date") {
+                                tiempo_promedio_total = (tiempo_promedio_total + parseFloat(val.minutos_fechaFormulario_fechaOrigen))
+                            } else {
+
+                            }
+
+                        })
+                        if (tiempo_promedio_total != 0) {
+                            return (tiempo_promedio_total / data_filtrada.legend)
+                        } else {
+                            tiempo_promedio_total
+                        }
+
+                    }
+
+
+                    var mantenimientos_correctivos = data_general.filter(function(l) {
+                        return l.act_tipomto == "CORRECTIVO"
+                    }).length;
+
+
+                    motivos_rionegro.forEach(function(val) {
+                        var datos = {}
+                        datos["motivo"] = val
+                        datos["cantidad"] = CantidadMotivosRionegro(data_general, val.trim());
+                        datos["oportunamente"] = calcular_solicitudes_oportunamente_rionegro(data_general, val)
+                        datos["promedio"] = tiempoPromedioSolicitudRionegro(data_general, val);
+                        data_motivos_rionegro.push(datos)
+                    });
+
+                    maquinas.forEach(function(val) {
+                        var datos = {}
+                        datos["maquina"] = val
+                        datos["cantidad_mantenimientos"] = cantidadMantenimientos(data_general, val)
+                        datos["cantidad_correctivos"] = cantidadCorrectivos(data_general, val)
+                        datos["cantidad_preventivo"] = cantidadPreventivo(data_general, val)
+                        data_maquinas.push(datos)
+                    });
+
+                    console.log("data_maquinas ---> ", data_maquinas);
+
+                    // tecnicos_.forEach(function(val) {
+                    //     var template2 = _.template($('#template-tecnico').html(), {
+                    //         UserName: val,
+                    //         color: '#000000',
+                    //         Totalmantenimientos: cantidadActividades(data_general, val),
+                    //         completados: 0,
+                    //         no_completados: cantidadActividadesFinalizadas(data_general, val),
+                    //     });
+                    //     $('#tecnicos_content').append(template2);
+                    // })
+
+                    ////////////////////////////////////////////// GRAFICA 1 ////////////////////////////////////////
+
+
+                    // var mantenimientos_correctivos = data_general.filter(function(l) {
+                    //     return l.act_tipomto == "CORRECTIVO"
+                    // }).length; 
+
+
+                    // var mantenimientos_preventivo = data_general.filter(function(l) {
+                    //     return l.act_tipomto == "PREVENTIVO"
+                    // }).length;
+
+
+                    // var datag_1 = google.visualization.arrayToDataTable([
+                    //     ['MANTENIMIENTOS', 'CANTIDAD'],
+                    //     ['PREVENTIVOS: ' + mantenimientos_preventivo, mantenimientos_preventivo],
+                    //     ['CORRECTIVOS: ' + mantenimientos_correctivos, mantenimientos_correctivos]
+                    // ]);
+
+                    // var options_1 = {
+                    //     title: 'MANTENIMIENTOS',
+                    //     width: 400,
+                    //     height: 350,
+                    //     fontSize: 13,
+                    //     legend: 'bottom',
+                    //     colors: ['#F9C175', '#9ED0A9']
+                    // };
+
+                    // var chart = new google.visualization.PieChart(document.getElementById('grafica1'));
+                    // chart.draw(datag_1, options_1);
+
+                    // ////////////////////////////////////////////// GRAFICA 2 ////////////////////////////////////////
+
+                    // var mantenimientos_equipos = data_general.filter(function(l) {
+                    //     return l.act_mantenimento_de == "EQUIPO"
+                    // }).length;
+
+                    // var mantenimientos_area = data_general.filter(function(l) {
+                    //     return l.act_mantenimento_de == "AREA LOGISTICA"
+                    // }).length;
+
+                    // var datag_2 = google.visualization.arrayToDataTable([
+                    //     ['MANTENIMIENTO', 'CANTIDAD', {
+                    //         role: 'style'
+                    //     }],
+                    //     ['EQUIPO', mantenimientos_equipos, '#F9C175'],
+                    //     ['AREA LOGISTICA', mantenimientos_area, '#9ED0A9']
+                    // ]);
+
+                    // var options_2 = {
+                    //     title: 'AREA DE MANTENIMIENTOS',
+                    //     width: 400,
+                    //     height: 350,
+                    //     legend: 'bottom',
+                    //     fontSize: 13
+                    // };
+
+                    // var chart = new google.visualization.ColumnChart(document.getElementById('grafica2'));
+                    // chart.draw(datag_2, options_2);
+
+                    ////////////////////////////////////////////// GRAFICA 3 ////////////////////////////////////////
+
+                    var data_grafica3 = [
+                        ['DESTIVO', 'CANTIDAD', {
+                            role: 'annotation'
+                        }]
+                    ]
+
+
+                    console.log("destino_rionegro ---> ", destino_rionegro)
+                    destino_rionegro.forEach(function(val) {
+                        if (val !== 'undefined' || val !== '') {
+
+                            var destinos = [];
+                            destinos = data_general.filter(function(l) {
+                                return l.act_destino_rionegro == val
+                            }).length;
+
+                            data_grafica3.push([val, destinos, destinos])
+                        }
+                    });
+                    console.log("data_grafica3 ---> ", data_grafica3)
+
+                    var datag_3 = google.visualization.arrayToDataTable(data_grafica3);
+
+                    var options_3 = {
+                        title: 'RIONEGRO',
+                        width: 1500,
+                        height: 350,
+                        legend: 'bottom',
+                        fontSize: 13,
+                    };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('grafica3'));
+                    chart.draw(datag_3, options_3);
+
+
+
+                    var estado_proceso = data_general.filter(function(l) {
+                        return l.frm_statuscompany == "EN PROGRESO"
+                    }).length;
+
+                    var estado_completadas = data_general.filter(function(l) {
+                        return l.frm_statuscompany == "MANTENIENTO FINALIZADO" || l.frm_statuscompany == "COMPLETADO"
+                    }).length;
+
+                    var estado_rechazado = data_general.filter(function(l) {
+                        return l.frm_statuscompany == "SOLICITUD RECHAZADA" || l.frm_statuscompany == "Borrado" || l.frm_statuscompany == "Cancelado" || l.frm_statuscompany == "Ninguno"
+                    }).length;
+
+                    $('span#cantidad').append(data_general.length);
+
+                    $('span#completadas').append(estado_completadas);
+                    $('span#progreso').append(estado_proceso);
+                    $('span#rechazadas').append(estado_rechazado);
+
+
+                    $('span#cantidad_total').append(data_general.length);
+                    $('span#cantidad_rionegro').append(cantidad_rionegro.length);
+                    $('span#cantidad_medellin').append(cantidad_medellin.length);
+                    //////////////////////////////////////////////  ////////////////////////////////////////
+
+
+
+                    // var grid = $('#grid_tecnicos').data("kendoGrid");
+                    // DataSourceUsers = new kendo.data.DataSource({
+                    //     data: data_general
+                    // });
+                    // grid.setDataSource(DataSourceUsers);
+
+
+                    // var grid2 = $('#grid_maquinas').data("kendoGrid");
+                    // DataSourceUsers = new kendo.data.DataSource({
+                    //     data: data_maquinas
+                    // });
+                    // grid2.setDataSource(DataSourceUsers);
+
+
+                    var grid3 = $('#grid_motivos_rionegro').data("kendoGrid");
+                    DataSourceUsers = new kendo.data.DataSource({
+                        data: data_motivos_rionegro
+                    });
+                    grid3.setDataSource(DataSourceUsers);
+                }
+
+
+                //console.log("data1_ ----->", data1_);
+                ////console.log("refresh---->", data);
+            } catch (exc) {
+                app.excManager("dashProcess", "dash_refreshlocaldata", exc);
+            }
+        }, 1000);
+
+
+    }
+</script>
+
+<div class="" style="margin-left:15px;margin-top:10px;">
+
+    <div class="row" style="margin-left:15px;">
+        <!-- <div class="col-sm-5">
+            <article class="statistic-box blue">
+                <div>
+
+                    <div class="caption">
+                        <div>
+                            CANTIDAS DE SOLICITUDES: <span id="cantidad_total"></span>
+                        </div>
+                    </div>
+                    <div class="number" id="total_r_camas_"></div>
+                    <div class="subtitle">PROMEDIO : <span id="total_promedio_r"></span></div>
+                    <div class="subtitle">AUXILIARES : <span id="total_promedio_r_u"></span></div>
+                </div>
+            </article>
+        </div> -->
+        <div class="col-sm-3">
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #486891;  font-size: 19px; color: #ffffff;" class="center">
+                TOTAL DE SOLICITUDES: <span id="cantidad_total" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+            </div> <br>
+        </div>
+
+        <div class="col-sm-4">
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #F9E7D2;  font-size: 19px; " class="center">
+                TOTAL DE SOLICITUDES RIONEGRO: <span id="cantidad_rionegro" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+            </div> <br>
+        </div>
+        <div class="col-sm-4">
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #d2e7f9;  font-size: 19px;" class="center">
+                TOTAL DE SOLICITUDES MEDELLIN: <span id="cantidad_medellin" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+            </div> <br>
+        </div>
+
+    </div>
+    <div id="grid_motivos_rionegro">
+    </div>
+    <div class="tarjetas">
+        <div class="tarjeta2">
+            <h4>AREAS CON MAS SOLICITUDES RIONEGRO</h4> <br>
+            <div id="grafica3">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="tarjetas">
+        <div class="tarjeta">
+            <h4>PORCENTAJE POR TIPO DE MANTENIMIENTO</h4> <br>
+            <div id="grafica1">
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h4>PORCENTAJE POR AREA DE MANTENIMIENTO</h4> <br>
+            <div id="grafica2">
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #F9E7D2;  font-size: 23px; " class="center">
+                TOTAL DE ORDENES CREADAS: <span id="cantidad" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+            </div> <br>
+
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 60%; background: #47c580;  font-size: 23px; " class="center">
+                ORDENES COMPLETADAS: <span class="bold" id="completadas"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+            </div> <br>
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 60%; background: #d2e7f9;  font-size: 23px; " class="center">
+                ORDENES EN PROGRESO: <span class="bold" id="progreso"></span> <img src="https://cdn.pixabay.com/photo/2014/04/03/10/52/circle-311551_960_720.png" width="30px" alt="">
+            </div> <br>
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 60%; background: #eec0c0;  font-size: 23px; " class="center">
+                ORDENES RECHAZADAS Y CANCELADAS: <span class="bold" id="rechazadas"></span> <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png" width="30px" alt="">
+            </div> <br>
+
+        </div>
+    </div> -->
+
+    <div class="" style="margin-left:15px;margin-top:10px;">
+        <!-- <div class="tarjetas">
+
+            <div class="tarjeta">
+                <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #0f05fc;  font-size: 23px; " class="center">
+                    TOTAL DE ORDENES CREADAS: <span id="cantidad" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+                </div> <br>
+
+            </div>
+        </div> -->
+
+
+        <!-- <div style="margin: auto; padding: 0.5px; width: 98%; background: #d7d7d7; text-align: center; font-weight: bold;">
+            <h4>DATA CONSOLIDADA DE ACTIVIDADES</h4>
+        </div> -->
+
+
+
+        <!-- <div id="grid_tecnicos">
+        </div>
+        <div style="margin: auto; padding: 0.5px; width: 98%; background: #d7d7d7; text-align: center; font-weight: bold;">
+            <h4>DATA CONSOLIDADA DE MAQUINARIA</h4>
+        </div> -->
+        <!-- <div id="grid_maquinas">
+        </div> -->
+
+
+    </div>
+
+    <div class="" style="margin-left:15px;margin-top:10px;">
+        <div class="row justify-content-center" id="tecnicos_content" style="margin:15px;">
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/template" id="template-tecnico">
+        <div class="row" style="border:2px solid #808080;">
+            <div class="col-md-3">
+                <center>
+                    <div class="glyphicon glyphicon-user" style="color:<%= color %>;font-size:60px;"></div><br/>
+                    <label><%= UserName %></label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= Totalmantenimientos %>
+                </center>
+
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= completados %>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= no_completados %>
+                </center>
+
+            </div>
+
+        </div>
+    </script>
+    <script type="text/template" id="template-tecnico-header">
+        <div class="row header" style="border:2px solid #808080;">
+            <div class="col-md-3">
+                <center class="font-header">
+                    <label>TECNICO</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label> MANTENIMIENTOS REALIZADOS</label>
+                </center>
+
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label>MANTENIMIENTOS FINALIZADOS</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label>MANTENIMIENTOS NO FINALIZADOS</label>
+                </center>
+
+            </div>
+        </div>
+    </script>

@@ -1,0 +1,1920 @@
+<style>
+    header {
+        color: white;
+        font-weight: bold;
+    }
+    
+    .row .header2 {
+        color: white;
+        font-weight: bold;
+    }
+    
+    .header2 {
+        background-color: #489157;
+        height: 40px;
+    }
+    
+    .interrow {
+        background-color: #aef3a1;
+    }
+    
+    .tarjetas {
+        display: flex;
+    }
+    
+    .tarjetas .tarjeta {
+        width: 30%;
+        margin: 10px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    
+    .tarjetas .tarjeta2 {
+        width: 95%;
+        margin: 10px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    
+    .tarjetas .tarjetarionegro {
+        width: 98%;
+        margin: 10px;
+        padding: 2px;
+        background: #F9E7D2;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        text-align: center;
+    }
+    
+    .tarjetas .tarjetamedellin {
+        width: 98%;
+        margin: 10px;
+        padding: 2px;
+        background: #d2e7f9;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .tarjetas .tarjetadatatotal {
+        width: 98%;
+        margin: 10px;
+        padding: 2px;
+        background: #3eedbe;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .tarjetas .tarjeta h4 {
+        margin: 5px;
+        text-align: center;
+    }
+    
+    td {
+        text-align: center;
+    }
+    
+    .statistic-box {
+        height: 180px !important;
+    }
+    
+    .statistic-box>div {
+        height: 180px !important;
+        background: none;
+    }
+    /* #486891 */
+    
+    .font-cant {
+        font-size: 30px;
+    }
+    
+    .statistic-box.blue {
+        background-image: url("http://imgfz.com/i/FBTKalo.jpeg") !important;
+        /* background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
+*/
+    }
+</style>
+<script>
+    var data_workzones = [];
+    var checkedNodes__ = [];
+    var data_zonas = [];
+    var row_group = []
+
+    //construccion del html
+
+    function data_org(data) {
+        data_workzones = [];
+        var data_filtrada = [];
+
+        // data.forEach(function(val) {
+        //     if (GroupName == "ZONAS HOSPITALIZACION") {
+        //     }
+        // })
+
+        data_workzones = _.uniq(_.map(data, function(val) {
+            return val.WorkZoneName;
+        }));
+
+        checkedNodes__ = data_workzones;
+
+        var data_filtros = [];
+
+        data_workzones.forEach(function(val) {
+            var data = {}
+            if (val != "ANULADO" && val != "CLINICA DE OCCIDENTE SA" && val != "undefined") {
+                data["id"] = val,
+                    data["text"] = val,
+                    data["items"] = [],
+                    data["expanded"] = true,
+                    data["checked"] = true,
+                    data_filtros.push(data)
+            }
+        });
+
+        row_group = []
+        row_group = {
+            id: -1,
+            text: "Todas",
+            items: data_filtros,
+            expanded: true,
+            checked: true
+        };
+
+
+
+
+        data_zonas.push(row_group);
+    }
+
+    app.dashProcess = function(data) {
+        try {
+            console.log("termino la carga")
+
+
+            $('#dash_custom_content').show(); //pongo visible para poner filtros al lado izquierdo abajo de la selección de los dashboard
+
+            console.log("init data---->", data);
+
+            console.log("init data---->", data.locations);
+            $('#dash_custom_content').empty();
+            $('#dash_zonas1').remove();
+
+            function checkedNodeIds(nodes, checkedNodes) {
+                for (var i = 0; i < nodes.length; i++) {
+                    if (nodes[i].checked) {
+                        checkedNodes.push(nodes[i].id);
+                    }
+
+                    if (nodes[i].hasChildren) {
+                        checkedNodeIds(nodes[i].children.view(), checkedNodes);
+                    }
+                }
+
+            }
+
+            var template1 = _.template($('#template-filter-custom').html(), {
+                title: "VIDEO EXPLICATIVO DEL DASHBOARD",
+                fieldid: "video_explicativo"
+            });
+            $('#dash_custom_content').append(template1);
+
+            var template = _.template($('#template-filter-custom').html(), {
+                title: "ZONAS DE TRABAJO",
+                fieldid: "dash_zonas1"
+            });
+            $('#dash_custom_content').append(template);
+
+            var treeview = $("#dash_zonas1").data("kendoTreeView");
+            if (treeview != null) {
+                treeview.destroy();
+                $("#dash_zonas1").remove();
+            }
+
+
+
+
+
+            data_org(data.locations);
+            console.log("data_workzones", data_workzones);
+
+
+
+            function read_auxilares(selectedrow) {
+
+                try {
+                    var data_show = [];
+                    var title = ("AUXILIARES ASIGNADOS ");
+                    var data = selectedrow.auxiliares_asignados;
+
+                    $.each(data, function(n, aux) {
+                        data_show.push({
+                            id: (n + 1),
+                            field: aux
+                        });
+                    });
+
+                    app.showDialog({ //Ventana de Dialogo
+                        moduleKey: 'modalw',
+                        dialogId: 'modalw',
+                        title: title,
+                        template: '<div id="grid_content" style="width:100%;"></div><center style="margin:10px;"><button class="btn btn-primary" id="btnmodalw">CERRAR</button>',
+                        width: 600,
+                        height: 580,
+                        top: 100,
+                        closeCallback: function() {
+                            try {
+
+                            } catch (exc) {
+                                app.excManager(uc.key, "setuseres_address.closecallback", exc);
+                            }
+                        }
+                    });
+
+                    $('#btnmodalw').click(function() {
+                        app.cancelWindows("modalw");
+                    })
+
+                    $("#grid_content").kendoGrid({
+                        height: 500,
+                        dataSource: {
+                            data: data_show
+                        },
+                        columns: [{
+                            field: "id",
+                            title: "No."
+                        }, {
+                            field: "field",
+                            title: "AUXILIAR"
+                        }]
+                    });
+                } catch (error) {
+                    console.log("error en abir modal ", error)
+                }
+            }
+
+
+
+            $("#dash_zonas1").kendoTreeView({
+                checkboxes: {
+                    checkChildren: true
+                },
+
+                check: function(e) {
+
+                    var treeView = $("#dash_zonas1").data("kendoTreeView"),
+                        message;
+
+                    checkedNodes__ = [];
+                    checkedNodeIds(treeView.dataSource.view(), checkedNodes__);
+
+                    if (checkedNodes__.length > 0) {
+
+
+
+                        checkedNodes__ = _.filter(checkedNodes__, function(x) {
+                            return x != 0 && x != -1
+                        });
+
+
+
+                        app.dash_refreshlocaldata(data);
+                        // ucdash.execute();
+
+                    } else {
+                        checkedNodes__ = [];
+
+                    }
+
+                    //ucdash.execute();
+                    message = "IDs of checked camas: " + checkedNodes__.join(",");
+
+                    console.log(message);
+
+                },
+
+                dataSource: data_zonas
+            });
+
+
+            ///////////////////////////////////////////// GRID MOTIVOS RIONEGRO ////////////////////////////////////////////////
+
+            ///////////////////////////////////////////// GRID MOTIVOS MEDELLIN ////////////////////////////////////////////////
+
+
+
+            ///////////////////////////////////////////// GRID DATA TOTAL   /////////////////////////////////////////////
+            $("#grid_data_total").kendoGrid({
+                toolbar: ["excel"],
+                excel: {
+                    fileName: "consolidado-solicitudes.xlsx",
+                    proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: {
+                    data: [],
+                    aggregate: [{
+                        field: "toma_servicio",
+                        aggregate: "average"
+                    }, {
+                        field: "llegada_servicio",
+                        aggregate: "average"
+                    }, {
+                        field: "tiempo_total",
+                        aggregate: "average"
+                    }],
+                    schema: {
+                        model: {
+                            fields: {
+                                frm_parentid: {
+                                    type: "string"
+                                },
+                                MarkerID: {
+                                    type: "string"
+                                },
+                                frm_createdby: {
+                                    type: "string"
+                                },
+                                frm_workzonename: {
+                                    type: "string"
+                                },
+                                frm_assignedto: {
+                                    type: "string"
+                                },
+                                act_fechallegaorigen: {
+                                    type: "string"
+                                },
+                                act_fechallegadadestino: {
+                                    type: "string"
+                                },
+                                fecha_hora_hijos: {
+                                    type: "string"
+                                },
+                                toma_servicio: {
+                                    type: "number"
+                                },
+                                llegada_servicio: {
+                                    type: "number"
+                                },
+                                tiempo_total: {
+                                    type: "number"
+                                },
+                                cumplimiento: {
+                                    type: "string"
+                                }
+                            }
+                        }
+                    },
+                },
+
+                dataBound: function() {
+
+                    try {
+
+
+                        $('.link_cantidad_hijos').click(function() {
+                            try {
+                                var grid = $('#grid_data_total').data("kendoGrid");
+                                var selectedrow = grid.dataItem(grid.select());
+                                console.log("selectedrow ", selectedrow)
+                                if (selectedrow == null)
+                                    return;
+
+                                read_auxilares(selectedrow);
+
+                            } catch (exc) {
+                                app.excManager(uc.moduleKey, "GridView.dataBound lnkDetails", exc);
+                            }
+                        });
+
+                    } catch (exc) {
+                        app.excManager("dashProcess", "GridView.dataBound2", exc);
+                    }
+                },
+                selectable: "row",
+                height: 550,
+                groupable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderGroupable')
+                    }
+                },
+                columns: [
+                    //     {
+                    //     field: "frm_parentid",
+                    //     title: "ID DE LA SOLICITUD SISTENCIAL",
+                    //     width: 200,
+                    //     //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //     template: '<center><a class="cursorPointer lnkOpen" title="Número de Actividad: #=frm_parentid #" onclick="app.showPDF(\'#=GUID #\');">#= frm_parentid # </a></center>',
+                    //     headerAttributes: {
+                    //         style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#3eedbe "
+                    //     },
+                    //     attributes: {
+                    //         style: "vertical-align:top;text-align:center;"
+                    //     },
+                    //     isdownload: true,
+
+                    // },  
+                    {
+                        field: "MarkerID",
+                        title: "ID DE LA SOLICITUD",
+                        width: 200,
+                        //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                        template: '<center><a class="cursorPointer lnkOpen" title="Número de Actividad: #=MarkerID #" onclick="app.showPDF(\'#=GUID #\');">#= MarkerID # </a></center>',
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#3eedbe "
+                        },
+                        attributes: {
+                            style: "vertical-align:top;text-align:center;"
+                        },
+                        isdownload: true,
+
+                    }, {
+                        field: "cantidad_hijos",
+                        title: "CANTIDAD DE SOLICITUDES ENVIADAS A AUXILIARES",
+                        width: 200,
+                        //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                        template: '<a data-toggle="modal" class="link_cantidad_hijos" >#=cantidad_hijos # </a>',
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#3eedbe "
+                        },
+                        attributes: {
+                            style: "vertical-align:top;text-align:center;"
+                        },
+                        isdownload: true,
+
+                    }, {
+                        field: "frm_statuscompany",
+                        title: "ESTADO DE LA ACTIVIDAD",
+                        width: 200,
+                        //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                        //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#3eedbe "
+                        },
+                        attributes: {
+                            style: "vertical-align:top;text-align:center;"
+                        },
+                        isdownload: true,
+
+                    }, {
+                        field: "act_solicitado_por",
+                        title: "QUIEN CREO LA SOLICITUD",
+                        width: 200,
+                        //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                        //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        attributes: {
+                            style: "vertical-align:top;text-align:center;"
+                        },
+
+                    }, {
+                        field: "loc_name",
+                        title: "LUGAR DEL SERVICIO",
+                        width: 180,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "ass_name",
+                        title: "PUNTO ESPECIFICO DEL SERVICIO",
+                        width: 180,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "tipo_de_aseo_",
+                        title: "TIPO DE ASEO",
+                        width: 180,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "frm_workzonename",
+                        title: "ZONA DE TRABAJO",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "frm_assignedto",
+                        title: "AUXILIAR DE ASEO QUE TOMO LA SOLICITUD",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#3eedbe"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "act_fecha_solicitud",
+                        title: "FECHA Y HORA DE LA SOLICITUD (AREA ADMINISTRATIVA)",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#D3D3D3"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "act_fechahorainicioactividad_tim",
+                        title: "FECHA Y HORA DE LA TOMA DE LA SOLICITUD",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#D3D3D3"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "toma_servicio",
+                        title: "TIEMPO ENTRE LA SOLICITUD Y LA TOMA DEL SERVICIO (MINUTOS)",
+                        width: 230,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                        },
+                        // , isdownload: true
+                        footerTemplate: "<center>PROMEDIO TOTAL: #= (average).toFixed(2) #</center>",
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "fecha_hora_hijos",
+                        title: "FECHA Y HORA DE INICIO DE ACTIVIDAD",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#D3D3D3"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "act_fechahorafinactividad_tim",
+                        title: "FECHA Y HORA DE LA FINALIZACION DE LA SOLICITUD",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#D3D3D3"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "llegada_servicio",
+                        title: "TIEMPO DEL SERVICIO DE ASEO (MINUTOS)",
+                        width: 230,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                        },
+                        // , isdownload: true
+                        footerTemplate: "<center> PROMEDIO TOTAL: #= (average).toFixed(2) #</center>",
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "tiempo_total",
+                        title: "TIEMPO TOTAL DE LA SOLICITUD Y SERVICIO (MINUTOS)",
+                        width: 230,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                        },
+                        // , isdownload: true
+                        footerTemplate: "<center>PROMEDIO TOTAL: #= (average).toFixed(2) #</center>",
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }, {
+                        field: "cumplimiento",
+                        title: "CUMPLIMIENTO DE TIEMPOS",
+                        width: 200,
+                        headerAttributes: {
+                            style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#D3D3D3"
+                        },
+                        // , isdownload: true
+                        attributes: {
+                            style: "vertical-align:top;text-align: center;"
+                        },
+
+                    }
+                ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: app.language.getLabel('StartsWith'),
+                            eq: app.language.getLabel('IsEqualTo'),
+                            neq: app.language.getLabel('IsNotEqualTo'),
+                            contains: app.language.getLabel('Contains')
+                        }
+                    },
+                    messages: {
+                        info: app.language.getLabel('FilterHeader'), // sets the text on top of the filter menu
+                        filter: app.language.getLabel('FilterButton'), // sets the text for the "Filter" button
+                        clear: app.language.getLabel('FilterClear'), // sets the text for the "Clear" button
+                    }
+                },
+                sortable: true,
+                columnMenu: false,
+                divisionable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderDivisionable')
+                    }
+                },
+                pageable: {
+                    messages: {
+                        display: " {2} " + app.language.getLabel('TotalRecords'),
+                        empty: app.language.getLabel('NoRecordsDisplay'),
+                        itemsPerPage: app.language.getLabel('ItemsPerPage'),
+                        first: app.language.getLabel('FirstPage'),
+                        previous: app.language.getLabel('PreviousPage'),
+                        next: app.language.getLabel('NextPage'),
+                        last: app.language.getLabel('LastPage'),
+                        refresh: app.language.getLabel('Refresh')
+                    },
+                    buttonCount: 10,
+                    refresh: true,
+                    previousNext: true,
+                    info: true,
+                    pageSizes: [25, 50, 100, 200, 500, 1000]
+                },
+                resizable: false,
+                scrollable: {
+                    virtual: false
+                }
+            });
+
+
+
+
+            ///////////////////////////////////////////// GRID DATA AUXILIARES  /////////////////////////////////////////////
+            $("#grid_data_auxiliares").kendoGrid({
+                toolbar: ["excel"],
+                excel: {
+                    fileName: "consolidado-solicitudes.xlsx",
+                    proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: {
+                    data: [],
+                },
+                dataBound: function() {
+                    try {
+
+                    } catch (exc) {
+                        app.excManager("dashProcess", "GridView.dataBound2", exc);
+                    }
+                },
+                selectable: "row",
+                height: 550,
+                groupable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderGroupable')
+                    }
+                },
+                columns: [{
+                    field: "auxiliar",
+                    title: "AUXILIAR DE ASEO",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#d2e7f9"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+                    isdownload: true,
+
+                }, {
+                    field: "cantidad",
+                    title: "CANTIDAD DE SOLICITUDES ASIGNADAS",
+                    width: 200,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px;; background-color:#d2e7f9 "
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+                    isdownload: true,
+
+                }, {
+                    field: "cantidad_completados",
+                    title: "CANTIDAD DE SOLICITUDES COMPLETADAS",
+                    width: 120,
+                    //template: '<a   class="lnkDetailStatus"  />#=CompanyStatusName# </a>'
+                    //  template: '<a class="lnkDetailStatus" title="#=CompanyStatusName#" ><span style="width:100%;" ><span style="background:#=Color#;width:16px;height:16px;"  alt="#=CompanyStatusName#"  class="circle" ></span></span><span>#=CompanyStatusName#</span></a>'
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                    },
+                    attributes: {
+                        style: "vertical-align:top;text-align:center;"
+                    },
+
+                }, {
+                    field: "cantidad_pendientes",
+                    title: "CANTIDAD DE SOLICITUDES PENDIENTES",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }, {
+                    field: "cantidad_canceladas",
+                    title: "CANTIDAD DE SOLICITUDES CANCELADAS",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }, {
+                    field: "zona_trabajo",
+                    title: "ZONAS DE TRABAJO DE LA AUXILIAR",
+                    width: 120,
+                    headerAttributes: {
+                        style: "white-space: normal;vertical-align:top;text-align: center; font-size: 14px; background-color:#d2e7f9"
+                    },
+                    // , isdownload: true
+                    attributes: {
+                        style: "vertical-align:top;text-align: center;"
+                    },
+
+                }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: app.language.getLabel('StartsWith'),
+                            eq: app.language.getLabel('IsEqualTo'),
+                            neq: app.language.getLabel('IsNotEqualTo'),
+                            contains: app.language.getLabel('Contains')
+                        }
+                    },
+                    messages: {
+                        info: app.language.getLabel('FilterHeader'), // sets the text on top of the filter menu
+                        filter: app.language.getLabel('FilterButton'), // sets the text for the "Filter" button
+                        clear: app.language.getLabel('FilterClear'), // sets the text for the "Clear" button
+                    }
+                },
+                sortable: true,
+                columnMenu: false,
+                divisionable: {
+                    extra: true,
+                    messages: {
+                        empty: app.language.getLabel('GridHeaderDivisionable')
+                    }
+                },
+                pageable: {
+                    messages: {
+                        display: " {2} " + app.language.getLabel('TotalRecords'),
+                        empty: app.language.getLabel('NoRecordsDisplay'),
+                        itemsPerPage: app.language.getLabel('ItemsPerPage'),
+                        first: app.language.getLabel('FirstPage'),
+                        previous: app.language.getLabel('PreviousPage'),
+                        next: app.language.getLabel('NextPage'),
+                        last: app.language.getLabel('LastPage'),
+                        refresh: app.language.getLabel('Refresh')
+                    },
+                    buttonCount: 10,
+                    refresh: true,
+                    previousNext: true,
+                    info: true,
+                    pageSizes: [25, 50, 100, 200, 500, 1000]
+                },
+                resizable: false,
+                scrollable: {
+                    virtual: false
+                }
+            });
+
+
+            app.dash_refreshdata(data);
+
+
+
+
+
+        } catch (exc) {
+            console.log("exc dashProcess", exc)
+        }
+    }
+
+    //metodo de refresco de la data
+    app.dash_refreshdata = function(data) {
+        console.log("refresh---->", data);
+        app.loading(true, app.language.getLabel('loading'));
+        app.dash_refreshlocaldata(data);
+        app.loading(false, app.language.getLabel('loading'));
+    }
+
+    app.dash_refreshlocaldata = function(data1_) {
+        setTimeout(function() {
+            try {
+
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    moment.locale('es');
+
+                    $('#tecnicos_content').empty();
+                    $('#tecnicos_content').html('');
+                    $('#camilleros_content').empty();
+                    $('#camilleros_content').html('');
+                    $('span#cantidad').html('');
+                    $('span#completadas').html('');
+                    $('span#progreso').html('');
+                    $('span#rechazadas').html('');
+                    $('span#cantidad_total').html('');
+                    $('span#cantidad_rionegro').html('');
+                    $('span#cantidad_medellin').html('');
+                    $('div#video_explicativo').html('');
+                    $("div#fecha_filtro").html('');
+                    var data_maquinas = [];
+                    var data_motivos_rionegro = [];
+                    var data_motivos_medellin = [];
+                    var data_camilleros_consolidado = [];
+                    var data_auxiliar_consolidado = [];
+                    var desde = '';
+                    var hasta = '';
+                    desde = moment(data1_.filters.newfrom).format('LL');
+                    hasta = moment(data1_.filters.newto).format('LL');
+
+                    // console.log(" Desde ---> ", data1_);
+                    // console.log(" hasta ---> ", data1_);
+                    $("div#fecha_filtro").html('Desde ' + desde + ' Hasta ' + hasta);
+
+
+                    // var template = _.template($('#template-tecnico-header').html(), {});
+                    // $('#tecnicos_content').append(template);
+
+                    // var template = _.template($('#template-camilleros-header').html(), {});
+                    // $('#camilleros_content').append(template);
+
+                    /////////////////////////////// ORGANIZACION DE LA DATA /////////////////////////////////
+                    function buscarHijos(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id
+                        })
+                        return data_filtrada;
+
+
+                    }
+
+                    function buscarAuxiliares(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id
+                        });
+
+                        data_filtrada = _.unique(_.map(data_filtrada, function(l) {
+                            return l.frm_assignedto
+                        }));
+
+
+                        return data_filtrada
+                    }
+
+                    function buscarHijos2(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id
+                        })
+                        return data_filtrada.length
+                    }
+
+                    function buscarHijos(data, parent_id) {
+
+                        var data_filtrada = data_general.filter(function(l) {
+                            return l.frm_parentid == parent_id && l.act_fechahorainicioactividad_tim != "--"
+                        })
+                        return data_filtrada
+                    }
+
+                    function buscarHijosZonaDeTrabajo(data, parent_id) {
+
+                        var data_filtrada = data_general.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        })
+                        return data_filtrada[0].frm_workzonename
+                    }
+
+                    function buscarHijosQuiencreo(data, parent_id) {
+
+                        var data_filtrada = data_general.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        })
+                        return data_filtrada[0].act_solicitado_por
+                    }
+
+                    function buscarHijosFechaSolicitud(data, parent_id) {
+
+                        var data_filtrada = data_general.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        })
+                        return data_filtrada[0].act_fecha_solicitud
+                    }
+
+                    function cumplimientoDeTiempos(tiempo) {
+
+                        if (tiempo <= 10) {
+                            return "CUMPLE"
+                        } else {
+                            return "NO CUMPLE"
+                        }
+                    }
+
+
+                    function buscarTipoDeAseoHijos(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        });
+                        if (data_filtrada.length > 0) {
+                            return data_filtrada[0].tipo_aseo
+                        } else {
+                            return "--"
+                        }
+
+
+
+                    }
+
+
+                    function buscarlocationsDeAseoHijos(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        });
+                        if (data_filtrada.length > 0) {
+                            return data_filtrada[0].loc_name
+                        } else {
+                            return "--"
+                        }
+
+                    }
+
+                    function buscarassetsDeAseoHijos(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        });
+                        if (data_filtrada.length > 0) {
+                            return data_filtrada[0].ass_name
+                        } else {
+                            return "--"
+                        }
+
+                    }
+
+                    function buscarFechaoHijos(data, parent_id) {
+
+                        var data_filtrada = data.filter(function(l) {
+                            return l.frm_parentid == parent_id;
+                        });
+                        if (data_filtrada.length > 0) {
+                            return data_filtrada[0].fecha_hora
+                        } else {
+                            return "--"
+                        }
+
+                    }
+
+                    function dataActi(id) {
+                        console.log(id)
+                        return new Promise((resolve, reject) => {
+                            $.ajax({
+                                url: 'https://api.visitrack.com/api/Surveys/Activity',
+                                type: 'POST',
+                                data: {
+                                    AccessToken: 'E62F79679B27CD93B3727BAD41BC5C80',
+                                    ActivityID: id,
+                                    ListValues: false
+                                },
+                                success: (rs) => {
+
+                                    console.log(rs)
+
+                                    if (rs.Values) {
+                                        const tipo = rs.Values.filter((item) => item.apiId == 'TIPO_DE_ASEO')
+
+                                        if (tipo.length > 0) {
+                                            resolve(tipo[0].Value);
+                                        } else {
+                                            resolve('sin aseo');
+                                        }
+                                    } else {
+                                        resolve('sin aseo');
+                                    }
+
+
+                                },
+                                async: false
+
+                            })
+                        })
+                    }
+
+                    //////// ///////////////////////////////////////////// /////////////////////////
+
+                    data_general = []
+                    var data_ = [];
+                    var data_solicitud_Aseo = [];
+                    var data_formularios_aseo = [];
+                    var data_filtrada_formularios_aseo = [];
+                    //////// FILTRO LA DATA SEGUN LAS ZONAS DE TRABAJO /////////////////////////
+
+                    data_solicitud_Aseo = _.where(data1_.data, {
+                        "name": "SOLICITUD DE ASEO"
+                    });
+
+                    var data_formularios_aseo = data1_.data.filter(function(l) {
+                        return l.name != "SOLICITUD DE ASEO" && l.data.length != 0;
+                    });
+
+
+
+                    if (data_formularios_aseo.length > 0) {
+                        for (var index = 0; index < data_formularios_aseo.length; index++) {
+                            $.each(data_formularios_aseo[index].data, function(j, dat) {
+                                if (dat.frm_parentid != "") {
+                                    var dato = {}
+                                    dato["tipo_aseo"] = ""
+
+                                    switch (dat.surveyid) {
+                                        case "18499":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo;
+                                            dato["frm_parentid"] = dat.frm_parentid;
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18514":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+
+                                            break;
+                                        case "18503":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18557":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18641":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "17919":
+                                            dato["tipo_aseo"] = dat.act_tipodelimpieza
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "17939":
+                                            dato["tipo_aseo"] = dat.act_tipodelimpieza
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18929":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18956":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo_2
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "19485":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18930":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18596":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18923":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo_1 == "" ? dat.act_tipo_aseo_cubiculos_partos : dat.act_tipo_aseo_1
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "17920":
+                                            dato["tipo_aseo"] = dat.act_tipodelimpieza
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18602":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18677":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18642":
+                                            dato["tipo_aseo"] = dat.act_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18643":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18991":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "19027":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "19024":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "19023":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18556":
+                                            dato["tipo_aseo"] = dat.act_tipo_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "18770":
+                                            dato["tipo_aseo"] = dat.act_servicio
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        case "19174":
+                                            dato["tipo_aseo"] = dat.act_tipo_aseo
+                                            dato["frm_parentid"] = dat.frm_parentid
+                                            dato["fecha_hora"] = moment(dat.act_fecha + " " + dat.act_hora).format("YYYY-MM-DD HH:mm");
+                                            break;
+                                        default:
+
+                                            break;
+                                    }
+                                    data_filtrada_formularios_aseo.push(dato);
+                                }
+
+
+                            })
+
+                        }
+                    }
+
+                    console.log("data_solicitud_Aseo ---> ", data_solicitud_Aseo);
+
+                    $.each(data_solicitud_Aseo[0].data, function(j, dat) {
+                        var find_workzone = checkedNodes__.find(element => element == dat.frm_workzonename);
+                        if (typeof(find_workzone) != 'undefined' && dat.frm_workzonename !== "ANULADO") {
+                            data_.push(dat);
+                        }
+                    });
+
+
+                    $.each(data_, async function(j, dat) {
+                        dat.act_fecha_solicitud = moment(dat.act_fecha_solicitud).format("YYYY-MM-DD HH:mm")
+                        dat.act_fechahorainicioactividad_tim = moment(dat.act_fechahorainicioactividad_tim).format("YYYY-MM-DD HH:mm") == 'Invalid date' ? '--' : moment(dat.act_fechahorainicioactividad_tim).format("YYYY-MM-DD HH:mm");
+                        dat.act_fechahorafinactividad_tim = moment(dat.act_fechahorafinactividad_tim).format("YYYY-MM-DD HH:mm") == 'Invalid date' ? '--' : moment(dat.act_fechahorafinactividad_tim).format("YYYY-MM-DD HH:mm");
+                        dat.hora_fecha_formulario = moment(dat["act_fecha"] + " " + dat["act_hora"]).format("YYYY-MM-DD HH:mm");
+                        // dat.minutos_fechaFormulario_fechaOrigen = (moment(dat["act_fechallegaorigen"])).diff((moment(dat["hora_fecha_formulario"])), "minutes");
+                        dat.llegada_servicio = (moment(dat.act_fechahorafinactividad_tim)).diff((moment(dat.act_fechahorainicioactividad_tim)), "minutes");
+                        dat.toma_servicio = (moment(dat.act_fechahorainicioactividad_tim)).diff((moment(dat.act_fecha_solicitud)), "minutes");
+                        dat.tiempo_total = (moment(dat.act_fechahorafinactividad_tim)).diff((moment(dat.act_fecha_solicitud)), "minutes");
+                        if (isNaN(dat.llegada_servicio)) {
+                            dat.llegada_servicio = 0;
+                        }
+                        if (isNaN(dat.toma_servicio)) {
+                            dat.toma_servicio = 0;
+                        }
+                        if (isNaN(dat.tiempo_total)) {
+                            dat.tiempo_total = 0;
+                        }
+
+                        dat.cantidad_hijos = buscarHijos2(data_, dat.frm_parentid);
+                        dat.auxiliares_asignados = buscarAuxiliares(data_, dat.frm_parentid)
+                        dat.cumplimiento = cumplimientoDeTiempos(dat.toma_servicio);
+                        dat.tipo_de_aseo_ = 'sin aseo 2' //await dataActi(dat.frm_parentid);
+                        dat.fecha_hora_hijos = buscarFechaoHijos(data_filtrada_formularios_aseo, dat.MarkerID)
+
+                        data_general.push(dat);
+
+                    });
+
+                    var id_formulario_padre = _.unique(_.map(data_general, function(l) {
+                        return l.frm_parentid
+                    }));
+                    console.log("id_formulario_padre ----> ", id_formulario_padre)
+                    var data_general_filtrada = [];
+
+                    for (const val of id_formulario_padre) {
+
+                        var data_hijos = buscarHijos(data_general, val);
+
+                        if (data_hijos.length > 0) {
+                            console.log('entro al hijo ', data_hijos[0])
+                            var rsp = await dataActi(val);
+
+                            if (rsp) {
+
+                                data_hijos[0].tipo_de_aseo_ = rsp;
+
+                                console.log(data_hijos[0], 'data despues')
+                                data_general_filtrada.push(data_hijos[0]);
+
+                            }
+
+                        } else {
+                            var dato = {}
+                            dato["frm_parentid"] = val;
+                            dato["MarkerID"] = val;
+                            dato["act_fecha_solicitud"] = buscarHijosFechaSolicitud(data_general, val);
+                            dato["act_fechahorainicioactividad_tim"] = "--";
+                            dato["act_fechahorafinactividad_tim"] = "--";
+                            dato["hora_fecha_formulario"] = "--";
+                            dato["frm_statuscompany"] = "PENDIENTE ASEO";
+                            dato["act_solicitado_por"] = buscarHijosQuiencreo(data_general, val);
+                            dato["frm_workzonename"] = buscarHijosZonaDeTrabajo(data_general, val);
+                            dato["frm_assignedto"] = "PENDIENTE";
+                            dato["cantidad_hijos"] = buscarHijos2(data_general, val);
+                            dato["auxiliares_asignados"] = buscarAuxiliares(data_general, val);
+                            dato["cumplimiento"] = "NO CUMPLE"
+                            dato["act_tipo_de_aseo"] = "--"
+                            dato["tipo_de_aseo_"] = await dataActi(val)
+                            dato["fecha_hora_hijos"] = buscarFechaoHijos(data_filtrada_formularios_aseo, val)
+
+
+                            dato["loc_name"] = buscarlocationsDeAseoHijos(data_general, val);
+                            dato["ass_name"] = buscarassetsDeAseoHijos(data_general, val);
+                            dato["GUID"] = "--";
+
+                            dato["llegada_servicio"] = 0;
+                            dato["toma_servicio"] = 0;
+                            dato["tiempo_total"] = 0;
+                            data_general_filtrada.push(dato);
+                        }
+
+                    }
+
+
+
+
+                    console.log("data_general_filtrada ----> ", data_general_filtrada)
+
+
+                    var estados_actividades = _.unique(_.map(data_general_filtrada, function(l) {
+                        return l.frm_statuscompany
+                    }));
+
+                    var areas_aseo = _.unique(_.map(data_general_filtrada, function(l) {
+                        return l.frm_workzonename
+                    }));
+
+                    var auxiliares_asigandos = _.unique(_.map(data_, function(l) {
+                        return l.frm_assignedto
+                    }));
+
+                    var tipo_de_aseo_unicos = _.unique(_.map(data_general_filtrada, function(l) {
+                        return l.tipo_de_aseo_
+                    }));
+
+                    var unico_cumplimiento = _.unique(_.map(data_general_filtrada, function(l) {
+                        return l.cumplimiento
+                    }));
+
+                    var link_video_ = "https://drive.google.com/file/d/18_-6IS5OLrx4qCzg20Y-6iwwA0Gg3SRT/view?usp=sharing"
+
+                    $('div#video_explicativo').append('<div style="text-align: center; padding: 10px;">' +
+                        '<a target="_blank" href=' + link_video_ + '>VER VIDEO</a>' +
+                        '</div>');
+                    ////////////////////////////////////////////// FUNCIONES ////////////////////////////////
+
+
+
+
+                    console.log("data_general ---> ", data_general)
+
+
+                    function cantidadActividadesPorAuxiliar(auxiliar, data) {
+                        var data_filtrada = _.where(data, {
+                            "frm_assignedto": auxiliar
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadActividadesCompletadas(auxiliar, data) {
+                        var data_filtrada = _.where(data, {
+                            "frm_statuscompany": "Completado",
+                            "frm_assignedto": auxiliar
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadActividadesCanceladas(auxiliar, data) {
+                        var data_filtrada = _.where(data, {
+                            "frm_statuscompany": "CANCELADO POR DEMORA",
+                            "frm_assignedto": auxiliar
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function cantidadActividadesPendientes(auxiliar, data) {
+                        var data_filtrada = _.where(data, {
+                            "frm_statuscompany": "PENDIENTE ASEO",
+                            "frm_assignedto": auxiliar
+                        });
+
+                        return data_filtrada.length
+                    }
+
+                    function zonasDeTrabajoAuxiliar(auxiliar, data) {
+                        var data_filtrada = _.where(data, {
+                            "frm_assignedto": auxiliar
+                        });
+
+                        data_filtrada = _.unique(_.map(data_filtrada, function(l) {
+                            return l.frm_workzonename
+                        }));
+
+                        return data_filtrada
+                    }
+
+                    function SolicitudesPorEstado(data, estado) {
+                        var data_filtrada = _.where(data, {
+                            "frm_statuscompany": estado,
+                        });
+
+                        return data_filtrada.length;
+                    }
+
+
+                    var mantenimientos_correctivos = data_general.filter(function(l) {
+                        return l.act_tipomto == "CORRECTIVO"
+                    }).length;
+
+
+                    auxiliares_asigandos.forEach(function(val) {
+                        var datos = {}
+                        if (val != "") {
+                            datos['auxiliar'] = val;
+                            datos['cantidad'] = cantidadActividadesPorAuxiliar(val, data_);
+                            datos['cantidad_completados'] = cantidadActividadesCompletadas(val, data_general_filtrada);
+                            datos['cantidad_canceladas'] = cantidadActividadesCanceladas(val, data_general_filtrada);
+                            datos['cantidad_pendientes'] = cantidadActividadesPendientes(val, data_general_filtrada);
+                            datos['zona_trabajo'] = zonasDeTrabajoAuxiliar(val, data_general_filtrada).join(", ");
+
+                            data_auxiliar_consolidado.push(datos);
+                        }
+                    })
+
+                    $('span#cantidad').append(data_general_filtrada.length);
+
+                    $('span#cantidad_total').append(data_general_filtrada.length);
+                    ////////////////////////////////////////////// GRAFICA 1 ////////////////////////////////////////
+
+                    var datag_3 = google.visualization.arrayToDataTable([
+                        ['ESTADO', 'CANTIDAD', {
+                            role: 'annotation'
+                        }, {
+                            role: 'style'
+                        }],
+                        ["CANCELADO POR DEMORA: " + SolicitudesPorEstado(data_general_filtrada, "CANCELADO POR DEMORA"), SolicitudesPorEstado(data_general_filtrada, "CANCELADO POR DEMORA"), SolicitudesPorEstado(data_general_filtrada, "CANCELADO POR DEMORA"), '#7171f5'],
+                        ["PENDIENTE ASEO: " + SolicitudesPorEstado(data_general_filtrada, "PENDIENTE ASEO"), SolicitudesPorEstado(data_general_filtrada, "PENDIENTE ASEO"), SolicitudesPorEstado(data_general_filtrada, "PENDIENTE ASEO"), '#fafa5c'],
+                        ["COMPLETADO: " + SolicitudesPorEstado(data_general_filtrada, "Completado"), SolicitudesPorEstado(data_general_filtrada, "Completado"), SolicitudesPorEstado(data_general_filtrada, "Completado"), '#7cde7c'],
+                        // ["BORRADO", SolicitudesPorEstado(data_general_filtrada, "Borrado"), SolicitudesPorEstado(data_general_filtrada, "Borrado"), '#d1cdcd'],
+                    ]);
+
+                    var options_3 = {
+                        title: 'ESTADOS DE LAS ACTIVIDADES',
+                        width: '100%',
+                        height: '800',
+                        legend: 'rigth',
+                        pieSliceText: 'value-and-percentage',
+                        slices: {
+                            0: {
+                                color: '#7171f5'
+                            },
+                            1: {
+                                color: '#dc3912'
+                            },
+                            2: {
+                                color: '#7cde7c'
+                            }
+                        },
+                        fontSize: 12,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('grafica1'));
+                    chart.draw(datag_3, options_3);
+
+
+                    ////////////////////////////////////////////// GRAFICA 2 ////////////////////////////////////////
+
+                    var data_grafica2 = [
+                        ['DESTIVO', 'CANTIDAD', {
+                            role: 'annotation'
+                        }, {
+                            role: 'style'
+                        }]
+                    ]
+                    areas_aseo.forEach(function(val) {
+                        if (val !== 'undefined' || val !== '') {
+                            var estados = [];
+                            estados = data_general_filtrada.filter(function(l) {
+                                return l.frm_workzonename == val
+                            }).length;
+
+                            if (val !== "") {
+                                data_grafica2.push([val, estados, estados, '#7cde7c'])
+                            }
+                        }
+                    });
+
+                    var datag_2 = google.visualization.arrayToDataTable(data_grafica2);
+
+                    var options_2 = {
+                        title: 'SOLICITUDES DE ASEO POR AREA',
+                        width: '100%',
+                        height: '800',
+                        legend: 'bottom',
+                        fontSize: 12,
+                    };
+
+                    var chart2 = new google.visualization.BarChart(document.getElementById('grafica2'));
+                    chart2.draw(datag_2, options_2);
+
+
+                    ////////////////////////////////////////////// GRAFICA 3 ////////////////////////////////////////
+
+                    var data_grafica3 = [
+                        ['TIPO DE ASEO', 'CANTIDAD', {
+                            role: 'annotation'
+                        }, {
+                            role: 'style'
+                        }]
+                    ]
+                    tipo_de_aseo_unicos.forEach(function(val) {
+                        if (val != 'undefined' && val != "--" && val != "") {
+                            var estados = [];
+                            estados = data_general_filtrada.filter(function(l) {
+                                return l.tipo_de_aseo_ == val
+                            }).length;
+                            var color = ""
+                            if (val == "TERMINAL") {
+                                color = '#dc3912'
+                            } else {
+                                color = '#3366cc'
+                            }
+
+                            if (val !== "") {
+                                data_grafica3.push([val + ": " + estados, estados, estados, color]);
+                            }
+                        }
+                    });
+
+                    var datag_3 = google.visualization.arrayToDataTable(data_grafica3);
+                    var options_3 = {
+                        title: 'TIPO DE ASEO',
+                        width: '100%',
+                        height: '450',
+                        legend: 'bottom',
+                        pieSliceText: 'value-and-percentage',
+                        slices: {
+                            0: {
+                                color: '#dc3912'
+                            },
+                            1: {
+                                color: '#3366cc'
+                            }
+                        },
+                        fontSize: 12,
+                    };
+
+                    var chart2 = new google.visualization.PieChart(document.getElementById('grafica3'));
+                    chart2.draw(datag_3, options_3);
+
+                    ////////////////////////////////////////////// GRAFICA 4 ////////////////////////////////////////
+
+                    var data_grafica4 = [
+                        ['CUMPLIMIENTO', 'CANTIDAD', {
+                            role: 'annotation'
+                        }, {
+                            role: 'style'
+                        }]
+                    ]
+                    unico_cumplimiento.forEach(function(val) {
+                        if (val != 'undefined' && val != "") {
+                            var estados = [];
+
+                            estados = data_general_filtrada.filter(function(l) {
+                                return l.cumplimiento == val
+                            }).length;
+
+                            var color = ""
+                            if (val == "--") {
+                                val = 'SIN DILIGENCIAR'
+                            }
+
+
+                            if (val !== "") {
+                                data_grafica4.push([val + ": " + estados, estados, estados, color])
+                            }
+                        }
+                    });
+
+                    var datag_4 = google.visualization.arrayToDataTable(data_grafica4);
+                    var options_4 = {
+                        title: 'CUMPLIMIENTO DE TIEMPOS',
+                        width: '100%',
+                        height: '450',
+                        legend: 'bottom',
+                        pieSliceText: 'value-and-percentage',
+                        slices: {
+                            0: {
+                                color: '#dc3912'
+                            },
+                            1: {
+                                color: '#3366cc'
+                            }
+                        },
+                        fontSize: 12,
+                    };
+
+                    var chart2 = new google.visualization.PieChart(document.getElementById('grafica4'));
+                    chart2.draw(datag_4, options_4);
+
+                    //////////////////////////////////////////////  ////////////////////////////////////////
+
+                    var grid1 = $('#grid_data_total').data("kendoGrid");
+                    DataSourceUsers = new kendo.data.DataSource({
+                        data: data_general_filtrada,
+                        aggregate: [{
+                            field: "toma_servicio",
+                            aggregate: "average"
+                        }, {
+                            field: "llegada_servicio",
+                            aggregate: "average"
+                        }, {
+                            field: "tiempo_total",
+                            aggregate: "average"
+                        }]
+                    });
+                    grid1.setDataSource(DataSourceUsers);
+
+
+                    var grid2 = $('#grid_data_auxiliares').data("kendoGrid");
+                    DataSourceUsers = new kendo.data.DataSource({
+                        data: data_auxiliar_consolidado
+                    });
+                    grid2.setDataSource(DataSourceUsers);
+
+
+                }
+
+                // setTimeout(function() {
+                //     app.loading(false, app.language.getLabel('loading'));
+                // }, 2000);
+                console.log("termino la carga");
+
+                ////console.log("refresh---->", data);
+            } catch (exc) {
+                app.excManager("dashProcess", "dash_refreshlocaldata", exc);
+            }
+        }, 1000);
+
+
+    }
+</script>
+
+<div class="" style="margin-left:15px;margin-top:10px;">
+
+    <div class="row" style="margin-left:15px;">
+        <!-- <div class="col-sm-5">
+                <article class="statistic-box blue">
+                    <div>
+
+                        <div class="caption">
+                            <div>
+                                CANTIDAS DE SOLICITUDES: <span id="cantidad_total"></span>
+                            </div>
+                        </div>
+                        <div class="number" id="total_r_camas_"></div>
+                        <div class="subtitle">PROMEDIO : <span id="total_promedio_r"></span></div>
+                        <div class="subtitle">AUXILIARES : <span id="total_promedio_r_u"></span></div>
+                    </div>
+                </article>
+            </div> -->
+        <!-- <div class="col-sm-3">
+        <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #486891;  font-size: 21px; color: #ffffff;" class="center">
+            <b> TOTAL DE SOLICITUDES ASEO:</b> <span id="cantidad_total" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+        </div> <br>
+    </div> -->
+        <div class="col-sm-11">
+            <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #d2e7f9;  font-size: 24px; text-align: center;" class="center">
+                <b> TOTAL DE SOLICITUDES DE ASEO :</b> <span id="cantidad_total" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+                <div style="border-bottom: 1px solid #333; width: 100%; padding: 5px;"></div>
+                <div id="fecha_filtro"></div>
+            </div> <br>
+        </div>
+
+        <!-- <div class="col-sm-4">
+        <div style="margin: auto; border-radius: 20px; padding: 20px; width: 90%; background: #F9E7D2;  font-size: 20px; " class="center">
+            <b>TOTAL :</b> <span id="cantidad_rionegro" class="bold"></span> <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__480.png" width="25px" alt="">
+        </div> <br>
+    </div> -->
+
+
+    </div>
+
+    <div class="tarjetas">
+        <div class="tarjeta2">
+            <h4>ESTADO DE LAS SOLICITUDES (ENVIADAS POR WEB VISITRACK)</h4>
+            <div id="grafica1">
+            </div>
+        </div>
+        <div class="tarjeta2">
+            <h4>CANTIDAD DE SOLICITUDES POR AREA</h4>
+            <div id="grafica2">
+            </div>
+        </div>
+    </div>
+
+    <div class="tarjetas">
+        <div class="tarjeta2">
+            <h4>GRAFICO POR TIPO DE ASEO</h4>
+            <div id="grafica3">
+            </div>
+        </div>
+        <div class="tarjeta2">
+            <h4>GRAFICO POR CUMPLIMIENTO DE TIEMPOS</h4>
+            <div id="grafica4">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tarjetas">
+        <div class="tarjetadatatotal">
+            <h4 style="margin: 2px;">DATA CONSOLIDADA GENERAL</h4>
+        </div>
+    </div>
+
+    <div id="grid_data_total">
+    </div>
+
+
+    <div class="tarjetas">
+        <div class="tarjetamedellin">
+            <h4 style="margin: 2px;">DATA DE AUXILIARES</h4>
+        </div>
+    </div>
+
+    <div id="grid_data_auxiliares">
+    </div>
+
+
+
+
+
+    <!-- <div class="tarjetas">
+        <div class="tarjeta2">
+            <div class="" style="margin-left:15px;margin-top:10px;">
+                <div class="row justify-content-center" id="tecnicos_content" style="margin:15px;">
+                </div>
+            </div>
+        </div>
+        <div class="tarjeta2">
+            <div class="" style="margin-left:15px;margin-top:10px;">
+                <div class="row justify-content-center" id="camilleros_content" style="margin:15px;">
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="" style="margin-left:15px;margin-top:10px;">
+
+    </div>
+
+
+
+
+    <script type="text/template" id="template-tecnico">
+        <div class="row" style="border:2px solid #808080;">
+            <div class="col-md-4">
+                <center>
+                    <div class="glyphicon glyphicon-user" style="color:<%= color %>;font-size:60px;"></div><br />
+                    <label><%= camillero %></label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= cantidad %>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= finalizadas %>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= horas %>
+                </center>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="template-tecnico-header">
+        <div class="row header" style="border: 2px solid #808080; color;">
+            <div class="col-md-11">
+                <center class="font-header">
+                    <label>CAMILLEROS CON MAS SOLICITUDES</label>
+                </center>
+            </div>
+        </div>
+        <div class="row header" style="border: 2px solid #808080;">
+            <div class="col-md-4">
+                <center class="font-header">
+                    <label>NOMBRE DEL CAMILLEROS</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label>CANTIDAD DE SOLICITUDES</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label> SOLICITUDES FINALIZADAS</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label> HORAS CAMILLERO </label>
+                </center>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="template-camilleros-header">
+        <div class="row header2" style="border: 2px solid #808080; color;">
+            <div class="col-md-11">
+                <center class="font-header">
+                    <label>CAMILLEROS CON MENOS SOLICITUDES</label>
+                </center>
+            </div>
+        </div>
+        <div class="row header2" style="border: 2px solid #808080;">
+            <div class="col-md-4">
+                <center class="font-header">
+                    <label>NOMBRE DEL CAMILLEROS</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label>CANTIDAD DE SOLICITUDES</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label> SOLICITUDES FINALIZADAS</label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-header">
+                    <label> HORAS CAMILLERO </label>
+                </center>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="template-camilleros">
+        <div class="row" style="border: 2px solid #808080;">
+            <div class="col-md-4">
+                <center>
+                    <div class="glyphicon glyphicon-user" style="color: <%= color %>; font-size: 60px;"></div>
+                    <br />
+                    <label><%= camillero %></label>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= cantidad %>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= finalizadas %>
+                </center>
+            </div>
+            <div class="col-md-2">
+                <center class="font-cant">
+                    <%= horas %>
+                </center>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="template-filter-custom">
+        <div class="template-filter-custom" style="margin-top: 2px;">
+            <div class="filtertitle">
+                <%= title %>
+            </div>
+            <div id="<%=fieldid %>" style="vertical-align: top; margin-top: 0px;">
+            </div>
+        </div>
+    </script>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <center>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="dashtitle"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="grid_content" style="width:100%;height:700px;">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </center>
+
+        </div>
+    </div>
