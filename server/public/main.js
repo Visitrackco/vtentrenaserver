@@ -1315,7 +1315,7 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_Entrena_preferences_preferences_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/Entrena/preferences/preferences.module */ 9241)).then(m => m.PreferencesPageModule)
     },
     {
-        path: 'interfaces/nett-segur',
+        path: 'interfaces/nettsegur',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_nett-segur_nett-segur_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/nett-segur/nett-segur.module */ 2966)).then(m => m.NettSegurPageModule)
     },
 ];
