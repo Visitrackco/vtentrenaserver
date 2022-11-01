@@ -106,6 +106,9 @@ __webpack_require__.r(__webpack_exports__);
 let FiltroBuscarPipe = class FiltroBuscarPipe {
     transform(value, txt) {
         console.log(value, 'valor');
+        if (txt == '') {
+            return value;
+        }
         value = value.filter((item) => {
             let fecha = item.Values.filter((act) => act.apiId == 'FECHA').length > 0 ? item.Values.filter((act) => act.apiId == 'FECHA')[0].Value : '';
             let obs = item.Values.filter((act) => act.apiId == 'OBSERVACIONES').length > 0 ? item.Values.filter((act) => act.apiId == 'OBSERVACIONES')[0].Value : '';
@@ -116,9 +119,6 @@ let FiltroBuscarPipe = class FiltroBuscarPipe {
                 return item;
             }
         });
-        if (txt == '') {
-            value = value;
-        }
         return value;
     }
 };
@@ -2325,6 +2325,7 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
         this.selectUsersList = [];
         this.generados = [];
         this.load = true;
+        this.fecha = '';
     }
     ngOnInit() { }
     close() {
@@ -2332,9 +2333,17 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
     }
     ionViewWillEnter() {
         this.api.getUsers(this.tkn).subscribe((data) => {
-            console.log(data);
-            this.users = data;
+            console.log(data, 'usuarios');
+            if (data.length > 0) {
+                this.users = data.filter((item) => item.Active == 'True');
+            }
+            else {
+                this.users = [];
+            }
         });
+    }
+    cs() {
+        console.log(this.fecha);
     }
     select(event) {
         const guid = event.detail.value.ID;
@@ -2351,6 +2360,7 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
     }
     createOnlyActivity(guid, data) {
         return new Promise((resolve, reject) => {
+            const novedad = this.data.Values.filter((item) => item.apiId == 'OBSERVACIONES');
             this.api.aceptActivity({
                 AccessToken: this.tkn,
                 FormGUID: '1gp0JCZkra',
@@ -2358,7 +2368,11 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
                 AssetGUID: this.data.AssetGUID,
                 UserGUID: guid,
                 Duration: "60",
-                Values: JSON.stringify([]),
+                DispachDateTime: this.fecha + ' 00:00:00',
+                Values: JSON.stringify([{
+                        apiId: 'TRABAJOASIGNADO',
+                        Value: novedad.length > 0 ? novedad[0].Value : ''
+                    }]),
                 ActivityGUID: '',
                 CompanyStatusGUID: 'ACA3B658-AC7E-4249-BE49-ADF2FF13979F'
             }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
@@ -4021,7 +4035,7 @@ module.exports = "<p>\n  {{title}}\n</p>\n";
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <ion-title>Asignación</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <h3>{{ selectUsersList.length }} usuarios seleccionados</h3> <br>\n\n    <ion-item *ngFor=\"let user of users\">\n\n        <ion-checkbox (ionChange)=\"select($event)\" [value]=\"user\" mode=\"ios\" slot=\"start\" color=\"tertiary\"></ion-checkbox>\n        <ion-label>{{ user.FirstName }} {{ user.LastName }}</ion-label>\n\n    </ion-item> <br>\n\n    <div *ngIf=\"!load\">\n\n        <h3>Formularios creados</h3> <br>\n\n        <ion-item *ngFor=\"let user of generados\">\n\n            <ion-icon *ngIf=\"user.status\" color=\"success\" name=\"checkmark-done-circle\" slot=\"start\"></ion-icon>\n            <ion-icon *ngIf=\"!user.status\" color=\"danger\" name=\"close-circle\" slot=\"start\"></ion-icon>\n            <ion-label>{{ user.user }} </ion-label>\n\n        </ion-item> <br>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n\n    <ion-button mode=\"ios\" color=\"tertiary\" expand=\"block\" (click)=\"createActivities()\">Crear asignaciones</ion-button>\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <ion-title>Asignación</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <h3>{{ selectUsersList.length }} usuarios seleccionados</h3> <br>\n\n    <ion-item *ngFor=\"let user of users\">\n\n        <ion-checkbox (ionChange)=\"select($event)\" [value]=\"user\" mode=\"ios\" slot=\"start\" color=\"tertiary\"></ion-checkbox>\n        <ion-label>{{ user.FirstName }} {{ user.LastName }}</ion-label>\n\n    </ion-item> <br>\n    <ion-item color=\"light\" (click)=\"cs()\">\n        <ion-label>Seleccione fecha</ion-label>\n        <input type=\"date\" [(ngModel)]=\"fecha\">\n    </ion-item> <br> <br>\n\n    <div *ngIf=\"!load\">\n\n        <h3>Formularios creados</h3> <br>\n\n        <ion-item *ngFor=\"let user of generados\">\n\n            <ion-icon *ngIf=\"user.status\" color=\"success\" name=\"checkmark-done-circle\" slot=\"start\"></ion-icon>\n            <ion-icon *ngIf=\"!user.status\" color=\"danger\" name=\"close-circle\" slot=\"start\"></ion-icon>\n            <ion-label>{{ user.user }} </ion-label>\n\n        </ion-item> <br>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n\n    <ion-button *ngIf=\"select.length > 0 && fecha\" mode=\"ios\" color=\"tertiary\" expand=\"block\" (click)=\"createActivities()\">Crear asignaciones</ion-button>\n\n</ion-content>";
 
 /***/ }),
 
