@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_Pages_interfaces_nett-segur_nett-segur_module_ts"],{
 
-/***/ 5179:
+/***/ 55179:
 /*!**************************************************************************!*\
   !*** ./src/app/Pages/interfaces/nett-segur/nett-segur-routing.module.ts ***!
   \**************************************************************************/
@@ -11,10 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NettSegurPageRoutingModule": () => (/* binding */ NettSegurPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _nett_segur_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur.page */ 5358);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _nett_segur_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur.page */ 85358);
 
 
 
@@ -38,7 +38,7 @@ NettSegurPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 2966:
+/***/ 52966:
 /*!******************************************************************!*\
   !*** ./src/app/Pages/interfaces/nett-segur/nett-segur.module.ts ***!
   \******************************************************************/
@@ -48,14 +48,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NettSegurPageModule": () => (/* binding */ NettSegurPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 587);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _nett_segur_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur-routing.module */ 5179);
-/* harmony import */ var _nett_segur_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nett-segur.page */ 5358);
-/* harmony import */ var src_app_Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Pipes/pipes.module */ 1000);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _nett_segur_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur-routing.module */ 55179);
+/* harmony import */ var _nett_segur_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nett-segur.page */ 85358);
+/* harmony import */ var src_app_Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Pipes/pipes.module */ 7844);
 
 
 
@@ -83,7 +83,7 @@ NettSegurPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
-/***/ 5358:
+/***/ 85358:
 /*!****************************************************************!*\
   !*** ./src/app/Pages/interfaces/nett-segur/nett-segur.page.ts ***!
   \****************************************************************/
@@ -93,14 +93,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NettSegurPage": () => (/* binding */ NettSegurPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _nett_segur_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur.page.html?ngResource */ 522);
-/* harmony import */ var _nett_segur_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nett-segur.page.scss?ngResource */ 9879);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _nett_segur_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur.page.html?ngResource */ 60522);
+/* harmony import */ var _nett_segur_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nett-segur.page.scss?ngResource */ 79879);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/components/asignacionnettsegur/asignacionnettsegur.component */ 8638);
-/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 3954);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
 
 
 
@@ -202,7 +202,7 @@ NettSegurPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
-/***/ 9879:
+/***/ 79879:
 /*!*****************************************************************************!*\
   !*** ./src/app/Pages/interfaces/nett-segur/nett-segur.page.scss?ngResource ***!
   \*****************************************************************************/
@@ -212,7 +212,7 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
 
 /***/ }),
 
-/***/ 522:
+/***/ 60522:
 /*!*****************************************************************************!*\
   !*** ./src/app/Pages/interfaces/nett-segur/nett-segur.page.html?ngResource ***!
   \*****************************************************************************/

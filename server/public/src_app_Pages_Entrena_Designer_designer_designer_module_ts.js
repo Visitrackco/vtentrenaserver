@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_Pages_Entrena_Designer_designer_designer_module_ts"],{
 
-/***/ 7025:
+/***/ 27025:
 /*!****************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Designer/designer/designer-routing.module.ts ***!
   \****************************************************************************/
@@ -11,10 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerPageRoutingModule": () => (/* binding */ DesignerPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page */ 1538);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page */ 21538);
 
 
 
@@ -48,15 +48,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerPageModule": () => (/* binding */ DesignerPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 587);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _designer_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer-routing.module */ 7025);
-/* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page */ 1538);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _designer_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer-routing.module */ 27025);
+/* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page */ 21538);
 /* harmony import */ var _Modals_Designer_designer_designer_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Modals/Designer/designer/designer.page */ 3516);
-/* harmony import */ var _Modals_Designer_designer_designer_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Modals/Designer/designer/designer.module */ 9971);
+/* harmony import */ var _Modals_Designer_designer_designer_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Modals/Designer/designer/designer.module */ 29971);
 
 
 
@@ -88,7 +88,7 @@ DesignerPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
-/***/ 1538:
+/***/ 21538:
 /*!******************************************************************!*\
   !*** ./src/app/Pages/Entrena/Designer/designer/designer.page.ts ***!
   \******************************************************************/
@@ -98,18 +98,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerPage": () => (/* binding */ DesignerPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _designer_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page.html?ngResource */ 5169);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _designer_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page.html?ngResource */ 45169);
 /* harmony import */ var _designer_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page.scss?ngResource */ 8245);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 6061);
-/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 6050);
-/* harmony import */ var src_app_Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Storage/StorageWeb.service */ 5829);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 46061);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+/* harmony import */ var src_app_Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Storage/StorageWeb.service */ 95829);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _Modals_Designer_designer_designer_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Modals/Designer/designer/designer.page */ 3516);
-/* harmony import */ var src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/Services/dataCompany.service */ 9106);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ 2340);
+/* harmony import */ var src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/Services/dataCompany.service */ 59106);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ 92340);
 
 
 
@@ -454,7 +454,7 @@ DesignerPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
 
 /***/ }),
 
-/***/ 6248:
+/***/ 46248:
 /*!***********************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Modals/Designer/designer/designer-routing.module.ts ***!
   \***********************************************************************************/
@@ -464,9 +464,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerPageRoutingModule": () => (/* binding */ DesignerPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 2816);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
 /* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page */ 3516);
 
 
@@ -491,7 +491,7 @@ DesignerPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 9971:
+/***/ 29971:
 /*!***************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Modals/Designer/designer/designer.module.ts ***!
   \***************************************************************************/
@@ -501,12 +501,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerModalPageModule": () => (/* binding */ DesignerModalPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 587);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _designer_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer-routing.module */ 6248);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _designer_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer-routing.module */ 46248);
 /* harmony import */ var _designer_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page */ 3516);
 
 
@@ -543,19 +543,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DesignerModalPage": () => (/* binding */ DesignerModalPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _designer_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page.html?ngResource */ 9959);
-/* harmony import */ var _designer_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page.scss?ngResource */ 3438);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _designer_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./designer.page.html?ngResource */ 29959);
+/* harmony import */ var _designer_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designer.page.scss?ngResource */ 33438);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 8784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 3158);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ 745);
-/* harmony import */ var src_app_Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Storage/StorageWeb.service */ 5829);
-/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 6061);
-/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 6050);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ 2340);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 28784);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 53158);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ 10745);
+/* harmony import */ var src_app_Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Storage/StorageWeb.service */ 95829);
+/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 46061);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ 92340);
 
 
 
@@ -711,7 +711,7 @@ module.exports = "ion-slide {\n  width: 100%;\n  display: flex;\n  flex-directio
 
 /***/ }),
 
-/***/ 3438:
+/***/ 33438:
 /*!**************************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Modals/Designer/designer/designer.page.scss?ngResource ***!
   \**************************************************************************************/
@@ -721,7 +721,7 @@ module.exports = ".marginBottom {\n  margin-bottom: 10px;\n}\n\n.border {\n  bor
 
 /***/ }),
 
-/***/ 5169:
+/***/ 45169:
 /*!*******************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Designer/designer/designer.page.html?ngResource ***!
   \*******************************************************************************/
@@ -731,7 +731,7 @@ module.exports = "<ion-header>\n    <ion-toolbar [color]=\"color\">\n        <io
 
 /***/ }),
 
-/***/ 9959:
+/***/ 29959:
 /*!**************************************************************************************!*\
   !*** ./src/app/Pages/Entrena/Modals/Designer/designer/designer.page.html?ngResource ***!
   \**************************************************************************************/

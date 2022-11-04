@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_Pages_central_central_module_ts"],{
 
-/***/ 3597:
+/***/ 13597:
 /*!*********************************************************!*\
   !*** ./src/app/Pages/central/central-routing.module.ts ***!
   \*********************************************************/
@@ -11,10 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CentralPageRoutingModule": () => (/* binding */ CentralPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _central_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central.page */ 4465);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _central_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central.page */ 14465);
 
 
 
@@ -38,7 +38,7 @@ CentralPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 5923:
+/***/ 65923:
 /*!*************************************************!*\
   !*** ./src/app/Pages/central/central.module.ts ***!
   \*************************************************/
@@ -48,13 +48,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CentralPageModule": () => (/* binding */ CentralPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 587);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _central_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central-routing.module */ 3597);
-/* harmony import */ var _central_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./central.page */ 4465);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _central_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central-routing.module */ 13597);
+/* harmony import */ var _central_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./central.page */ 14465);
 
 
 
@@ -80,7 +80,7 @@ CentralPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 
 /***/ }),
 
-/***/ 4465:
+/***/ 14465:
 /*!***********************************************!*\
   !*** ./src/app/Pages/central/central.page.ts ***!
   \***********************************************/
@@ -90,17 +90,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CentralPage": () => (/* binding */ CentralPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _central_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central.page.html?ngResource */ 5275);
-/* harmony import */ var _central_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./central.page.scss?ngResource */ 9861);
-/* harmony import */ var _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Services/Storage/StorageWeb.service */ 5829);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _central_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central.page.html?ngResource */ 85275);
+/* harmony import */ var _central_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./central.page.scss?ngResource */ 19861);
+/* harmony import */ var _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Services/Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 3954);
-/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/animations */ 1631);
-/* harmony import */ var src_app_Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/PLatforms/Platform.service */ 6950);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 2816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-socket-io */ 4935);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/animations */ 31631);
+/* harmony import */ var src_app_Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/PLatforms/Platform.service */ 56950);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 
 
 
@@ -216,7 +216,7 @@ CentralPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
 
 /***/ }),
 
-/***/ 9861:
+/***/ 19861:
 /*!************************************************************!*\
   !*** ./src/app/Pages/central/central.page.scss?ngResource ***!
   \************************************************************/
@@ -226,7 +226,7 @@ module.exports = ".avatar {\n  width: 50px;\n  height: 50px;\n  background: #4D6
 
 /***/ }),
 
-/***/ 5275:
+/***/ 85275:
 /*!************************************************************!*\
   !*** ./src/app/Pages/central/central.page.html?ngResource ***!
   \************************************************************/
