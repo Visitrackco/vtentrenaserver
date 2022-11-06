@@ -90,22 +90,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LoginPage": () => (/* binding */ LoginPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login.page.html?ngResource */ 65089);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.page.scss?ngResource */ 14948);
-/* harmony import */ var _Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Services/PLatforms/Platform.service */ 56950);
-/* harmony import */ var _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Services/Storage/StorageWeb.service */ 95829);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/Api/Api.service */ 93954);
-/* harmony import */ var _Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Services/Utilities/Toast.service */ 46050);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/Services/dataCompany.service */ 59106);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-socket-io */ 84935);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/storage-angular */ 80190);
-/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/animations */ 31631);
-/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 46061);
-
+/* harmony import */ var _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Services/Storage/StorageWeb.service */ 95829);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/Api/Api.service */ 93954);
+/* harmony import */ var _Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/Utilities/Toast.service */ 46050);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/Services/dataCompany.service */ 59106);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-socket-io */ 84935);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage-angular */ 95950);
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/animations */ 31631);
+/* harmony import */ var src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/Services/Api/ApiEntrena.service */ 46061);
 
 
 
@@ -121,13 +119,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(apiService, toastService, navCtrl, dataCompanyService, storageService, myPlatform, menuCtrl, router, socket, storage, VTEntrenaApi) {
+    constructor(apiService, toastService, navCtrl, dataCompanyService, storageService, menuCtrl, router, socket, storage, VTEntrenaApi) {
         this.apiService = apiService;
         this.toastService = toastService;
         this.navCtrl = navCtrl;
         this.dataCompanyService = dataCompanyService;
         this.storageService = storageService;
-        this.myPlatform = myPlatform;
         this.menuCtrl = menuCtrl;
         this.router = router;
         this.socket = socket;
@@ -146,9 +143,9 @@ let LoginPage = class LoginPage {
         this.plt = '';
         this.ext = false;
         this.IPAddres = '';
-        this.myPlatform.$myplatform.subscribe((plt) => {
-            this.plt = plt;
-        });
+        /* this.myPlatform.$myplatform.subscribe((plt: any) => {
+           this.plt = plt;
+         }); */
     }
     ngOnInit() {
     }
@@ -162,7 +159,7 @@ let LoginPage = class LoginPage {
         });
     }
     createdCollections() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             console.log('Holaaa');
             const login = yield this.storage.get('login');
             const forms = yield this.storage.get('forms');
@@ -298,7 +295,7 @@ let LoginPage = class LoginPage {
                 }
             });
             // tslint:disable-next-line:max-line-length
-            this.VTEntrenaApi.loginUser(this.loginEntrena, this.IPAddres, { name: naveName, agent: navigator.userAgent }).subscribe((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            this.VTEntrenaApi.loginUser(this.loginEntrena, this.IPAddres, { name: naveName, agent: navigator.userAgent }).subscribe((res) => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
                 console.log(res);
                 if (res.status === 'ok') {
                     res.response.typeApp = '2';
@@ -323,40 +320,39 @@ let LoginPage = class LoginPage {
     }
 };
 LoginPage.ctorParameters = () => [
-    { type: _Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_4__.ApiService },
-    { type: _Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__.ToastService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.NavController },
-    { type: src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_6__.DataComparnyService },
-    { type: _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_3__.StorageWebService },
-    { type: _Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_2__.PlatformsService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.MenuController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router },
-    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_11__.Socket },
-    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_12__.Storage },
-    { type: src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_7__.ApiEntrenaService }
+    { type: _Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
+    { type: _Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__.ToastService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.NavController },
+    { type: src_app_Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_5__.DataComparnyService },
+    { type: _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__.StorageWebService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.MenuController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router },
+    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_10__.Socket },
+    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__.Storage },
+    { type: src_app_Services_Api_ApiEntrena_service__WEBPACK_IMPORTED_MODULE_6__.ApiEntrenaService }
 ];
-LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
+LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
         selector: 'app-login',
         template: _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         animations: [
-            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.trigger)('openClosed', [
-                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.transition)(':enter', [
-                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.style)({
+            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.trigger)('openClosed', [
+                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.transition)(':enter', [
+                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.style)({
                         opacity: 0,
                         transform: 'scale(0)'
                     }),
-                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.animate)('500ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.style)({
+                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.animate)('500ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.style)({
                         opacity: 1,
                         transform: 'scale(1)'
                     }))
                 ]),
-                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.transition)(':leave', [
-                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.style)({
+                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.transition)(':leave', [
+                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.style)({
                         opacity: 1,
                         transform: 'scale(1)'
                     }),
-                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.animate)('0ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_14__.style)({
+                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.animate)('0ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_13__.style)({
                         opacity: 0,
                         transform: 'scale(0)'
                     }))

@@ -181,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 let FiltroGeneralCDOpIpe = class FiltroGeneralCDOpIpe {
     transform(value, filtroby) {
         console.log(value, 'valor');
-        filtroby.toLowerCase();
+        filtroby = filtroby.toLowerCase();
         return filtroby == '' ? value : value.filter((item) => {
             let loc = item.LocationName.toLowerCase();
             let asset = item.AssetName.toLowerCase();
@@ -195,6 +195,41 @@ FiltroGeneralCDOpIpe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
         name: 'filtrogeneralcdo'
     })
 ], FiltroGeneralCDOpIpe);
+
+
+
+/***/ }),
+
+/***/ 58454:
+/*!*********************************************************!*\
+  !*** ./src/app/Pipes/Filters/filtroSolicPadres.pipe.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FiltroPadrePipe": () => (/* binding */ FiltroPadrePipe)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+let FiltroPadrePipe = class FiltroPadrePipe {
+    transform(value, filtroby) {
+        filtroby = filtroby.toLowerCase();
+        return filtroby == '' ? value : value.filter((item) => {
+            let loc = item.hab.toLowerCase();
+            let asset = item.cam.toLowerCase();
+            return loc.includes(filtroby) || asset.includes(filtroby);
+        });
+    }
+};
+FiltroPadrePipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Pipe)({
+        name: 'filtrosolicpadres'
+    })
+], FiltroPadrePipe);
 
 
 
@@ -313,8 +348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PipesModule": () => (/* binding */ PipesModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Filters/filter-repository.pipe */ 74932);
 /* harmony import */ var _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters/users.pipe */ 34246);
 /* harmony import */ var _Filters_filterUserRepo_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filters/filterUserRepo.pipe */ 91724);
@@ -323,6 +358,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Filters_filtroBuscar_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Filters/filtroBuscar.pipe */ 84542);
 /* harmony import */ var _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Filters/filtroCDO.pipe */ 17597);
 /* harmony import */ var _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Filters/filtroGeneralCDO.pipe */ 62054);
+/* harmony import */ var _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Filters/filtroSolicPadres.pipe */ 58454);
+
 
 
 
@@ -335,8 +372,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let PipesModule = class PipesModule {
 };
-PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.NgModule)({
+PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule)({
         declarations: [
             _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__.FilterRepositoryPipe,
             _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__.UsersPipe,
@@ -345,7 +382,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
             _Filters_valores_pipe__WEBPACK_IMPORTED_MODULE_4__.ValuesPipe,
             _Filters_filtroBuscar_pipe__WEBPACK_IMPORTED_MODULE_5__.FiltroBuscarPipe,
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
-            _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe
+            _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
+            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe
         ],
         imports: [],
         exports: [
@@ -356,7 +394,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
             _Filters_valores_pipe__WEBPACK_IMPORTED_MODULE_4__.ValuesPipe,
             _Filters_filtroBuscar_pipe__WEBPACK_IMPORTED_MODULE_5__.FiltroBuscarPipe,
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
-            _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe
+            _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
+            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe
         ]
     })
 ], PipesModule);
@@ -933,45 +972,6 @@ ApiEntrenaService = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
 
 /***/ }),
 
-/***/ 56950:
-/*!********************************************************!*\
-  !*** ./src/app/Services/PLatforms/Platform.service.ts ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PlatformsService": () => (/* binding */ PlatformsService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 76317);
-
-
-
-let PlatformsService = class PlatformsService {
-    constructor() {
-        this.platformBehaviour = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject('');
-        this.$myplatform = this.platformBehaviour.asObservable();
-    }
-    changePlatform(plt) {
-        return this.platformBehaviour.next(plt);
-    }
-    stopPlatform() {
-    }
-};
-PlatformsService.ctorParameters = () => [];
-PlatformsService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
-        providedIn: 'root'
-    })
-], PlatformsService);
-
-
-
-/***/ }),
-
 /***/ 95829:
 /*!********************************************************!*\
   !*** ./src/app/Services/Storage/StorageWeb.service.ts ***!
@@ -1445,17 +1445,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component.html?ngResource */ 33383);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 79259);
-/* harmony import */ var _Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Services/PLatforms/Platform.service */ 56950);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 80190);
-/* harmony import */ var _Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Services/dataCompany.service */ 59106);
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-socket-io */ 84935);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 52816);
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ 80190);
+/* harmony import */ var _Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Services/dataCompany.service */ 59106);
+/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-socket-io */ 84935);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 52816);
 
 
 
@@ -1466,20 +1464,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, storage, myPlatform, dataCompany, socket, router, menuCtrl) {
+    constructor(platform, storage, dataCompany, socket, router, menuCtrl) {
         this.platform = platform;
         this.storage = storage;
-        this.myPlatform = myPlatform;
         this.dataCompany = dataCompany;
         this.socket = socket;
         this.router = router;
         this.menuCtrl = menuCtrl;
-        this.initializeApp();
+        // this.initializeApp();
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             // If using a custom driver:
             // await this.storage.defineDriver(MyCustomDriver)
+            console.log('Hola');
             yield this.storage.create();
             this.initializeApp();
         });
@@ -1490,7 +1488,7 @@ let AppComponent = class AppComponent {
             // if (platforms.includes('desktop')) {
             this.createdCollections().then(() => {
                 console.log('Creado');
-                this.myPlatform.changePlatform('web');
+                //   this.myPlatform.changePlatform('web');
             }).catch((err) => {
                 console.log('Error ', err);
             });
@@ -1498,7 +1496,7 @@ let AppComponent = class AppComponent {
         });
     }
     createdCollections() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             console.log('Holaaa');
             const login = yield this.storage.get('login');
             const forms = yield this.storage.get('forms');
@@ -1543,16 +1541,15 @@ let AppComponent = class AppComponent {
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage },
-    { type: _Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_2__.PlatformsService },
-    { type: _Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_4__.DataComparnyService },
-    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_7__.Socket },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.Platform },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_2__.Storage },
+    { type: _Services_dataCompany_service__WEBPACK_IMPORTED_MODULE_3__.DataComparnyService },
+    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_6__.Socket },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-root',
         template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -1623,6 +1620,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
             _components_components_module__WEBPACK_IMPORTED_MODULE_3__.ComponentsModule
         ],
         providers: [
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_4__.Storage,
             _guards_login_guard__WEBPACK_IMPORTED_MODULE_0__.LoginGuard,
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_13__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicRouteStrategy }
         ],
@@ -2702,7 +2700,9 @@ let ControlcdoasistencialComponent = class ControlcdoasistencialComponent {
     constructor(modalCtrl, api) {
         this.modalCtrl = modalCtrl;
         this.api = api;
+        this.revisados = [];
         this.tabla = [];
+        this.txt = '';
     }
     ngOnInit() { }
     ionViewWillEnter() {
@@ -2723,9 +2723,13 @@ let ControlcdoasistencialComponent = class ControlcdoasistencialComponent {
                 amarillos: amarillos.length,
                 grises: grises.length,
                 verdes: verdes.length,
-                azules: azules.length
+                azules: azules.length,
+                ldg: false
             });
         });
+    }
+    buscar(event) {
+        this.txt = event.detail.value;
     }
     cambio(data) {
         return new Promise((resolve, reject) => {
@@ -2741,27 +2745,36 @@ let ControlcdoasistencialComponent = class ControlcdoasistencialComponent {
     }
     eliminar(item, i) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            this.tabla[i].ldg = true;
             console.log(item);
+            const indx = this.tabla.findIndex((val) => val.padre == item.padre);
+            this.tabla[indx].ldg = true;
             let arr = [];
             for (const dat of item.data) {
                 yield this.cambio(dat);
-                this.tabla[i].rojos -= 1;
+                this.tabla[indx].rojos -= 1;
                 arr.push(true);
             }
             yield this.cambio({
                 GUID: item.padre,
                 AssignedToGUID: item.data[0].AssignedToGUID
             });
-            this.tabla[i].azules = arr.length;
-            this.tabla[i].ldg = false;
+            this.revisados.push(item.padre);
+            this.tabla[indx].azules = arr.length;
+            this.tabla[indx].ldg = false;
         });
     }
     unicos(arr, item) {
         return underscore__WEBPACK_IMPORTED_MODULE_2__.uniq(underscore__WEBPACK_IMPORTED_MODULE_2__.map(arr, (dat) => dat[item]));
     }
     cerrar() {
-        this.modalCtrl.dismiss();
+        if (this.revisados.length > 0) {
+            this.modalCtrl.dismiss({
+                revisados: this.revisados
+            });
+        }
+        else {
+            this.modalCtrl.dismiss();
+        }
     }
 };
 ControlcdoasistencialComponent.ctorParameters = () => [
@@ -3337,6 +3350,9 @@ let OpcionesCDOComponent = class OpcionesCDOComponent {
         if (this.color == 'PENDIENTE ASEO') {
             return 'rojo';
         }
+        if (this.color == 'ELIMINADA POR LIMPIEZA PREVIA A SOLICITUD') {
+            return 'azuñ';
+        }
     }
     seleccion(item) {
         this.popover.dismiss({
@@ -3719,12 +3735,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -4449,7 +4465,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /***/ ((module) => {
 
 "use strict";
-module.exports = ".rojo {\n  background-color: #E9463C;\n  color: #E9463C;\n}\n\n.amarillo {\n  background-color: #F2E850;\n  color: #F2E850;\n}\n\n.verde {\n  background-color: #2C6520;\n  color: #2C6520;\n}\n\n.gris {\n  background-color: #93938B;\n  color: #93938B;\n}\n\n.todos {\n  background: rgb(255, 12, 12);\n  background: radial-gradient(circle, rgb(255, 12, 12) 0%, rgb(230, 114, 15) 30%, rgb(0, 255, 91) 100%);\n}\n\nion-avatar {\n  width: 30px;\n  height: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wY2lvbmVzLWNkby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQUNKOztBQUVBO0VBQ0ksNEJBQUE7RUFDQSxxR0FBQTtBQUNKOztBQUVBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7QUFDSiIsImZpbGUiOiJvcGNpb25lcy1jZG8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucm9qbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0U5NDYzQztcbiAgICBjb2xvcjogI0U5NDYzQztcbn1cblxuLmFtYXJpbGxvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjJFODUwO1xuICAgIGNvbG9yOiAjRjJFODUwO1xufVxuXG4udmVyZGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMyQzY1MjA7XG4gICAgY29sb3I6ICMyQzY1MjA7XG59XG5cbi5ncmlzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjOTM5MzhCO1xuICAgIGNvbG9yOiAjOTM5MzhCO1xufVxuXG4udG9kb3Mge1xuICAgIGJhY2tncm91bmQ6IHJnYigyNTUsIDEyLCAxMik7XG4gICAgYmFja2dyb3VuZDogcmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiYSgyNTUsIDEyLCAxMiwgMSkgMCUsIHJnYmEoMjMwLCAxMTQsIDE1LCAxKSAzMCUsIHJnYmEoMCwgMjU1LCA5MSwgMSkgMTAwJSk7XG59XG5cbmlvbi1hdmF0YXIge1xuICAgIHdpZHRoOiAzMHB4O1xuICAgIGhlaWdodDogMzBweDtcbn0iXX0= */";
+module.exports = ".rojo {\n  background-color: #E9463C;\n  color: #E9463C;\n}\n\n.amarillo {\n  background-color: #F2E850;\n  color: #F2E850;\n}\n\n.verde {\n  background-color: #2C6520;\n  color: #2C6520;\n}\n\n.gris {\n  background-color: #93938B;\n  color: #93938B;\n}\n\n.azul {\n  background-color: #53B6A4;\n  color: #53B6A4;\n}\n\n.todos {\n  background: rgb(255, 12, 12);\n  background: radial-gradient(circle, rgb(255, 12, 12) 0%, rgb(230, 114, 15) 30%, rgb(0, 255, 91) 100%);\n}\n\nion-avatar {\n  width: 30px;\n  height: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wY2lvbmVzLWNkby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBQ0o7O0FBR0E7RUFDSSw0QkFBQTtFQUNBLHFHQUFBO0FBQUo7O0FBR0E7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQUFKIiwiZmlsZSI6Im9wY2lvbmVzLWNkby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5yb2pvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRTk0NjNDO1xuICAgIGNvbG9yOiAjRTk0NjNDO1xufVxuXG4uYW1hcmlsbG8ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNGMkU4NTA7XG4gICAgY29sb3I6ICNGMkU4NTA7XG59XG5cbi52ZXJkZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJDNjUyMDtcbiAgICBjb2xvcjogIzJDNjUyMDtcbn1cblxuLmdyaXMge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM5MzkzOEI7XG4gICAgY29sb3I6ICM5MzkzOEI7XG59XG5cbi5henVsIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNTNCNkE0O1xuICAgIGNvbG9yOiAjNTNCNkE0O1xufVxuXG5cbi50b2RvcyB7XG4gICAgYmFja2dyb3VuZDogcmdiKDI1NSwgMTIsIDEyKTtcbiAgICBiYWNrZ3JvdW5kOiByYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCByZ2JhKDI1NSwgMTIsIDEyLCAxKSAwJSwgcmdiYSgyMzAsIDExNCwgMTUsIDEpIDMwJSwgcmdiYSgwLCAyNTUsIDkxLCAxKSAxMDAlKTtcbn1cblxuaW9uLWF2YXRhciB7XG4gICAgd2lkdGg6IDMwcHg7XG4gICAgaGVpZ2h0OiAzMHB4O1xufSJdfQ== */";
 
 /***/ }),
 
@@ -4658,7 +4674,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <i
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>CONTROL SOLICITUDES </ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"cerrar()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n\n\n</ion-header>\n\n\n<ion-content class=\"ion-padding\">\n\n\n    <div>\n        <ion-card class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of tabla; let i = index; \">\n\n            <ion-card-header class=\"ion-padding\">\n                <ion-card-title>{{item.hab}}</ion-card-title>\n                <ion-card-subtitle>{{item.cam}}</ion-card-subtitle>\n            </ion-card-header>\n\n\n\n\n\n            <ion-card-content>\n\n                <div class=\"separador\"></div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"verde\"></ion-avatar>\n                        Completado\n                    </div>\n                    <strong>{{ item.verdes }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"amarillo\"></ion-avatar>\n                        En progreso\n                    </div>\n                    <strong>{{ item.amarillos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"rojo\"></ion-avatar>\n                        Pentientes aseo\n                    </div>\n                    <strong>{{ item.rojos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"gris\"></ion-avatar>\n                        Cancelados\n                    </div>\n                    <strong>{{ item.grises }}</strong>\n                </div> <br>\n\n\n                <div class=\"flex\">\n                    <div class=\"tit ion-text-wrap\">\n                        <ion-avatar class=\"azul\"></ion-avatar>\n                        Eliminadas por limpieza previa a solicitud\n                    </div>\n                    <strong>{{ item.azules }}</strong>\n                </div> <br>\n\n                <div class=\"ldg\" *ngIf=\"item.ldg\">\n                    <ion-spinner name=\"crescent\"></ion-spinner>\n                    <h4>Cambiando estado, por favor espere</h4>\n                </div>\n\n                <ion-button *ngIf=\"item.rojos > 0 && item.verdes == 0 && item.grises == 0 && item.amarillos == 0\" expand=\"block\" color=\"danger\" mode=\"iod\" (click)=\"eliminar(item, i)\">Eliminar</ion-button>\n\n            </ion-card-content>\n        </ion-card> <br> <br>\n    </div>\n\n\n\n</ion-content>";
+module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>CONTROL SOLICITUDES </ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"cerrar()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n\n\n</ion-header>\n\n\n<ion-content class=\"ion-padding\">\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"buscar($event)\"></ion-searchbar>\n\n\n\n    <div>\n        <ion-card class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of tabla | filtrosolicpadres : txt; let i = index; \">\n\n            <ion-card-header class=\"ion-padding\">\n                <ion-card-title>{{item.hab}}</ion-card-title>\n                <ion-card-subtitle>{{item.cam}}</ion-card-subtitle>\n            </ion-card-header>\n\n\n\n\n\n            <ion-card-content>\n\n                <div class=\"separador\"></div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"verde\"></ion-avatar>\n                        Completado\n                    </div>\n                    <strong>{{ item.verdes }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"amarillo\"></ion-avatar>\n                        En progreso\n                    </div>\n                    <strong>{{ item.amarillos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"rojo\"></ion-avatar>\n                        Pentientes aseo\n                    </div>\n                    <strong>{{ item.rojos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"gris\"></ion-avatar>\n                        Cancelados\n                    </div>\n                    <strong>{{ item.grises }}</strong>\n                </div> <br>\n\n\n                <div class=\"flex\">\n                    <div class=\"tit ion-text-wrap\">\n                        <ion-avatar class=\"azul\"></ion-avatar>\n                        Eliminadas por limpieza previa a solicitud\n                    </div>\n                    <strong>{{ item.azules }}</strong>\n                </div> <br>\n\n                <div class=\"ldg\" *ngIf=\"item.ldg\">\n                    <ion-spinner name=\"crescent\"></ion-spinner>\n                    <h4>Cambiando estado, por favor espere</h4>\n                </div>\n\n                <ion-button *ngIf=\"item.rojos > 0 && item.verdes == 0 && item.grises == 0 && item.amarillos == 0\" expand=\"block\" color=\"danger\" mode=\"iod\" (click)=\"eliminar(item, i)\">Eliminar</ion-button>\n\n            </ion-card-content>\n        </ion-card> <br> <br>\n    </div>\n\n\n\n</ion-content>";
 
 /***/ }),
 
@@ -4702,7 +4718,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"danger\">\n    <ion-title
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-list>\n    <ion-item *ngFor=\"let item of opciones\" (click)=\"seleccion(item)\">\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'CANCELADO POR DEMORA'\" class=\"gris\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'Completado'\" class=\"verde\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'EN PROCESO DE ASEO'\" class=\"amarillo\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'PENDIENTE ASEO'\" class=\"rojo\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'Todos'\" class=\"todos\"></ion-avatar>\n        <ion-label class=\"ion-text-wrap\">{{ item }}</ion-label>\n    </ion-item>\n</ion-list>";
+module.exports = "<ion-list>\n    <ion-item *ngFor=\"let item of opciones\" (click)=\"seleccion(item)\">\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'CANCELADO POR DEMORA'\" class=\"gris\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'Completado'\" class=\"verde\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'EN PROCESO DE ASEO'\" class=\"amarillo\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'PENDIENTE ASEO'\" class=\"rojo\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'ELIMINADA POR LIMPIEZA PREVIA A SOLICITUD'\" class=\"azul\"></ion-avatar>\n        <ion-avatar slot=\"start\" *ngIf=\"item == 'Todos'\" class=\"todos\"></ion-avatar>\n        <ion-label class=\"ion-text-wrap\">{{ item }}</ion-label>\n    </ion-item>\n</ion-list>";
 
 /***/ })
 

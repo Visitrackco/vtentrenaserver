@@ -90,18 +90,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CentralPage": () => (/* binding */ CentralPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _central_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./central.page.html?ngResource */ 85275);
 /* harmony import */ var _central_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./central.page.scss?ngResource */ 19861);
 /* harmony import */ var _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Services/Storage/StorageWeb.service */ 95829);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
-/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/animations */ 31631);
-/* harmony import */ var src_app_Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/PLatforms/Platform.service */ 56950);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-socket-io */ 84935);
-
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/animations */ 31631);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 
 
 
@@ -113,9 +111,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CentralPage = class CentralPage {
-    constructor(apiService, myPlatform, storageService, router, menuCtrl, socket) {
+    constructor(apiService, storageService, router, menuCtrl, socket) {
         this.apiService = apiService;
-        this.myPlatform = myPlatform;
         this.storageService = storageService;
         this.router = router;
         this.menuCtrl = menuCtrl;
@@ -127,14 +124,14 @@ let CentralPage = class CentralPage {
         this.draw = false;
         this.loadForms = false;
         this.plt = '';
-        this.myPlatform.$myplatform.subscribe((plt) => {
-            this.plt = plt;
-        });
+        /* this.myPlatform.$myplatform.subscribe((plt: any) => {
+           this.plt = plt;
+         }) */
     }
     ngOnInit() {
     }
     ionViewWillEnter() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.listForms = [];
             if (this.listForms.length === 0) {
                 this.loadForms = true;
@@ -164,7 +161,7 @@ let CentralPage = class CentralPage {
         });
     }
     clickForm(form) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             try {
                 console.log(form);
                 form.JSONQuestions = JSON.parse(form.JSONQuestions);
@@ -180,26 +177,25 @@ let CentralPage = class CentralPage {
 };
 CentralPage.ctorParameters = () => [
     { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
-    { type: src_app_Services_PLatforms_Platform_service__WEBPACK_IMPORTED_MODULE_4__.PlatformsService },
     { type: _Services_Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_2__.StorageWebService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController },
-    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_8__.Socket }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
+    { type: ngx_socket_io__WEBPACK_IMPORTED_MODULE_7__.Socket }
 ];
-CentralPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+CentralPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-central',
         template: _central_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         animations: [
-            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.trigger)('welcome', [
-                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.transition)('* => *', [
-                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.query)(':enter', [
-                        (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.style)({
+            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.trigger)('welcome', [
+                (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.transition)('* => *', [
+                    (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.query)(':enter', [
+                        (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.style)({
                             opacity: 0,
                             transform: 'translateX(-100px)'
                         }),
-                        (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.stagger)(100, [
-                            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.animate)('300ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_10__.style)({
+                        (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.stagger)(100, [
+                            (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.animate)('300ms', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_9__.style)({
                                 opacity: 1,
                                 transform: 'none'
                             }))
