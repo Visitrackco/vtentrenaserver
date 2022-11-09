@@ -1418,6 +1418,10 @@ const routes = [
         path: 'interfaces/cdosupervisores',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
     },
+    {
+        path: 'interfaces/oszford-calendario',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_oszford-calendario_oszford-calendario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/oszford-calendario/oszford-calendario.module */ 11688)).then(m => m.OszfordCalendarioPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -1606,6 +1610,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
         entryComponents: [],
+        schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule,
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__.BrowserAnimationsModule,
@@ -3735,12 +3740,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],

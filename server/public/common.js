@@ -1,9 +1,9 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
-/***/ 72943:
+/***/ 95479:
 /*!*********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/button-active-8251f533.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/button-active-1542e4b9.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "c": () => (/* binding */ createButtonActiveGesture)
 /* harmony export */ });
 /* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-8e692445.js */ 91559);
-/* harmony import */ var _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-029a46f6.js */ 12815);
+/* harmony import */ var _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-683b3b3c.js */ 70634);
 /* harmony import */ var _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f8d8aa5a.js */ 69286);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -82,11 +82,11 @@ const createButtonActiveGesture = (el, isButton) => {
     el,
     gestureName: 'buttonActiveDrag',
     threshold: 0,
-    onStart: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.a),
-    onMove: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.b),
+    onStart: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.a),
+    onMove: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.b),
     onEnd: () => {
       clearActiveButton(true);
-      (0,_haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.h)();
+      (0,_haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.h)();
       initialTouchedButton = undefined;
     }
   });
@@ -214,9 +214,9 @@ const startFocusVisible = rootEl => {
 
 /***/ }),
 
-/***/ 23701:
+/***/ 9553:
 /*!**************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-897f849d.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-82cc7646.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -226,8 +226,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_santigovelascofernandez_VTEntrenaApp_vtentrenamovil_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 
 
 /*!
@@ -236,7 +236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const attachComponent = /*#__PURE__*/function () {
-  var _ref = (0,_Users_santigovelascofernandez_VTEntrenaApp_vtentrenamovil_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+  var _ref = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
     var _a;
 
     if (delegate) {
@@ -258,7 +258,7 @@ const attachComponent = /*#__PURE__*/function () {
     }
 
     container.appendChild(el);
-    yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+    yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
     return el;
   });
 
@@ -285,7 +285,7 @@ const CoreDelegate = () => {
   let Reference;
 
   const attachViewToDom = /*#__PURE__*/function () {
-    var _ref2 = (0,_Users_santigovelascofernandez_VTEntrenaApp_vtentrenamovil_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+    var _ref2 = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
       var _a, _b;
 
       BaseComponent = parentElement;
@@ -319,7 +319,7 @@ const CoreDelegate = () => {
          */
 
         BaseComponent.appendChild(el);
-        yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+        yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       } else if (BaseComponent.children.length > 0) {
         // If there is no component, then we need to create a new parent
         // element to apply the css classes to.
@@ -376,9 +376,9 @@ const CoreDelegate = () => {
 
 /***/ }),
 
-/***/ 12815:
+/***/ 70634:
 /*!**************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/haptic-029a46f6.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/haptic-683b3b3c.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -402,30 +402,7 @@ const HapticEngine = {
   },
 
   available() {
-    var _a;
-
-    const win = window;
-    const engine = this.getEngine();
-
-    if (!engine) {
-      return false;
-    }
-    /**
-     * Developers can manually import the
-     * Haptics plugin in their app which will cause
-     * getEngine to return the Haptics engine. However,
-     * the Haptics engine will throw an error if
-     * used in a web browser that does not support
-     * the Vibrate API. This check avoids that error
-     * if the browser does not support the Vibrate API.
-     */
-
-
-    if (((_a = win.Capacitor) === null || _a === void 0 ? void 0 : _a.getPlatform()) === 'web') {
-      return typeof navigator !== 'undefined' && navigator.vibrate !== undefined;
-    }
-
-    return true;
+    return !!this.getEngine();
   },
 
   isCordova() {
@@ -513,21 +490,12 @@ const HapticEngine = {
 
 };
 /**
- * Check to see if the Haptic Plugin is available
- * @return Returns `true` or false if the plugin is available
- */
-
-const hapticAvailable = () => {
-  return HapticEngine.available();
-};
-/**
  * Trigger a selection changed haptic event. Good for one-time events
  * (not for gestures)
  */
 
-
 const hapticSelection = () => {
-  hapticAvailable() && HapticEngine.selection();
+  HapticEngine.selection();
 };
 /**
  * Tell the haptic engine that a gesture for a selection change is starting.
@@ -535,7 +503,7 @@ const hapticSelection = () => {
 
 
 const hapticSelectionStart = () => {
-  hapticAvailable() && HapticEngine.selectionStart();
+  HapticEngine.selectionStart();
 };
 /**
  * Tell the haptic engine that a selection changed during a gesture.
@@ -543,7 +511,7 @@ const hapticSelectionStart = () => {
 
 
 const hapticSelectionChanged = () => {
-  hapticAvailable() && HapticEngine.selectionChanged();
+  HapticEngine.selectionChanged();
 };
 /**
  * Tell the haptic engine we are done with a gesture. This needs to be
@@ -552,7 +520,7 @@ const hapticSelectionChanged = () => {
 
 
 const hapticSelectionEnd = () => {
-  hapticAvailable() && HapticEngine.selectionEnd();
+  HapticEngine.selectionEnd();
 };
 /**
  * Use this to indicate success/failure/warning to the user.
@@ -561,7 +529,7 @@ const hapticSelectionEnd = () => {
 
 
 const hapticImpact = options => {
-  hapticAvailable() && HapticEngine.impact(options);
+  HapticEngine.impact(options);
 };
 
 
@@ -630,9 +598,9 @@ const searchSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 
 /***/ }),
 
-/***/ 33081:
+/***/ 24293:
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-5d0c8232.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-fe2c1c1f.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -650,8 +618,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "r": () => (/* binding */ resetContentScrollY),
 /* harmony export */   "s": () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var _Users_santigovelascofernandez_VTEntrenaApp_vtentrenamovil_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 /* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 99273);
 
 
@@ -687,9 +655,9 @@ const isIonContent = el => el.tagName === ION_CONTENT_TAG_NAME;
 
 
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,_Users_santigovelascofernandez_VTEntrenaApp_vtentrenamovil_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
-      yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+      yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();
     }
 
@@ -1205,9 +1173,9 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ 64114:
+/***/ 20374:
 /*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-5351da01.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-9347ea5f.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1215,7 +1183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createSwipeBackGesture": () => (/* binding */ createSwipeBackGesture)
 /* harmony export */ });
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 /* harmony import */ var _dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dir-e8b767a8.js */ 17481);
 /* harmony import */ var _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f8d8aa5a.js */ 69286);
 /* harmony import */ var _gesture_controller_17060b7c_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gesture-controller-17060b7c.js */ 56379);
@@ -1291,7 +1259,7 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
      */
 
 
-    onEndHandler(shouldComplete, stepValue <= 0 ? 0.01 : (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__.l)(0, stepValue, 0.9999), realDur);
+    onEndHandler(shouldComplete, stepValue <= 0 ? 0.01 : (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_0__.l)(0, stepValue, 0.9999), realDur);
   };
 
   return (0,_index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__.createGesture)({
