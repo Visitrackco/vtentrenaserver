@@ -26,7 +26,7 @@ module.exports.io = SokectIO(server);
 require('./Sockets/socket');
 require('./Jobs/UsersEntrena.js');
 
-console.log('hola mundo en visitrack 2.0')
+console.log('hola mundo en visitrack 2.0 nov')
 
 mongoose.connect('mongodb://localhost:27017/repository', { useCreateIndex: true, useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true }, (err) => {
     if (err) {
