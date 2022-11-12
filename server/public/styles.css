@@ -1333,7 +1333,6 @@ sub {
   --background: var(--ion-color-danger) !important;
 }
 .fc-today-button {
-<<<<<<< HEAD
   background: #1F4376 !important;
 }
 .fc-prev-button {
@@ -1359,9 +1358,6 @@ sub {
 }
 .fc-col-header thead th .fc-col-header-cell-cushion {
   color: #000;
-=======
-  background: #b1d583 !important;
->>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 }
 
 /*# sourceMappingURL=styles.css.map*/
