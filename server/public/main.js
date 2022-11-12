@@ -235,6 +235,42 @@ FiltroPadrePipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
 
 /***/ }),
 
+/***/ 14265:
+/*!******************************************************!*\
+  !*** ./src/app/Pipes/Filters/filtrodiamante.pipe.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FiltroDiamanteMttoPipe": () => (/* binding */ FiltroDiamanteMttoPipe)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+let FiltroDiamanteMttoPipe = class FiltroDiamanteMttoPipe {
+    transform(value, filtroby) {
+        filtroby = filtroby.toLowerCase();
+        return filtroby == '' ? [] : value.filter((item) => {
+            let val = item.Name.toLowerCase();
+            if (val.includes(filtroby)) {
+                return item;
+            }
+        });
+    }
+};
+FiltroDiamanteMttoPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Pipe)({
+        name: 'diamantemtto'
+    })
+], FiltroDiamanteMttoPipe);
+
+
+
+/***/ }),
+
 /***/ 34246:
 /*!*********************************************!*\
   !*** ./src/app/Pipes/Filters/users.pipe.ts ***!
@@ -348,8 +384,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PipesModule": () => (/* binding */ PipesModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Filters/filter-repository.pipe */ 74932);
 /* harmony import */ var _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters/users.pipe */ 34246);
 /* harmony import */ var _Filters_filterUserRepo_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filters/filterUserRepo.pipe */ 91724);
@@ -359,6 +395,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Filters/filtroCDO.pipe */ 17597);
 /* harmony import */ var _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Filters/filtroGeneralCDO.pipe */ 62054);
 /* harmony import */ var _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Filters/filtroSolicPadres.pipe */ 58454);
+/* harmony import */ var _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Filters/filtrodiamante.pipe */ 14265);
+
 
 
 
@@ -372,8 +410,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let PipesModule = class PipesModule {
 };
-PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.NgModule)({
+PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.NgModule)({
         declarations: [
             _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__.FilterRepositoryPipe,
             _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__.UsersPipe,
@@ -383,7 +421,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
             _Filters_filtroBuscar_pipe__WEBPACK_IMPORTED_MODULE_5__.FiltroBuscarPipe,
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
-            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe
+            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
+            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe
         ],
         imports: [],
         exports: [
@@ -395,7 +434,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
             _Filters_filtroBuscar_pipe__WEBPACK_IMPORTED_MODULE_5__.FiltroBuscarPipe,
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
-            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe
+            _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
+            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe
         ]
     })
 ], PipesModule);
@@ -418,11 +458,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -491,6 +531,18 @@ let ApiService = class ApiService {
     aceptActivity(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/BasicDispatch`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    getAssets(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    getLists(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Lists/ByTypeGUID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    getLocs(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Locations/ByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    createAsset(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/PUT`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     getActivities(tkn) {
         const date = moment_timezone__WEBPACK_IMPORTED_MODULE_1__().format("YYYY-MM-DD");
         console.log(date);
@@ -498,6 +550,14 @@ let ApiService = class ApiService {
             AccessToken: tkn,
             DispatchDate: date,
             FormGUID: 'FCA171F7-227E-41FA-9129-CC5D3D7F20B3',
+        }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    getActivities2(tkn, from, to, form) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/Activities`, {
+            AccessToken: tkn,
+            From: from,
+            To: to,
+            FormGUID: form,
         }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
     changeStatus(data) {
@@ -656,10 +716,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
 
 
 
@@ -1197,8 +1257,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1418,6 +1478,14 @@ const routes = [
         path: 'interfaces/cdosupervisores',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
     },
+    {
+        path: 'interfaces/oszford-calendario',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_oszford-calendario_oszford-calendario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/oszford-calendario/oszford-calendario.module */ 11688)).then(m => m.OszfordCalendarioPageModule)
+    },
+    {
+        path: 'interfaces/diamante-mtto',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_diamante-mtto_diamante-mtto_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/diamante-mtto/diamante-mtto.module */ 85430)).then(m => m.DiamanteMttoPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -1606,6 +1674,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
         entryComponents: [],
+        schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule,
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__.BrowserAnimationsModule,
@@ -3735,12 +3804,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
