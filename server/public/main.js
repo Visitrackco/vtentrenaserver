@@ -1482,10 +1482,13 @@ const routes = [
         path: 'interfaces/oszford-calendario',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_oszford-calendario_oszford-calendario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/oszford-calendario/oszford-calendario.module */ 11688)).then(m => m.OszfordCalendarioPageModule)
     },
+<<<<<<< HEAD
     {
         path: 'interfaces/diamante-mtto',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_diamante-mtto_diamante-mtto_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/diamante-mtto/diamante-mtto.module */ 85430)).then(m => m.DiamanteMttoPageModule)
     },
+=======
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -3804,12 +3807,20 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
+<<<<<<< HEAD
 		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+=======
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
+<<<<<<< HEAD
 		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+=======
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],

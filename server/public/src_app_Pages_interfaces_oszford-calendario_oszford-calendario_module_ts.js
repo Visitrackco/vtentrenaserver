@@ -66,7 +66,10 @@ let OszfordCalendarioPageModule = class OszfordCalendarioPageModule {
 };
 OszfordCalendarioPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+<<<<<<< HEAD
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_3__.CUSTOM_ELEMENTS_SCHEMA],
+=======
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
@@ -91,6 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "OszfordCalendarioPage": () => (/* binding */ OszfordCalendarioPage)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _oszford_calendario_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oszford-calendario.page.html?ngResource */ 90268);
 /* harmony import */ var _oszford_calendario_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./oszford-calendario.page.scss?ngResource */ 84798);
@@ -107,6 +111,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+=======
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _oszford_calendario_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oszford-calendario.page.html?ngResource */ 90268);
+/* harmony import */ var _oszford_calendario_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./oszford-calendario.page.scss?ngResource */ 84798);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _fullcalendar_web_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/web-component */ 4902);
+/* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fullcalendar/daygrid */ 13947);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ 56908);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fullcalendar/interaction */ 85194);
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 
 
 
@@ -118,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_fullcalendar_web_component__WEBPACK_IMPORTED_MODULE_2__.defineFullCalendarElement)();
 let OszfordCalendarioPage = class OszfordCalendarioPage {
+<<<<<<< HEAD
     constructor(mimodal, api) {
         this.mimodal = mimodal;
         this.api = api;
@@ -188,11 +205,23 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
       
       }
       */
+=======
+    constructor(mimodal) {
+        this.mimodal = mimodal;
+        this.calendarOptions = {
+            plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"]],
+            dateClick: this.handleDateClick.bind(this),
+        };
+        this.load = false;
+        this.mes = moment__WEBPACK_IMPORTED_MODULE_4__().locale('es').format('MMMM YYYY');
+    }
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
     handleDateClick(arg) {
         this.abrir(arg.dateStr);
     }
     ngOnInit() {
     }
+<<<<<<< HEAD
     getColor(item) {
         if (item == 'EXPLORACION O VISITA EN FRIO') {
             return '#E85B6A';
@@ -216,14 +245,21 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
             return '#E85B6A';
         }
     }
+=======
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
     ionViewWillEnter() {
         setTimeout(() => {
             this.load = true;
             const mimodal = this.mimodal;
             this.calendarOptions = {
+<<<<<<< HEAD
                 plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_6__["default"]],
                 dateClick: this.handleDateClick.bind(this),
                 stickyHeaderDates: true,
+=======
+                plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"]],
+                dateClick: this.handleDateClick.bind(this),
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
                 weekends: true,
                 timeZone: 'local',
                 locale: 'es',
@@ -233,6 +269,7 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
                     month: 'Mes',
                     day: 'Dia'
                 },
+<<<<<<< HEAD
                 // initialView: 'timeGridWeek',
                 /*businessHours:
                 {daysOfWeek: [ 1], // Monday - Thursday
@@ -322,6 +359,26 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
     }
     getEvents() {
         setTimeout(() => {
+=======
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                },
+                datesSet: this.handleDateClick.bind(this)
+            };
+            //   this.getEvents();
+        }, 1000);
+    }
+    getEvents() {
+        setTimeout(() => {
+            this.calendarRef.nativeElement.getApi().addEvent({
+                title: 'nombre d elos eventos',
+                start: moment__WEBPACK_IMPORTED_MODULE_4__().format('YYYY-MM-DD'),
+                end: moment__WEBPACK_IMPORTED_MODULE_4__().format('YYYY-MM-DD'),
+                id: JSON.stringify([])
+            });
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
         }, 1000);
     }
     abrir(arg) {
@@ -329,6 +386,7 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
     }
 };
 OszfordCalendarioPage.ctorParameters = () => [
+<<<<<<< HEAD
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ModalController },
     { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_7__.ApiService }
 ];
@@ -338,6 +396,15 @@ OszfordCalendarioPage.propDecorators = {
 };
 OszfordCalendarioPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
+=======
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController }
+];
+OszfordCalendarioPage.propDecorators = {
+    calendarRef: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: ['calendar',] }]
+};
+OszfordCalendarioPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
         selector: 'app-oszford-calendario',
         template: _oszford_calendario_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_oszford_calendario_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -13138,7 +13205,11 @@ class Calendar extends _fullcalendar_common__WEBPACK_IMPORTED_MODULE_1__.Calenda
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ 98173);
+<<<<<<< HEAD
 /* harmony import */ var preact_compat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/compat */ 69866);
+=======
+/* harmony import */ var preact_compat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/compat */ 89086);
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 
 
 let globalObj = typeof globalThis !== 'undefined' ? globalThis : window; // // TODO: streamline when killing IE11 support
@@ -17323,6 +17394,7 @@ var main = (0,_fullcalendar_common__WEBPACK_IMPORTED_MODULE_0__.createPlugin)({
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 69901:
 /*!*****************************************************!*\
   !*** ./node_modules/@fullcalendar/timegrid/main.js ***!
@@ -19220,6 +19292,8 @@ var main = (0,_fullcalendar_common__WEBPACK_IMPORTED_MODULE_0__.createPlugin)({
 
 /***/ }),
 
+=======
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 /***/ 4902:
 /*!**********************************************************!*\
   !*** ./node_modules/@fullcalendar/web-component/main.js ***!
@@ -19537,7 +19611,11 @@ function defineFullCalendarElement(tagName = 'full-calendar') {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 69866:
+=======
+/***/ 89086:
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 /*!**********************************************************!*\
   !*** ./node_modules/preact/compat/dist/compat.module.js ***!
   \**********************************************************/
@@ -20695,7 +20773,11 @@ function B(n, t) {
   \*********************************************************************************************/
 /***/ ((module) => {
 
+<<<<<<< HEAD
 module.exports = ".rosa {\n  background-color: #E85B6A;\n}\n\n.amarillo {\n  background-color: #F5BC41;\n}\n\n.verde {\n  background-color: #7CE675;\n}\n\n.azul {\n  background-color: #4CA1EC;\n}\n\n.naranja {\n  background-color: #E85242;\n}\n\n.morado {\n  background-color: #8039BB;\n}\n\n.calendario {\n  height: calc(100vh - 200px);\n  overflow-y: scroll;\n}\n\nion-avatar {\n  width: 30px;\n  height: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9zemZvcmQtY2FsZW5kYXJpby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx5QkFBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0FBQ0o7O0FBRUE7RUFDSSwyQkFBQTtFQUNBLGtCQUFBO0FBQ0o7O0FBRUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQUNKIiwiZmlsZSI6Im9zemZvcmQtY2FsZW5kYXJpby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucm9zYSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0U4NUI2QTtcbn1cblxuLmFtYXJpbGxvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjVCQzQxO1xufVxuXG4udmVyZGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM3Q0U2NzU7XG59XG5cbi5henVsIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNENBMUVDO1xufVxuXG4ubmFyYW5qYSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0U4NTI0Mjtcbn1cblxuLm1vcmFkbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzgwMzlCQjtcbn1cblxuLmNhbGVuZGFyaW8ge1xuICAgIGhlaWdodDogY2FsYygxMDB2aCAtIDIwMHB4KTtcbiAgICBvdmVyZmxvdy15OiBzY3JvbGw7XG59XG5cbmlvbi1hdmF0YXIge1xuICAgIHdpZHRoOiAzMHB4O1xuICAgIGhlaWdodDogMzBweDtcbn0iXX0= */";
+=======
+module.exports = ".fc-today-button {\n  background: #b1d583 !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9zemZvcmQtY2FsZW5kYXJpby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw4QkFBQTtBQUNKIiwiZmlsZSI6Im9zemZvcmQtY2FsZW5kYXJpby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZmMtdG9kYXktYnV0dG9uIHtcbiAgICBiYWNrZ3JvdW5kOiAjYjFkNTgzICFpbXBvcnRhbnQ7XG59Il19 */";
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 
 /***/ }),
 
@@ -20705,7 +20787,11 @@ module.exports = ".rosa {\n  background-color: #E85B6A;\n}\n\n.amarillo {\n  bac
   \*********************************************************************************************/
 /***/ ((module) => {
 
+<<<<<<< HEAD
 module.exports = "<ion-header>\n    <ion-toolbar color=\"oszford\">\n        <img src=\"assets/osz.jpeg\" width=\"200\" />\n        <ion-title></ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <ion-grid>\n        <ion-row>\n            <ion-col size=\"3\">\n                <!--  <div #external class=\"d-flex flex-wrap\">\n                    <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\" horario=\"Hola munod\">\n                        <div class=\"fc-event-main\">Event 1</div>\n                    </div>\n                    <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                        <div class=\"fc-event-main\">Event 2</div>\n                    </div>\n                    <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                        <div class=\"fc-event-main\">Event 3</div>\n                    </div>\n                    <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                        <div class=\"fc-event-main\">Event 4</div>\n                    </div>\n                    <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                        <div class=\"fc-event-main\">Event 5</div>\n                    </div>\n                </div> -->\n\n                <ion-searchbar mode=\"ios\" placeholder=\"Buscar Clientes\"></ion-searchbar> <br>\n                <ion-list>\n                    <ion-item *ngFor=\"let item of options\" mode=\"ios\">\n                        <ion-checkbox color=\"oszford\" slot=\"start\" [checked]=\"item.check\"></ion-checkbox>\n                        <ion-label class=\"ion-text-wrap\">{{ item.text }}</ion-label>\n                        <ion-avatar class=\"{{ item.class }}\"></ion-avatar>\n                    </ion-item>\n                </ion-list>\n            </ion-col>\n            <ion-col size=\"9\">\n                <div class=\"calendario\">\n                    <full-calendar *ngIf=\"load\" #calendar [options]=\"calendarOptions\"></full-calendar>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n</ion-content>";
+=======
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <img src=\"assets/osz.jpeg\" width=\"200\" />\n    <ion-title></ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <full-calendar *ngIf=\"load\" #calendar [options]=\"calendarOptions\"></full-calendar>\n\n</ion-content>\n";
+>>>>>>> 86989572351394de574d38ffe8367a0131e43fa1
 
 /***/ })
 
