@@ -1486,6 +1486,10 @@ const routes = [
         path: 'interfaces/diamante-mtto',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_diamante-mtto_diamante-mtto_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/diamante-mtto/diamante-mtto.module */ 85430)).then(m => m.DiamanteMttoPageModule)
     },
+    {
+        path: 'interfaces/biomedicos',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_biomedicos_biomedicos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/biomedicos/biomedicos.module */ 68894)).then(m => m.BiomedicosPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
