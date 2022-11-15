@@ -458,11 +458,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -542,6 +542,9 @@ let ApiService = class ApiService {
     }
     createAsset(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/PUT`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    childs(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/ActivityChilds`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
     getActivities(tkn) {
         const date = moment_timezone__WEBPACK_IMPORTED_MODULE_1__().format("YYYY-MM-DD");
@@ -716,10 +719,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
 
 
 
@@ -1257,8 +1260,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1479,8 +1482,12 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
     },
     {
+        path: 'interfaces/agilissa-calendario',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_fullcalendar_interaction_main_js-node_modules_fullcalendar_timegrid_main-669d30"), __webpack_require__.e("src_app_Pages_interfaces_agilissa_agilissa_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/agilissa/agilissa.module */ 63785)).then(m => m.AgilissaPageModule)
+    },
+    {
         path: 'interfaces/oszford-calendario',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_oszford-calendario_oszford-calendario_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/oszford-calendario/oszford-calendario.module */ 11688)).then(m => m.OszfordCalendarioPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_fullcalendar_interaction_main_js-node_modules_fullcalendar_timegrid_main-669d30"), __webpack_require__.e("src_app_Pages_interfaces_oszford-calendario_oszford-calendario_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/oszford-calendario/oszford-calendario.module */ 11688)).then(m => m.OszfordCalendarioPageModule)
     },
     {
         path: 'interfaces/diamante-mtto',
@@ -3808,12 +3815,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -4780,7 +4787,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"danger\">\n    <ion-title
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n  <ion-toolbar color=\"danger\">\n    <ion-title>Asignaciones</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar mode=\"ios\" placeholder=\"Buscar Modulo\" (ionChange)=\"changeText( $event )\"></ion-searchbar>\n\n<ion-list>\n  <ion-item-sliding *ngFor=\"let mydesign of listDesigns | search : text : 'name'; let i = index;\">\n   <ion-item >\n     <ion-label>\n       <strong>{{ mydesign.name }}</strong><br>\n       <strong>Creado: </strong> {{ mydesign.dateCreated }}\n     </ion-label>\n       <ion-button *ngIf=\"!mydesign.active\" slot=\"end\" mode=\"ios\" color='success' (click)=\"assign(mydesign._id, mydesign.active, i)\">ASIGNAR</ion-button>\n\n       <ion-button *ngIf=\"mydesign.active\" slot=\"end\" mode=\"ios\" color='danger' (click)=\"assign(mydesign._id, mydesign.active, i)\">QUITAR</ion-button>\n   </ion-item>\n\n  </ion-item-sliding>\n </ion-list>\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"danger\">\n        <ion-title>Asignaciones</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Modulo\" (ionChange)=\"changeText( $event )\"></ion-searchbar>\n\n    <ion-list>\n        <ion-item-sliding *ngFor=\"let mydesign of listDesigns | search : text : 'name'; let i = index;\">\n            <ion-item>\n                <ion-label>\n                    <strong>{{ mydesign.name }}</strong><br>\n                    <strong>Creado: </strong> {{ mydesign.dateCreated }}\n                </ion-label>\n\n                <ion-button *ngIf=\"!mydesign.active\" slot=\"end\" mode=\"ios\" color='success' (click)=\"assign(mydesign._id, mydesign.active, i)\">ASIGNAR</ion-button>\n                <ion-button *ngIf=\"mydesign.active\" slot=\"end\" mode=\"ios\" color='danger' (click)=\"assign(mydesign._id, mydesign.active, i)\">QUITAR</ion-button>\n\n            </ion-item>\n\n        </ion-item-sliding>\n    </ion-list>\n</ion-content>";
 
 /***/ }),
 

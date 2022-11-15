@@ -93,18 +93,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BiomedicosPage": () => (/* binding */ BiomedicosPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _biomedicos_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./biomedicos.page.html?ngResource */ 29150);
 /* harmony import */ var _biomedicos_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./biomedicos.page.scss?ngResource */ 16541);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var src_app_components_opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/components/opciones-cdo/opciones-cdo.component */ 67786);
 /* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
 /* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! underscore */ 63936);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 52816);
 /* harmony import */ var src_app_components_controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/components/controlcdoasistencial/controlcdoasistencial.component */ 60970);
+/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
+
 
 
 
@@ -117,11 +119,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let BiomedicosPage = class BiomedicosPage {
-    constructor(api, popover, route, modalCtrl) {
+    constructor(api, popover, route, modalCtrl, alert, toast, loading) {
         this.api = api;
         this.popover = popover;
         this.route = route;
         this.modalCtrl = modalCtrl;
+        this.alert = alert;
+        this.toast = toast;
+        this.loading = loading;
         this.actividades = [];
         this.unicos = [];
         this.filtro = 'Todos';
@@ -149,10 +154,135 @@ let BiomedicosPage = class BiomedicosPage {
             this.cargarData();
         });
     }
+    // HreSCg1x3x BIOMEDICOS 2
+    createOnlyActivity(guid, data) {
+        return new Promise((resolve, reject) => {
+            this.api.aceptActivity({
+                AccessToken: this.tkn,
+                FormGUID: 'HreSCg1x3x',
+                LocationGUID: '',
+                AssetGUID: '',
+                UserGUID: guid,
+                Duration: "60",
+                DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_5__().add(1, 'minutes').format('YYYY-MM-DD HH:mm'),
+                Values: JSON.stringify([]),
+                ParentGUID: data.GUID,
+                ActivityGUID: '',
+                CompanyStatusGUID: 'B2A827E7-9D30-4C59-B505-F527C787322A'
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                console.log(dat);
+                if (dat.Status === 'OK') {
+                    resolve(true);
+                }
+                else {
+                    resolve(false);
+                }
+            }));
+        });
+    }
+    tomar(acti, i) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            console.log(acti);
+            const alert = yield this.alert.create({
+                message: 'Seleccione su nombre',
+                header: 'Atención',
+                inputs: [
+                    {
+                        type: 'radio',
+                        value: '98516C1B-6290-417E-BA09-0D8F6AAE9D80',
+                        label: 'Ingryd Rocio'
+                    },
+                    {
+                        type: 'radio',
+                        value: '905BA1D1-CF3D-4B37-8ACD-FC2880C4AB41',
+                        label: 'Paola Andrea'
+                    },
+                    {
+                        type: 'radio',
+                        value: '615E96FF-B84D-4BAF-9558-F7DE012BAE8E',
+                        label: 'Natalia Stefania'
+                    },
+                    {
+                        type: 'radio',
+                        value: '3E1B99CF-4320-41BF-B69E-31B49D431FAB',
+                        label: 'Marinella Galindez'
+                    },
+                    {
+                        type: 'radio',
+                        value: '819DD948-FE4C-4EB0-8A6F-FCD4D2DF04E7',
+                        label: 'Yenny Magaly'
+                    },
+                ],
+                buttons: [
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel',
+                    },
+                    {
+                        text: 'Aceptar',
+                        handler: (data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                            console.log(data);
+                            if (data) {
+                                this.loading.createLoading('Tomando actividad');
+                                this.api.childs({
+                                    AccessToken: this.tkn,
+                                    ParentGUID: acti.GUID
+                                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                                    const form = dat.filter((dt) => dt.SurveyGUID == 'HreSCg1x3x');
+                                    if (form.length == 0) {
+                                        const resp = yield this.createOnlyActivity(data, acti);
+                                        if (!resp) {
+                                            const toast = yield this.toast.create({
+                                                message: 'No se pudo tomar la actividad',
+                                                header: 'Error',
+                                                duration: 3000
+                                            });
+                                            yield toast.present();
+                                        }
+                                        else {
+                                            this.cargarData();
+                                        }
+                                        this.loading.cancelLoading();
+                                    }
+                                    else {
+                                        this.loading.cancelLoading();
+                                        const toast = yield this.toast.create({
+                                            message: 'La actividad ya ha sido tomada por otro usuario',
+                                            header: 'Atención!',
+                                            duration: 3000
+                                        });
+                                        yield toast.present();
+                                        this.actividades.splice(i, 1);
+                                    }
+                                }), (err) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                                    const toast = yield this.toast.create({
+                                        message: 'No se pudo tomar la actividad',
+                                        header: 'Error',
+                                        duration: 3000
+                                    });
+                                    yield toast.present();
+                                    this.loading.cancelLoading();
+                                }));
+                            }
+                            else {
+                                const toast = yield this.toast.create({
+                                    message: 'Debe seleccionar un usuario',
+                                    header: 'Mensaje',
+                                    duration: 3000
+                                });
+                                yield toast.present();
+                            }
+                        })
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
     cargarData() {
         this.cargaActividades = false;
         this.actividades = [];
-        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(1, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'FCA171F7-227E-41FA-9129-CC5D3D7F20B3').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(1, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'FCA171F7-227E-41FA-9129-CC5D3D7F20B3').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
             console.log(data);
             data = data.filter((item) => item.CompanyStatusName == 'Completado');
             for (const item of data) {
@@ -163,7 +293,16 @@ let BiomedicosPage = class BiomedicosPage {
                     const bio = miData.Values.filter((it) => it.apiId == 'EXISTEN_EQUIPOS_BIOMEDICOS');
                     if (bio.length > 0) {
                         if (bio[0].Value == 'SI') {
-                            this.actividades.push(miData);
+                            this.api.childs({
+                                AccessToken: this.tkn,
+                                ParentGUID: item.GUID
+                            }).subscribe((dat) => {
+                                console.log(dat);
+                                const form = dat.filter((dt) => dt.SurveyGUID == 'HreSCg1x3x');
+                                if (form.length == 0) {
+                                    this.actividades.push(miData);
+                                }
+                            });
                         }
                     }
                 }
@@ -176,7 +315,7 @@ let BiomedicosPage = class BiomedicosPage {
         this.txt = event.detail.value;
     }
     handleRefresh(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
             yield this.cargarData();
             this.filtro = 'Todos';
             event.target.complete();
@@ -200,7 +339,7 @@ let BiomedicosPage = class BiomedicosPage {
         }
     }
     filtros(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
             const miPopover = yield this.popover.create({
                 component: src_app_components_opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_2__.OpcionesCDOComponent,
                 componentProps: {
@@ -216,7 +355,7 @@ let BiomedicosPage = class BiomedicosPage {
         });
     }
     control(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalCtrl.create({
                 component: src_app_components_controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_6__.ControlcdoasistencialComponent,
                 componentProps: {
@@ -245,12 +384,15 @@ let BiomedicosPage = class BiomedicosPage {
 };
 BiomedicosPage.ctorParameters = () => [
     { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.PopoverController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.ActivatedRoute },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.PopoverController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.ActivatedRoute },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ToastController },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_7__.LoadingService }
 ];
-BiomedicosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
+BiomedicosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-biomedicos',
         template: _biomedicos_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_biomedicos_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -277,7 +419,7 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
   \*****************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n\n  <ion-toolbar color=\"dark\">\n\n      <ion-title>AUDITORIA </ion-title>\n      <ion-buttons slot=\"end\">\n\n       \n      </ion-buttons>\n  </ion-toolbar>\n\n  <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n      <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n\n      <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n          <h3 style=\"margin: 0;\">Solicitudes</h3>\n          <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n      </div>\n\n      <div *ngIf=\"!cargaActividades\">\n          <div *ngFor=\"let item of [1,1,1,1]\">\n              <ion-list-header>\n                  <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n              </ion-list-header>\n              <ion-item>\n                  <ion-thumbnail slot=\"start\">\n                      <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                  </ion-thumbnail>\n                  <ion-label>\n                      <h3>\n                          <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                      </h3>\n                      <p>\n                          <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                      </p>\n                      <p>\n                          <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                      </p>\n                  </ion-label>\n              </ion-item>\n          </div>\n      </div>\n\n\n\n\n      <div *ngIf=\"cargaActividades\">\n          <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt\" >\n              <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n              </ion-avatar>\n              <ion-label>\n                  <div><strong>HABITACIÓN:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                  <div class=\"separador\"></div>\n                  <div><strong>CAMA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                  <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHA_SOLICITUD'}}</span></div>\n                \n                    <br>\n                    <div ><strong><ion-chip color=\"primary\">EXISTEN EQUIPOS BIOMEDICOS</ion-chip> </strong> <span> </span></div>\n                \n                    \n\n              </ion-label>\n          </ion-item>\n      </div>\n  </ion-list>\n\n</ion-content>";
+module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>AUDITORIA </ion-title>\n        <ion-buttons slot=\"end\">\n\n\n        </ion-buttons>\n    </ion-toolbar>\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>HABITACIÓN:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CAMA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHA_SOLICITUD'}}</span></div>\n\n                    <br>\n\n                    <ion-button mode=\"ios\" expand=\"block\" color=\"primary\" (click)=\"tomar(item, i)\">Tomar Solicitud</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
 
 /***/ })
 
