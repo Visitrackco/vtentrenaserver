@@ -93,13 +93,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DiamanteMttoPage": () => (/* binding */ DiamanteMttoPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _diamante_mtto_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./diamante-mtto.page.html?ngResource */ 10244);
 /* harmony import */ var _diamante_mtto_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./diamante-mtto.page.scss?ngResource */ 55186);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment-timezone */ 92469);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+
 
 
 
@@ -166,7 +169,7 @@ let DiamanteMttoPage = class DiamanteMttoPage {
         }
     }
     msg(txt) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const toast = yield this.toas.create({
                 message: txt,
                 duration: 2000
@@ -194,7 +197,7 @@ let DiamanteMttoPage = class DiamanteMttoPage {
         this.load = true;
         this.api.createAsset({
             tkn: this.tkn,
-            Name: this.selectDesc.Name,
+            Name: this.selectDesc.Name + ' - ' + moment_timezone__WEBPACK_IMPORTED_MODULE_2__().format('YYYY-MM-DD HH mm'),
             AssetTypeGUID: '1JJkNDXMay',
             LocationGUID: this.selectCentro.GUID,
             Values: JSON.stringify([
@@ -231,13 +234,13 @@ let DiamanteMttoPage = class DiamanteMttoPage {
     }
 };
 DiamanteMttoPage.ctorParameters = () => [
-    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ToastController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.MenuController }
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController }
 ];
-DiamanteMttoPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+DiamanteMttoPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-diamante-mtto',
         template: _diamante_mtto_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_diamante_mtto_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]

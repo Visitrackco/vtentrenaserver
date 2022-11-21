@@ -1,5 +1,51 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["main"],{
 
+/***/ 3484:
+/*!***************************************************************!*\
+  !*** ./src/app/Pipes/Filters/agilissa/filtroAgilissa.pipe.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FiltroAgilissaPipe": () => (/* binding */ FiltroAgilissaPipe)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+let FiltroAgilissaPipe = class FiltroAgilissaPipe {
+    transform(value, filtroby, byproperty) {
+        filtroby = filtroby.toLowerCase();
+        if (byproperty) {
+            return filtroby == '' ? [] : value.filter((item) => {
+                let val = item[byproperty].toLowerCase();
+                if (val.includes(filtroby)) {
+                    return item;
+                }
+            });
+        }
+        else {
+            return filtroby == '' ? [] : value.filter((item) => {
+                let val = item.toLowerCase();
+                if (val.includes(filtroby)) {
+                    return item;
+                }
+            });
+        }
+    }
+};
+FiltroAgilissaPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Pipe)({
+        name: 'agilissacliente'
+    })
+], FiltroAgilissaPipe);
+
+
+
+/***/ }),
+
 /***/ 74932:
 /*!*********************************************************!*\
   !*** ./src/app/Pipes/Filters/filter-repository.pipe.ts ***!
@@ -384,8 +430,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PipesModule": () => (/* binding */ PipesModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Filters/filter-repository.pipe */ 74932);
 /* harmony import */ var _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters/users.pipe */ 34246);
 /* harmony import */ var _Filters_filterUserRepo_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filters/filterUserRepo.pipe */ 91724);
@@ -396,6 +442,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Filters/filtroGeneralCDO.pipe */ 62054);
 /* harmony import */ var _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Filters/filtroSolicPadres.pipe */ 58454);
 /* harmony import */ var _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Filters/filtrodiamante.pipe */ 14265);
+/* harmony import */ var _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Filters/agilissa/filtroAgilissa.pipe */ 3484);
+
 
 
 
@@ -410,8 +458,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let PipesModule = class PipesModule {
 };
-PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.NgModule)({
+PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.NgModule)({
         declarations: [
             _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__.FilterRepositoryPipe,
             _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__.UsersPipe,
@@ -422,7 +470,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
             _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
-            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe
+            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe,
+            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe
         ],
         imports: [],
         exports: [
@@ -435,7 +484,8 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([
             _Filters_filtroCDO_pipe__WEBPACK_IMPORTED_MODULE_6__.FiltroCDOPipe,
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
             _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
-            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe
+            _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe,
+            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe
         ]
     })
 ], PipesModule);
@@ -458,11 +508,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -534,6 +584,9 @@ let ApiService = class ApiService {
     getAssets(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    getAsset(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByLocationID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     getLists(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Lists/ByTypeGUID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -545,6 +598,9 @@ let ApiService = class ApiService {
     }
     childs(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/ActivityChilds`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    users(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Users/All`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
     getActivities(tkn) {
         const date = moment_timezone__WEBPACK_IMPORTED_MODULE_1__().format("YYYY-MM-DD");
@@ -719,10 +775,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
 
 
 
@@ -1260,8 +1316,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -2619,6 +2675,149 @@ AsignacionnettsegurComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)
 
 /***/ }),
 
+/***/ 65633:
+/*!***************************************************************!*\
+  !*** ./src/app/components/carga-task/carga-task.component.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CargaTaskComponent": () => (/* binding */ CargaTaskComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _carga_task_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carga-task.component.html?ngResource */ 80912);
+/* harmony import */ var _carga_task_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carga-task.component.scss?ngResource */ 85105);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment-timezone */ 92469);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+
+
+
+
+
+
+
+let CargaTaskComponent = class CargaTaskComponent {
+    constructor(modalCtrl, api) {
+        this.modalCtrl = modalCtrl;
+        this.api = api;
+        this.load = true;
+        this.list = [];
+    }
+    ngOnInit() { }
+    close() {
+        this.modalCtrl.dismiss();
+    }
+    ionViewWillEnter() {
+        this.loadActivities();
+    }
+    loadActivities() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            for (const item of this.data.task) {
+                const resp = yield this.createOnlyActivity(item);
+                if (resp) {
+                    item.GUID = resp.AcitivyGUID ? resp.AcitivyGUID : '';
+                    this.list.push(item);
+                }
+            }
+            this.modalCtrl.dismiss(this.list);
+        });
+    }
+    createOnlyActivity(data) {
+        console.log(data);
+        return new Promise((resolve, reject) => {
+            let tarea = '';
+            if (data.tipo == 'terminal') {
+                tarea = '04. Terminal';
+            }
+            else if (data.tipo == 'rutinario') {
+                tarea = '02. Rutinaria';
+            }
+            else if (data.tipo == 'mantenimiento') {
+                tarea = '03. Mantenimiento';
+            }
+            console.log({
+                AccessToken: this.tkn,
+                FormGUID: '2004307A-B1CF-4109-97D1-8603A63BA6E9',
+                LocationGUID: data.loc,
+                AssetGUID: data.ass,
+                UserGUID: data.user,
+                Duration: "60",
+                DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_2__(data.start).format('YYYY-MM-DD HH:mm'),
+                Values: JSON.stringify([{
+                        apiId: 'SECTOR',
+                        Value: data.sector
+                    }, {
+                        apiId: 'TAREA',
+                        Value: tarea
+                    }, {
+                        apiId: 'AREA',
+                        Value: data.area
+                    }]),
+                ActivityGUID: '',
+                CompanyStatusGUID: 'CA1B6E82-15F9-458C-B6A1-D988C7194C76'
+            });
+            if (data.dur) {
+                this.api.aceptActivity({
+                    AccessToken: this.tkn,
+                    FormGUID: '2004307A-B1CF-4109-97D1-8603A63BA6E9',
+                    LocationGUID: data.loc,
+                    AssetGUID: data.ass,
+                    UserGUID: data.user,
+                    Duration: data.dur.toString(),
+                    DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_2__(data.start).format('YYYY-MM-DD HH:mm'),
+                    Values: JSON.stringify([{
+                            apiId: 'SECTOR',
+                            Value: data.sector
+                        }, {
+                            apiId: 'TAREA',
+                            Value: tarea
+                        }, {
+                            apiId: 'AREA',
+                            Value: data.area
+                        }]),
+                    ActivityGUID: '',
+                    CompanyStatusGUID: 'CA1B6E82-15F9-458C-B6A1-D988C7194C76'
+                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+                    console.log(dat);
+                    if (dat.Status === 'OK') {
+                        resolve(dat);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                }));
+            }
+            else {
+                resolve(true);
+            }
+        });
+    }
+};
+CargaTaskComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService }
+];
+CargaTaskComponent.propDecorators = {
+    tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }]
+};
+CargaTaskComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+        selector: 'app-carga-task',
+        template: _carga_task_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_carga_task_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], CargaTaskComponent);
+
+
+
+/***/ }),
+
 /***/ 45642:
 /*!*************************************************!*\
   !*** ./src/app/components/components.module.ts ***!
@@ -2630,12 +2829,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -2653,11 +2852,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
 /* harmony import */ var _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./controlcdoasistencial/controlcdoasistencial.component */ 60970);
+/* harmony import */ var _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./carga-task/carga-task.component */ 65633);
+
 
 
 
@@ -2688,8 +2889,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_23__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_24__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_24__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_25__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -2712,12 +2913,13 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_23__.__decorate)([
             _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__.ModalAssentsComponent,
             _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__.AsignacionnettsegurComponent,
             _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__.OpcionesCDOComponent,
-            _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent
+            _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
+            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_25__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_26__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_27__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_26__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_27__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_28__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -2742,7 +2944,8 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_23__.__decorate)([
             _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__.ModalAssentsComponent,
             _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__.AsignacionnettsegurComponent,
             _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__.OpcionesCDOComponent,
-            _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent
+            _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
+            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent
         ]
     })
 ], ComponentsModule);
@@ -3815,12 +4018,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -4494,6 +4697,17 @@ module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  jus
 
 /***/ }),
 
+/***/ 85105:
+/*!****************************************************************************!*\
+  !*** ./src/app/components/carga-task/carga-task.component.scss?ngResource ***!
+  \****************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJnYS10YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxvYWRpbmcge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gICAgcGFkZGluZzogMTBweDtcbn1cblxuLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59Il19 */";
+
+/***/ }),
+
 /***/ 9351:
 /*!**************************************************************************************************!*\
   !*** ./src/app/components/controlcdoasistencial/controlcdoasistencial.component.scss?ngResource ***!
@@ -4744,6 +4958,17 @@ module.exports = "<p>\n  {{title}}\n</p>\n";
 
 "use strict";
 module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <ion-title>Asignación</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <h3>{{ selectUsersList.length }} usuarios seleccionados</h3> <br>\n\n    <ion-item *ngFor=\"let user of users\">\n\n        <ion-checkbox (ionChange)=\"select($event)\" [value]=\"user\" mode=\"ios\" slot=\"start\" color=\"tertiary\"></ion-checkbox>\n        <ion-label>{{ user.FirstName }} {{ user.LastName }}</ion-label>\n\n    </ion-item> <br>\n    <ion-item color=\"light\" (click)=\"cs()\">\n        <ion-label>Seleccione fecha</ion-label>\n        <input type=\"date\" [(ngModel)]=\"fecha\">\n    </ion-item> <br> <br>\n\n    <div *ngIf=\"!load\">\n\n        <h3>Formularios creados</h3> <br>\n\n        <ion-item *ngFor=\"let user of generados\">\n\n            <ion-icon *ngIf=\"user.status\" color=\"success\" name=\"checkmark-done-circle\" slot=\"start\"></ion-icon>\n            <ion-icon *ngIf=\"!user.status\" color=\"danger\" name=\"close-circle\" slot=\"start\"></ion-icon>\n            <ion-label>{{ user.user }} </ion-label>\n\n        </ion-item> <br>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n\n    <ion-button *ngIf=\"select.length > 0 && fecha\" mode=\"ios\" color=\"tertiary\" expand=\"block\" (click)=\"createActivities()\">Crear asignaciones</ion-button>\n\n</ion-content>";
+
+/***/ }),
+
+/***/ 80912:
+/*!****************************************************************************!*\
+  !*** ./src/app/components/carga-task/carga-task.component.html?ngResource ***!
+  \****************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header>\n  <ion-toolbar color=\"agilissa\">\n      <ion-title>Actividades</ion-title>\n      <ion-buttons slot=\"end\">\n          <ion-button (click)=\"close()\">\n              <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-item lines=\"none\">\n    <ion-label>\n      <div class=\"flex\">\n        <h4>Actividades subidas</h4>\n        <h4>{{list.length}}</h4>\n\n        </div>\n    </ion-label>\n  </ion-item>\n\n  <ion-list>\n    <ion-item *ngFor=\"let item of list\">\n      <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n      <ion-label>{{ item.tipo }} </ion-label>\n    </ion-item>\n  </ion-list>\n\n  <div class=\"loading\">\n    <ion-spinner name=\"crescent\"></ion-spinner>\n    <h3>Creando actividades</h3>\n</div>\n</ion-content>";
 
 /***/ }),
 

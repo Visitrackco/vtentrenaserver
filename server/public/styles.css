@@ -78,6 +78,34 @@
   --ion-color-oszford-contrast-rgb: 255, 255, 255;
   --ion-color-oszford-shade: #1b3b68;
   --ion-color-oszford-tint: #355684;
+  --ion-color-agilissa: #0E0B58;
+  --ion-color-agilissa-rgb: 14, 11, 88;
+  --ion-color-agilissa-contrast: #ffffff;
+  --ion-color-agilissa-contrast-rgb: 255, 255, 255;
+  --ion-color-agilissa-shade: #0c0a4d;
+  --ion-color-agilissa-tint: #262369;
+  --ion-color-agilissabtn: #4AA59E;
+  --ion-color-agilissabtn-rgb: 74, 165, 158;
+  --ion-color-agilissabtn-contrast: #fff;
+  --ion-color-agilissabtn-contrast-rgb: 0, 0, 0;
+  --ion-color-agilissabtn-shade: #41918b;
+  --ion-color-agilissabtn-tint: #5caea8;
+}
+.ion-color-agilissabtn {
+  --ion-color-base: var(--ion-color-agilissabtn);
+  --ion-color-base-rgb: var(--ion-color-agilissabtn-rgb);
+  --ion-color-contrast: var(--ion-color-agilissabtn-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-agilissabtn-contrast-rgb);
+  --ion-color-shade: var(--ion-color-agilissabtn-shade);
+  --ion-color-tint: var(--ion-color-agilissabtn-tint);
+}
+.ion-color-agilissa {
+  --ion-color-base: var(--ion-color-agilissa);
+  --ion-color-base-rgb: var(--ion-color-agilissa-rgb);
+  --ion-color-contrast: var(--ion-color-agilissa-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-agilissa-contrast-rgb);
+  --ion-color-shade: var(--ion-color-agilissa-shade);
+  --ion-color-tint: var(--ion-color-agilissa-tint);
 }
 .ion-color-oszford {
   --ion-color-base: var(--ion-color-oszford);
@@ -770,11 +798,13 @@ sub {
   padding-top: var(--ion-padding, 16px);
   padding-bottom: var(--ion-padding, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-padding {
     padding-left: unset;
     padding-right: unset;
+    -webkit-padding-start: var(--ion-padding, 16px);
     padding-inline-start: var(--ion-padding, 16px);
+    -webkit-padding-end: var(--ion-padding, 16px);
     padding-inline-end: var(--ion-padding, 16px);
   }
 }
@@ -786,9 +816,10 @@ sub {
   --padding-start: var(--ion-padding, 16px);
   padding-left: var(--ion-padding, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-padding-start {
     padding-left: unset;
+    -webkit-padding-start: var(--ion-padding, 16px);
     padding-inline-start: var(--ion-padding, 16px);
   }
 }
@@ -796,9 +827,10 @@ sub {
   --padding-end: var(--ion-padding, 16px);
   padding-right: var(--ion-padding, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-padding-end {
     padding-right: unset;
+    -webkit-padding-end: var(--ion-padding, 16px);
     padding-inline-end: var(--ion-padding, 16px);
   }
 }
@@ -818,11 +850,13 @@ sub {
   padding-left: var(--ion-padding, 16px);
   padding-right: var(--ion-padding, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-padding-horizontal {
     padding-left: unset;
     padding-right: unset;
+    -webkit-padding-start: var(--ion-padding, 16px);
     padding-inline-start: var(--ion-padding, 16px);
+    -webkit-padding-end: var(--ion-padding, 16px);
     padding-inline-end: var(--ion-padding, 16px);
   }
 }
@@ -846,11 +880,13 @@ sub {
   margin-top: var(--ion-margin, 16px);
   margin-bottom: var(--ion-margin, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-margin {
     margin-left: unset;
     margin-right: unset;
+    -webkit-margin-start: var(--ion-margin, 16px);
     margin-inline-start: var(--ion-margin, 16px);
+    -webkit-margin-end: var(--ion-margin, 16px);
     margin-inline-end: var(--ion-margin, 16px);
   }
 }
@@ -862,9 +898,10 @@ sub {
   --margin-start: var(--ion-margin, 16px);
   margin-left: var(--ion-margin, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-margin-start {
     margin-left: unset;
+    -webkit-margin-start: var(--ion-margin, 16px);
     margin-inline-start: var(--ion-margin, 16px);
   }
 }
@@ -872,9 +909,10 @@ sub {
   --margin-end: var(--ion-margin, 16px);
   margin-right: var(--ion-margin, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-margin-end {
     margin-right: unset;
+    -webkit-margin-end: var(--ion-margin, 16px);
     margin-inline-end: var(--ion-margin, 16px);
   }
 }
@@ -894,11 +932,13 @@ sub {
   margin-left: var(--ion-margin, 16px);
   margin-right: var(--ion-margin, 16px);
 }
-@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
   .ion-margin-horizontal {
     margin-left: unset;
     margin-right: unset;
+    -webkit-margin-start: var(--ion-margin, 16px);
     margin-inline-start: var(--ion-margin, 16px);
+    -webkit-margin-end: var(--ion-margin, 16px);
     margin-inline-end: var(--ion-margin, 16px);
   }
 }
@@ -1321,22 +1361,22 @@ sub {
   --background: var(--ion-color-danger) !important;
 }
 .fc-today-button {
-  background: #1F4376 !important;
+  background: #27A4C3 !important;
 }
 .fc-prev-button {
-  background: #1F4376 !important;
+  background: #27A4C3 !important;
 }
 .fc-next-button {
-  background: #1F4376 !important;
+  background: #27A4C3 !important;
 }
 .fc-dayGridMonth-button {
-  background: #1F4376 !important;
+  background: #27A4C3 !important;
 }
-.fc-dayGridWeek-button {
-  background: #1F4376 !important;
+.fc-timeGridWeek-button {
+  background: #27A4C3 !important;
 }
-.fc-dayGridDay-button {
-  background: #1F4376 !important;
+.fc-timeGridDay-button {
+  background: #27A4C3 !important;
 }
 .fc-col-header thead {
   background-color: #e1e1e1;
