@@ -584,6 +584,9 @@ let ApiService = class ApiService {
     getAssets(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    updateSurvey(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/UpdateFields`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     getAsset(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByLocationID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -622,6 +625,15 @@ let ApiService = class ApiService {
     changeStatus(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/SetDatetime`, {
             AccessToken: data.tkn,
+            UserGUID: data.user,
+            CompanyStatusGUID: data.status,
+            ActivityGUID: data.guid,
+        }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    changeDispath(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/SetDatetime`, {
+            AccessToken: data.tkn,
+            DispachDateTime: data.date,
             UserGUID: data.user,
             CompanyStatusGUID: data.status,
             ActivityGUID: data.guid,
@@ -1552,6 +1564,10 @@ const routes = [
     {
         path: 'interfaces/biomedicos',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_biomedicos_biomedicos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/biomedicos/biomedicos.module */ 68894)).then(m => m.BiomedicosPageModule)
+    },
+    {
+        path: 'interfaces/inverpack/mantenimientos',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -2528,6 +2544,175 @@ TitleComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
+/***/ 78280:
+/*!*******************************************************************************!*\
+  !*** ./src/app/components/Inverpack/usarios-inver/usarios-inver.component.ts ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UsariosInverComponent": () => (/* binding */ UsariosInverComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _usarios_inver_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./usarios-inver.component.html?ngResource */ 81818);
+/* harmony import */ var _usarios_inver_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usarios-inver.component.scss?ngResource */ 93611);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment-timezone */ 92469);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+
+
+
+
+
+
+
+
+
+let UsariosInverComponent = class UsariosInverComponent {
+    constructor(modalCtrl, api, loading, toast) {
+        this.modalCtrl = modalCtrl;
+        this.api = api;
+        this.loading = loading;
+        this.toast = toast;
+    }
+    ngOnInit() { }
+    close() {
+        this.modalCtrl.dismiss();
+    }
+    createOnlyActivity(guid, prioridad, tec) {
+        return new Promise((resolve, reject) => {
+            const solicitud = this.acti.Values.filter((item) => item.apiId == 'solicitud');
+            this.api.aceptActivity({
+                AccessToken: this.tkn,
+                FormGUID: '76E93F88-7612-466E-BBD7-3C95A7679D6D',
+                LocationGUID: this.acti.LocationGUID,
+                AssetGUID: this.acti.AssetGUID,
+                UserGUID: guid,
+                Duration: "60",
+                DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().add(2, 'minutes').format('YYYY-MM-DD HH:mm'),
+                Values: JSON.stringify([{
+                        apiId: 'ENCONTRO',
+                        Value: solicitud.length > 0 ? solicitud[0].Value : ''
+                    }, {
+                        apiId: 'TIPOMTO',
+                        Value: 'CORRECTIVO'
+                    }, {
+                        apiId: 'PRIORIDAD',
+                        Value: prioridad
+                    }, {
+                        apiId: 'TECNICO',
+                        Value: tec
+                    }]),
+                ActivityGUID: '',
+                ParentGUID: this.acti.GUID,
+                CompanyStatusGUID: '0E7DA2A2-14A4-4B15-A4DC-4BFE9C9BCDEB'
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+                console.log(dat);
+                if (dat.Status === 'OK') {
+                    resolve(true);
+                }
+                else {
+                    resolve(false);
+                }
+            }), (err) => {
+                resolve(false);
+            });
+        });
+    }
+    assign() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading.createLoading('Creando Orden');
+            console.log(this.tecnico);
+            const orden = yield this.createOnlyActivity(this.tecnico.guid, this.prioridad, this.tecnico.name);
+            if (orden) {
+                this.api.updateSurvey({
+                    AccessToken: this.tkn,
+                    UserGUID: this.tecnico.guid,
+                    Duration: '60',
+                    SearchBy: 'ActivityID',
+                    SearchValue: this.acti.ID,
+                    Values: JSON.stringify([{
+                            apiId: 'PRIORIDAD',
+                            Value: this.prioridad
+                        }, {
+                            apiId: 'TECNICO',
+                            Value: this.tecnico.name
+                        }])
+                }).subscribe((data) => {
+                    if (data) {
+                        this.api.changeDispath({
+                            tkn: this.tkn,
+                            user: this.tecnico.guid,
+                            status: '6E7AF6A1-E2A6-4DA1-8BB1-21093261287C',
+                            date: moment_timezone__WEBPACK_IMPORTED_MODULE_2__().add(2, 'minutes').format('YYYY-MM-DD HH:mm'),
+                            guid: this.acti.GUID
+                        }).subscribe((dat) => {
+                            this.toast.newCreatedToast('El proceso se finalizò correctamente', true);
+                            this.loading.cancelLoading();
+                            this.modalCtrl.dismiss({ close: true });
+                        }, (err) => {
+                            this.toast.newCreatedToast('Se creo la orden pero no se actualizò el formulario', false);
+                            this.loading.cancelLoading();
+                        });
+                    }
+                    else {
+                        this.toast.newCreatedToast('Se creo la orden pero no se actualizò el formulario', false);
+                        this.loading.cancelLoading();
+                    }
+                }, (err) => {
+                    this.toast.newCreatedToast('Se creo la orden pero no se actualizò el formulario', false);
+                    this.loading.cancelLoading();
+                });
+            }
+            else {
+                this.loading.cancelLoading();
+                this.toast.newCreatedToast('No se pudo crear la orden', false);
+                this.close();
+            }
+        });
+    }
+    cambiar(event, type) {
+        if (type == 1) {
+            if (event.detail.value) {
+                this.prioridad = event.detail.value;
+            }
+        }
+        else {
+            if (event.detail.value) {
+                this.tecnico = event.detail.value;
+            }
+        }
+        console.log(this.prioridad, this.tecnico);
+    }
+};
+UsariosInverComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController },
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__.LoadingService },
+    { type: src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__.ToastService }
+];
+UsariosInverComponent.propDecorators = {
+    tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.Input }],
+    acti: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.Input }]
+};
+UsariosInverComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+        selector: 'app-usarios-inver',
+        template: _usarios_inver_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_usarios_inver_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], UsariosInverComponent);
+
+
+
+/***/ }),
+
 /***/ 8638:
 /*!*********************************************************************************!*\
   !*** ./src/app/components/asignacionnettsegur/asignacionnettsegur.component.ts ***!
@@ -2829,12 +3014,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -2852,12 +3037,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
 /* harmony import */ var _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./controlcdoasistencial/controlcdoasistencial.component */ 60970);
 /* harmony import */ var _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./carga-task/carga-task.component */ 65633);
+/* harmony import */ var _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./Inverpack/usarios-inver/usarios-inver.component */ 78280);
+
 
 
 
@@ -2889,8 +3076,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_24__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_25__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_25__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_26__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -2914,12 +3101,13 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_24__.__decorate)([
             _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__.AsignacionnettsegurComponent,
             _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__.OpcionesCDOComponent,
             _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
-            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent
+            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
+            _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_26__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_27__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_28__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_27__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_28__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_29__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -2945,7 +3133,8 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_24__.__decorate)([
             _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__.AsignacionnettsegurComponent,
             _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__.OpcionesCDOComponent,
             _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
-            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent
+            _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
+            _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent
         ]
     })
 ], ComponentsModule);
@@ -4686,6 +4875,17 @@ module.exports = "p {\n  background-color: #f1f1f1;\n  padding: 20px;\n  width: 
 
 /***/ }),
 
+/***/ 93611:
+/*!********************************************************************************************!*\
+  !*** ./src/app/components/Inverpack/usarios-inver/usarios-inver.component.scss?ngResource ***!
+  \********************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ1c2FyaW9zLWludmVyLmNvbXBvbmVudC5zY3NzIn0= */";
+
+/***/ }),
+
 /***/ 72289:
 /*!**********************************************************************************************!*\
   !*** ./src/app/components/asignacionnettsegur/asignacionnettsegur.component.scss?ngResource ***!
@@ -4947,6 +5147,17 @@ module.exports = "\n <div class=\"info\">\n  <ion-label>{{ lab }}</ion-label>\n 
 
 "use strict";
 module.exports = "<p>\n  {{title}}\n</p>\n";
+
+/***/ }),
+
+/***/ 81818:
+/*!********************************************************************************************!*\
+  !*** ./src/app/components/Inverpack/usarios-inver/usarios-inver.component.html?ngResource ***!
+  \********************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header>\n  <ion-toolbar color=\"warning\">\n      <ion-title>Asignación</ion-title>\n      <ion-buttons slot=\"end\">\n          <ion-button (click)=\"close()\">\n              <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n\n\n  <div >\n\n      <h3>Formularios creados</h3> <br>\n\n      <ion-item>\n        <ion-label>Tènicos</ion-label>\n     \n        <ion-select placeholder=\"Seleccione\" (ionChange)=\"cambiar($event, 2)\">\n          <ion-select-option [value]=\"{guid: 'B0C8BA3F-757C-44BC-A363-02F4D7B26BA0', name: 'DIEGO CHAMORRO'}\">DIEGO CHAMORRO</ion-select-option>\n          <ion-select-option [value]=\"{guid: 'D1016D99-0FAA-4C96-B811-77175E9A1B34', name: 'ROLANDO SALAZAR ERAZO'}\">ROLANDO SALAZAR ERAZO</ion-select-option>\n          <ion-select-option [value]=\"{guid: '2219E883-62EE-4129-9B2D-53778716339C', name: 'SERGIO DAVID ELVIRA ELVIRA'}\">SERGIO DAVID ELVIRA ELVIRA</ion-select-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Prioridad</ion-label>\n     \n        <ion-select placeholder=\"Seleccione\" (ionChange)=\"cambiar($event, 1)\">\n          <ion-select-option value=\"ALTA\">ALTA</ion-select-option>\n          <ion-select-option value=\"MEDIA\">MEDIA</ion-select-option>\n          <ion-select-option value=\"BAJA\">BAJA</ion-select-option>\n        </ion-select>\n      </ion-item>\n\n    \n\n  \n  </div>\n\n\n\n  <ion-button [disabled]=\"!prioridad || !tecnico\" mode=\"ios\" color=\"warning\" expand=\"block\" (click)=\"assign()\">Asignar</ion-button>\n\n</ion-content>";
 
 /***/ }),
 

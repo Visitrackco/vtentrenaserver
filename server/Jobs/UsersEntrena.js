@@ -70,7 +70,7 @@ async function fnForm(guid) {
                                    AccessToken: '68C5A337B89F6B7A603861D440EB20D6',
                                    ActivityGUID: item.GUID
                               });
-                              console.log(elimi.data)
+                           
                          }
                     } else if (item.CompanyStatusName == 'MANTENIMIENTO FINALIZADO') {
 
@@ -91,8 +91,7 @@ async function fnForm(guid) {
 
 const eliminado = job.schedule(' */5 * * * *', async () => {
 
-     console.log('Hola', moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm'))
-
+ 
      try {
           
           const solicitud1 = await fnForm('BAB8F522-721F-4E63-BF9F-C99F2CB78AC6')
