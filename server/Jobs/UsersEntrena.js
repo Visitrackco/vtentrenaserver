@@ -97,7 +97,7 @@ async function fnForm(guid) {
 
 
 
-const eliminado = job.schedule(' */5 * * * *', async() => {
+const eliminado = job.schedule(' */15 * * * *', async() => {
 
 
     try {
@@ -411,13 +411,13 @@ async function fnNettsegur(guid) {
         return [];
     }
 }
-
+/*
 const envio = job.schedule('* * * * *', async() => {
 
 
     try {
 
-        const solicitud1 = await fnNettsegur('1gp0JCZkra')
+     //   const solicitud1 = await fnNettsegur('1gp0JCZkra')
         console.log(solicitud1.length, 'todo')
             // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
             // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
@@ -426,4 +426,4 @@ const envio = job.schedule('* * * * *', async() => {
         console.log(err)
     }
 
-})
+}) */

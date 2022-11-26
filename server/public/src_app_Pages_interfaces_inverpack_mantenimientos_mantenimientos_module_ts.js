@@ -93,19 +93,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MantenimientosPage": () => (/* binding */ MantenimientosPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _mantenimientos_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mantenimientos.page.html?ngResource */ 29440);
 /* harmony import */ var _mantenimientos_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mantenimientos.page.scss?ngResource */ 2397);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var src_app_components_opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/components/opciones-cdo/opciones-cdo.component */ 67786);
 /* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
 /* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! underscore */ 63936);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 52816);
 /* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
 /* harmony import */ var src_app_components_Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/components/Inverpack/usarios-inver/usarios-inver.component */ 78280);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+
 
 
 
@@ -119,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MantenimientosPage = class MantenimientosPage {
-    constructor(api, popover, route, modalCtrl, alert, toast, loading) {
+    constructor(api, popover, route, modalCtrl, alert, toast, loading, ts) {
         this.api = api;
         this.popover = popover;
         this.route = route;
@@ -127,11 +129,13 @@ let MantenimientosPage = class MantenimientosPage {
         this.alert = alert;
         this.toast = toast;
         this.loading = loading;
+        this.ts = ts;
         this.actividades = [];
         this.unicos = [];
         this.filtro = 'Todos';
         this.txt = '';
         this.padres = [];
+        this.click = false;
     }
     ngOnInit() {
     }
@@ -170,7 +174,7 @@ let MantenimientosPage = class MantenimientosPage {
                 ParentGUID: data.GUID,
                 ActivityGUID: '',
                 CompanyStatusGUID: 'B2A827E7-9D30-4C59-B505-F527C787322A'
-            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
                 console.log(dat);
                 if (dat.Status === 'OK') {
                     resolve(true);
@@ -182,25 +186,37 @@ let MantenimientosPage = class MantenimientosPage {
         });
     }
     assign(acti) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
-            const modal = yield this.modalCtrl.create({
-                component: src_app_components_Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_7__.UsariosInverComponent,
-                componentProps: {
-                    tkn: this.tkn,
-                    acti
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+            if (!this.click) {
+                this.click = true;
+                this.loading.createLoading('Consultando si la solciitud ya tiene orden.');
+                const childs = yield this.getChild(acti.GUID);
+                if (childs.length > 0) {
+                    this.loading.cancelLoading();
+                    this.ts.newCreatedToast('La solicitud ya tiene una orden creada', true);
+                    this.cargarData();
+                    return;
                 }
-            });
-            yield modal.present();
-            const close = yield modal.onWillDismiss();
-            if (close) {
-                if (close.data) {
-                    yield this.cargarData();
+                this.loading.cancelLoading();
+                const modal = yield this.modalCtrl.create({
+                    component: src_app_components_Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_7__.UsariosInverComponent,
+                    componentProps: {
+                        tkn: this.tkn,
+                        acti
+                    }
+                });
+                yield modal.present();
+                const close = yield modal.onWillDismiss();
+                if (close) {
+                    if (close.data) {
+                        yield this.cargarData();
+                    }
                 }
             }
         });
     }
     tomar(acti, i) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             console.log(acti);
             const alert = yield this.alert.create({
                 message: 'Seleccione nombre del tècnico',
@@ -229,14 +245,14 @@ let MantenimientosPage = class MantenimientosPage {
                     },
                     {
                         text: 'Aceptar',
-                        handler: (data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                        handler: (data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
                             console.log(data);
                             if (data) {
                                 this.loading.createLoading('Tomando actividad');
                                 this.api.childs({
                                     AccessToken: this.tkn,
                                     ParentGUID: acti.GUID
-                                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
                                     const form = dat.filter((dt) => dt.SurveyGUID == 'HreSCg1x3x');
                                     if (form.length == 0) {
                                         const resp = yield this.createOnlyActivity(data, acti);
@@ -263,7 +279,7 @@ let MantenimientosPage = class MantenimientosPage {
                                         yield toast.present();
                                         this.actividades.splice(i, 1);
                                     }
-                                }), (err) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                                }), (err) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
                                     const toast = yield this.toast.create({
                                         message: 'No se pudo tomar la actividad',
                                         header: 'Error',
@@ -289,12 +305,12 @@ let MantenimientosPage = class MantenimientosPage {
         });
     }
     getChild(guid) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 this.api.childs({
                     AccessToken: this.tkn,
                     ParentGUID: guid
-                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+                }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
                     if (dat.length > 0) {
                         const miData = yield this.getInfo(dat[0].GUID);
                         resolve(miData);
@@ -316,7 +332,7 @@ let MantenimientosPage = class MantenimientosPage {
             status: item.childs.CompanyStatusGUID,
             date: moment_timezone__WEBPACK_IMPORTED_MODULE_5__().add(2, 'minutes').format('YYYY-MM-DD HH:mm'),
             guid: item.childs.GUID
-        }).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        }).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             if (data) {
                 const toas = yield this.toast.create({
                     message: 'Orden reenviada',
@@ -332,7 +348,7 @@ let MantenimientosPage = class MantenimientosPage {
     cargarData() {
         this.cargaActividades = false;
         this.actividades = [];
-        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(2, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'BAB8F522-721F-4E63-BF9F-C99F2CB78AC6').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(2, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'BAB8F522-721F-4E63-BF9F-C99F2CB78AC6').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             console.log(data, 'MI DATA');
             //  data = data.filter((item) => item.CompanyStatusName == 'Completado')
             for (const item of data) {
@@ -350,11 +366,19 @@ let MantenimientosPage = class MantenimientosPage {
                     else {
                         miData.prioridad = 3;
                     }
-                    this.actividades.push(miData);
+                    if (miData.childs) {
+                        if (miData.childs.CompanyStatusName != 'MANTENIMIENTO FINALIZADO') {
+                            this.actividades.push(miData);
+                        }
+                    }
+                    else {
+                        this.actividades.push(miData);
+                    }
                 }
             }
             this.actividades = underscore__WEBPACK_IMPORTED_MODULE_4__.sortBy(this.actividades, 'prioridad');
             this.cargaActividades = true;
+            this.click = false;
             console.log(this.actividades);
         }));
     }
@@ -362,9 +386,10 @@ let MantenimientosPage = class MantenimientosPage {
         this.txt = event.detail.value;
     }
     handleRefresh(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             yield this.cargarData();
             this.filtro = 'Todos';
+            this.click = false;
             event.target.complete();
         });
     }
@@ -380,7 +405,7 @@ let MantenimientosPage = class MantenimientosPage {
         }
     }
     filtros(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             const miPopover = yield this.popover.create({
                 component: src_app_components_opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_2__.OpcionesCDOComponent,
                 componentProps: {
@@ -398,15 +423,16 @@ let MantenimientosPage = class MantenimientosPage {
 };
 MantenimientosPage.ctorParameters = () => [
     { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.PopoverController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.ActivatedRoute },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ModalController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ToastController },
-    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_6__.LoadingService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.PopoverController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ToastController },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_6__.LoadingService },
+    { type: src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_8__.ToastService }
 ];
-MantenimientosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
+MantenimientosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
         selector: 'app-mantenimientos',
         template: _mantenimientos_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_mantenimientos_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -433,7 +459,7 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
   \***********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"dark\">\n        <ion-title>Mantenimientos</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>CATEGORIA:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>MÁQUINA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CONSECUTIVO:</strong> <br> <span>{{item.Consecutive}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHAENTRADA'}}</span></div>\n\n                    <br>\n\n                    <div class=\"info\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO'\">\n                        <div class=\"separador\" *ngIf=\"item.childs.AssignedToName\"></div>\n\n                        <div *ngIf=\"item.childs.AssignedToName\">Despacho:\n                            <div class=\"flex\">\n                                <strong>Para: </strong>\n                                <span>{{ item.childs.AssignedToName }}</span>\n                            </div>\n                            <div class=\"flex\">\n                                <strong>Enviado: </strong>\n                                <span>{{ item.childs.DispatchDateTime }}</span>\n                            </div>\n\n                            <div class=\"flex\">\n                                <strong>Prioridad: </strong>\n                                <span>{{ item.childs.Values | values : 'PRIORIDAD' }}</span>\n                            </div>\n\n                        </div>\n\n                        <div *ngIf=\"!item.childs.AssignedToName\">\n                            <ion-chip color=\"danger\">No se ha enviado al técnico</ion-chip>\n\n                        </div>\n                    </div>\n\n                      <ion-button *ngIf=\"item.prioridad == 1 && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"assign(item)\">Asignar</ion-button>\n\n                      <ion-button *ngIf=\"item.prioridad == 2 && item.childs.AssignedToName && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"reenviar(item)\">Reenviar</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"dark\">\n        <ion-title>Mantenimientos</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>CATEGORIA:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>MÁQUINA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CONSECUTIVO:</strong> <br> <span>{{item.Consecutive}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>SOLICITA:</strong> <br> <span>{{item.CreatedByName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>JUSTIFICACIÒN:</strong> <br> <span>{{item.Values | values : 'solicitud'}}</span></div>\n\n                    \n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHAENTRADA'}}</span></div>\n\n                    <br>\n\n                    <div class=\"info\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO'\">\n                        <div class=\"separador\" *ngIf=\"item.childs.AssignedToName\"></div>\n\n                        <div *ngIf=\"item.childs.AssignedToName\">Despacho:\n                            <div class=\"flex\">\n                                <strong>Para: </strong>\n                                <span>{{ item.childs.AssignedToName }}</span>\n                            </div>\n                            <div class=\"flex\">\n                                <strong>Enviado: </strong>\n                                <span>{{ item.childs.DispatchDateTime }}</span>\n                            </div>\n\n                            <div class=\"flex\">\n                                <strong>Prioridad: </strong>\n                                <span>{{ item.childs.Values | values : 'PRIORIDAD' }}</span>\n                            </div>\n\n                        </div>\n\n                        <div *ngIf=\"!item.childs.AssignedToName\">\n                            <ion-chip color=\"danger\">No se ha enviado al técnico</ion-chip>\n\n                        </div>\n                    </div>\n\n                      <ion-button *ngIf=\"item.prioridad == 1 && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"assign(item)\">Asignar</ion-button>\n\n                      <ion-button *ngIf=\"item.prioridad == 2 && item.childs.AssignedToName && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"reenviar(item)\">Reenviar</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
 
 /***/ })
 
