@@ -115,10 +115,10 @@ const eliminado = job.schedule(' */15 * * * *', async() => {
 // Nettsegur
 
 
-async function fnInfo(guid) {
+async function fnInfo(guid, tkn) {
     return new Promise(async(resolve, reject) => {
         try {
-            const resp = await axios.get('https://api.visitrack.com/api/Surveys/Activity?AccessToken=538670140830D5E9B8D5C473F050E9E3&GUID=' + guid + '&ListValues=false');
+            const resp = await axios.get('https://api.visitrack.com/api/Surveys/Activity?AccessToken=' + tkn + '&GUID=' + guid + '&ListValues=false');
 
 
             resolve(resp.data)
@@ -244,7 +244,7 @@ async function fnNettsegur(guid) {
             for (const item of resp.data) {
                 if (item.GUID == '91C28F08-E115-44CD-BBA6-9CD2D0F20754') {
 
-                    const it = await fnInfo(item.GUID)
+                    const it = await fnInfo(item.GUID, '538670140830D5E9B8D5C473F050E9E3')
 
 
                     const estado = it.Values.filter((val) => val.apiId == 'ESTADOSERVICIO')
@@ -411,6 +411,8 @@ async function fnNettsegur(guid) {
         return [];
     }
 }
+
+
 /*
 const envio = job.schedule('* * * * *', async() => {
 
@@ -427,3 +429,157 @@ const envio = job.schedule('* * * * *', async() => {
     }
 
 }) */
+
+// OSZFORD
+
+async function fnOszford(guid) {
+    try {
+        const hoy = moment().format('YYYY-MM-DD')
+        const resp = await axios.post('https://api.visitrack.com/api/Surveys/Activities', {
+            AccessToken: '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE',
+            From: moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD HH:mm'),
+            To: moment(hoy + ' 23:59').format('YYYY-MM-DD HH:mm'),
+            FormGUID: guid,
+        });
+
+        const arr = [];
+
+        if (resp) {
+
+         
+
+
+            for (const item of resp.data) {
+             
+
+                    const it = await fnInfo(item.GUID, '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE')
+                    const from = moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD')
+                    const to = moment(hoy + ' 23:59').format('YYYY-MM-DD')
+                    const fecha = moment(it.DispatchDateTime).format('YYYY-MM-DD')
+
+                    if (fecha >= from && fecha <= to) {
+                              console.log(it)
+
+
+                    const leido = it.Values.filter((val) => val.apiId == 'LEIDO')
+                    const gestion = it.Values.filter((val) => val.apiId == 'GESTION')
+                    const dia = it.Values.filter((val) => val.apiId == 'FECHA')
+                    const hora = it.Values.filter((val) => val.apiId == 'HORA')
+
+                    console.log(leido)
+
+                    if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
+                         if (leido.length > 0) {
+
+                            if (leido[0].Value != 'SI') {
+
+                                moment.locale('es')
+
+                                await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' +  moment(dia[0].Value).format('LL') + '</strong>');
+                                arr.push(it);
+                            }
+
+                        } else {
+
+                            moment.locale('es')
+
+                            await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' +  moment(dia[0].Value).format('LL') + '</strong>');
+                   
+                   
+                            arr.push(it);
+
+                        } 
+
+                
+
+                  
+                    }
+
+                   
+                    }
+
+                    
+              
+
+                
+
+            }
+
+
+
+
+
+
+        }
+
+
+
+        return arr;
+    } catch (error) {
+        return [];
+    }
+}
+
+//H3ZjmGoHEB 
+
+
+
+async function sendEmailOszford(guid, msg) {
+    return new Promise(async(resolve, reject) => {
+        try {
+
+
+            const body = `<div style=" width: 600px; margin: 20px auto; padding: 20px; border-radius: 20px; background-color: #EAEEF8; font-family: sans-serif; height: 600px;">
+          <h3 style="text-align: center; font-size: 32px; margin-bottom: 100px;">RECORDATORIO</h3>
+
+          <div style="text-align: center;">
+          
+          <p style="text-align: center; line-height: 2; font-size: 16px;"> ${msg}</p>
+          <img  src='https://s3.amazonaws.com/logocompanies/6C7539A5-8A23-4FD1-9840-9A477EF06090.jpeg' width='200px'> <br>
+          
+          </div>
+
+       
+
+
+          <div style=" margin: 100px auto; background-color: #F5BC41; padding: 15px 20px; color: #fff; font-weight: bold; font-size: 16px; border-radius: 10px; text-align: center; width: 200px;"><a style="color: #fff;" href="https://vtentrena.com/#/interfaces/oszford-alerta?GUID=${guid}" target="_blank">Confirmar</a></div>
+
+          </div>`;
+
+          //auxiliarcomercial@oszford.com
+
+            const resp = await axios.post('https://api.visitrack.com/api/SendEmail', {
+                AccessToken: '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE',
+
+                Email: 'santiago.visitrack@gmail.com',
+                Subject: 'RECORDATORIO - ' + moment().format('YYYY-MM-DD HH:mm'),
+                Body: body,
+            });
+
+            if (resp.data) {
+                resolve(true)
+            }
+
+        } catch (error) {
+            resolve(false)
+        }
+
+    })
+}
+
+
+const oszford = job.schedule('* * * * *', async() => {
+
+
+    try {
+
+        const solicitud1 = await fnOszford('H3ZjmGoHEB')
+        console.log(solicitud1.length, 'todo')
+            // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
+            // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
+
+    } catch (err) {
+        console.log(err)
+    }
+
+}) 
