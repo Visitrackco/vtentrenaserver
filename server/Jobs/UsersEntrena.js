@@ -141,7 +141,7 @@ async function sendEmail(guid, msg, email) {
           <p style="text-align: center; line-height: 2; font-size: 16px;">Recibe un saludo de Nettsegur, <br> el servicio se encuentra en estado ${msg}, para descargar el formato y tener más detalle del servicio, por favor dar click en el siguiente botón</p>
 
 
-          <div style=" margin: 100px auto; background-color: #5890DE; padding: 15px 20px; color: #fff; font-weight: bold; font-size: 16px; border-radius: 10px; text-align: center; width: 200px;"><a style="color: #fff;" href=" https://api.visitrack.com/api/PDF?GUID=${guid}" target="_blank">Acceder a la interfaz</a></div>
+          <div style=" margin: 100px auto; background-color: #5890DE; padding: 15px 20px; color: #fff; font-weight: bold; font-size: 16px; border-radius: 10px; text-align: center; width: 200px;"><a style="color: #fff;" href=" https://api.visitrack.com/api/PDF?GUID=${guid}" target="_blank">Descargar Documento</a></div>
 
           </div>`;
 
@@ -281,7 +281,7 @@ async function fnNettsegur(guid) {
 
                 const it = await fnInfo(item.GUID, '538670140830D5E9B8D5C473F050E9E3')
 
-
+                console.log(it)
 
 
 
@@ -301,6 +301,7 @@ async function fnNettsegur(guid) {
                 if (existOtros.length > 0) {
                     correo = 'soportes@nettsegur.com'
                 }
+
 
 
                 if (estado.length > 0) {
@@ -337,6 +338,8 @@ async function fnNettsegur(guid) {
                                 status: 'ACA3B658-AC7E-4249-BE49-ADF2FF13979F',
                                 date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
                             })
+
+
 
 
 
@@ -396,6 +399,18 @@ async function fnNettsegur(guid) {
                                 ActivityGUID: it.GUID
                             });
 
+                            if (it.ParentGUID) {
+                                await changeActivity({
+                                    user: 'E80B6AA5-9626-4E11-8B51-895EB00AB621',
+                                    tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                    guid: it.ParentGUID,
+                                    status: '4CA24F23-75C5-454E-B789-3D5D424C88F9',
+                                    date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
+                                })
+                            }
+
+
+
 
 
                         } else {
@@ -422,10 +437,22 @@ async function fnNettsegur(guid) {
                                     date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
                                 })
 
+
+
                                 const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
                                     AccessToken: '538670140830D5E9B8D5C473F050E9E3',
                                     ActivityGUID: it.GUID
                                 });
+
+                                if (it.ParentGUID) {
+                                    await changeActivity({
+                                        user: 'E80B6AA5-9626-4E11-8B51-895EB00AB621',
+                                        tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                        guid: it.ParentGUID,
+                                        status: '4CA24F23-75C5-454E-B789-3D5D424C88F9',
+                                        date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
+                                    })
+                                }
 
                             } else {
                                 const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
