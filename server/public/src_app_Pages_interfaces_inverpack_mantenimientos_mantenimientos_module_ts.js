@@ -189,7 +189,7 @@ let MantenimientosPage = class MantenimientosPage {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
             if (!this.click) {
                 this.click = true;
-                this.loading.createLoading('Consultando si la solciitud ya tiene orden.');
+                this.loading.createLoading('Consultando si la solciitud ya tiene orden...');
                 const childs = yield this.getChild(acti.GUID);
                 if (childs.length > 0) {
                     this.loading.cancelLoading();
@@ -197,7 +197,6 @@ let MantenimientosPage = class MantenimientosPage {
                     this.cargarData();
                     return;
                 }
-                this.loading.cancelLoading();
                 const modal = yield this.modalCtrl.create({
                     component: src_app_components_Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_7__.UsariosInverComponent,
                     componentProps: {
@@ -206,6 +205,7 @@ let MantenimientosPage = class MantenimientosPage {
                     }
                 });
                 yield modal.present();
+                this.click = false;
                 const close = yield modal.onWillDismiss();
                 if (close) {
                     if (close.data) {

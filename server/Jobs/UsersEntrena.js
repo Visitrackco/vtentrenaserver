@@ -130,7 +130,7 @@ async function fnInfo(guid, tkn) {
 
 
 
-async function sendEmail(guid, msg) {
+async function sendEmail(guid, msg, email) {
     return new Promise(async(resolve, reject) => {
         try {
 
@@ -148,8 +148,7 @@ async function sendEmail(guid, msg) {
 
             const resp = await axios.post('https://api.visitrack.com/api/SendEmail', {
                 AccessToken: '538670140830D5E9B8D5C473F050E9E3',
-
-                Email: 'centrasatelite@hotmail.com',
+                Email: email,
                 Subject: 'SERVICIO TÉCNICO - ' + moment().format('YYYY-MM-DD HH:mm:ss'),
                 Body: body,
             });
@@ -225,6 +224,32 @@ async function changeActivity(data) {
 }
 
 
+async function getLocation(data) {
+    return new Promise(async(resolve, reject) => {
+        try {
+
+
+
+
+            const resp = await axios.post('https://api.visitrack.com/api/Locations/ByTypeID', {
+                AccessToken: data.tkn,
+                LocationTypeID: data.guid,
+                WorkzoneCode: data.workzone
+
+            });
+
+            if (resp.data) {
+                resolve(resp.data)
+            }
+
+        } catch (error) {
+            resolve(false)
+        }
+
+    })
+}
+
+
 
 async function fnNettsegur(guid) {
     try {
@@ -239,39 +264,92 @@ async function fnNettsegur(guid) {
 
         if (resp) {
 
+            //   console.log(resp.data)
+
+            const nett = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'NETTSEGUR' })
+
+            const otros = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'OTROS CLIENTES' })
+            console.log(nett.length, otros.length)
+
+            if (nett.length == 0 && otros.length == 0) {
+                return;
+            }
 
 
             for (const item of resp.data) {
-                if (item.GUID == '91C28F08-E115-44CD-BBA6-9CD2D0F20754') {
-
-                    const it = await fnInfo(item.GUID, '538670140830D5E9B8D5C473F050E9E3')
 
 
-                    const estado = it.Values.filter((val) => val.apiId == 'ESTADOSERVICIO')
+                const it = await fnInfo(item.GUID, '538670140830D5E9B8D5C473F050E9E3')
 
-                    console.log(estado)
 
-                    if (estado.length > 0) {
 
-                        const correo_abierto = it.Values.filter((val) => val.apiId == 'CORREOABIERTO')
-                        const correo_final = it.Values.filter((val) => val.apiId == 'CORREOFINAL')
 
-                        console.log(correo_abierto, correo_final)
 
-                        if (estado[0].Value == 'ABIERTO') {
+                const estado = it.Values.filter((val) => val.apiId == 'ESTADOSERVICIO')
 
-                            if (correo_abierto.length == 0) {
+                console.log(estado)
 
+                const existNett = nett.filter((loc) => loc.Name == it.LocationName);
+                const existOtros = otros.filter((loc) => loc.Name == it.LocationName);
+
+                let correo = '';
+
+                if (existNett.length > 0) {
+                    correo = 'centrasatelite@hotmail.com';
+                }
+
+                if (existOtros.length > 0) {
+                    correo = 'soportes@nettsegur.com'
+                }
+
+
+                if (estado.length > 0) {
+
+                    const correo_abierto = it.Values.filter((val) => val.apiId == 'CORREOABIERTO')
+                    const correo_final = it.Values.filter((val) => val.apiId == 'CORREOFINAL')
+
+                    console.log(correo_abierto, correo_final)
+
+                    if (estado[0].Value == 'ABIERTO') {
+
+                        if (correo_abierto.length == 0) {
+
+                            console.log('entro al correo');
+
+                            await sendEmail(it.GUID, 'abierto', correo)
+
+
+
+                            await updateActivity({
+                                user: it.UpdatedByGUID,
+                                tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                guid: it.ID,
+                                values: [{
+                                    apiId: 'CORREOABIERTO',
+                                    Value: 'ENVIADO'
+                                }]
+                            })
+
+                            await changeActivity({
+                                user: it.UpdatedByGUID,
+                                tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                guid: it.GUID,
+                                status: 'ACA3B658-AC7E-4249-BE49-ADF2FF13979F',
+                                date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
+                            })
+
+
+
+                        } else {
+                            if (correo_abierto[0].Value != 'ENVIADO') {
                                 console.log('entro al correo');
 
-                                await sendEmail(it.GUID, 'abierto')
-
-
+                                await sendEmail(it.GUID, 'abierto', correo)
 
                                 await updateActivity({
                                     user: it.UpdatedByGUID,
                                     tkn: '538670140830D5E9B8D5C473F050E9E3',
-                                    guid: it.ID,
+                                    ID: it.ID,
                                     values: [{
                                         apiId: 'CORREOABIERTO',
                                         Value: 'ENVIADO'
@@ -286,51 +364,55 @@ async function fnNettsegur(guid) {
                                     date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
                                 })
 
-
-
-                            } else {
-                                if (correo_abierto[0].Value != 'ENVIADO') {
-                                    console.log('entro al correo');
-
-                                    await sendEmail(it.GUID, 'abierto')
-
-                                    await updateActivity({
-                                        user: it.UpdatedByGUID,
-                                        tkn: '538670140830D5E9B8D5C473F050E9E3',
-                                        ID: it.ID,
-                                        values: [{
-                                            apiId: 'CORREOABIERTO',
-                                            Value: 'ENVIADO'
-                                        }]
-                                    })
-
-                                    await changeActivity({
-                                        user: it.UpdatedByGUID,
-                                        tkn: '538670140830D5E9B8D5C473F050E9E3',
-                                        guid: it.GUID,
-                                        status: 'ACA3B658-AC7E-4249-BE49-ADF2FF13979F',
-                                        date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
-                                    })
-
-                                }
                             }
+                        }
 
-                        } else if (estado[0].Value == 'FINALIZADO') {
+                    } else if (estado[0].Value == 'FINALIZADO') {
 
-                            if (correo_final.length == 0) {
+                        if (correo_final.length == 0) {
 
-                                await sendEmail(it.GUID, 'finalizado')
+                            await sendEmail(it.GUID, 'finalizado', correo)
+
+                            await updateActivity({
+                                user: it.UpdatedByGUID,
+                                tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                ID: it.ID,
+                                values: [{
+                                    apiId: 'CORREOFINAL',
+                                    Value: 'ENVIADO'
+                                }]
+                            })
+
+
+                            await changeActivity({
+                                user: it.UpdatedByGUID,
+                                tkn: '538670140830D5E9B8D5C473F050E9E3',
+                                guid: it.GUID,
+                                status: '4CA24F23-75C5-454E-B789-3D5D424C88F9',
+                                date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
+                            })
+                            const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
+                                AccessToken: '538670140830D5E9B8D5C473F050E9E3',
+                                ActivityGUID: it.GUID
+                            });
+
+
+
+                        } else {
+                            if (correo_final[0].Value != 'ENVIADO') {
+                                console.log('entro al correo');
+
+                                await sendEmail(it.GUID, 'finalizado', correo)
 
                                 await updateActivity({
                                     user: it.UpdatedByGUID,
                                     tkn: '538670140830D5E9B8D5C473F050E9E3',
                                     ID: it.ID,
                                     values: [{
-                                        apiId: 'CORREOFINAL',
+                                        apiId: 'CORREOABIERTO',
                                         Value: 'ENVIADO'
                                     }]
                                 })
-
 
                                 await changeActivity({
                                     user: it.UpdatedByGUID,
@@ -339,61 +421,31 @@ async function fnNettsegur(guid) {
                                     status: '4CA24F23-75C5-454E-B789-3D5D424C88F9',
                                     date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
                                 })
+
                                 const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
                                     AccessToken: '538670140830D5E9B8D5C473F050E9E3',
                                     ActivityGUID: it.GUID
                                 });
 
-
-
                             } else {
-                                if (correo_final[0].Value != 'ENVIADO') {
-                                    console.log('entro al correo');
-
-                                    await sendEmail(it.GUID, 'finalizado')
-
-                                    await updateActivity({
-                                        user: it.UpdatedByGUID,
-                                        tkn: '538670140830D5E9B8D5C473F050E9E3',
-                                        ID: it.ID,
-                                        values: [{
-                                            apiId: 'CORREOABIERTO',
-                                            Value: 'ENVIADO'
-                                        }]
-                                    })
-
-                                    await changeActivity({
-                                        user: it.UpdatedByGUID,
-                                        tkn: '538670140830D5E9B8D5C473F050E9E3',
-                                        guid: it.GUID,
-                                        status: '4CA24F23-75C5-454E-B789-3D5D424C88F9',
-                                        date: moment().add(1, 'minutes').format('YYYY-MM-DD HH:mm')
-                                    })
-
-                                    const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
-                                        AccessToken: '538670140830D5E9B8D5C473F050E9E3',
-                                        ActivityGUID: it.GUID
-                                    });
-
-                                } else {
-                                    const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
-                                        AccessToken: '538670140830D5E9B8D5C473F050E9E3',
-                                        ActivityGUID: it.GUID
-                                    });
-                                }
+                                const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
+                                    AccessToken: '538670140830D5E9B8D5C473F050E9E3',
+                                    ActivityGUID: it.GUID
+                                });
                             }
-
-                        } else {
-                            console.log('No hay opción')
                         }
 
                     } else {
-                        console.log('No hay nada')
+                        console.log('No hay opción')
                     }
 
-                    arr.push(it);
-
+                } else {
+                    console.log('No hay nada')
                 }
+
+                arr.push(it);
+
+
 
             }
 
@@ -413,14 +465,14 @@ async function fnNettsegur(guid) {
 }
 
 
-/*
-const envio = job.schedule('* * * * *', async() => {
+
+const envio = job.schedule('*/10 * * * *', async() => {
 
 
     try {
 
-     //   const solicitud1 = await fnNettsegur('1gp0JCZkra')
-        console.log(solicitud1.length, 'todo')
+        const solicitud1 = await fnNettsegur('1gp0JCZkra')
+            //    console.log(solicitud1.length, 'todo')
             // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
             // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
@@ -428,10 +480,10 @@ const envio = job.schedule('* * * * *', async() => {
         console.log(err)
     }
 
-}) */
+})
 
 // OSZFORD
-
+/*
 async function fnOszford(guid) {
     try {
         const hoy = moment().format('YYYY-MM-DD')
@@ -446,19 +498,19 @@ async function fnOszford(guid) {
 
         if (resp) {
 
-         
+
 
 
             for (const item of resp.data) {
-             
 
-                    const it = await fnInfo(item.GUID, '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE')
-                    const from = moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD')
-                    const to = moment(hoy + ' 23:59').format('YYYY-MM-DD')
-                    const fecha = moment(it.DispatchDateTime).format('YYYY-MM-DD')
 
-                    if (fecha >= from && fecha <= to) {
-                              console.log(it)
+                const it = await fnInfo(item.GUID, '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE')
+                const from = moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD')
+                const to = moment(hoy + ' 23:59').format('YYYY-MM-DD')
+                const fecha = moment(it.DispatchDateTime).format('YYYY-MM-DD')
+
+                if (fecha >= from && fecha <= to) {
+                    console.log(it)
 
 
                     const leido = it.Values.filter((val) => val.apiId == 'LEIDO')
@@ -469,13 +521,13 @@ async function fnOszford(guid) {
                     console.log(leido)
 
                     if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
-                         if (leido.length > 0) {
+                        if (leido.length > 0) {
 
                             if (leido[0].Value != 'SI') {
 
                                 moment.locale('es')
 
-                                await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' +  moment(dia[0].Value).format('LL') + '</strong>');
+                                await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
                                 arr.push(it);
                             }
 
@@ -483,25 +535,25 @@ async function fnOszford(guid) {
 
                             moment.locale('es')
 
-                            await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' +  moment(dia[0].Value).format('LL') + '</strong>');
-                   
-                   
+                            await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
+
+
                             arr.push(it);
 
-                        } 
+                        }
 
-                
 
-                  
+
+
                     }
 
-                   
-                    }
 
-                    
-              
+                }
 
-                
+
+
+
+
 
             }
 
@@ -519,6 +571,8 @@ async function fnOszford(guid) {
         return [];
     }
 }
+
+*/
 
 //H3ZjmGoHEB 
 
@@ -546,7 +600,7 @@ async function sendEmailOszford(guid, msg) {
 
           </div>`;
 
-          //auxiliarcomercial@oszford.com
+            //auxiliarcomercial@oszford.com
 
             const resp = await axios.post('https://api.visitrack.com/api/SendEmail', {
                 AccessToken: '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE',
@@ -573,13 +627,13 @@ const oszford = job.schedule('* * * * *', async() => {
 
     try {
 
-        const solicitud1 = await fnOszford('H3ZjmGoHEB')
-        console.log(solicitud1.length, 'todo')
-            // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
-            // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
+        //   const solicitud1 = await fnOszford('H3ZjmGoHEB')
+        //  console.log(solicitud1.length, 'todo')
+        // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
+        // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
     } catch (err) {
         console.log(err)
     }
 
-}) 
+})
