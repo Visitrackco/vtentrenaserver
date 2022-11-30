@@ -424,7 +424,7 @@ async function fnNettsegur(guid) {
                                     tkn: '538670140830D5E9B8D5C473F050E9E3',
                                     ID: it.ID,
                                     values: [{
-                                        apiId: 'CORREOABIERTO',
+                                        apiId: 'CORREOFINAL',
                                         Value: 'ENVIADO'
                                     }]
                                 })
