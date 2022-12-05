@@ -56,6 +56,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mantenimientos_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mantenimientos-routing.module */ 17346);
 /* harmony import */ var _mantenimientos_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mantenimientos.page */ 97248);
 /* harmony import */ var src_app_Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Pipes/pipes.module */ 7844);
+/* harmony import */ var angular_cd_timer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-cd-timer */ 36832);
+
 
 
 
@@ -73,7 +75,8 @@ MantenimientosPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
             _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormsModule,
             _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule,
             _mantenimientos_routing_module__WEBPACK_IMPORTED_MODULE_0__.MantenimientosPageRoutingModule,
-            src_app_Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__.PipesModule
+            src_app_Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__.PipesModule,
+            angular_cd_timer__WEBPACK_IMPORTED_MODULE_8__.CdTimerModule
         ],
         declarations: [_mantenimientos_page__WEBPACK_IMPORTED_MODULE_1__.MantenimientosPage]
     })
@@ -345,15 +348,29 @@ let MantenimientosPage = class MantenimientosPage {
             this.loading.cancelLoading();
         });
     }
+    dataSolJefe() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(3, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), '02CEE670-587E-49CA-A2CC-C10B1D519F65').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+                    resolve(data);
+                }), (err) => resolve([]));
+            });
+        });
+    }
     cargarData() {
         this.cargaActividades = false;
         this.actividades = [];
-        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(2, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'BAB8F522-721F-4E63-BF9F-C99F2CB78AC6').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
-            console.log(data, 'MI DATA');
-            //  data = data.filter((item) => item.CompanyStatusName == 'Completado')
+        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(3, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'BAB8F522-721F-4E63-BF9F-C99F2CB78AC6').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__awaiter)(this, void 0, void 0, function* () {
+            const data2 = yield this.dataSolJefe();
+            console.log(data, 'MI DATA', data2);
+            underscore__WEBPACK_IMPORTED_MODULE_4__.each(data2, (dat, i) => {
+                dat.form = 'jefe';
+                data.push(dat);
+            });
             for (const item of data) {
                 const miData = yield this.getInfo(item.GUID);
                 if (miData) {
+                    miData.jefe = item.form ? true : false;
                     miData.color = this.color(miData.CompanyStatusName);
                     miData.icolor = this.color(miData.CompanyStatusName, true);
                     if (miData.CompanyStatusName == 'AREA DE MANTENIMIENTO') {
@@ -368,7 +385,45 @@ let MantenimientosPage = class MantenimientosPage {
                     }
                     if (miData.childs) {
                         if (miData.childs.CompanyStatusName != 'MANTENIMIENTO FINALIZADO') {
-                            this.actividades.push(miData);
+                            var inicio = moment_timezone__WEBPACK_IMPORTED_MODULE_5__(miData.childs.CreatedOn).format('YYYY-MM-DD HH:mm:ss');
+                            var fin = moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm:ss');
+                            var dur = moment_timezone__WEBPACK_IMPORTED_MODULE_5__(fin).diff(moment_timezone__WEBPACK_IMPORTED_MODULE_5__(inicio), 'seconds');
+                            if (miData.childs.Values) {
+                                console.log(miData.childs.Values, 'hola', miData);
+                                const valprioridad = miData.childs.Values.filter((cam) => cam.apiId == 'PRIORIDAD');
+                                let prio = '';
+                                let tiempo = 0;
+                                if (valprioridad.length > 0) {
+                                    prio = valprioridad[0].Value != '' ? valprioridad[0].Value : 'BAJA';
+                                }
+                                else {
+                                    prio = 'BAJA';
+                                }
+                                if (prio == 'ALTA') {
+                                    tiempo = (60 * 60 * 12) - dur;
+                                    if (dur > 43200) {
+                                        miData.showTimer = true;
+                                    }
+                                }
+                                else if (prio == 'MEDIA') {
+                                    tiempo = (60 * 60 * 24) - dur;
+                                    if (dur > 86400) {
+                                        miData.showTimer = true;
+                                    }
+                                }
+                                else if (prio == 'BAJA') {
+                                    tiempo = (60 * 60 * 72) - dur;
+                                    if (dur > 259200) {
+                                        miData.showTimer = true;
+                                    }
+                                }
+                                if (miData.showTimer) {
+                                    tiempo = dur;
+                                }
+                                miData.tiempo = tiempo;
+                                miData.prio = prio;
+                                this.actividades.push(miData);
+                            }
                         }
                     }
                     else {
@@ -449,7 +504,7 @@ MantenimientosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([
   \***********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n  margin: 0;\n}\n.main .campo {\n  width: 100%;\n  background-color: #f1f1f1;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  margin: 0;\n  height: 50px;\n  border-radius: 20px;\n}\n.main .tarjetas {\n  width: 100%;\n  display: flex;\n}\n.main .tarjetas ion-card {\n  padding: 10px;\n  background-color: #F3F0F8;\n  width: calc(25% - 20px);\n  margin: 10px;\n}\n.main .tarjetas ion-card ion-card-title {\n  font-size: 22px;\n}\n.main .tarjetas ion-card ion-card-content {\n  font-size: 16px;\n}\n.loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 22px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n.flex img {\n  height: 100px;\n}\n.separador {\n  margin: 10px 0;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n.rojo {\n  background-color: #E9463C;\n  color: #E9463C;\n}\n.amarillo {\n  background-color: #F2E850;\n  color: #F2E850;\n}\n.verde {\n  background-color: #2C6520;\n  color: #2C6520;\n}\n.gris {\n  background-color: #93938B;\n  color: #93938B;\n}\n.irojo {\n  color: #E9463C;\n}\n.iamarillo {\n  color: #F2E850;\n}\n.iverde {\n  color: #2C6520;\n}\n.igris {\n  color: #93938B;\n}\n.azul {\n  background-color: #53B6A4;\n  color: #53B6A4;\n}\n.iazul {\n  color: #53B6A4;\n}\n.solicitudes {\n  font-size: 12px;\n  border-bottom: 5px dotted #2E68AD;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnRlbmltaWVudG9zLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7QUFDSjtBQUFJO0VBQ0ksVUFBQTtFQUNBLFNBQUE7QUFFUjtBQUFJO0VBQ0ksV0FBQTtFQUNBLHlCQUFBO0VBQ0Esb0NBQUE7RUFDQSxTQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0FBRVI7QUFBSTtFQUNJLFdBQUE7RUFDQSxhQUFBO0FBRVI7QUFEUTtFQUNJLGFBQUE7RUFDQSx5QkFBQTtFQUNBLHVCQUFBO0VBQ0EsWUFBQTtBQUdaO0FBRlk7RUFDSSxlQUFBO0FBSWhCO0FBRlk7RUFDSSxlQUFBO0FBSWhCO0FBRUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKO0FBRUE7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7QUFDSjtBQUFJO0VBQ0ksYUFBQTtBQUVSO0FBRUE7RUFDSSxjQUFBO0VBQ0Esb0NBQUE7QUFDSjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQURKO0FBSUE7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUFESjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0ksY0FBQTtBQURKO0FBSUE7RUFDSSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0ksZUFBQTtFQUNBLGlDQUFBO0FBREoiLCJmaWxlIjoibWFudGVuaW1pZW50b3MucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4ge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGlvbi1ncmlkIHtcbiAgICAgICAgd2lkdGg6IDQwJTtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgIH1cbiAgICAuY2FtcG8ge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2YxZjFmMTtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgIGhlaWdodDogNTBweDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgICB9XG4gICAgLnRhcmpldGFzIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGlvbi1jYXJkIHtcbiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjNGMEY4O1xuICAgICAgICAgICAgd2lkdGg6IGNhbGMoMjUlIC0gMjBweCk7XG4gICAgICAgICAgICBtYXJnaW46IDEwcHg7XG4gICAgICAgICAgICBpb24tY2FyZC10aXRsZSB7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAyMnB4O1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaW9uLWNhcmQtY29udGVudCB7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgfVxufVxuXG4ubG9hZGluZyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAyMnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBtYXJnaW46IDIwcHggMDtcbiAgICBwYWRkaW5nOiAxMHB4O1xufVxuXG4uZmxleCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgaW1nIHtcbiAgICAgICAgaGVpZ2h0OiAxMDBweDtcbiAgICB9XG59XG5cbi5zZXBhcmFkb3Ige1xuICAgIG1hcmdpbjogMTBweCAwO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4xKTtcbn1cblxuaW9uLWF2YXRhciB7fVxuXG4ucm9qbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0U5NDYzQztcbiAgICBjb2xvcjogI0U5NDYzQztcbn1cblxuLmFtYXJpbGxvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjJFODUwO1xuICAgIGNvbG9yOiAjRjJFODUwO1xufVxuXG4udmVyZGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMyQzY1MjA7XG4gICAgY29sb3I6ICMyQzY1MjA7XG59XG5cbi5ncmlzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjOTM5MzhCO1xuICAgIGNvbG9yOiAjOTM5MzhCO1xufVxuXG4uaXJvam8ge1xuICAgIGNvbG9yOiAjRTk0NjNDO1xufVxuXG4uaWFtYXJpbGxvIHtcbiAgICBjb2xvcjogI0YyRTg1MDtcbn1cblxuLml2ZXJkZSB7XG4gICAgY29sb3I6ICMyQzY1MjA7XG59XG5cbi5pZ3JpcyB7XG4gICAgY29sb3I6ICM5MzkzOEI7XG59XG5cbi5henVsIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNTNCNkE0O1xuICAgIGNvbG9yOiAjNTNCNkE0O1xufVxuXG4uaWF6dWwge1xuICAgIGNvbG9yOiAjNTNCNkE0O1xufVxuXG4uc29saWNpdHVkZXMge1xuICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICBib3JkZXItYm90dG9tOiA1cHggZG90dGVkICMyRTY4QUQ7XG59Il19 */";
+module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n  margin: 0;\n}\n.main .campo {\n  width: 100%;\n  background-color: #f1f1f1;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  margin: 0;\n  height: 50px;\n  border-radius: 20px;\n}\n.main .tarjetas {\n  width: 100%;\n  display: flex;\n}\n.main .tarjetas ion-card {\n  padding: 10px;\n  background-color: #F3F0F8;\n  width: calc(25% - 20px);\n  margin: 10px;\n}\n.main .tarjetas ion-card ion-card-title {\n  font-size: 22px;\n}\n.main .tarjetas ion-card ion-card-content {\n  font-size: 16px;\n}\n.loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 22px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n.flex img {\n  height: 100px;\n}\n.separador {\n  margin: 10px 0;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n.rojo {\n  background-color: #E9463C;\n  color: #E9463C;\n}\n.amarillo {\n  background-color: #F2E850;\n  color: #F2E850;\n}\n.verde {\n  background-color: #2C6520;\n  color: #2C6520;\n}\n.gris {\n  background-color: #93938B;\n  color: #93938B;\n}\n.irojo {\n  color: #E9463C;\n}\n.iamarillo {\n  color: #F2E850;\n}\n.iverde {\n  color: #2C6520;\n}\n.igris {\n  color: #93938B;\n}\n.azul {\n  background-color: #53B6A4;\n  color: #53B6A4;\n}\n.iazul {\n  color: #53B6A4;\n}\n.solicitudes {\n  font-size: 12px;\n  border-bottom: 5px dotted #2E68AD;\n}\n.timer {\n  width: 100%;\n  font-size: 16px;\n  font-weight: bold;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbnRlbmltaWVudG9zLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7QUFDSjtBQUFJO0VBQ0ksVUFBQTtFQUNBLFNBQUE7QUFFUjtBQUFJO0VBQ0ksV0FBQTtFQUNBLHlCQUFBO0VBQ0Esb0NBQUE7RUFDQSxTQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0FBRVI7QUFBSTtFQUNJLFdBQUE7RUFDQSxhQUFBO0FBRVI7QUFEUTtFQUNJLGFBQUE7RUFDQSx5QkFBQTtFQUNBLHVCQUFBO0VBQ0EsWUFBQTtBQUdaO0FBRlk7RUFDSSxlQUFBO0FBSWhCO0FBRlk7RUFDSSxlQUFBO0FBSWhCO0FBRUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKO0FBRUE7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7QUFDSjtBQUFJO0VBQ0ksYUFBQTtBQUVSO0FBRUE7RUFDSSxjQUFBO0VBQ0Esb0NBQUE7QUFDSjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQURKO0FBSUE7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUFESjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0ksY0FBQTtBQURKO0FBSUE7RUFDSSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0kseUJBQUE7RUFDQSxjQUFBO0FBREo7QUFJQTtFQUNJLGNBQUE7QUFESjtBQUlBO0VBQ0ksZUFBQTtFQUNBLGlDQUFBO0FBREo7QUFJQTtFQUNJLFdBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQURKIiwiZmlsZSI6Im1hbnRlbmltaWVudG9zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYWluIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBpb24tZ3JpZCB7XG4gICAgICAgIHdpZHRoOiA0MCU7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICB9XG4gICAgLmNhbXBvIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmMWYxZjE7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBoZWlnaHQ6IDUwcHg7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gICAgfVxuICAgIC50YXJqZXRhcyB7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBpb24tY2FyZCB7XG4gICAgICAgICAgICBwYWRkaW5nOiAxMHB4O1xuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI0YzRjBGODtcbiAgICAgICAgICAgIHdpZHRoOiBjYWxjKDI1JSAtIDIwcHgpO1xuICAgICAgICAgICAgbWFyZ2luOiAxMHB4O1xuICAgICAgICAgICAgaW9uLWNhcmQtdGl0bGUge1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMjJweDtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGlvbi1jYXJkLWNvbnRlbnQge1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgIH1cbn1cblxuLmxvYWRpbmcge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZvbnQtc2l6ZTogMjJweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gICAgcGFkZGluZzogMTBweDtcbn1cblxuLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICAgIGltZyB7XG4gICAgICAgIGhlaWdodDogMTAwcHg7XG4gICAgfVxufVxuXG4uc2VwYXJhZG9yIHtcbiAgICBtYXJnaW46IDEwcHggMDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMSk7XG59XG5cbmlvbi1hdmF0YXIge31cblxuLnJvam8ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNFOTQ2M0M7XG4gICAgY29sb3I6ICNFOTQ2M0M7XG59XG5cbi5hbWFyaWxsbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0YyRTg1MDtcbiAgICBjb2xvcjogI0YyRTg1MDtcbn1cblxuLnZlcmRlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMkM2NTIwO1xuICAgIGNvbG9yOiAjMkM2NTIwO1xufVxuXG4uZ3JpcyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzkzOTM4QjtcbiAgICBjb2xvcjogIzkzOTM4Qjtcbn1cblxuLmlyb2pvIHtcbiAgICBjb2xvcjogI0U5NDYzQztcbn1cblxuLmlhbWFyaWxsbyB7XG4gICAgY29sb3I6ICNGMkU4NTA7XG59XG5cbi5pdmVyZGUge1xuICAgIGNvbG9yOiAjMkM2NTIwO1xufVxuXG4uaWdyaXMge1xuICAgIGNvbG9yOiAjOTM5MzhCO1xufVxuXG4uYXp1bCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzUzQjZBNDtcbiAgICBjb2xvcjogIzUzQjZBNDtcbn1cblxuLmlhenVsIHtcbiAgICBjb2xvcjogIzUzQjZBNDtcbn1cblxuLnNvbGljaXR1ZGVzIHtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgYm9yZGVyLWJvdHRvbTogNXB4IGRvdHRlZCAjMkU2OEFEO1xufVxuXG4udGltZXIge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */";
 
 /***/ }),
 
@@ -459,7 +514,414 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
   \***********************************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"dark\">\n        <ion-title>Mantenimientos</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>CATEGORIA:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>MÁQUINA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CONSECUTIVO:</strong> <br> <span>{{item.Consecutive}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>SOLICITA:</strong> <br> <span>{{item.CreatedByName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>JUSTIFICACIÒN:</strong> <br> <span>{{item.Values | values : 'solicitud'}}</span></div>\n\n                    \n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHAENTRADA'}}</span></div>\n\n                    <br>\n\n                    <div class=\"info\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO'\">\n                        <div class=\"separador\" *ngIf=\"item.childs.AssignedToName\"></div>\n\n                        <div *ngIf=\"item.childs.AssignedToName\">Despacho:\n                            <div class=\"flex\">\n                                <strong>Para: </strong>\n                                <span>{{ item.childs.AssignedToName }}</span>\n                            </div>\n                            <div class=\"flex\">\n                                <strong>Enviado: </strong>\n                                <span>{{ item.childs.DispatchDateTime }}</span>\n                            </div>\n\n                            <div class=\"flex\">\n                                <strong>Prioridad: </strong>\n                                <span>{{ item.childs.Values | values : 'PRIORIDAD' }}</span>\n                            </div>\n\n                        </div>\n\n                        <div *ngIf=\"!item.childs.AssignedToName\">\n                            <ion-chip color=\"danger\">No se ha enviado al técnico</ion-chip>\n\n                        </div>\n                    </div>\n\n                      <ion-button *ngIf=\"item.prioridad == 1 && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"assign(item)\">Asignar</ion-button>\n\n                      <ion-button *ngIf=\"item.prioridad == 2 && item.childs.AssignedToName && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"reenviar(item)\">Reenviar</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"dark\">\n        <ion-title>Mantenimientos</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div class=\"timer\">\n                        <div class=\"ion-text-wrap\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO' && item.showTimer \">\n                            Ha sobrepasado el tiempo de prioridad {{item.prio}} <br>\n                            <cd-timer [startTime]=\"item.tiempo\"></cd-timer>\n                        </div>\n\n                        <div class=\"ion-text-wrap\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO' && !item.showTimer \">\n                            <cd-timer [startTime]=\"item.tiempo\" [countdown]=\"true\"></cd-timer>\n                        </div>\n\n\n\n                    </div>\n                    <br>\n                    <div class=\"flex\">\n                        <div><strong>CATEGORIA:</strong> <br> <span>{{item.LocationName}}</span></div>\n                        <div><strong>MÁQUINA:</strong> <br> <span>{{item.AssetName}}</span></div>\n                    </div> <br>\n\n\n                    <div class=\"flex\"><strong>CONSECUTIVO:</strong> <span style=\"color: red;\">{{item.Consecutive}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>SOLICITA:</strong> <br> <span>{{item.CreatedByName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>JUSTIFICACIÒN:</strong> <br> <span>{{item.Values | values : 'solicitud'}}</span></div>\n\n\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHAENTRADA'}}</span></div>\n                    <div *ngIf=\"item.jefe\" style=\"color: red;\"><strong>Solicitud creada por Jefe Mantenimiento</strong></div>\n\n                    <br>\n\n                    <div class=\"info\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO'\">\n                        <div class=\"separador\" *ngIf=\"item.childs.AssignedToName\"></div>\n\n                        <div *ngIf=\"item.childs.AssignedToName\">Despacho:\n                            <div class=\"flex\">\n                                <strong>Para: </strong>\n                                <span>{{ item.childs.AssignedToName }}</span>\n                            </div>\n                            <div class=\"flex\">\n                                <strong>Enviado: </strong>\n                                <span>{{ item.childs.CreatedOn }}</span>\n                            </div>\n\n                            <div class=\"flex\">\n                                <strong>Prioridad: </strong>\n                                <span>{{ item.childs.Values | values : 'PRIORIDAD' }}</span>\n                            </div>\n\n                        </div>\n\n                        <div *ngIf=\"!item.childs.AssignedToName\">\n                            <ion-chip color=\"danger\">No se ha enviado al técnico</ion-chip>\n\n                        </div>\n                    </div>\n\n                    <ion-button *ngIf=\"item.prioridad == 1 && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"assign(item)\">Asignar</ion-button>\n\n                    <ion-button *ngIf=\"item.prioridad == 2 && item.childs.AssignedToName && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"reenviar(item)\">Reenviar</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
+
+/***/ }),
+
+/***/ 36832:
+/*!*********************************************************************!*\
+  !*** ./node_modules/angular-cd-timer/fesm2015/angular-cd-timer.mjs ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CdTimerComponent": () => (/* binding */ CdTimerComponent),
+/* harmony export */   "CdTimerModule": () => (/* binding */ CdTimerModule)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+const _c0 = ["*"];
+
+class CdTimerComponent {
+  constructor(elt, renderer) {
+    this.elt = elt;
+    this.renderer = renderer;
+    this.onStart = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onStop = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onTick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onComplete = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter(); // Initialization
+
+    this.autoStart = true;
+    this.startTime = 0;
+    this.endTime = 0;
+    this.timeoutId = null;
+    this.countdown = false;
+    this.format = 'default';
+  }
+
+  ngAfterViewInit() {
+    const ngContentNode = this.elt.nativeElement.lastChild; // Get last child, defined by user or span
+
+    this.ngContentSchema = ngContentNode ? ngContentNode.nodeValue : '';
+
+    if (this.autoStart === undefined || this.autoStart === true) {
+      this.start();
+    }
+  }
+
+  ngOnDestroy() {
+    this.resetTimeout();
+  }
+  /**
+   * Start the timer
+   */
+
+
+  start() {
+    this.initVar();
+    this.resetTimeout();
+    this.computeTimeUnits();
+    this.startTickCount();
+    this.onStart.emit(this);
+  }
+  /**
+   * Resume the timer
+   */
+
+
+  resume() {
+    this.resetTimeout();
+    this.startTickCount();
+  }
+  /**
+   * Stop the timer
+   */
+
+
+  stop() {
+    this.clear();
+    this.onStop.emit(this);
+  }
+  /**
+   * Reset the timer
+   */
+
+
+  reset() {
+    this.initVar();
+    this.resetTimeout();
+    this.clear();
+    this.computeTimeUnits();
+    this.renderText();
+  }
+  /**
+   * Get the time information
+   * @returns TimeInterface
+   */
+
+
+  get() {
+    return {
+      seconds: this.seconds,
+      minutes: this.minutes,
+      hours: this.hours,
+      days: this.days,
+      timer: this.timeoutId,
+      tick_count: this.tickCounter
+    };
+  }
+  /**
+   * Initialize variable before start
+   */
+
+
+  initVar() {
+    this.startTime = this.startTime || 0;
+    this.endTime = this.endTime || 0;
+    this.countdown = this.countdown || false;
+    this.tickCounter = this.startTime; // Disable countdown if start time not defined
+
+    if (this.countdown && this.startTime === 0) {
+      this.countdown = false;
+    } // Determine auto format
+
+
+    if (!this.format) {
+      this.format = this.ngContentSchema.length > 5 ? 'user' : 'default';
+    }
+  }
+  /**
+   * Reset timeout
+   */
+
+
+  resetTimeout() {
+    if (this.timeoutId) {
+      clearInterval(this.timeoutId);
+    }
+  }
+  /**
+   * Render the time to DOM
+   */
+
+
+  renderText() {
+    let outputText;
+
+    if (this.format === 'user') {
+      // User presentation
+      const items = {
+        'seconds': this.seconds,
+        'minutes': this.minutes,
+        'hours': this.hours,
+        'days': this.days
+      };
+      outputText = this.ngContentSchema;
+
+      for (const key of Object.keys(items)) {
+        outputText = outputText.replace('[' + key + ']', items[key].toString());
+      }
+    } else if (this.format === 'intelli') {
+      // Intelli presentation
+      outputText = '';
+
+      if (this.days > 0) {
+        outputText += this.days.toString() + 'day' + (this.days > 1 ? 's' : '') + ' ';
+      }
+
+      if (this.hours > 0 || this.days > 0) {
+        outputText += this.hours.toString() + 'h ';
+      }
+
+      if ((this.minutes > 0 || this.hours > 0) && this.days === 0) {
+        outputText += this.minutes.toString().padStart(2, '0') + 'min ';
+      }
+
+      if (this.hours === 0 && this.days === 0) {
+        outputText += this.seconds.toString().padStart(2, '0') + 's';
+      }
+    } else if (this.format === 'hms') {
+      // Hms presentation
+      outputText = this.hours.toString().padStart(2, '0') + ':';
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else if (this.format === 'ms') {
+      // ms presentation
+      outputText = '';
+
+      if (this.hours > 0) {
+        outputText = this.hours.toString().padStart(2, '0') + ':';
+      }
+
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else {
+      // Default presentation
+      outputText = this.days.toString() + 'd ';
+      outputText += this.hours.toString() + 'h ';
+      outputText += this.minutes.toString() + 'm ';
+      outputText += this.seconds.toString() + 's';
+    }
+
+    this.renderer.setProperty(this.elt.nativeElement, 'innerHTML', outputText);
+  }
+
+  clear() {
+    this.resetTimeout();
+    this.timeoutId = null;
+  }
+  /**
+   * Compute each unit (seconds, minutes, hours, days) for further manipulation
+   * @protected
+   */
+
+
+  computeTimeUnits() {
+    if (!this.maxTimeUnit || this.maxTimeUnit === 'day') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600 % 24);
+      this.days = Math.floor(this.tickCounter / 3600 / 24);
+    } else if (this.maxTimeUnit === 'second') {
+      this.seconds = this.tickCounter;
+      this.minutes = 0;
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'minute') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60);
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'hour') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600);
+      this.days = 0;
+    }
+
+    this.renderText();
+  }
+  /**
+   * Start tick count, base of this component
+   * @protected
+   */
+
+
+  startTickCount() {
+    const that = this;
+    that.timeoutId = setInterval(function () {
+      let counter;
+
+      if (that.countdown) {
+        // Compute finish counter for countdown
+        counter = that.tickCounter;
+
+        if (that.startTime > that.endTime) {
+          counter = that.tickCounter - that.endTime - 1;
+        }
+      } else {
+        // Compute finish counter for timer
+        counter = that.tickCounter - that.startTime;
+
+        if (that.endTime > that.startTime) {
+          counter = that.endTime - that.tickCounter - 1;
+        }
+      }
+
+      that.computeTimeUnits();
+      const timer = {
+        seconds: that.seconds,
+        minutes: that.minutes,
+        hours: that.hours,
+        days: that.days,
+        timer: that.timeoutId,
+        tick_count: that.tickCounter
+      };
+      that.onTick.emit(timer);
+
+      if (counter < 0) {
+        that.stop();
+        that.onComplete.emit(that);
+        return;
+      }
+
+      if (that.countdown) {
+        that.tickCounter--;
+      } else {
+        that.tickCounter++;
+      }
+    }, 1000); // Each seconds
+  }
+
+}
+
+CdTimerComponent.ɵfac = function CdTimerComponent_Factory(t) {
+  return new (t || CdTimerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
+};
+
+CdTimerComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+  type: CdTimerComponent,
+  selectors: [["cd-timer"]],
+  inputs: {
+    startTime: "startTime",
+    endTime: "endTime",
+    countdown: "countdown",
+    autoStart: "autoStart",
+    maxTimeUnit: "maxTimeUnit",
+    format: "format"
+  },
+  outputs: {
+    onStart: "onStart",
+    onStop: "onStop",
+    onTick: "onTick",
+    onComplete: "onComplete"
+  },
+  ngContentSelectors: _c0,
+  decls: 1,
+  vars: 0,
+  template: function CdTimerComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
+    }
+  },
+  encapsulation: 2
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerComponent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
+    args: [{
+      selector: 'cd-timer',
+      template: ' <ng-content></ng-content>'
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }];
+  }, {
+    startTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    endTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    countdown: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    autoStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    maxTimeUnit: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    format: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onStop: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onTick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onComplete: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }]
+  });
+})();
+
+class CdTimerModule {}
+
+CdTimerModule.ɵfac = function CdTimerModule_Factory(t) {
+  return new (t || CdTimerModule)();
+};
+
+CdTimerModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+  type: CdTimerModule,
+  declarations: [CdTimerComponent],
+  exports: [CdTimerComponent]
+});
+CdTimerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+  imports: [[]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
+    args: [{
+      declarations: [CdTimerComponent],
+      imports: [],
+      exports: [CdTimerComponent]
+    }]
+  }], null, null);
+})();
+/*
+ * Public API Surface of angular-cd-timer
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
 
 /***/ })
 
