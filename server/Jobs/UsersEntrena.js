@@ -20,11 +20,11 @@ const myJob = job.schedule('* * * * *', () => {
                         const dateLimit = moment(user.configuration.dateLimit).format('YYYY-MM-DD HH:mm');
 
                         if (date >= dateLimit) {
-                            console.log('Ejeutando')
+                            // console.log('Ejeutando')
                             const _id = user._id;
                             UsersBasicShecma.findByIdAndUpdate(_id, { status: 'off' }, { new: true }).exec((err, userBasic) => {
                                 if (err) {
-                                    console.log(err.message, 'errores');
+                                    // console.log(err.message, 'errores');
                                 }
                             })
                         }
@@ -70,7 +70,7 @@ async function fnForm(guid) {
                     const childs = await fnchilds(item.GUID)
 
                     if (childs.data.length > 0) {
-                        console.log('eliminado ', item.GUID)
+                        // console.log('eliminado ', item.GUID)
                         const elimi = await axios.post('https://api.visitrack.com/api/Surveys/MovilDelete', {
                             AccessToken: '68C5A337B89F6B7A603861D440EB20D6',
                             ActivityGUID: item.GUID
@@ -107,7 +107,7 @@ const eliminado = job.schedule(' */15 * * * *', async() => {
         const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
     }
 
 })
@@ -264,12 +264,12 @@ async function fnNettsegur(guid) {
 
         if (resp) {
 
-            //   console.log(resp.data)
+            //   // console.log(resp.data)
 
             const nett = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'NETTSEGUR' })
 
             const otros = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'OTROS CLIENTES' })
-            console.log(nett.length, otros.length)
+            // console.log(nett.length, otros.length)
 
             if (nett.length == 0 && otros.length == 0) {
                 return;
@@ -281,13 +281,13 @@ async function fnNettsegur(guid) {
 
                 const it = await fnInfo(item.GUID, '538670140830D5E9B8D5C473F050E9E3')
 
-                console.log(it)
+                // console.log(it)
 
 
 
                 const estado = it.Values.filter((val) => val.apiId == 'ESTADOSERVICIO')
 
-                console.log(estado)
+                // console.log(estado)
 
                 const existNett = nett.filter((loc) => loc.Name == it.LocationName);
                 const existOtros = otros.filter((loc) => loc.Name == it.LocationName);
@@ -309,13 +309,13 @@ async function fnNettsegur(guid) {
                     const correo_abierto = it.Values.filter((val) => val.apiId == 'CORREOABIERTO')
                     const correo_final = it.Values.filter((val) => val.apiId == 'CORREOFINAL')
 
-                    console.log(correo_abierto, correo_final)
+                    // console.log(correo_abierto, correo_final)
 
                     if (estado[0].Value == 'ABIERTO') {
 
                         if (correo_abierto.length == 0) {
 
-                            console.log('entro al correo');
+                            // console.log('entro al correo');
 
                             await sendEmail(it.GUID, 'abierto', correo)
 
@@ -345,7 +345,7 @@ async function fnNettsegur(guid) {
 
                         } else {
                             if (correo_abierto[0].Value != 'ENVIADO') {
-                                console.log('entro al correo');
+                                // console.log('entro al correo');
 
                                 await sendEmail(it.GUID, 'abierto', correo)
 
@@ -415,7 +415,7 @@ async function fnNettsegur(guid) {
 
                         } else {
                             if (correo_final[0].Value != 'ENVIADO') {
-                                console.log('entro al correo');
+                                // console.log('entro al correo');
 
                                 await sendEmail(it.GUID, 'finalizado', correo)
 
@@ -463,11 +463,11 @@ async function fnNettsegur(guid) {
                         }
 
                     } else {
-                        console.log('No hay opción')
+                        // console.log('No hay opción')
                     }
 
                 } else {
-                    console.log('No hay nada')
+                    // console.log('No hay nada')
                 }
 
                 arr.push(it);
@@ -499,12 +499,12 @@ const envio = job.schedule('*/10 * * * *', async() => {
     try {
 
         const solicitud1 = await fnNettsegur('1gp0JCZkra')
-            //    console.log(solicitud1.length, 'todo')
+            //    // console.log(solicitud1.length, 'todo')
             // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
             // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
     }
 
 })
@@ -537,7 +537,7 @@ async function fnOszford(guid) {
                 const fecha = moment(it.DispatchDateTime).format('YYYY-MM-DD')
 
                 if (fecha >= from && fecha <= to) {
-                    console.log(it)
+                    // console.log(it)
 
 
                     const leido = it.Values.filter((val) => val.apiId == 'LEIDO')
@@ -545,7 +545,7 @@ async function fnOszford(guid) {
                     const dia = it.Values.filter((val) => val.apiId == 'FECHA')
                     const hora = it.Values.filter((val) => val.apiId == 'HORA')
 
-                    console.log(leido)
+                    // console.log(leido)
 
                     if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
                         if (leido.length > 0) {
@@ -655,12 +655,102 @@ const oszford = job.schedule('* * * * *', async() => {
     try {
 
         //   const solicitud1 = await fnOszford('H3ZjmGoHEB')
-        //  console.log(solicitud1.length, 'todo')
+        //  // console.log(solicitud1.length, 'todo')
         // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
         // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
+    }
+
+})
+
+
+ function fnDiamante() {
+    return new Promise(async(resolve, reject) => {
+        try {
+
+            moment.locale('es')
+
+            //auxiliarcomercial@oszford.com
+
+            const resp = await axios.get('https://api.visitrack.com/api/Assets/AssetsByTypeID?AccessToken=185E6FB1-129C-480A-A2A2-CF7C5813FACD&AssetTypeID=1JJkNDXMay');
+
+            if (resp.data) {
+
+                
+       
+                for (const item of resp.data) {
+
+                    const fecha = item.Values.filter((it) => it.apiId == 'FECHAMPREVENTIVO');
+                    console.log(fecha)
+                    if (fecha.length > 0) {
+                        console.log('entramos')
+                        const hoy = moment().format('YYYY-MM-DD');
+                  
+                        const fh = moment(fecha[0].Value).format('YYYY-MM-DD')
+                        console.log(fecha[0].Value, fh)
+                        const diff = moment(fh).diff(moment(hoy), 'days');
+                        console.log(diff, hoy, fh)
+
+                        if (diff >= 0) {
+                            console.log('enviar')
+                        
+
+                            const body = `<div style=" width: 600px; margin: 20px auto; padding: 20px; border-radius: 20px; background-color: #E2F0FD; font-family: sans-serif; height: 600px;">
+                            <h3 style="text-align: center; font-size: 32px; margin-bottom: 100px;">Mantenimiento Preventivo</h3>
+                  
+                            <p style="text-align: center; line-height: 2; font-size: 16px;">El dìa ${moment(fh).format('LL')} està programado el mantenimiento preventivo del equipo <strong> ${item.Name} </strong></p> <br>
+                  
+                  
+                            <div style="text-align: center;">
+                            <img src="https://s3.amazonaws.com/logocompanies/CC55B13F-5CA2-4420-A313-539CD18BD5B4.png
+" width="150px"                            >
+                            </div>
+                  
+                            </div>`;
+                  
+                  
+                              const rs = await axios.post('https://api.visitrack.com/api/SendEmail', {
+                                  AccessToken: '185E6FB1-129C-480A-A2A2-CF7C5813FACD',
+                                  Email: 'santiago.velasco@visitrack.com',
+                                  Subject: 'MANTENIMIENTO PREVENTIVO - ' + item.Name.toUpperCase(),
+                                  Body: body,
+                              });
+                  
+                           
+                        }
+                     
+                    }
+       
+                }
+
+                resolve(true)
+    
+            }
+
+        } catch (error) {
+            resolve(false)
+        }
+
+    })
+}
+
+
+const diamante = job.schedule('* * * * *', async() => {
+
+
+    try {
+
+        await fnDiamante()
+
+        //   const solicitud1 = await fnOszford('H3ZjmGoHEB')
+        //  // console.log(solicitud1.length, 'todo')
+        // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
+        // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
+
+    } catch (err) {
+        // console.log(err)
     }
 
 })
