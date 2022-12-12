@@ -269,7 +269,7 @@ async function fnNettsegur(guid) {
             const nett = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'NETTSEGUR' })
 
             const otros = await getLocation({ tkn: '538670140830D5E9B8D5C473F050E9E3', guid: 'A3C83A43-E680-4936-8EA0-198A42B62598', workzone: 'OTROS CLIENTES' })
-            // console.log(nett.length, otros.length)
+                // console.log(nett.length, otros.length)
 
             if (nett.length == 0 && otros.length == 0) {
                 return;
@@ -666,7 +666,7 @@ const oszford = job.schedule('* * * * *', async() => {
 })
 
 
- function fnDiamante() {
+function fnDiamante() {
     return new Promise(async(resolve, reject) => {
         try {
 
@@ -678,8 +678,8 @@ const oszford = job.schedule('* * * * *', async() => {
 
             if (resp.data) {
 
-                
-       
+
+
                 for (const item of resp.data) {
 
                     const fecha = item.Values.filter((it) => it.apiId == 'FECHAMPREVENTIVO');
@@ -687,7 +687,7 @@ const oszford = job.schedule('* * * * *', async() => {
                     if (fecha.length > 0) {
                         console.log('entramos')
                         const hoy = moment().format('YYYY-MM-DD');
-                  
+
                         const fh = moment(fecha[0].Value).format('YYYY-MM-DD')
                         console.log(fecha[0].Value, fh)
                         const diff = moment(fh).diff(moment(hoy), 'days');
@@ -695,7 +695,7 @@ const oszford = job.schedule('* * * * *', async() => {
 
                         if (diff >= 0) {
                             console.log('enviar')
-                        
+
 
                             const body = `<div style=" width: 600px; margin: 20px auto; padding: 20px; border-radius: 20px; background-color: #E2F0FD; font-family: sans-serif; height: 600px;">
                             <h3 style="text-align: center; font-size: 32px; margin-bottom: 100px;">Mantenimiento Preventivo</h3>
@@ -709,24 +709,24 @@ const oszford = job.schedule('* * * * *', async() => {
                             </div>
                   
                             </div>`;
-                  
-                  
-                              const rs = await axios.post('https://api.visitrack.com/api/SendEmail', {
-                                  AccessToken: '185E6FB1-129C-480A-A2A2-CF7C5813FACD',
-                                  Email: 'santiago.velasco@visitrack.com',
-                                  Subject: 'MANTENIMIENTO PREVENTIVO - ' + item.Name.toUpperCase(),
-                                  Body: body,
-                              });
-                  
-                           
+
+
+                            const rs = await axios.post('https://api.visitrack.com/api/SendEmail', {
+                                AccessToken: '185E6FB1-129C-480A-A2A2-CF7C5813FACD',
+                                Email: 'mantenimientobogota@diamante.com.co;Coordinadortecnico@diamante.com.co;jefetecnico.bogota@diamante.com.co',
+                                Subject: 'MANTENIMIENTO PREVENTIVO - ' + item.Name.toUpperCase(),
+                                Body: body,
+                            });
+
+
                         }
-                     
+
                     }
-       
+
                 }
 
                 resolve(true)
-    
+
             }
 
         } catch (error) {
