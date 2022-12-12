@@ -737,7 +737,7 @@ function fnDiamante() {
 }
 
 
-const diamante = job.schedule('* * * * *', async() => {
+const diamante = job.schedule('*/50 * * * *', async() => {
 
 
     try {
