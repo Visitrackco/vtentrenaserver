@@ -590,6 +590,9 @@ let ApiService = class ApiService {
     getAsset(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByLocationID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    deleteActivity(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/DeleteActivity`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     getLists(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Lists/ByTypeGUID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -2946,6 +2949,27 @@ let CargaTaskComponent = class CargaTaskComponent {
                     }, {
                         apiId: 'AREA',
                         Value: data.area
+                    }, {
+                        apiId: 'TIPODEAREA',
+                        Value: data.tipoarea
+                    }, {
+                        apiId: 'SUB_AREA',
+                        Value: data.subarea
+                    }, {
+                        apiId: 'TIPO_ZONA',
+                        Value: data.tipozona
+                    }, {
+                        apiId: 'TIPO_ESTRUCTURA',
+                        Value: data.estructura
+                    }, {
+                        apiId: 'UBICACION',
+                        Value: data.ubicacion
+                    }, {
+                        apiId: 'PISO',
+                        Value: data.piso
+                    }, {
+                        apiId: 'NMC',
+                        Value: data.nmc
                     }]),
                 ActivityGUID: '',
                 CompanyStatusGUID: 'CA1B6E82-15F9-458C-B6A1-D988C7194C76'
@@ -2968,6 +2992,27 @@ let CargaTaskComponent = class CargaTaskComponent {
                         }, {
                             apiId: 'AREA',
                             Value: data.area
+                        }, {
+                            apiId: 'TIPODEAREA',
+                            Value: data.tipoarea
+                        }, {
+                            apiId: 'SUB_AREA',
+                            Value: data.subarea
+                        }, {
+                            apiId: 'TIPO_ZONA',
+                            Value: data.tipozona
+                        }, {
+                            apiId: 'TIPO_ESTRUCTURA',
+                            Value: data.estructura
+                        }, {
+                            apiId: 'UBICACION',
+                            Value: data.ubicacion
+                        }, {
+                            apiId: 'PISO',
+                            Value: data.piso
+                        }, {
+                            apiId: 'NMC',
+                            Value: data.nmc
                         }]),
                     ActivityGUID: '',
                     CompanyStatusGUID: 'CA1B6E82-15F9-458C-B6A1-D988C7194C76'
@@ -3018,12 +3063,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -3041,7 +3086,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
@@ -3049,6 +3094,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./carga-task/carga-task.component */ 65633);
 /* harmony import */ var _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./Inverpack/usarios-inver/usarios-inver.component */ 78280);
 /* harmony import */ var _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./oszford/proximos/proximos.component */ 80118);
+/* harmony import */ var _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./menu-oszford/menu-oszford.component */ 38311);
+
 
 
 
@@ -3082,8 +3129,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_26__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_27__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_27__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_28__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -3109,12 +3156,13 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_26__.__decorate)([
             _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
             _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
-            _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent
+            _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
+            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_28__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_29__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_30__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_29__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_30__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_31__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -3142,7 +3190,8 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_26__.__decorate)([
             _controlcdoasistencial_controlcdoasistencial_component__WEBPACK_IMPORTED_MODULE_22__.ControlcdoasistencialComponent,
             _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
-            _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent
+            _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
+            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent
         ]
     })
 ], ComponentsModule);
@@ -3273,6 +3322,42 @@ ControlcdoasistencialComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorat
         styles: [_controlcdoasistencial_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ControlcdoasistencialComponent);
+
+
+
+/***/ }),
+
+/***/ 38311:
+/*!*******************************************************************!*\
+  !*** ./src/app/components/menu-oszford/menu-oszford.component.ts ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MenuOszfordComponent": () => (/* binding */ MenuOszfordComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _menu_oszford_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menu-oszford.component.html?ngResource */ 52340);
+/* harmony import */ var _menu_oszford_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu-oszford.component.scss?ngResource */ 99143);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+
+
+let MenuOszfordComponent = class MenuOszfordComponent {
+    constructor() { }
+    ngOnInit() { }
+};
+MenuOszfordComponent.ctorParameters = () => [];
+MenuOszfordComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+        selector: 'app-menu-oszford',
+        template: _menu_oszford_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_menu_oszford_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], MenuOszfordComponent);
 
 
 
@@ -5056,6 +5141,17 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
 
 /***/ }),
 
+/***/ 99143:
+/*!********************************************************************************!*\
+  !*** ./src/app/components/menu-oszford/menu-oszford.component.scss?ngResource ***!
+  \********************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtZW51LW9zemZvcmQuY29tcG9uZW50LnNjc3MifQ== */";
+
+/***/ }),
+
 /***/ 91346:
 /*!****************************************************************!*\
   !*** ./src/app/components/menu/menu.component.scss?ngResource ***!
@@ -5339,6 +5435,17 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"agilissa\">\n      <ion-t
 
 "use strict";
 module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>CONTROL SOLICITUDES </ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"cerrar()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n\n\n</ion-header>\n\n\n<ion-content class=\"ion-padding\">\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"buscar($event)\"></ion-searchbar>\n\n\n\n    <div>\n        <ion-card class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of tabla | filtrosolicpadres : txt; let i = index; \">\n\n            <ion-card-header class=\"ion-padding\">\n                <ion-card-title>{{item.hab}}</ion-card-title>\n                <ion-card-subtitle>{{item.cam}}</ion-card-subtitle>\n            </ion-card-header>\n\n\n\n\n\n            <ion-card-content>\n\n                <div class=\"separador\"></div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"verde\"></ion-avatar>\n                        Completado\n                    </div>\n                    <strong>{{ item.verdes }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"amarillo\"></ion-avatar>\n                        En progreso\n                    </div>\n                    <strong>{{ item.amarillos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"rojo\"></ion-avatar>\n                        Pentientes aseo\n                    </div>\n                    <strong>{{ item.rojos }}</strong>\n                </div>\n\n                <div class=\"flex\">\n                    <div class=\"tit\">\n                        <ion-avatar class=\"gris\"></ion-avatar>\n                        Cancelados\n                    </div>\n                    <strong>{{ item.grises }}</strong>\n                </div> <br>\n\n\n                <div class=\"flex\">\n                    <div class=\"tit ion-text-wrap\">\n                        <ion-avatar class=\"azul\"></ion-avatar>\n                        Eliminadas por limpieza previa a solicitud\n                    </div>\n                    <strong>{{ item.azules }}</strong>\n                </div> <br>\n\n                <div class=\"ldg\" *ngIf=\"item.ldg\">\n                    <ion-spinner name=\"crescent\"></ion-spinner>\n                    <h4>Cambiando estado, por favor espere</h4>\n                </div>\n\n                <ion-button *ngIf=\"item.rojos > 0 && item.verdes == 0 && item.grises == 0 && item.amarillos == 0\" expand=\"block\" color=\"danger\" mode=\"iod\" (click)=\"eliminar(item, i)\">Eliminar</ion-button>\n\n            </ion-card-content>\n        </ion-card> <br> <br>\n    </div>\n\n\n\n</ion-content>";
+
+/***/ }),
+
+/***/ 52340:
+/*!********************************************************************************!*\
+  !*** ./src/app/components/menu-oszford/menu-oszford.component.html?ngResource ***!
+  \********************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<p>\n  menu-oszford works!\n</p>\n";
 
 /***/ }),
 
