@@ -510,10 +510,55 @@ const envio = job.schedule('*/10 * * * *', async() => {
 })
 
 // OSZFORD
-/*
+
+async function getUsers(tkn) {
+    return new Promise(async(resolve, reject) => {
+
+        try {
+            const resp = await axios.post('https://api.visitrack.com/api/Users/All', {
+                AccessToken: tkn
+            });
+
+            if (resp.data) {
+                resolve(resp.data)
+            }
+        } catch (error) {
+            resolve([])
+        }
+
+    })
+}
+
+
+
+async function push(tkn, id, title, msg) {
+    return new Promise(async(resolve, reject) => {
+
+        try {
+            const resp = await axios.post('https://api.visitrack.com/api/PushNotification/Send', {
+                AccessToken: tkn,
+                DeviceID: "",
+                UserID: id,
+                Title: title,
+                Message: msg
+            });
+
+            if (resp.data) {
+                resolve(resp.data)
+            }
+        } catch (error) {
+            resolve([])
+        }
+
+    })
+}
+
 async function fnOszford(guid) {
     try {
         const hoy = moment().format('YYYY-MM-DD')
+
+
+
         const resp = await axios.post('https://api.visitrack.com/api/Surveys/Activities', {
             AccessToken: '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE',
             From: moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD HH:mm'),
@@ -531,13 +576,23 @@ async function fnOszford(guid) {
             for (const item of resp.data) {
 
 
+
+
                 const it = await fnInfo(item.GUID, '31CA0D6B-1A7F-4778-9F5D-07145AFF14FE')
+
+                console.log(it, 'itemosz')
+
+
                 const from = moment(hoy + ' 00:00').subtract(1, 'days').format('YYYY-MM-DD')
                 const to = moment(hoy + ' 23:59').format('YYYY-MM-DD')
                 const fecha = moment(it.DispatchDateTime).format('YYYY-MM-DD')
 
+
+
                 if (fecha >= from && fecha <= to) {
                     // console.log(it)
+
+                    console.log('mayores')
 
 
                     const leido = it.Values.filter((val) => val.apiId == 'LEIDO')
@@ -545,10 +600,19 @@ async function fnOszford(guid) {
                     const dia = it.Values.filter((val) => val.apiId == 'FECHA')
                     const hora = it.Values.filter((val) => val.apiId == 'HORA')
 
+                    console.log(gestion, leido, hora, dia)
+
                     // console.log(leido)
 
                     if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
                         if (leido.length > 0) {
+
+                            console.log('ENTRAMOS')
+
+                            const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
+
+                            console.log(push, 'push')
+                            return;
 
                             if (leido[0].Value != 'SI') {
 
@@ -559,6 +623,14 @@ async function fnOszford(guid) {
                             }
 
                         } else {
+
+                            console.log('NADA')
+
+                            const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
+
+
+                            console.log(pussh, 'push')
+                            return;
 
                             moment.locale('es')
 
@@ -584,11 +656,6 @@ async function fnOszford(guid) {
 
             }
 
-
-
-
-
-
         }
 
 
@@ -599,7 +666,9 @@ async function fnOszford(guid) {
     }
 }
 
-*/
+
+
+
 
 //H3ZjmGoHEB 
 
@@ -654,10 +723,10 @@ const oszford = job.schedule('* * * * *', async() => {
 
     try {
 
-        //   const solicitud1 = await fnOszford('H3ZjmGoHEB')
-        //  // console.log(solicitud1.length, 'todo')
-        // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
-        // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
+        const solicitud1 = await fnOszford('H3ZjmGoHEB')
+            //  // console.log(solicitud1.length, 'todo')
+            // const solicitud2 = await fnForm('02CEE670-587E-49CA-A2CC-C10B1D519F65')
+            // const solicitud3 = await fnForm('76E93F88-7612-466E-BBD7-3C95A7679D6D')
 
     } catch (err) {
         // console.log(err)
