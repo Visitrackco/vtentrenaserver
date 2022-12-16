@@ -607,34 +607,31 @@ async function fnOszford(guid) {
                     if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
                         if (leido.length > 0) {
 
-                            console.log('ENTRAMOS')
-
-                            const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
-
-                            console.log(push, 'push')
-                            return;
+                        
+                    
 
                             if (leido[0].Value != 'SI') {
 
                                 moment.locale('es')
+                                const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
-                                await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
+                            //    await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
                                 arr.push(it);
                             }
 
                         } else {
 
                             console.log('NADA')
-
+    moment.locale('es')
                             const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
 
                             console.log(pussh, 'push')
-                            return;
+                         
 
-                            moment.locale('es')
+                        
 
-                            await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
+                          //  await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
 
 
                             arr.push(it);
@@ -718,7 +715,7 @@ async function sendEmailOszford(guid, msg) {
 }
 
 
-const oszford = job.schedule('* * * * *', async() => {
+const oszford = job.schedule('*/30 * * * *', async() => {
 
 
     try {
