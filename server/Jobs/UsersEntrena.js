@@ -607,31 +607,31 @@ async function fnOszford(guid) {
                     if (gestion.length > 0 && dia.length > 0 && hora.length > 0) {
                         if (leido.length > 0) {
 
-                        
-                    
+
+
 
                             if (leido[0].Value != 'SI') {
 
                                 moment.locale('es')
                                 const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
-                            //    await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
+                                //    await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
                                 arr.push(it);
                             }
 
                         } else {
 
                             console.log('NADA')
-    moment.locale('es')
+                            moment.locale('es')
                             const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
 
                             console.log(pussh, 'push')
-                         
 
-                        
 
-                          //  await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
+
+
+                            //  await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
 
 
                             arr.push(it);
@@ -759,14 +759,14 @@ function fnDiamante() {
                         const diff = moment(fh).diff(moment(hoy), 'days');
                         console.log(diff, hoy, fh)
 
-                        if (diff >= 0) {
+                        if (diff == 7 || diff == 1) {
                             console.log('enviar')
 
 
                             const body = `<div style=" width: 600px; margin: 20px auto; padding: 20px; border-radius: 20px; background-color: #E2F0FD; font-family: sans-serif; height: 600px;">
                             <h3 style="text-align: center; font-size: 32px; margin-bottom: 100px;">Mantenimiento Preventivo</h3>
                   
-                            <p style="text-align: center; line-height: 2; font-size: 16px;">El dìa ${moment(fh).format('LL')} està programado el mantenimiento preventivo del equipo <strong> ${item.Name} </strong></p> <br>
+                            <p style="text-align: center; line-height: 2; font-size: 16px;">El dìa ${moment(fh).format('LL')} està programado el mantenimiento preventivo del equipo <strong> ${item.Name} </strong> del centro de costo <strong> ${item.LocationName} </strong></p> <br>
                   
                   
                             <div style="text-align: center;">
