@@ -279,12 +279,11 @@ let BiomedicosPage = class BiomedicosPage {
             yield alert.present();
         });
     }
-    cargarData() {
-        this.cargaActividades = false;
-        this.actividades = [];
-        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(1, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), 'FCA171F7-227E-41FA-9129-CC5D3D7F20B3').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
-            console.log(data);
+    loadForm(guid) {
+        this.api.getActivities2(this.tkn, moment_timezone__WEBPACK_IMPORTED_MODULE_5__().subtract(1, 'days').format('YYYY-MM-DD HH:mm'), moment_timezone__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD HH:mm'), guid).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            console.log(data, 'jjjj jjj');
             data = data.filter((item) => item.CompanyStatusName == 'Completado');
+            //  console.log(data, guid)
             for (const item of data) {
                 const miData = yield this.getInfo(item.GUID);
                 if (miData) {
@@ -297,7 +296,7 @@ let BiomedicosPage = class BiomedicosPage {
                                 AccessToken: this.tkn,
                                 ParentGUID: item.GUID
                             }).subscribe((dat) => {
-                                console.log(dat);
+                                //    console.log(dat)
                                 const form = dat.filter((dt) => dt.SurveyGUID == 'HreSCg1x3x');
                                 if (form.length == 0) {
                                     this.actividades.push(miData);
@@ -310,6 +309,33 @@ let BiomedicosPage = class BiomedicosPage {
             this.cargaActividades = true;
             console.log(this.actividades);
         }));
+    }
+    cargarData() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            this.cargaActividades = false;
+            this.actividades = [];
+            const forms = ['83EC0150-E05B-4899-88E1-13927A13609B',
+                '2CF2B070-B16D-4706-B0C3-217D7382A8D4',
+                '8yKXfEvHrz',
+                'nx7wO11KEk',
+                'tGVCGnh1PH',
+                'koTezQ0BUn',
+                'Cl2doTKyV8',
+                'E0854CB4-9430-4B0D-B24E-1D7E9FE50F00',
+                'F4C68952-DB83-4D5F-AA23-01A67B5D2C89',
+                '68791917-03D4-45F7-A4FA-142DF8838D63',
+                'D3A4A61E-07D3-421B-8504-203080CD4E89',
+                '51BCB4A2-243A-458C-A723-A957B0E059FD',
+                'JPx3BgWh83',
+                '273E87EE-D037-442B-A1F7-F51C0E36CD28',
+                '41E06927-259F-4042-84D5-E1CE53EA3209',
+                '0F5EC982-1869-4CDB-BFAE-5A29B6C73D7A',
+                '46151D72-E806-4A10-9E76-0ED97BD65565',
+                'A2A9702D-FCC8-416B-A140-BDE3DD68FFC4'];
+            for (const form of forms) {
+                yield this.loadForm(form);
+            }
+        });
     }
     cambio(event) {
         this.txt = event.detail.value;
@@ -419,7 +445,7 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
   \*****************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>AUDITORIA </ion-title>\n        <ion-buttons slot=\"end\">\n\n\n        </ion-buttons>\n    </ion-toolbar>\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>HABITACIÓN:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CAMA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHA_SOLICITUD'}}</span></div>\n\n                    <br>\n\n                    <ion-button mode=\"ios\" expand=\"block\" color=\"primary\" (click)=\"tomar(item, i)\">Tomar Solicitud</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
+module.exports = "<ion-header>\n\n    <ion-toolbar color=\"dark\">\n\n        <ion-title>AUDITORIA </ion-title>\n        <ion-buttons slot=\"end\">\n\n\n        </ion-buttons>\n    </ion-toolbar>\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div><strong>HABITACIÓN:</strong> <br> <span>{{item.LocationName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>CAMA:</strong> <br> <span>{{item.AssetName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHA'}} - {{item.Values | values : 'HORA'}}</span></div>\n\n                    <br>\n\n                    <ion-button mode=\"ios\" expand=\"block\" color=\"primary\" (click)=\"tomar(item, i)\">Tomar Solicitud</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
 
 /***/ })
 

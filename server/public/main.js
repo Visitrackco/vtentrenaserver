@@ -46,6 +46,76 @@ FiltroAgilissaPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
 
 /***/ }),
 
+/***/ 16916:
+/*!***********************************************************!*\
+  !*** ./src/app/Pipes/Filters/diamante/filterUser.pipe.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FiltroUsuarioPipe": () => (/* binding */ FiltroUsuarioPipe)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+let FiltroUsuarioPipe = class FiltroUsuarioPipe {
+    transform(value, text) {
+        text = text.toLowerCase();
+        return text == '' ? value : value.filter((item) => {
+            let name = item.FirstName.toLowerCase();
+            let last = item.LastName.toLowerCase();
+            return name.includes(text) || last.includes(text);
+        });
+    }
+};
+FiltroUsuarioPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Pipe)({
+        name: 'filtroUsuario'
+    })
+], FiltroUsuarioPipe);
+
+
+
+/***/ }),
+
+/***/ 96465:
+/*!*************************************************************!*\
+  !*** ./src/app/Pipes/Filters/diamante/filtroActivo.pipe.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FiltroActivooPipe": () => (/* binding */ FiltroActivooPipe)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+let FiltroActivooPipe = class FiltroActivooPipe {
+    transform(value, text) {
+        text = text.toLowerCase();
+        return text == '' ? value : value.filter((item) => {
+            let name = item.Name.toLowerCase();
+            let last = item.LocationName.toLowerCase();
+            return name.includes(text) || last.includes(text);
+        });
+    }
+};
+FiltroActivooPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Pipe)({
+        name: 'filtroActivo'
+    })
+], FiltroActivooPipe);
+
+
+
+/***/ }),
+
 /***/ 74932:
 /*!*********************************************************!*\
   !*** ./src/app/Pipes/Filters/filter-repository.pipe.ts ***!
@@ -297,14 +367,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let FiltroDiamanteMttoPipe = class FiltroDiamanteMttoPipe {
-    transform(value, filtroby) {
+    transform(value, filtroby, all) {
         filtroby = filtroby.toLowerCase();
-        return filtroby == '' ? [] : value.filter((item) => {
-            let val = item.Name.toLowerCase();
-            if (val.includes(filtroby)) {
-                return item;
-            }
-        });
+        if (all) {
+            return filtroby == '' ? value : value.filter((item) => {
+                let val = item.Name.toLowerCase();
+                if (val.includes(filtroby)) {
+                    return item;
+                }
+            });
+        }
+        else {
+            return filtroby == '' ? [] : value.filter((item) => {
+                let val = item.Name.toLowerCase();
+                if (val.includes(filtroby)) {
+                    return item;
+                }
+            });
+        }
     }
 };
 FiltroDiamanteMttoPipe = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
@@ -430,8 +510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PipesModule": () => (/* binding */ PipesModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Filters/filter-repository.pipe */ 74932);
 /* harmony import */ var _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filters/users.pipe */ 34246);
 /* harmony import */ var _Filters_filterUserRepo_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filters/filterUserRepo.pipe */ 91724);
@@ -443,6 +523,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Filters/filtroSolicPadres.pipe */ 58454);
 /* harmony import */ var _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Filters/filtrodiamante.pipe */ 14265);
 /* harmony import */ var _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Filters/agilissa/filtroAgilissa.pipe */ 3484);
+/* harmony import */ var _Filters_diamante_filterUser_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Filters/diamante/filterUser.pipe */ 16916);
+/* harmony import */ var _Filters_diamante_filtroActivo_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Filters/diamante/filtroActivo.pipe */ 96465);
+
+
 
 
 
@@ -458,8 +542,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let PipesModule = class PipesModule {
 };
-PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.NgModule)({
+PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.NgModule)({
         declarations: [
             _Filters_filter_repository_pipe__WEBPACK_IMPORTED_MODULE_0__.FilterRepositoryPipe,
             _Filters_users_pipe__WEBPACK_IMPORTED_MODULE_1__.UsersPipe,
@@ -471,7 +555,9 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
             _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
             _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe,
-            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe
+            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe,
+            _Filters_diamante_filterUser_pipe__WEBPACK_IMPORTED_MODULE_11__.FiltroUsuarioPipe,
+            _Filters_diamante_filtroActivo_pipe__WEBPACK_IMPORTED_MODULE_12__.FiltroActivooPipe
         ],
         imports: [],
         exports: [
@@ -485,7 +571,9 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
             _Filters_filtroGeneralCDO_pipe__WEBPACK_IMPORTED_MODULE_7__.FiltroGeneralCDOpIpe,
             _Filters_filtroSolicPadres_pipe__WEBPACK_IMPORTED_MODULE_8__.FiltroPadrePipe,
             _Filters_filtrodiamante_pipe__WEBPACK_IMPORTED_MODULE_9__.FiltroDiamanteMttoPipe,
-            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe
+            _Filters_agilissa_filtroAgilissa_pipe__WEBPACK_IMPORTED_MODULE_10__.FiltroAgilissaPipe,
+            _Filters_diamante_filterUser_pipe__WEBPACK_IMPORTED_MODULE_11__.FiltroUsuarioPipe,
+            _Filters_diamante_filtroActivo_pipe__WEBPACK_IMPORTED_MODULE_12__.FiltroActivooPipe
         ]
     })
 ], PipesModule);
@@ -508,11 +596,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -584,6 +672,9 @@ let ApiService = class ApiService {
     getAssets(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    getAssetsGET(data) {
+        return this.Http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/AssetsByTypeID?AccessToken=${data.tkn}&AssetTypeID=${data.guid}`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     updateSurvey(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/UpdateFields`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -601,6 +692,12 @@ let ApiService = class ApiService {
     }
     createAsset(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Assets/PUT`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    createLocation(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Locations/PUT`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    getLocations(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Locations/ByTypeID`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
     childs(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/ActivityChilds`, data).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.timeout)(30000), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
@@ -625,6 +722,15 @@ let ApiService = class ApiService {
             FormGUID: form,
         }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    getActivities3(tkn, from, to, form) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/Activities`, {
+            AccessToken: tkn,
+            From: from,
+            To: to,
+            FormGUID: form,
+            ByUser: true
+        }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     changeStatus(data) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/SetDatetime`, {
             AccessToken: data.tkn,
@@ -639,6 +745,14 @@ let ApiService = class ApiService {
             DispachDateTime: data.date,
             UserGUID: data.user,
             CompanyStatusGUID: data.status,
+            ActivityGUID: data.guid,
+        }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
+    changeUser(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/SetDatetime`, {
+            AccessToken: data.tkn,
+            UserGUID: data.user,
+            DispachDateTime: data.date,
             ActivityGUID: data.guid,
         }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -790,10 +904,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
 
 
 
@@ -1331,8 +1445,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1571,6 +1685,14 @@ const routes = [
     {
         path: 'interfaces/inverpack/mantenimientos',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
+    },
+    {
+        path: 'interfaces/asignacion-diamante',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_asignacion-diamante_asignacion-diamante_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/asignacion-diamante/asignacion-diamante.module */ 38328)).then(m => m.AsignacionDiamantePageModule)
+    },
+    {
+        path: 'interfaces/brillantex',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_brillantex_brillantex_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/brillantex/brillantex.module */ 15059)).then(m => m.BrillantexPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -2899,13 +3021,84 @@ let CargaTaskComponent = class CargaTaskComponent {
         this.api = api;
         this.load = true;
         this.list = [];
+        this.actual = moment_timezone__WEBPACK_IMPORTED_MODULE_2__().format('YYYY-MM');
+        this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__().format('YYYY-MM');
+        this.mesMuestra = '';
+        this.executesTask = [];
     }
     ngOnInit() { }
     close() {
         this.modalCtrl.dismiss();
     }
     ionViewWillEnter() {
-        this.loadActivities();
+        if (!this.type) {
+            this.loadActivities();
+        }
+        moment_timezone__WEBPACK_IMPORTED_MODULE_2__.locale('es');
+        this.mesMuestra = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).format('MMMM YYYY');
+        console.log(this.users);
+    }
+    select(event) {
+        this.userSelect = event.detail.value;
+        this.executesTask = this.executes.filter((it) => it.AssignedToGUID == this.userGUID);
+        console.log(this.executesTask, this.userSelect);
+    }
+    processReassgined() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.carga = true;
+            for (const dat of this.executesTask) {
+                const resp = yield this.reassing(dat.GUID, this.userSelect, moment_timezone__WEBPACK_IMPORTED_MODULE_2__(dat.DispatchDateTime).format('YYYY-MM-DD HH:mm:ss'));
+                if (resp) {
+                    this.list.push(1);
+                }
+            }
+            this.carga = false;
+            this.modalCtrl.dismiss({});
+        });
+    }
+    prev() {
+        moment_timezone__WEBPACK_IMPORTED_MODULE_2__.locale('es');
+        this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).subtract(1, 'months').format('YYYY-MM');
+        this.mesMuestra = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).format('MMMM YYYY');
+    }
+    next() {
+        moment_timezone__WEBPACK_IMPORTED_MODULE_2__.locale('es');
+        this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).add(1, 'months').format('YYYY-MM');
+        this.mesMuestra = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).format('MMMM YYYY');
+    }
+    process() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const diff = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).diff(moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.actual), 'months');
+            this.carga = true;
+            for (const acivity of this.executes) {
+                const programacion = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(acivity.DispatchDateTime).add(diff, 'months').format('YYYY-MM-DD HH:mm:ss');
+                const sector = acivity.Values.filter((it) => it.apiId == 'SECTOR');
+                const tipo = acivity.Values.filter((it) => it.apiId == 'TAREA');
+                console.log(programacion, acivity);
+                const resp = yield this.createOnlyActivity({
+                    loc: acivity.LocationGUID,
+                    ass: acivity.AssetGUID,
+                    user: acivity.AssignedToGUID,
+                    dur: acivity.DurationMins,
+                    start: programacion,
+                    sector: sector.length > 0 ? sector[0].Value : '',
+                    tipo: tipo.length > 0 ? tipo[0].Value : '',
+                    area: acivity.area,
+                    subarea: acivity.subarea,
+                    tipoarea: acivity.tipoarea,
+                    tipozona: acivity.tipozona,
+                    ubicacion: acivity.ubicacion,
+                    estructura: acivity.estructura,
+                    piso: acivity.piso,
+                    nmc: acivity.nmc
+                }, true);
+                if (resp) {
+                    this.list.push(1);
+                }
+            }
+            this.carga = false;
+            this.modalCtrl.dismiss();
+        });
     }
     loadActivities() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
@@ -2919,18 +3112,23 @@ let CargaTaskComponent = class CargaTaskComponent {
             this.modalCtrl.dismiss(this.list);
         });
     }
-    createOnlyActivity(data) {
+    createOnlyActivity(data, valid) {
         console.log(data);
         return new Promise((resolve, reject) => {
             let tarea = '';
-            if (data.tipo == 'terminal') {
-                tarea = '04. Terminal';
+            if (valid) {
+                tarea = data.tipo;
             }
-            else if (data.tipo == 'rutinario') {
-                tarea = '02. Rutinaria';
-            }
-            else if (data.tipo == 'mantenimiento') {
-                tarea = '03. Mantenimiento';
+            else {
+                if (data.tipo == 'terminal') {
+                    tarea = '04. Terminal';
+                }
+                else if (data.tipo == 'rutinario') {
+                    tarea = '02. Rutinaria';
+                }
+                else if (data.tipo == 'mantenimiento') {
+                    tarea = '03. Mantenimiento';
+                }
             }
             console.log({
                 AccessToken: this.tkn,
@@ -3031,6 +3229,26 @@ let CargaTaskComponent = class CargaTaskComponent {
             }
         });
     }
+    reassing(guid, user, date) {
+        return new Promise((resolve, reject) => {
+            console.log({
+                tkn: this.tkn,
+                user,
+                guid
+            });
+            this.api.changeUser({
+                tkn: this.tkn,
+                user,
+                date,
+                guid
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+                console.log(dat);
+                resolve(dat);
+            }), () => resolve(true));
+        });
+    }
+    save() {
+    }
 };
 CargaTaskComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
@@ -3038,6 +3256,10 @@ CargaTaskComponent.ctorParameters = () => [
 ];
 CargaTaskComponent.propDecorators = {
     tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    type: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    executes: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    users: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    userGUID: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
     data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }]
 };
 CargaTaskComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
@@ -3063,12 +3285,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -3086,7 +3308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
@@ -3095,6 +3317,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./Inverpack/usarios-inver/usarios-inver.component */ 78280);
 /* harmony import */ var _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./oszford/proximos/proximos.component */ 80118);
 /* harmony import */ var _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./menu-oszford/menu-oszford.component */ 38311);
+/* harmony import */ var _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./users-diamante/users-diamante.component */ 87798);
+
 
 
 
@@ -3129,8 +3353,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_27__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_28__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_28__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_29__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -3157,12 +3381,13 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_27__.__decorate)([
             _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
-            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent
+            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
+            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_29__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_30__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_31__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_30__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_31__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_32__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -3191,7 +3416,8 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_27__.__decorate)([
             _carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_23__.CargaTaskComponent,
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
-            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent
+            _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
+            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent
         ]
     })
 ], ComponentsModule);
@@ -4073,6 +4299,148 @@ ProximosComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
 
 /***/ }),
 
+/***/ 87798:
+/*!***********************************************************************!*\
+  !*** ./src/app/components/users-diamante/users-diamante.component.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UsersDiamanteComponent": () => (/* binding */ UsersDiamanteComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _users_diamante_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-diamante.component.html?ngResource */ 51932);
+/* harmony import */ var _users_diamante_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users-diamante.component.scss?ngResource */ 76528);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+
+
+
+
+
+
+
+
+let UsersDiamanteComponent = class UsersDiamanteComponent {
+    constructor(api, toast, modal, loading) {
+        this.api = api;
+        this.toast = toast;
+        this.modal = modal;
+        this.loading = loading;
+        this.users = [];
+        this.text = '';
+        this.text2 = '';
+        this.locs = [];
+        this.lists = [];
+    }
+    ngOnInit() { }
+    ionViewWillEnter() {
+        console.log(this.data);
+        if (this.view == 1) {
+            this.api.getUsers(this.tkn).subscribe((data) => {
+                console.log(data, 'usuarios');
+                if (data.length > 0) {
+                    this.users = data.filter((item) => item.Active == 'True');
+                }
+                else {
+                    this.users = [];
+                }
+                this.carga = true;
+            }, () => this.carga = true);
+        }
+        else {
+            this.api.getLocations({ AccessToken: this.tkn, LocationTypeID: '73E2C37A-5570-4134-BDCA-5C394167F877' }).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+                if (data.length > 0) {
+                    this.locs = data;
+                }
+                else {
+                    this.locs = [];
+                }
+                console.log(this.locs);
+                this.lists = yield this.getList();
+                console.log(this.lists);
+                this.carga = true;
+            }), () => this.carga = true);
+        }
+    }
+    getList() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                this.api.getLists({ AccessToken: this.tkn, ListTypeGUID: 'zvIHQh7Kcj' }).subscribe((data) => {
+                    resolve(data);
+                }, () => resolve([]));
+            });
+        });
+    }
+    filter(event) {
+        this.text = event.detail.value;
+    }
+    filter2(event) {
+        this.text2 = event.detail.value;
+    }
+    created(user) {
+        // sA4XrNXEmV prev
+        // BF39EE15-4D86-4C07-B1C1-D967AAB22C34 corre
+        if (this.listSelect) {
+            this.loading.createLoading('Añadiendo ruta a centro de costo');
+            this.api.createLocation({
+                tkn: this.tkn,
+                LocationTypeGUID: '73E2C37A-5570-4134-BDCA-5C394167F877',
+                Name: user.Name
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+                console.log(dat);
+                if (dat.Status === 'OK') {
+                    yield this.loading.cancelLoading();
+                    yield this.modal.dismiss();
+                    yield this.toast.newCreatedToast('Centro de costo editado', false);
+                }
+                else {
+                    yield this.loading.cancelLoading();
+                    this.toast.newCreatedToast('No se pudo editar el centro de costo', false);
+                }
+            }));
+        }
+        else {
+            this.toast.newCreatedToast('Debe seleccionar una ruta', false);
+        }
+    }
+    select(event) {
+        this.listSelect = event.Name;
+        this.text2 = '';
+    }
+    close() {
+        this.modal.dismiss();
+    }
+};
+UsersDiamanteComponent.ctorParameters = () => [
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService },
+    { type: src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_4__.ToastService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_3__.LoadingService }
+];
+UsersDiamanteComponent.propDecorators = {
+    tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
+    type: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
+    data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }],
+    view: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.Input }]
+};
+UsersDiamanteComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+        selector: 'app-users-diamante',
+        template: _users_diamante_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_users_diamante_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], UsersDiamanteComponent);
+
+
+
+/***/ }),
+
 /***/ 85371:
 /*!*****************************************!*\
   !*** ./src/app/guards/entrena.guard.ts ***!
@@ -4429,12 +4797,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -5126,7 +5494,7 @@ module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  jus
 /***/ ((module) => {
 
 "use strict";
-module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJnYS10YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxvYWRpbmcge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gICAgcGFkZGluZzogMTBweDtcbn1cblxuLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59Il19 */";
+module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.flex h4 {\n  font-size: 18px;\n}\n\n.flexbt {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDSjs7QUFBSTtFQUNJLGVBQUE7QUFFUjs7QUFFQTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtBQUNKIiwiZmlsZSI6ImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBtYXJnaW46IDIwcHggMDtcbiAgICBwYWRkaW5nOiAxMHB4O1xufVxuXG4uZmxleCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBoNCB7XG4gICAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICB9XG59XG5cbi5mbGV4YnQge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufSJdfQ== */";
 
 /***/ }),
 
@@ -5204,6 +5572,17 @@ module.exports = ".rojo {\n  background-color: #E9463C;\n  color: #E9463C;\n}\n\
 
 "use strict";
 module.exports = ".rosa {\n  background-color: #E85B6A;\n}\n\n.amarillo {\n  background-color: #F5BC41;\n}\n\n.verde {\n  background-color: #7CE675;\n}\n\n.azul {\n  background-color: #4CA1EC;\n}\n\n.naranja {\n  background-color: #E85242;\n}\n\n.morado {\n  background-color: #8039BB;\n}\n\n.it1 {\n  background-color: #325863;\n}\n\n.it2 {\n  background-color: #325863;\n}\n\n.it3 {\n  background-color: #EA447B;\n}\n\n.it4 {\n  background-color: #9A2F53;\n}\n\n.it5 {\n  background-color: #4F1F7E;\n}\n\n.it6 {\n  background-color: #1F7132;\n}\n\n.it7 {\n  background-color: #CE4733;\n}\n\n.it8 {\n  background-color: #23699E;\n}\n\n.it9 {\n  background-color: #FA9E27;\n}\n\nion-avatar {\n  width: 30px;\n  height: 30px;\n}\n\nion-col {\n  padding: 10px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n.titulo {\n  background-color: #f1f1f1;\n}\n\n.tit {\n  background-color: blanchedalmond;\n}\n\n.evento .flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.center {\n  text-align: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.center h3 {\n  font-size: 24px;\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInByb3hpbW9zLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kseUJBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtBQUNKOztBQUVBO0VBQ0kseUJBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtBQUNKOztBQWFBO0VBQ0kseUJBQUE7QUFWSjs7QUFhQTtFQUNJLHlCQUFBO0FBVko7O0FBYUE7RUFDSSx5QkFBQTtBQVZKOztBQWFBO0VBQ0kseUJBQUE7QUFWSjs7QUFhQTtFQUNJLHlCQUFBO0FBVko7O0FBYUE7RUFDSSx5QkFBQTtBQVZKOztBQWFBO0VBQ0kseUJBQUE7QUFWSjs7QUFhQTtFQUNJLHlCQUFBO0FBVko7O0FBYUE7RUFDSSx5QkFBQTtBQVZKOztBQWFBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7QUFWSjs7QUFhQTtFQUNJLGFBQUE7RUFDQSxvQ0FBQTtBQVZKOztBQWFBO0VBQ0kseUJBQUE7QUFWSjs7QUFhQTtFQUNJLGdDQUFBO0FBVko7O0FBZUk7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQVpSOztBQWlCQTtFQUNJLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQWRKOztBQWdCSTtFQUNJLGVBQUE7RUFDQSxpQkFBQTtBQWRSIiwiZmlsZSI6InByb3hpbW9zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJvc2Ege1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNFODVCNkE7XG59XG5cbi5hbWFyaWxsbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0Y1QkM0MTtcbn1cblxuLnZlcmRlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjN0NFNjc1O1xufVxuXG4uYXp1bCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzRDQTFFQztcbn1cblxuLm5hcmFuamEge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNFODUyNDI7XG59XG5cbi5tb3JhZG8ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM4MDM5QkI7XG59XG5cblxuXG5cblxuXG5cblxuXG5cblxuXG4uaXQxIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzI1ODYzO1xufVxuXG4uaXQyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzI1ODYzO1xufVxuXG4uaXQzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRUE0NDdCO1xufVxuXG4uaXQ0IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjOUEyRjUzO1xufVxuXG4uaXQ1IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNEYxRjdFO1xufVxuXG4uaXQ2IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMUY3MTMyO1xufVxuXG4uaXQ3IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjQ0U0NzMzO1xufVxuXG4uaXQ4IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjM2OTlFO1xufVxuXG4uaXQ5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjRkE5RTI3O1xufVxuXG5pb24tYXZhdGFyIHtcbiAgICB3aWR0aDogMzBweDtcbiAgICBoZWlnaHQ6IDMwcHg7XG59XG5cbmlvbi1jb2wge1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgwLDAsMCwwLjEpO1xufVxuXG4udGl0dWxvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjFmMWYxO1xufVxuXG4udGl0IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFuY2hlZGFsbW9uZDtcbn1cblxuLmV2ZW50byB7XG5cbiAgICAuZmxleCB7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICB9XG5cbn1cblxuLmNlbnRlciB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuXG4gICAgaDMge1xuICAgICAgICBmb250LXNpemU6IDI0cHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIH1cbn0iXX0= */";
+
+/***/ }),
+
+/***/ 76528:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/users-diamante/users-diamante.component.scss?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.titulo {\n  background-color: #f1f1f1;\n  padding: 10px;\n  text-align: center;\n}\n\n.fila {\n  padding: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVzZXJzLWRpYW1hbnRlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0FBQ0o7O0FBRUE7RUFDSSxZQUFBO0FBQ0oiLCJmaWxlIjoidXNlcnMtZGlhbWFudGUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBtYXJnaW46IDIwcHggMDtcbiAgICBwYWRkaW5nOiAxMHB4O1xufVxuXG4udGl0dWxvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjFmMWYxO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uZmlsYSB7XG4gICAgcGFkZGluZzogNXB4O1xufSJdfQ== */";
 
 /***/ }),
 
@@ -5412,7 +5791,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"warning\">\n      <ion-ti
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <ion-title>Asignación</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <h3>{{ selectUsersList.length }} usuarios seleccionados</h3> <br>\n\n    <ion-item *ngFor=\"let user of users\">\n\n        <ion-checkbox (ionChange)=\"select($event)\" [value]=\"user\" mode=\"ios\" slot=\"start\" color=\"tertiary\"></ion-checkbox>\n        <ion-label>{{ user.FirstName }} {{ user.LastName }}</ion-label>\n\n    </ion-item> <br>\n    <ion-item color=\"light\" (click)=\"cs()\">\n        <ion-label>Seleccione fecha</ion-label>\n        <input type=\"date\" [(ngModel)]=\"fecha\">\n    </ion-item> <br> <br>\n\n    <div *ngIf=\"!load\">\n\n        <h3>Formularios creados</h3> <br>\n\n        <ion-item *ngFor=\"let user of generados\">\n\n            <ion-icon *ngIf=\"user.status\" color=\"success\" name=\"checkmark-done-circle\" slot=\"start\"></ion-icon>\n            <ion-icon *ngIf=\"!user.status\" color=\"danger\" name=\"close-circle\" slot=\"start\"></ion-icon>\n            <ion-label>{{ user.user }} </ion-label>\n\n        </ion-item> <br>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n\n    <ion-button *ngIf=\"select.length > 0 && fecha\" mode=\"ios\" color=\"tertiary\" expand=\"block\" (click)=\"createActivities()\">Crear asignaciones</ion-button>\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <ion-title>Asignación</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <h3>{{ selectUsersList.length }} usuarios seleccionados</h3> <br>\n\n    <ion-item *ngFor=\"let user of users\">\n\n        <ion-checkbox (ionChange)=\"select($event)\" [value]=\"user\" mode=\"ios\" slot=\"start\" color=\"tertiary\"></ion-checkbox>\n        <ion-label>{{ user.FirstName }} {{ user.LastName }}</ion-label>\n\n    </ion-item> <br>\n    <ion-item color=\"light\" (click)=\"cs()\">\n        <ion-label>Seleccione fecha</ion-label>\n        <input type=\"date\" [(ngModel)]=\"fecha\">\n    </ion-item> <br> <br>\n\n    <div *ngIf=\"!load\">\n\n        <h3>Formularios creados</h3> <br>\n\n        <ion-item *ngFor=\"let user of generados\">\n\n            <ion-icon *ngIf=\"user.status\" color=\"success\" name=\"checkmark-done-circle\" slot=\"start\"></ion-icon>\n            <ion-icon *ngIf=\"!user.status\" color=\"danger\" name=\"close-circle\" slot=\"start\"></ion-icon>\n            <ion-label>{{ user.user }} </ion-label>\n\n        </ion-item> <br>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n    <ion-button *ngIf=\"select.length > 0 && fecha\" mode=\"ios\" color=\"tertiary\" expand=\"block\" (click)=\"createActivities()\">Crear asignaciones</ion-button>\n\n</ion-content>";
 
 /***/ }),
 
@@ -5423,7 +5802,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <i
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n  <ion-toolbar color=\"agilissa\">\n      <ion-title>Actividades</ion-title>\n      <ion-buttons slot=\"end\">\n          <ion-button (click)=\"close()\">\n              <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-item lines=\"none\">\n    <ion-label>\n      <div class=\"flex\">\n        <h4>Actividades subidas</h4>\n        <h4>{{list.length}}</h4>\n\n        </div>\n    </ion-label>\n  </ion-item>\n\n  <ion-list>\n    <ion-item *ngFor=\"let item of list\">\n      <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n      <ion-label>{{ item.tipo }} </ion-label>\n    </ion-item>\n  </ion-list>\n\n  <div class=\"loading\">\n    <ion-spinner name=\"crescent\"></ion-spinner>\n    <h3>Creando actividades</h3>\n</div>\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli'\">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
 
 /***/ }),
 
@@ -5501,6 +5880,17 @@ module.exports = "<ion-list>\n    <ion-item *ngFor=\"let item of opciones\" (cli
 
 "use strict";
 module.exports = "<ion-header>\n  <ion-toolbar color=\"oszford\">\n      <ion-title>Actividades</ion-title>\n      <ion-buttons slot=\"end\">\n          <ion-button (click)=\"close()\">\n              <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n \n  <ion-list *ngIf=\"type == 1\">\n    <ion-item *ngFor=\"let item of list\">\n      <ion-avatar class=\"{{item.clase}}\" slot=\"start\"></ion-avatar>\n      <ion-label>\n        <div><strong>{{ item.gestion }}</strong> </div> <br>\n        <div><strong>Descripciòn: </strong>{{ item.desc }} </div> <br>\n        <div><strong>Comercial: </strong> {{ item.AssignedToName }}</div>\n\n        <div><strong>Programado: </strong>{{ item.fecha }} </div>\n        <div *ngIf=\"item.dur > 0\">El tiempo de esta gestiòn se cumple en <strong>( {{ item.dur }} )</strong> dìas </div>\n        <div *ngIf=\"item.dur < 0\">El tiempo de esta gestiòn se cumpliò hace <strong>( {{ item.dur }} )</strong> dìas </div>\n        <div *ngIf=\"item.dur == 0\">El tiempo de esta gestiòn se cumpliò hoy </div>\n      </ion-label>\n    </ion-item> <br>\n  </ion-list>\n\n  <div class=\"evento\" *ngIf=\"type == 2 && evento\">\n\n    <div class=\"flex\">\n\n       <h3>{{ evento.gestion }}</h3>\n\n       <ion-avatar  class=\"{{evento.clase}}\"></ion-avatar>\n    </div> <br>\n\n\n    <div class=\"info\">\n\n      <ion-grid>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Cliente</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.LocationName }}</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Comercial</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.AssignedToName }}</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Programado</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.fecha }}</ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col size=\"12\" class=\"tit\">\n            <div *ngIf=\"evento.dur > 0\">El tiempo de esta gestiòn se cumple en <strong>( {{ evento.dur }} )</strong> dìas </div>\n            <div *ngIf=\"evento.dur < 0\">El tiempo de esta gestiòn se cumpliò hace <strong>( {{ evento.dur }} )</strong> dìas </div>\n            <div *ngIf=\"evento.dur == 0\">El tiempo de esta gestiòn se cumpliò hoy </div>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col class=\"\" size=\"12\">\n            <div>\n              <strong>Descripciòn</strong>\n            </div>\n            <p>{{ evento.desc }}</p>\n          </ion-col>\n       \n        </ion-row>\n      </ion-grid>\n\n\n  \n\n   \n    </div> <br>\n\n    <ion-button *ngIf=\"evento.realizado == 'NO'\" color=\"oszford\" (click)=\"guardar()\" mode=\"ios\" expand=\"block\">Cerrar evento</ion-button>\n\n   \n\n  </div>\n\n  <div class=\"evento\" *ngIf=\"type == 3\">\n\n  <div class=\"center\">\n    <img class=\"\" src=\"/assets/cumple.png\" width=\"80%\" alt=\"\">\n    <br>\n\n    <h3 class=\"\">{{ evento }}</h3>\n  </div>\n\n\n  \n\n  </div>\n\n\n  <div class=\"evento\" *ngIf=\"type == 4\">\n\n    <div class=\"center\">\n  <img class=\"\" src=\"/assets/venci.png\" width=\"70%\" alt=\"\">\n    <br>\n\n    <h3 class=\"\">VENCIMIENTO DE CONTRATO PARA {{ evento }}</h3>\n    </div>\n\n\n\n  \n  \n\n\n  \n\n  </div>\n\n  <div class=\"evento\" *ngIf=\"type == 5\">\n\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"12\">Clientes Cumpleañeros</ion-col>\n     \n      </ion-row>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"6\">Nombre</ion-col>\n        <ion-col class=\"titulo center\" size=\"6\">Fecha</ion-col>\n      </ion-row>\n   \n\n      <ion-row *ngFor=\"let ite of list\">\n        <ion-col size=\"6\" >\n          {{ite.name}}\n        </ion-col>\n        <ion-col size=\"6\" >\n          {{ite.fecha}}\n        </ion-col>\n      </ion-row>\n\n     \n    </ion-grid>\n  \n\n    </div>\n\n\n  <div class=\"evento\" *ngIf=\"type == 6\">\n\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"12\">Clientes a Vencer</ion-col>\n     \n      </ion-row>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"6\">Nombre</ion-col>\n        <ion-col class=\"titulo center\" size=\"6\">Fecha</ion-col>\n      </ion-row>\n   \n\n      <ion-row *ngFor=\"let ite of list\">\n        <ion-col size=\"6\" >\n          {{ite.name}}\n        </ion-col>\n        <ion-col size=\"6\" >\n          {{ite.fecha}}\n        </ion-col>\n      </ion-row>\n\n     \n    </ion-grid>\n  \n\n    </div>\n\n\n</ion-content>";
+
+/***/ }),
+
+/***/ 51932:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/users-diamante/users-diamante.component.html?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title *ngIf=\"view == 1\">Usuarios</ion-title>\n        <ion-title *ngIf=\"view == 2\">Clientes</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <div *ngIf=\"view == 1\">\n\n        <ion-searchbar mode=\"ios\" placeholder=\"Buscar Usuario\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n\n\n        <ion-item color=\"light\">\n            <ion-label>Seleccione fecha</ion-label>\n            <input type=\"date\" [(ngModel)]=\"fecha\">\n        </ion-item> <br> <br>\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Usuarios</h3>\n        </div>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo\">\n                <ion-col size=\"4\">NOMBRE</ion-col>\n                <ion-col size=\"4\">APELLIDO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let user of users | filtroUsuario : text\">\n                <ion-col size=\"4\">{{ user.FirstName }}</ion-col>\n                <ion-col size=\"4\">{{ user.LastName }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"created(user)\">CREAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n    <div *ngIf=\"view == 2\">\n\n        <h3 *ngIf=\"carga\">Ruta</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Ruta\" (ionChange)=\"filter2($event)\"></ion-searchbar>\n\n\n\n        <ion-item *ngFor=\"let item of lists | diamantemtto : text2\" (click)=\"select(item)\">\n            <ion-label>\n                <div>{{ item.Name }}</div>\n\n\n            </ion-label>\n        </ion-item>\n        <ion-chip *ngIf=\"listSelect\" color=\"primary\">{{ listSelect }}</ion-chip>\n\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Clientes</h3>\n        </div>\n\n        <h3 *ngIf=\"carga\">Clientes</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Cliente\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n        <br>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo \">\n                <ion-col size=\"4\">ID</ion-col>\n                <ion-col size=\"4\">CENTRO DE COSTO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let loc of locs | diamantemtto : text\">\n                <ion-col size=\"4\">{{ loc.ID }}</ion-col>\n                <ion-col size=\"4\">{{ loc.Name }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"created(loc)\">EDITAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n\n\n\n\n\n\n</ion-content>";
 
 /***/ })
 

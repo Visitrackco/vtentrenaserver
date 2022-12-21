@@ -206,6 +206,90 @@ let AgilissaPage = class AgilissaPage {
         this.abrir(arg.dateStr);
     }
     ngOnInit() {
+        /*
+    
+        console.log(JSON.stringify([{apiId: 'ENTRADAGPS', Value: [{
+          lat: '3.3597183333333334',
+          lng: '-76.53186333333333',
+          pro: 'gps',
+          tim: 1671209618000,
+          tph: 1671209721191,
+          alt: '984.2',
+          acc: '3.5'
+        }]}]))
+    
+        this.api.updateSurvey( {
+          AccessToken: '9DE1EB65B55B9015006EBD40BB3A878C',
+          UserGUID: '0D5570FF-E22E-4806-B394-BBE50D55F8A9',
+          Duration: '60',
+          SearchBy: 'ActivityID',
+          SearchValue: '58641782',
+          Values: JSON.stringify([
+            {apiId:'ENTRADAGPS',
+            Value:{
+              lat:'3.3597183333333334',
+              lng:'-76.53186333333333',
+              pro:'gps',
+              tim: 1671209618000,
+              tph: 1671209721191,
+              alt:'984.2',
+              acc:'3.5'}
+            }, {
+              apiId: 'ENTRADAQR',
+              Value: {
+                txt: 'PRUEBA',
+                val: 'PRUEBA',
+                lat:'3.3597183333333334',
+                lng:'-76.53186333333333',
+                pro:'gps',
+                tim: 1671209618000,
+                tph: 1671209721191,
+              }
+            }])
+      }).subscribe((data: any) => {
+    
+      })
+    
+      return;
+    
+        this.api.aceptActivity({
+          
+          AccessToken: "9DE1EB65B55B9015006EBD40BB3A878C",
+          FormGUID: "zgy1mYBHNm",
+          LocationGUID: "",
+          AssetGUID:  "",
+          UserGUID: "0D5570FF-E22E-4806-B394-BBE50D55F8A9",
+          Values: JSON.stringify([
+            {apiId:'ENTRADAGPS',
+            Value:{
+              lat:'3.3597183333333334',
+              lng:'-76.53186333333333',
+              pro:'gps',
+              tim: 1671209618000,
+              tph: 1671209721191,
+              alt:'984.2',
+              acc:'3.5'}
+            }, {
+              apiId: 'ENTRADAQR',
+              Value: {
+                txt: 'PRUEBA',
+                val: 'PRUEBA',
+                lat:'3.3597183333333334',
+                lng:'-76.53186333333333',
+                pro:'gps',
+                tim: 1671209618000,
+                tph: 1671209721191,
+              }
+            }]) ,
+          Duration: 60,
+          ActivityGUID: "",
+          CompanyStatusGUID: "069AC0DD-3EDC-410C-822E-2160946FCCC7"
+          
+        }).subscribe((data: any) => {
+    
+        })
+    
+        */
     }
     getColor(item) {
         let color = '';
@@ -333,7 +417,7 @@ let AgilissaPage = class AgilissaPage {
             this.loading.createLoading('Cargando Tareas...');
             this.api.getActivities2('4A21BA9F17A8EB2C582004A213127A88', this.from, this.to, '2004307A-B1CF-4109-97D1-8603A63BA6E9').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__awaiter)(this, void 0, void 0, function* () {
                 const array = [];
-                console.log('Hola 4');
+                console.log('Hola 4', data);
                 for (const item of data) {
                     const dat = yield this.getActivityInfo(item.GUID);
                     if (dat) {
@@ -347,9 +431,7 @@ let AgilissaPage = class AgilissaPage {
                             const time = moment__WEBPACK_IMPORTED_MODULE_6__(dat.DispatchDateTime).format('YYYY-MM-DD HH:mm');
                             const from = moment__WEBPACK_IMPORTED_MODULE_6__(this.from).format('YYYY-MM-DD HH:mm');
                             const to = moment__WEBPACK_IMPORTED_MODULE_6__(this.to).format('YYYY-MM-DD HH:mm');
-                            // console.log(time, from, to)
                             if (time >= from && time <= to) {
-                                // console.log(this.areaSelect)
                                 if (dat.area == this.areaSelect) {
                                     if (this.infoArea) {
                                         const tipoarea = dat.Values.filter((it) => it.apiId == 'TIPODEAREA');
@@ -366,7 +448,6 @@ let AgilissaPage = class AgilissaPage {
                                         dat.ubicacion = ubicacion.length > 0 ? ubicacion[0].Value : '';
                                         dat.piso = piso.length > 0 ? piso[0].Value : '';
                                         dat.nmc = nmc.length > 0 ? nmc[0].Value : '';
-                                        console.log(this.infoArea, 'info');
                                         if (dat.tipoarea == this.infoArea.tipoarea && dat.tipozona == this.infoArea.tipozona && dat.subarea == this.infoArea.subarea && dat.estructura == this.infoArea.estructura && dat.ubicacion == this.infoArea.ubicacion && dat.piso == this.infoArea.piso && dat.nmc == this.infoArea.nmc) {
                                             array.push(dat);
                                         }
@@ -409,7 +490,7 @@ let AgilissaPage = class AgilissaPage {
                 });
                 underscore__WEBPACK_IMPORTED_MODULE_8__.each(resp.data, (it, i) => {
                     this.calendarRef.nativeElement.getApi().addEvent({
-                        title: it.tipo,
+                        title: it.tipo + ' ' + this.userSelect.FirstName,
                         start: moment__WEBPACK_IMPORTED_MODULE_6__(it.start).format('YYYY-MM-DD HH:mm'),
                         end: moment__WEBPACK_IMPORTED_MODULE_6__(it.end).format('YYYY-MM-DD HH:mm'),
                         id: it.GUID,
@@ -419,6 +500,41 @@ let AgilissaPage = class AgilissaPage {
                         backgroundColor: this.getColor(it.tipo),
                     });
                 });
+            }
+        });
+    }
+    dupliTask() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__awaiter)(this, void 0, void 0, function* () {
+            console.log(this.taskExecutes);
+            const modal = yield this.mimodal.create({
+                component: src_app_components_carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_10__.CargaTaskComponent,
+                componentProps: {
+                    tkn: '4A21BA9F17A8EB2C582004A213127A88',
+                    type: 'dupli',
+                    executes: this.taskExecutes
+                }
+            });
+            yield modal.present();
+            const resp = yield modal.onWillDismiss();
+        });
+    }
+    reassignedTask() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__awaiter)(this, void 0, void 0, function* () {
+            console.log(this.taskExecutes);
+            const modal = yield this.mimodal.create({
+                component: src_app_components_carga_task_carga_task_component__WEBPACK_IMPORTED_MODULE_10__.CargaTaskComponent,
+                componentProps: {
+                    tkn: '4A21BA9F17A8EB2C582004A213127A88',
+                    type: 'reassigned',
+                    users: this.users,
+                    userGUID: this.userSelect.ID,
+                    executes: this.taskExecutes
+                }
+            });
+            yield modal.present();
+            const resp = yield modal.onWillDismiss();
+            if (resp.data) {
+                this.eventsFormat();
             }
         });
     }
@@ -545,7 +661,7 @@ let AgilissaPage = class AgilissaPage {
                         underscore__WEBPACK_IMPORTED_MODULE_8__.each(this.taskExecutes, (it, i) => {
                             if (it.AssignedToGUID == this.userSelect.ID) {
                                 this.calendarRef.nativeElement.getApi().addEvent({
-                                    title: it.tarea,
+                                    title: it.tarea + ' ' + this.userSelect.FirstName,
                                     start: moment__WEBPACK_IMPORTED_MODULE_6__(it.DispatchDateTime).format('YYYY-MM-DD HH:mm'),
                                     end: moment__WEBPACK_IMPORTED_MODULE_6__(it.end).format('YYYY-MM-DD HH:mm'),
                                     id: it.GUID,
@@ -572,7 +688,7 @@ let AgilissaPage = class AgilissaPage {
             }
             if (this.infoTask.length > 0 && this.reloadTask) {
                 // if (diff <= 7) {
-                this.eventsFormat();
+                this.eventsFormat(this.userSelect ? false : true);
                 // }
             }
             /*  this.getActivities({
@@ -729,10 +845,12 @@ let AgilissaPage = class AgilissaPage {
         this.areaSelect = '';
         this.descArea = '';
         this.dataSector = this.data.filter((item) => item.LocationName == event.detail.value);
+        console.log(this.dataSector, 'sector', this.sectorSelect);
         this.dataSector = underscore__WEBPACK_IMPORTED_MODULE_8__.sortBy(this.dataSector, 'ID');
         this.dataSectorFiltrada = this.dataSector[this.dataSector.length - 1];
         this.gestionSelect = false;
         this.dataSectorFiltrada.gestiones = underscore__WEBPACK_IMPORTED_MODULE_8__.uniq(this.dataSectorFiltrada.gestiones, (i) => i.ID);
+        this.dataSectorFiltrada.gestiones = this.dataSectorFiltrada.gestiones.filter((it) => it.LocationName == this.sectorSelect);
         console.log(this.dataSectorFiltrada.gestiones, 'Hola gestión');
         underscore__WEBPACK_IMPORTED_MODULE_8__.each(this.dataSectorFiltrada.gestiones, (dat, i) => {
             const tipoarea = dat.Values.filter((it) => it.apiId == 'TIPO_AREA');
@@ -1010,7 +1128,7 @@ let AgilissaPage = class AgilissaPage {
                     if (it.tipoarea == this.infoArea.tipoarea && it.tipozona == this.infoArea.tipozona && it.subarea == this.infoArea.subarea && it.estructura == this.infoArea.estructura && it.ubicacion == this.infoArea.ubicacion && it.piso == this.infoArea.piso && it.nmc == this.infoArea.nmc) {
                         if (area) {
                             this.calendarRef.nativeElement.getApi().addEvent({
-                                title: it.tarea,
+                                title: it.tarea + ' ' + it.AssignedToName,
                                 start: moment__WEBPACK_IMPORTED_MODULE_6__(it.DispatchDateTime).format('YYYY-MM-DD HH:mm'),
                                 end: moment__WEBPACK_IMPORTED_MODULE_6__(it.end).format('YYYY-MM-DD HH:mm'),
                                 id: it.GUID,
@@ -1023,7 +1141,7 @@ let AgilissaPage = class AgilissaPage {
                         else {
                             if (it.AssignedToGUID == this.userSelect.ID) {
                                 this.calendarRef.nativeElement.getApi().addEvent({
-                                    title: it.tarea,
+                                    title: it.tarea + ' ' + it.AssignedToName,
                                     start: moment__WEBPACK_IMPORTED_MODULE_6__(it.DispatchDateTime).format('YYYY-MM-DD HH:mm'),
                                     end: moment__WEBPACK_IMPORTED_MODULE_6__(it.end).format('YYYY-MM-DD HH:mm'),
                                     id: it.GUID,
@@ -1191,7 +1309,7 @@ module.exports = ".separador {\n  margin: 20px 0;\n  border-bottom: 1px solid rg
   \*************************************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n\n        <ion-title></ion-title>\n\n        <div class=\"flex\">\n\n            <img src=\"https://s3.amazonaws.com/logocompanies/08F3045E-1A14-403F-8ABA-9DC56D1AF5BC.png\n            \" width=\"200\" />\n\n            <img src=\"/assets/logo-vt.png\n            \" width=\"250\" />\n        </div>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <div #external>\n\n        <div *ngIf=\"asingTask\" class=\"fijo\">\n\n            <div class=\"flex\">\n                <h4>Tareas</h4>\n                <ion-icon name=\"close\" color=\"danger\" (click)=\"asingTaskClose()\"></ion-icon>\n            </div>\n\n            <div class=\"infor\" *ngIf=\"infoArea\">\n                <div><strong>Área: </strong> <span>{{ infoArea.AssetName }}</span></div>\n                <div><strong>Sub Área: </strong> <span>{{ infoArea.subarea }}</span></div>\n            </div>\n\n\n\n            <div class=\"loading\" *ngIf=\"!loadDataTask\">\n                <ion-spinner name=\"crescent\"></ion-spinner>\n                <h3>Cargando Información</h3>\n            </div>\n\n\n\n            <div class=\"infoTask\" *ngIf=\"loadDataTask\">\n\n\n                <div class=\"areas\" *ngIf=\"dataSector.length > 0\">\n                    <h4>Áreas</h4>\n                    <ion-searchbar [value]=\"descArea\" mode=\"ios\" placeholder=\"Buscar área\" (ionChange)=\"search2($event)\"></ion-searchbar> <br>\n                    <ion-chip *ngIf=\"gestionSelect\" color=\"agilissa\">{{ gestionSelect }}</ion-chip>\n                    <ion-item *ngFor=\"let item of gestiones | agilissacliente : descArea : 'AssetName'\" (click)=\"selectArea(item.AssetName, item)\">\n                        <ion-icon name=\"ellipse-outline\" slot=\"start\"></ion-icon>\n\n\n                        <div>\n                            <h4 style=\"color: #262369; margin: 5px 0;\">{{ item.AssetName }}</h4> <br>\n                            <strong>Tipo Área: </strong> <span>{{ item.tipoarea }}</span> <br>\n                            <strong>Tipo Zona: </strong> <span>{{ item.tipozona }}</span> <br>\n                            <strong>Subarea:</strong> <span> {{ item.subarea }}</span> <br>\n                            <strong>Estructura: </strong> <span>{{ item.estructura }}</span> <br>\n                            <strong>Ubicación: </strong> <span>{{ item.ubicacion }}</span> <br>\n                            <strong>Piso:</strong> <span>{{ item.piso }}</span> <br>\n                            <strong>Nomenclatura: </strong> <span>{{ item.nmc }}</span> <br>\n                            <strong>ID: </strong> <span>{{ item.ID }}</span>\n                        </div>\n\n                        <br><br>\n                    </ion-item>\n                </div>\n\n\n                <div class=\"separador\"></div>\n\n                <h4>Usuarios</h4>\n\n                <ion-searchbar [value]=\"descUser\" mode=\"ios\" placeholder=\"Buscar Usuario\" (ionChange)=\"search4($event)\"></ion-searchbar> <br>\n\n                <ion-chip *ngIf=\"userSelect\" color=\"agilissa\">{{ userSelect.FirstName }} {{ userSelect.LastName }}</ion-chip>\n\n                <ion-item *ngFor=\"let item of users | agilissacliente : descUser : 'FirstName' \" (click)=\"selectUser(item)\">\n                    <ion-icon name=\"person\" color=\"agilissa\" slot=\"start\"></ion-icon>\n                    <ion-label class=\"ion-text-wrap\">\n\n                        <div>{{ item.FirstName }} {{ item.LastName }}</div>\n\n\n                    </ion-label>\n                </ion-item>\n\n\n\n                <div class=\"separador\"></div>\n\n                <ion-grid>\n                    <ion-row class=\"titulo\">\n                        <ion-col size=\"4\">Item</ion-col>\n                        <ion-col size=\"4\">Meta</ion-col>\n                        <ion-col size=\"4\">Prog.</ion-col>\n                    </ion-row>\n\n                    <ion-row *ngFor=\"let item of metas\">\n                        <ion-col size=\"4\" class=\"center\">{{ item.item }}</ion-col>\n                        <ion-col size=\"4\" class=\"center\">{{ item.meta }}</ion-col>\n                        <ion-col size=\"4\" class=\"center\">{{ item.programado }}</ion-col>\n                    </ion-row>\n                </ion-grid> <br>\n\n                <div class=\"d-flex flex-wrap\" *ngIf=\"mode != 'month' && !viewTask\">\n                    <div class=\"myEvent\" *ngFor=\"let item of task; let i = index;\" [data]=\"item\">\n                        <div class=\"fc-event-main\" style=\"font-weight: bold;\">{{ item.tipo }}</div>\n                        <div style=\"display: none;\">{{ item.tiempo }}</div>\n                        <div style=\"display: flex; margin-bottom: 10px;\">\n                            <div class=\"bola {{ item.color }}\"></div> <span>Tiempo: </span> {{ item.tiempo }}</div>\n                        <div style=\"display: none;\">{{ item.idx }}</div>\n                    </div>\n\n                </div> <br>\n\n                <ion-button [disabled]=\"(taskListProgramming.length == 0)\" expand=\"block\" color=\"agilissabtn\" mode=\"ios\" (click)=\"saveTask()\">Guardar Cambios</ion-button>\n            </div>\n\n\n        </div>\n\n        <ion-grid>\n            <ion-row>\n                <ion-col size=\"3\">\n                    <!--  <div #external class=\"d-flex flex-wrap\">\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\" horario=\"Hola munod\">\n                      <div class=\"fc-event-main\">Event 1</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 2</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 3</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 4</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 5</div>\n                  </div>\n              </div> -->\n\n                    <div class=\"filtros\">\n                        <h4>Clientes</h4>\n                        <ion-searchbar [value]=\"desc\" mode=\"ios\" placeholder=\"Buscar Clientes\" (ionChange)=\"search($event)\"></ion-searchbar> <br>\n\n                        <ion-chip *ngIf=\"clSelect\" color=\"agilissa\">{{ clSelect }}</ion-chip>\n\n                        <ion-item *ngFor=\"let item of clsUnicos | agilissacliente : desc \" (click)=\"select(item)\">\n                            <ion-icon name=\"home-outline\" slot=\"start\"></ion-icon>\n                            <ion-label class=\"ion-text-wrap\">\n\n                                <div>{{ item }}</div>\n\n\n                            </ion-label>\n                        </ion-item>\n\n                        <div class=\"separador\" *ngIf=\"clSelect\"></div>\n                        <h4 *ngIf=\"clSelect\">Sedes</h4>\n                        <ion-searchbar [value]=\"descSede\" *ngIf=\"clSelect\" mode=\"ios\" placeholder=\"Buscar Sede de {{ clSelect }}\" (ionChange)=\"search3($event)\"></ion-searchbar> <br>\n\n                        <ion-chip *ngIf=\"sedeSelect\" color=\"agilissa\">{{ sedeSelect }}</ion-chip>\n\n                        <ion-item *ngFor=\"let item of sedes | agilissacliente : descSede \" (click)=\"selectSede(item)\">\n                            <ion-icon name=\"home-outline\" slot=\"start\"></ion-icon>\n                            <ion-label class=\"ion-text-wrap\">\n\n                                <div>{{ item }}</div>\n\n\n                            </ion-label>\n                        </ion-item>\n\n                        <div class=\"separador\" *ngIf=\"clSelect\"></div>\n\n                        <div class=\"sectores\" *ngIf=\"clSelect\">\n                            <h4>Sectores</h4>\n                            <ion-radio-group (ionChange)=\"selectSector($event)\">\n\n\n                                <ion-item *ngFor=\"let item of sectores\">\n\n                                    <ion-radio color=\"agilissabtn\" mode=\"md\" value=\"{{ item }}\" slot=\"start\"></ion-radio>\n                                    <ion-label class=\"ion-text-wrap\">\n\n                                        <div>{{ item }}</div>\n\n\n                                    </ion-label>\n                                </ion-item>\n\n                            </ion-radio-group>\n                        </div>\n\n                        <div class=\"separador\" *ngIf=\"dataSector.length > 0\"></div>\n\n                        <div class=\"areas\" *ngIf=\"dataSector.length > 0\">\n                            <h4>Áreas</h4>\n                            <ion-searchbar [value]=\"descArea\" mode=\"ios\" placeholder=\"Buscar área\" (ionChange)=\"search2($event)\"></ion-searchbar> <br>\n                            <ion-chip *ngIf=\"gestionSelect\" color=\"agilissa\">{{ gestionSelect }}</ion-chip>\n                            <ion-item *ngFor=\"let item of gestiones | agilissacliente : descArea : 'AssetName'\" (click)=\"selectArea(item.AssetName, item)\">\n                                <ion-icon name=\"ellipse-outline\" slot=\"start\"></ion-icon>\n\n\n                                <div>\n                                    <h4 style=\"color: #262369; margin: 5px 0;\">{{ item.AssetName }}</h4> <br>\n                                    <strong>Tipo Área: </strong> <span>{{ item.tipoarea }}</span> <br>\n                                    <strong>Tipo Zona: </strong> <span>{{ item.tipozona }}</span> <br>\n                                    <strong>Subarea:</strong> <span> {{ item.subarea }}</span> <br>\n                                    <strong>Estructura: </strong> <span>{{ item.estructura }}</span> <br>\n                                    <strong>Ubicación: </strong> <span>{{ item.ubicacion }}</span> <br>\n                                    <strong>Piso:</strong> <span>{{ item.piso }}</span> <br>\n                                    <strong>Nomenclatura: </strong> <span>{{ item.nmc }}</span> <br>\n                                    <strong>ID: </strong> <span>{{ item.ID }}</span>\n                                </div>\n\n                                <br><br>\n                            </ion-item>\n\n                            <ion-button *ngIf=\"gestionSelect\" color=\"agilissabtn\" mode=\"ios\" expand=\"block\" (click)=\"asingTaskOpen()\">Programar Tareas</ion-button>\n\n                            <!--    <ion-button *ngIf=\"gestionSelect\" color=\"agilissabtn\" mode=\"ios\" expand=\"block\" (click)=\"viewTaskOpen()\">Visualizar Tareas</ion-button>-->\n                        </div>\n                    </div>\n\n                </ion-col>\n                <ion-col size=\"9\">\n                    <div class=\"calendario\">\n                        <full-calendar class=\"agilissa\" *ngIf=\"load\" #calendar [options]=\"calendarOptions\"></full-calendar>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n\n    </div>\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n\n        <ion-title></ion-title>\n\n        <div class=\"flex\">\n\n            <img src=\"https://s3.amazonaws.com/logocompanies/08F3045E-1A14-403F-8ABA-9DC56D1AF5BC.png\n            \" width=\"200\" />\n\n            <img src=\"/assets/logo-vt.png\n            \" width=\"250\" />\n        </div>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <div #external>\n\n        <div *ngIf=\"asingTask\" class=\"fijo\">\n\n            <div class=\"flex\">\n                <h4>Tareas</h4>\n                <ion-icon name=\"close\" color=\"danger\" (click)=\"asingTaskClose()\"></ion-icon>\n            </div>\n\n            <div class=\"infor\" *ngIf=\"infoArea\">\n\n                <div>\n                    <strong>Tipo Área: </strong> <span>{{ infoArea.tipoarea }}</span> <br>\n                    <strong>Tipo Zona: </strong> <span>{{ infoArea.tipozona }}</span> <br>\n                    <strong>Subarea:</strong> <span> {{ infoArea.subarea }}</span> <br>\n                    <strong>Estructura: </strong> <span>{{ infoArea.estructura }}</span> <br>\n                    <strong>Ubicación: </strong> <span>{{ infoArea.ubicacion }}</span> <br>\n                    <strong>Piso:</strong> <span>{{ infoArea.piso }}</span> <br>\n                    <strong>Nomenclatura: </strong> <span>{{ infoArea.nmc }}</span> <br>\n\n                </div>\n            </div>\n\n\n\n            <div class=\"loading\" *ngIf=\"!loadDataTask\">\n                <ion-spinner name=\"crescent\"></ion-spinner>\n                <h3>Cargando Información</h3>\n            </div>\n\n\n\n            <div class=\"infoTask\" *ngIf=\"loadDataTask\">\n\n\n                <div class=\"areas\" *ngIf=\"dataSector.length > 0\">\n                    <h4>Áreas</h4>\n                    <ion-searchbar [value]=\"descArea\" mode=\"ios\" placeholder=\"Buscar área\" (ionChange)=\"search2($event)\"></ion-searchbar> <br>\n                    <ion-chip *ngIf=\"gestionSelect\" color=\"agilissa\">{{ gestionSelect }}</ion-chip>\n                    <ion-item *ngFor=\"let item of gestiones | agilissacliente : descArea : 'AssetName'\" (click)=\"selectArea(item.AssetName, item)\">\n                        <ion-icon name=\"ellipse-outline\" slot=\"start\"></ion-icon>\n\n\n                        <ion-label>\n\n                            <div>\n                                <h4 style=\"color: #262369; margin: 5px 0;  font-size: 18px; font-weight: bold;\">{{ item.AssetName }}</h4> <br>\n\n                                <strong>Tipo Área: </strong> <span>{{ item.tipoarea }}</span> <br>\n                                <strong>Tipo Zona: </strong> <span>{{ item.tipozona }}</span> <br>\n                                <strong>Subarea:</strong> <span> {{ item.subarea }}</span> <br>\n                                <strong>Estructura: </strong> <span>{{ item.estructura }}</span> <br>\n                                <strong>Ubicación: </strong> <span>{{ item.ubicacion }}</span> <br>\n                                <strong>Piso:</strong> <span>{{ item.piso }}</span> <br>\n                                <strong>Nomenclatura: </strong> <span>{{ item.nmc }}</span> <br>\n                                <strong>ID: </strong> <span>{{ item.ID }}</span>\n                            </div>\n\n                            <div>\n                                <ion-button (click)=\"selectArea(item.AssetName, item) \" color=\"agilissa\" mode=\"ios\">Seleccionar</ion-button>\n\n                            </div>\n\n\n                            <br><br>\n                        </ion-label>\n                    </ion-item>\n                </div>\n\n\n                <div class=\"separador\"></div>\n\n                <h4>Usuarios</h4>\n\n                <ion-searchbar [value]=\"descUser\" mode=\"ios\" placeholder=\"Buscar Usuario\" (ionChange)=\"search4($event)\"></ion-searchbar> <br>\n\n                <ion-chip *ngIf=\"userSelect\" color=\"agilissa\">{{ userSelect.FirstName }} {{ userSelect.LastName }}</ion-chip>\n\n                <ion-item *ngFor=\"let item of users | agilissacliente : descUser : 'FirstName' \" (click)=\"selectUser(item)\">\n                    <ion-icon name=\"person\" color=\"agilissa\" slot=\"start\"></ion-icon>\n                    <ion-label class=\"ion-text-wrap\">\n\n                        <div>{{ item.FirstName }} {{ item.LastName }}</div>\n\n\n                    </ion-label>\n                </ion-item>\n\n\n\n                <div class=\"separador\"></div>\n\n                <ion-grid>\n                    <ion-row class=\"titulo\">\n                        <ion-col size=\"4\">Item</ion-col>\n                        <ion-col size=\"4\">Meta</ion-col>\n                        <ion-col size=\"4\">Prog.</ion-col>\n                    </ion-row>\n\n                    <ion-row *ngFor=\"let item of metas\">\n                        <ion-col size=\"4\" class=\"center\">{{ item.item }}</ion-col>\n                        <ion-col size=\"4\" class=\"center\">{{ item.meta }}</ion-col>\n                        <ion-col size=\"4\" class=\"center\">{{ item.programado }}</ion-col>\n                    </ion-row>\n                </ion-grid> <br>\n\n                <div class=\"d-flex flex-wrap\" *ngIf=\"mode != 'month' && !viewTask\">\n                    <div class=\"myEvent\" *ngFor=\"let item of task; let i = index;\" [data]=\"item\">\n                        <div class=\"fc-event-main\" style=\"font-weight: bold;\">{{ item.tipo }}</div>\n                        <div style=\"display: none;\">{{ item.tiempo }}</div>\n                        <div style=\"display: flex; margin-bottom: 10px;\">\n                            <div class=\"bola {{ item.color }}\"></div> <span>Tiempo: </span> {{ item.tiempo }}</div>\n                        <div style=\"display: none;\">{{ item.idx }}</div>\n                    </div>\n\n                </div> <br>\n\n                <ion-button [disabled]=\"(taskListProgramming.length == 0)\" expand=\"block\" color=\"agilissabtn\" mode=\"ios\" (click)=\"saveTask()\">Guardar Cambios</ion-button>\n                <br>\n                <ion-button [disabled]=\"taskExecutes.length == 0 || mode != 'month' || userSelect\" expand=\"block\" color=\"agilissa\" mode=\"ios\" (click)=\"dupliTask()\">Duplicar Tareas</ion-button>\n                <br>\n                <ion-button *ngIf=\"taskExecutes.length > 0 && mode == 'month' && userSelect\" expand=\"block\" color=\"warning\" mode=\"ios\" (click)=\"reassignedTask()\">Reasignar</ion-button>\n            </div>\n\n\n        </div>\n\n        <ion-grid>\n            <ion-row>\n                <ion-col size=\"3\">\n                    <!--  <div #external class=\"d-flex flex-wrap\">\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\" horario=\"Hola munod\">\n                      <div class=\"fc-event-main\">Event 1</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 2</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 3</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 4</div>\n                  </div>\n                  <div class=\"fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event badge me-3 my-1\">\n                      <div class=\"fc-event-main\">Event 5</div>\n                  </div>\n              </div> -->\n\n                    <div class=\"filtros\">\n                        <h4>Clientes</h4>\n                        <ion-searchbar [value]=\"desc\" mode=\"ios\" placeholder=\"Buscar Clientes\" (ionChange)=\"search($event)\"></ion-searchbar> <br>\n\n                        <ion-chip *ngIf=\"clSelect\" color=\"agilissa\">{{ clSelect }}</ion-chip>\n\n                        <ion-item *ngFor=\"let item of clsUnicos | agilissacliente : desc \" (click)=\"select(item)\">\n                            <ion-icon name=\"home-outline\" slot=\"start\"></ion-icon>\n                            <ion-label class=\"ion-text-wrap\">\n\n                                <div>{{ item }}</div>\n\n\n                            </ion-label>\n                        </ion-item>\n\n                        <div class=\"separador\" *ngIf=\"clSelect\"></div>\n                        <h4 *ngIf=\"clSelect\">Sedes</h4>\n                        <ion-searchbar [value]=\"descSede\" *ngIf=\"clSelect\" mode=\"ios\" placeholder=\"Buscar Sede de {{ clSelect }}\" (ionChange)=\"search3($event)\"></ion-searchbar> <br>\n\n                        <ion-chip *ngIf=\"sedeSelect\" color=\"agilissa\">{{ sedeSelect }}</ion-chip>\n\n                        <ion-item *ngFor=\"let item of sedes | agilissacliente : descSede \" (click)=\"selectSede(item)\">\n                            <ion-icon name=\"home-outline\" slot=\"start\"></ion-icon>\n                            <ion-label class=\"ion-text-wrap\">\n\n                                <div>{{ item }}</div>\n\n\n                            </ion-label>\n                        </ion-item>\n\n                        <div class=\"separador\" *ngIf=\"clSelect\"></div>\n\n                        <div class=\"sectores\" *ngIf=\"clSelect\">\n                            <h4>Sectores</h4>\n                            <ion-radio-group (ionChange)=\"selectSector($event)\">\n\n\n                                <ion-item *ngFor=\"let item of sectores\">\n\n                                    <ion-radio color=\"agilissabtn\" mode=\"md\" value=\"{{ item }}\" slot=\"start\"></ion-radio>\n                                    <ion-label class=\"ion-text-wrap\">\n\n                                        <div>{{ item }}</div>\n\n\n                                    </ion-label>\n                                </ion-item>\n\n                            </ion-radio-group>\n                        </div>\n\n                        <div class=\"separador\" *ngIf=\"dataSector.length > 0\"></div>\n\n                        <div class=\"areas\" *ngIf=\"dataSector.length > 0\">\n                            <h4>Áreas</h4>\n                            <ion-searchbar [value]=\"descArea\" mode=\"ios\" placeholder=\"Buscar área\" (ionChange)=\"search2($event)\"></ion-searchbar> <br>\n                            <ion-chip *ngIf=\"gestionSelect\" color=\"agilissa\">{{ gestionSelect }}</ion-chip>\n                            <ion-item *ngFor=\"let item of gestiones | agilissacliente : descArea : 'AssetName'\">\n                                <ion-icon name=\"ellipse-outline \" slot=\"start \"></ion-icon>\n\n                                <ion-label>\n\n                                    <div>\n                                        <h4 style=\"color: #262369; margin: 5px 0;  font-size: 18px; font-weight: bold;\">{{ item.AssetName }}</h4> <br>\n                                        <strong>Tipo Área: </strong> <span>{{ item.tipoarea }}</span> <br>\n                                        <strong>Tipo Zona: </strong> <span>{{ item.tipozona }}</span> <br>\n                                        <strong>Subarea:</strong> <span> {{ item.subarea }}</span> <br>\n                                        <strong>Estructura: </strong> <span>{{ item.estructura }}</span> <br>\n                                        <strong>Ubicación: </strong> <span>{{ item.ubicacion }}</span> <br>\n                                        <strong>Piso:</strong> <span>{{ item.piso }}</span> <br>\n                                        <strong>Nomenclatura: </strong> <span>{{ item.nmc }}</span> <br>\n                                        <strong>ID: </strong> <span>{{ item.ID }}</span>\n                                    </div>\n\n                                    <div>\n                                        <ion-button (click)=\"selectArea(item.AssetName, item) \" color=\"agilissa\" mode=\"ios\">Seleccionar</ion-button>\n\n                                    </div>\n\n\n                                    <br><br>\n                                </ion-label>\n\n\n                            </ion-item>\n                            <ion-button *ngIf=\"gestionSelect \" color=\"agilissabtn \" mode=\"ios \" expand=\"block \" (click)=\"asingTaskOpen() \">Programar Tareas</ion-button>\n\n\n                            <!--    <ion-button *ngIf=\"gestionSelect \" color=\"agilissabtn \" mode=\"ios \" expand=\"block \" (click)=\"viewTaskOpen() \">Visualizar Tareas</ion-button>-->\n                        </div>\n                    </div>\n\n                </ion-col>\n                <ion-col size=\"9 \">\n                    <div class=\"calendario \">\n                        <full-calendar class=\"agilissa \" *ngIf=\"load \" #calendar [options]=\"calendarOptions \"></full-calendar>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n\n    </div>\n\n</ion-content>";
 
 /***/ })
 
