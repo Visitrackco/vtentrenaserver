@@ -4409,6 +4409,41 @@ let UsersDiamanteComponent = class UsersDiamanteComponent {
             this.toast.newCreatedToast('Debe seleccionar una ruta', false);
         }
     }
+    createOnlyActivity(user) {
+        if (!this.fecha) {
+            this.toast.newCreatedToast('Debe seleccionar una fecha', false);
+            return;
+        }
+        this.loading.createLoading('Creando actividad, por favor espere');
+        this.api.aceptActivity({
+            AccessToken: this.tkn,
+            FormGUID: this.type == 'prev' ? 'sA4XrNXEmV' : 'BF39EE15-4D86-4C07-B1C1-D967AAB22C34',
+            LocationGUID: this.data.LocationGUID,
+            AssetGUID: this.data.AssetGUID,
+            UserGUID: user.ID,
+            Duration: "60",
+            DispachDateTime: this.fecha + ' 00:00:00',
+            Values: JSON.stringify([]),
+            ActivityGUID: '',
+            CompanyStatusGUID: '5F9C20B3-8B41-4D7B-B967-4BC4D3FF9854'
+        }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            console.log(dat);
+            if (dat.Status === 'OK') {
+                yield this.loading.cancelLoading();
+                this.modal.dismiss();
+                this.toast.newCreatedToast('La actividad se creó correctamente', false);
+            }
+            else {
+                yield this.loading.cancelLoading();
+                this.toast.newCreatedToast('La actividad no se pudo crear', false);
+                this.modal.dismiss();
+            }
+        }), (err) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.loading.cancelLoading();
+            this.toast.newCreatedToast('La actividad no se pudo crear', false);
+            this.modal.dismiss();
+        }));
+    }
     select(event) {
         this.listSelect = event.Name;
         this.text2 = '';
@@ -5890,7 +5925,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"oszford\">\n      <ion-ti
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title *ngIf=\"view == 1\">Usuarios</ion-title>\n        <ion-title *ngIf=\"view == 2\">Clientes</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <div *ngIf=\"view == 1\">\n\n        <ion-searchbar mode=\"ios\" placeholder=\"Buscar Usuario\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n\n\n        <ion-item color=\"light\">\n            <ion-label>Seleccione fecha</ion-label>\n            <input type=\"date\" [(ngModel)]=\"fecha\">\n        </ion-item> <br> <br>\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Usuarios</h3>\n        </div>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo\">\n                <ion-col size=\"4\">NOMBRE</ion-col>\n                <ion-col size=\"4\">APELLIDO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let user of users | filtroUsuario : text\">\n                <ion-col size=\"4\">{{ user.FirstName }}</ion-col>\n                <ion-col size=\"4\">{{ user.LastName }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"created(user)\">CREAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n    <div *ngIf=\"view == 2\">\n\n        <h3 *ngIf=\"carga\">Ruta</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Ruta\" (ionChange)=\"filter2($event)\"></ion-searchbar>\n\n\n\n        <ion-item *ngFor=\"let item of lists | diamantemtto : text2\" (click)=\"select(item)\">\n            <ion-label>\n                <div>{{ item.Name }}</div>\n\n\n            </ion-label>\n        </ion-item>\n        <ion-chip *ngIf=\"listSelect\" color=\"primary\">{{ listSelect }}</ion-chip>\n\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Clientes</h3>\n        </div>\n\n        <h3 *ngIf=\"carga\">Clientes</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Cliente\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n        <br>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo \">\n                <ion-col size=\"4\">ID</ion-col>\n                <ion-col size=\"4\">CENTRO DE COSTO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let loc of locs | diamantemtto : text\">\n                <ion-col size=\"4\">{{ loc.ID }}</ion-col>\n                <ion-col size=\"4\">{{ loc.Name }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"created(loc)\">EDITAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n\n\n\n\n\n\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title *ngIf=\"view == 1\">Usuarios</ion-title>\n        <ion-title *ngIf=\"view == 2\">Clientes</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n\n    <div *ngIf=\"view == 1\">\n\n        <ion-searchbar mode=\"ios\" placeholder=\"Buscar Usuario\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n\n\n        <ion-item color=\"light\">\n            <ion-label>Seleccione fecha</ion-label>\n            <input type=\"date\" [(ngModel)]=\"fecha\">\n        </ion-item> <br> <br>\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Usuarios</h3>\n        </div>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo\">\n                <ion-col size=\"4\">NOMBRE</ion-col>\n                <ion-col size=\"4\">APELLIDO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let user of users | filtroUsuario : text\">\n                <ion-col size=\"4\">{{ user.FirstName }}</ion-col>\n                <ion-col size=\"4\">{{ user.LastName }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"createOnlyActivity(user)\">CREAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n    <div *ngIf=\"view == 2\">\n\n        <h3 *ngIf=\"carga\">Ruta</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Ruta\" (ionChange)=\"filter2($event)\"></ion-searchbar>\n\n\n\n        <ion-item *ngFor=\"let item of lists | diamantemtto : text2\" (click)=\"select(item)\">\n            <ion-label>\n                <div>{{ item.Name }}</div>\n\n\n            </ion-label>\n        </ion-item>\n        <ion-chip *ngIf=\"listSelect\" color=\"primary\">{{ listSelect }}</ion-chip>\n\n        <br>\n\n        <div class=\"loading\" *ngIf=\"!carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Cargando Clientes</h3>\n        </div>\n\n        <h3 *ngIf=\"carga\">Clientes</h3>\n\n        <ion-searchbar *ngIf=\"carga\" mode=\"ios\" placeholder=\"Buscar Cliente\" (ionChange)=\"filter($event)\"></ion-searchbar>\n\n        <br>\n\n        <ion-grid *ngIf=\"carga\">\n            <ion-row class=\"titulo \">\n                <ion-col size=\"4\">ID</ion-col>\n                <ion-col size=\"4\">CENTRO DE COSTO</ion-col>\n                <ion-col size=\"4\">ACCIÓN</ion-col>\n            </ion-row>\n\n            <ion-row class=\"fila\" *ngFor=\"let loc of locs | diamantemtto : text\">\n                <ion-col size=\"4\">{{ loc.ID }}</ion-col>\n                <ion-col size=\"4\">{{ loc.Name }}</ion-col>\n                <ion-col size=\"4\">\n                    <ion-button mode=\"ios\" color=\"secondary\" expand=\"block\" (click)=\"created(loc)\">EDITAR</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n\n\n\n\n\n\n\n</ion-content>";
 
 /***/ })
 
