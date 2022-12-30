@@ -762,6 +762,7 @@ function fnDiamante() {
                         if (diff == 7 || diff == 1) {
                             console.log('enviar')
 
+                            
 
                             const body = `<div style=" width: 600px; margin: 20px auto; padding: 20px; border-radius: 20px; background-color: #E2F0FD; font-family: sans-serif; height: 600px;">
                             <h3 style="text-align: center; font-size: 32px; margin-bottom: 100px;">Mantenimiento Preventivo</h3>
