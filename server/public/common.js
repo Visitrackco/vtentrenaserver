@@ -1317,6 +1317,413 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
 
 
 
+/***/ }),
+
+/***/ 36832:
+/*!*********************************************************************!*\
+  !*** ./node_modules/angular-cd-timer/fesm2015/angular-cd-timer.mjs ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CdTimerComponent": () => (/* binding */ CdTimerComponent),
+/* harmony export */   "CdTimerModule": () => (/* binding */ CdTimerModule)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+const _c0 = ["*"];
+
+class CdTimerComponent {
+  constructor(elt, renderer) {
+    this.elt = elt;
+    this.renderer = renderer;
+    this.onStart = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onStop = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onTick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onComplete = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter(); // Initialization
+
+    this.autoStart = true;
+    this.startTime = 0;
+    this.endTime = 0;
+    this.timeoutId = null;
+    this.countdown = false;
+    this.format = 'default';
+  }
+
+  ngAfterViewInit() {
+    const ngContentNode = this.elt.nativeElement.lastChild; // Get last child, defined by user or span
+
+    this.ngContentSchema = ngContentNode ? ngContentNode.nodeValue : '';
+
+    if (this.autoStart === undefined || this.autoStart === true) {
+      this.start();
+    }
+  }
+
+  ngOnDestroy() {
+    this.resetTimeout();
+  }
+  /**
+   * Start the timer
+   */
+
+
+  start() {
+    this.initVar();
+    this.resetTimeout();
+    this.computeTimeUnits();
+    this.startTickCount();
+    this.onStart.emit(this);
+  }
+  /**
+   * Resume the timer
+   */
+
+
+  resume() {
+    this.resetTimeout();
+    this.startTickCount();
+  }
+  /**
+   * Stop the timer
+   */
+
+
+  stop() {
+    this.clear();
+    this.onStop.emit(this);
+  }
+  /**
+   * Reset the timer
+   */
+
+
+  reset() {
+    this.initVar();
+    this.resetTimeout();
+    this.clear();
+    this.computeTimeUnits();
+    this.renderText();
+  }
+  /**
+   * Get the time information
+   * @returns TimeInterface
+   */
+
+
+  get() {
+    return {
+      seconds: this.seconds,
+      minutes: this.minutes,
+      hours: this.hours,
+      days: this.days,
+      timer: this.timeoutId,
+      tick_count: this.tickCounter
+    };
+  }
+  /**
+   * Initialize variable before start
+   */
+
+
+  initVar() {
+    this.startTime = this.startTime || 0;
+    this.endTime = this.endTime || 0;
+    this.countdown = this.countdown || false;
+    this.tickCounter = this.startTime; // Disable countdown if start time not defined
+
+    if (this.countdown && this.startTime === 0) {
+      this.countdown = false;
+    } // Determine auto format
+
+
+    if (!this.format) {
+      this.format = this.ngContentSchema.length > 5 ? 'user' : 'default';
+    }
+  }
+  /**
+   * Reset timeout
+   */
+
+
+  resetTimeout() {
+    if (this.timeoutId) {
+      clearInterval(this.timeoutId);
+    }
+  }
+  /**
+   * Render the time to DOM
+   */
+
+
+  renderText() {
+    let outputText;
+
+    if (this.format === 'user') {
+      // User presentation
+      const items = {
+        'seconds': this.seconds,
+        'minutes': this.minutes,
+        'hours': this.hours,
+        'days': this.days
+      };
+      outputText = this.ngContentSchema;
+
+      for (const key of Object.keys(items)) {
+        outputText = outputText.replace('[' + key + ']', items[key].toString());
+      }
+    } else if (this.format === 'intelli') {
+      // Intelli presentation
+      outputText = '';
+
+      if (this.days > 0) {
+        outputText += this.days.toString() + 'day' + (this.days > 1 ? 's' : '') + ' ';
+      }
+
+      if (this.hours > 0 || this.days > 0) {
+        outputText += this.hours.toString() + 'h ';
+      }
+
+      if ((this.minutes > 0 || this.hours > 0) && this.days === 0) {
+        outputText += this.minutes.toString().padStart(2, '0') + 'min ';
+      }
+
+      if (this.hours === 0 && this.days === 0) {
+        outputText += this.seconds.toString().padStart(2, '0') + 's';
+      }
+    } else if (this.format === 'hms') {
+      // Hms presentation
+      outputText = this.hours.toString().padStart(2, '0') + ':';
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else if (this.format === 'ms') {
+      // ms presentation
+      outputText = '';
+
+      if (this.hours > 0) {
+        outputText = this.hours.toString().padStart(2, '0') + ':';
+      }
+
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else {
+      // Default presentation
+      outputText = this.days.toString() + 'd ';
+      outputText += this.hours.toString() + 'h ';
+      outputText += this.minutes.toString() + 'm ';
+      outputText += this.seconds.toString() + 's';
+    }
+
+    this.renderer.setProperty(this.elt.nativeElement, 'innerHTML', outputText);
+  }
+
+  clear() {
+    this.resetTimeout();
+    this.timeoutId = null;
+  }
+  /**
+   * Compute each unit (seconds, minutes, hours, days) for further manipulation
+   * @protected
+   */
+
+
+  computeTimeUnits() {
+    if (!this.maxTimeUnit || this.maxTimeUnit === 'day') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600 % 24);
+      this.days = Math.floor(this.tickCounter / 3600 / 24);
+    } else if (this.maxTimeUnit === 'second') {
+      this.seconds = this.tickCounter;
+      this.minutes = 0;
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'minute') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60);
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'hour') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600);
+      this.days = 0;
+    }
+
+    this.renderText();
+  }
+  /**
+   * Start tick count, base of this component
+   * @protected
+   */
+
+
+  startTickCount() {
+    const that = this;
+    that.timeoutId = setInterval(function () {
+      let counter;
+
+      if (that.countdown) {
+        // Compute finish counter for countdown
+        counter = that.tickCounter;
+
+        if (that.startTime > that.endTime) {
+          counter = that.tickCounter - that.endTime - 1;
+        }
+      } else {
+        // Compute finish counter for timer
+        counter = that.tickCounter - that.startTime;
+
+        if (that.endTime > that.startTime) {
+          counter = that.endTime - that.tickCounter - 1;
+        }
+      }
+
+      that.computeTimeUnits();
+      const timer = {
+        seconds: that.seconds,
+        minutes: that.minutes,
+        hours: that.hours,
+        days: that.days,
+        timer: that.timeoutId,
+        tick_count: that.tickCounter
+      };
+      that.onTick.emit(timer);
+
+      if (counter < 0) {
+        that.stop();
+        that.onComplete.emit(that);
+        return;
+      }
+
+      if (that.countdown) {
+        that.tickCounter--;
+      } else {
+        that.tickCounter++;
+      }
+    }, 1000); // Each seconds
+  }
+
+}
+
+CdTimerComponent.ɵfac = function CdTimerComponent_Factory(t) {
+  return new (t || CdTimerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
+};
+
+CdTimerComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+  type: CdTimerComponent,
+  selectors: [["cd-timer"]],
+  inputs: {
+    startTime: "startTime",
+    endTime: "endTime",
+    countdown: "countdown",
+    autoStart: "autoStart",
+    maxTimeUnit: "maxTimeUnit",
+    format: "format"
+  },
+  outputs: {
+    onStart: "onStart",
+    onStop: "onStop",
+    onTick: "onTick",
+    onComplete: "onComplete"
+  },
+  ngContentSelectors: _c0,
+  decls: 1,
+  vars: 0,
+  template: function CdTimerComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
+    }
+  },
+  encapsulation: 2
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerComponent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
+    args: [{
+      selector: 'cd-timer',
+      template: ' <ng-content></ng-content>'
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }];
+  }, {
+    startTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    endTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    countdown: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    autoStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    maxTimeUnit: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    format: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onStop: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onTick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onComplete: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }]
+  });
+})();
+
+class CdTimerModule {}
+
+CdTimerModule.ɵfac = function CdTimerModule_Factory(t) {
+  return new (t || CdTimerModule)();
+};
+
+CdTimerModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+  type: CdTimerModule,
+  declarations: [CdTimerComponent],
+  exports: [CdTimerComponent]
+});
+CdTimerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+  imports: [[]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
+    args: [{
+      declarations: [CdTimerComponent],
+      imports: [],
+      exports: [CdTimerComponent]
+    }]
+  }], null, null);
+})();
+/*
+ * Public API Surface of angular-cd-timer
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+
 /***/ })
 
 }]);
