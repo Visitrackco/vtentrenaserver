@@ -222,15 +222,16 @@ __webpack_require__.r(__webpack_exports__);
 let FiltroBuscarPipe = class FiltroBuscarPipe {
     transform(value, txt) {
         console.log(value, 'valor');
+        txt = txt.toLocaleLowerCase();
         if (txt == '') {
             return value;
         }
         value = value.filter((item) => {
-            let fecha = item.Values.filter((act) => act.apiId == 'FECHA').length > 0 ? item.Values.filter((act) => act.apiId == 'FECHA')[0].Value : '';
-            let obs = item.Values.filter((act) => act.apiId == 'OBSERVACIONES').length > 0 ? item.Values.filter((act) => act.apiId == 'OBSERVACIONES')[0].Value : '';
-            let nov = item.Values.filter((act) => act.apiId == 'NOVEDAD').length > 0 ? item.Values.filter((act) => act.apiId == 'NOVEDAD')[0].Value : '';
-            let ubi = item.Values.filter((act) => act.apiId == 'UBICACION').length > 0 ? item.Values.filter((act) => act.apiId == 'UBICACION')[0].Value : '';
-            let loc = item.LocationName;
+            let fecha = item.Values.filter((act) => act.apiId == 'FECHA').length > 0 ? item.Values.filter((act) => act.apiId == 'FECHA')[0].Value.toLocaleLowerCase() : '';
+            let obs = item.Values.filter((act) => act.apiId == 'OBSERVACIONES').length > 0 ? item.Values.filter((act) => act.apiId == 'OBSERVACIONES')[0].Value.toLocaleLowerCase() : '';
+            let nov = item.Values.filter((act) => act.apiId == 'NOVEDAD').length > 0 ? item.Values.filter((act) => act.apiId == 'NOVEDAD')[0].Value.toLocaleLowerCase() : '';
+            let ubi = item.Values.filter((act) => act.apiId == 'UBICACION').length > 0 ? item.Values.filter((act) => act.apiId == 'UBICACION')[0].Value.toLocaleLowerCase() : '';
+            let loc = item.LocationName.toLocaleLowerCase();
             if (fecha.includes(txt) || obs.includes(txt) || nov.includes(txt) || ubi.includes(txt) || loc.includes(txt)) {
                 return item;
             }
@@ -299,10 +300,10 @@ let FiltroGeneralCDOpIpe = class FiltroGeneralCDOpIpe {
         console.log(value, 'valor');
         filtroby = filtroby.toLowerCase();
         return filtroby == '' ? value : value.filter((item) => {
-            let loc = item.LocationName.toLowerCase();
-            let asset = item.AssetName.toLowerCase();
-            let person = item.AssignedToName.toLowerCase();
-            return loc.includes(filtroby) || asset.includes(filtroby) || person.includes(filtroby);
+            let loc = item.loc.toLowerCase();
+            let asset = item.ass.toLowerCase();
+            let fec = item.fec.toLowerCase();
+            return loc.includes(filtroby) || asset.includes(filtroby) || fec.includes(filtroby);
         });
     }
 };
@@ -1664,7 +1665,7 @@ const routes = [
     },
     {
         path: 'interfaces/cdosupervisores',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
     },
     {
         path: 'interfaces/agilissa-calendario',
@@ -1684,7 +1685,7 @@ const routes = [
     },
     {
         path: 'interfaces/inverpack/mantenimientos',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
     },
     {
         path: 'interfaces/asignacion-diamante',

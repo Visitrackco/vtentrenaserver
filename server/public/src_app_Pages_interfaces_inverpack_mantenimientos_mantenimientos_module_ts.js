@@ -516,6 +516,413 @@ module.exports = ".main {\n  width: 100%;\n}\n.main ion-grid {\n  width: 40%;\n 
 
 module.exports = "<ion-header>\n    <ion-toolbar color=\"dark\">\n        <ion-title>Mantenimientos</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"handleRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n\n    <ion-list>\n\n        <div class=\"flex ion-padding\" style=\"background: #f1f1f1; margin-bottom: 10px;\">\n            <h3 style=\"margin: 0;\">Solicitudes</h3>\n            <h3 style=\"margin: 0;\">{{ (actividades | filtrocdo : filtro | filtrogeneralcdo : txt).length }}</h3>\n        </div>\n\n        <div *ngIf=\"!cargaActividades\">\n            <div *ngFor=\"let item of [1,1,1,1]\">\n                <ion-list-header>\n                    <ion-skeleton-text [animated]=\"true\" style=\"width: 80px\"></ion-skeleton-text>\n                </ion-list-header>\n                <ion-item>\n                    <ion-thumbnail slot=\"start\">\n                        <ion-skeleton-text [animated]=\"true\"></ion-skeleton-text>\n                    </ion-thumbnail>\n                    <ion-label>\n                        <h3>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 80%;\"></ion-skeleton-text>\n                        </h3>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 60%;\"></ion-skeleton-text>\n                        </p>\n                        <p>\n                            <ion-skeleton-text [animated]=\"true\" style=\"width: 30%;\"></ion-skeleton-text>\n                        </p>\n                    </ion-label>\n                </ion-item>\n            </div>\n        </div>\n\n\n\n\n        <div *ngIf=\"cargaActividades\">\n            <ion-item class=\"solicitudes\" lines=\"none\" *ngFor=\"let item of actividades | filtrocdo : filtro | filtrogeneralcdo : txt; let i = index;\">\n                <ion-avatar slot=\"start\" [class]=\"item.color\">\n\n                </ion-avatar>\n                <ion-label>\n                    <div class=\"timer\">\n                        <div class=\"ion-text-wrap\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO' && item.showTimer \">\n                            Ha sobrepasado el tiempo de prioridad {{item.prio}} <br>\n                            <cd-timer [startTime]=\"item.tiempo\"></cd-timer>\n                        </div>\n\n                        <div class=\"ion-text-wrap\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO' && !item.showTimer \">\n                            <cd-timer [startTime]=\"item.tiempo\" [countdown]=\"true\"></cd-timer>\n                        </div>\n\n\n\n                    </div>\n                    <br>\n                    <div class=\"flex\">\n                        <div><strong>CATEGORIA:</strong> <br> <span>{{item.LocationName}}</span></div>\n                        <div><strong>MÁQUINA:</strong> <br> <span>{{item.AssetName}}</span></div>\n                    </div> <br>\n\n\n                    <div class=\"flex\"><strong>CONSECUTIVO:</strong> <span style=\"color: red;\">{{item.Consecutive}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>SOLICITA:</strong> <br> <span>{{item.CreatedByName}}</span></div>\n\n                    <div class=\"separador\"></div>\n                    <div><strong>JUSTIFICACIÒN:</strong> <br> <span>{{item.Values | values : 'solicitud'}}</span></div>\n\n\n\n                    <div class=\"separador\"></div>\n                    <div><strong>Fecha Solicitud: </strong> <span> {{item.Values | values : 'FECHAENTRADA'}}</span></div>\n                    <div *ngIf=\"item.jefe\" style=\"color: red;\"><strong>Solicitud creada por Jefe Mantenimiento</strong></div>\n\n                    <br>\n\n                    <div class=\"info\" *ngIf=\" item.CompanyStatusName == 'SOLICITUD ENVIADA AL TECNICO'\">\n                        <div class=\"separador\" *ngIf=\"item.childs.AssignedToName\"></div>\n\n                        <div *ngIf=\"item.childs.AssignedToName\">Despacho:\n                            <div class=\"flex\">\n                                <strong>Para: </strong>\n                                <span>{{ item.childs.AssignedToName }}</span>\n                            </div>\n                            <div class=\"flex\">\n                                <strong>Enviado: </strong>\n                                <span>{{ item.childs.CreatedOn }}</span>\n                            </div>\n\n                            <div class=\"flex\">\n                                <strong>Prioridad: </strong>\n                                <span>{{ item.childs.Values | values : 'PRIORIDAD' }}</span>\n                            </div>\n\n                        </div>\n\n                        <div *ngIf=\"!item.childs.AssignedToName\">\n                            <ion-chip color=\"danger\">No se ha enviado al técnico</ion-chip>\n\n                        </div>\n                    </div>\n\n                    <ion-button *ngIf=\"item.prioridad == 1 && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"assign(item)\">Asignar</ion-button>\n\n                    <ion-button *ngIf=\"item.prioridad == 2 && item.childs.AssignedToName && btn == 'si'\" mode=\"ios\" expand=\"block\" color=\"light\" (click)=\"reenviar(item)\">Reenviar</ion-button>\n\n\n                </ion-label>\n            </ion-item>\n        </div>\n    </ion-list>\n\n</ion-content>";
 
+/***/ }),
+
+/***/ 36832:
+/*!*********************************************************************!*\
+  !*** ./node_modules/angular-cd-timer/fesm2015/angular-cd-timer.mjs ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CdTimerComponent": () => (/* binding */ CdTimerComponent),
+/* harmony export */   "CdTimerModule": () => (/* binding */ CdTimerModule)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+const _c0 = ["*"];
+
+class CdTimerComponent {
+  constructor(elt, renderer) {
+    this.elt = elt;
+    this.renderer = renderer;
+    this.onStart = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onStop = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onTick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onComplete = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter(); // Initialization
+
+    this.autoStart = true;
+    this.startTime = 0;
+    this.endTime = 0;
+    this.timeoutId = null;
+    this.countdown = false;
+    this.format = 'default';
+  }
+
+  ngAfterViewInit() {
+    const ngContentNode = this.elt.nativeElement.lastChild; // Get last child, defined by user or span
+
+    this.ngContentSchema = ngContentNode ? ngContentNode.nodeValue : '';
+
+    if (this.autoStart === undefined || this.autoStart === true) {
+      this.start();
+    }
+  }
+
+  ngOnDestroy() {
+    this.resetTimeout();
+  }
+  /**
+   * Start the timer
+   */
+
+
+  start() {
+    this.initVar();
+    this.resetTimeout();
+    this.computeTimeUnits();
+    this.startTickCount();
+    this.onStart.emit(this);
+  }
+  /**
+   * Resume the timer
+   */
+
+
+  resume() {
+    this.resetTimeout();
+    this.startTickCount();
+  }
+  /**
+   * Stop the timer
+   */
+
+
+  stop() {
+    this.clear();
+    this.onStop.emit(this);
+  }
+  /**
+   * Reset the timer
+   */
+
+
+  reset() {
+    this.initVar();
+    this.resetTimeout();
+    this.clear();
+    this.computeTimeUnits();
+    this.renderText();
+  }
+  /**
+   * Get the time information
+   * @returns TimeInterface
+   */
+
+
+  get() {
+    return {
+      seconds: this.seconds,
+      minutes: this.minutes,
+      hours: this.hours,
+      days: this.days,
+      timer: this.timeoutId,
+      tick_count: this.tickCounter
+    };
+  }
+  /**
+   * Initialize variable before start
+   */
+
+
+  initVar() {
+    this.startTime = this.startTime || 0;
+    this.endTime = this.endTime || 0;
+    this.countdown = this.countdown || false;
+    this.tickCounter = this.startTime; // Disable countdown if start time not defined
+
+    if (this.countdown && this.startTime === 0) {
+      this.countdown = false;
+    } // Determine auto format
+
+
+    if (!this.format) {
+      this.format = this.ngContentSchema.length > 5 ? 'user' : 'default';
+    }
+  }
+  /**
+   * Reset timeout
+   */
+
+
+  resetTimeout() {
+    if (this.timeoutId) {
+      clearInterval(this.timeoutId);
+    }
+  }
+  /**
+   * Render the time to DOM
+   */
+
+
+  renderText() {
+    let outputText;
+
+    if (this.format === 'user') {
+      // User presentation
+      const items = {
+        'seconds': this.seconds,
+        'minutes': this.minutes,
+        'hours': this.hours,
+        'days': this.days
+      };
+      outputText = this.ngContentSchema;
+
+      for (const key of Object.keys(items)) {
+        outputText = outputText.replace('[' + key + ']', items[key].toString());
+      }
+    } else if (this.format === 'intelli') {
+      // Intelli presentation
+      outputText = '';
+
+      if (this.days > 0) {
+        outputText += this.days.toString() + 'day' + (this.days > 1 ? 's' : '') + ' ';
+      }
+
+      if (this.hours > 0 || this.days > 0) {
+        outputText += this.hours.toString() + 'h ';
+      }
+
+      if ((this.minutes > 0 || this.hours > 0) && this.days === 0) {
+        outputText += this.minutes.toString().padStart(2, '0') + 'min ';
+      }
+
+      if (this.hours === 0 && this.days === 0) {
+        outputText += this.seconds.toString().padStart(2, '0') + 's';
+      }
+    } else if (this.format === 'hms') {
+      // Hms presentation
+      outputText = this.hours.toString().padStart(2, '0') + ':';
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else if (this.format === 'ms') {
+      // ms presentation
+      outputText = '';
+
+      if (this.hours > 0) {
+        outputText = this.hours.toString().padStart(2, '0') + ':';
+      }
+
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else {
+      // Default presentation
+      outputText = this.days.toString() + 'd ';
+      outputText += this.hours.toString() + 'h ';
+      outputText += this.minutes.toString() + 'm ';
+      outputText += this.seconds.toString() + 's';
+    }
+
+    this.renderer.setProperty(this.elt.nativeElement, 'innerHTML', outputText);
+  }
+
+  clear() {
+    this.resetTimeout();
+    this.timeoutId = null;
+  }
+  /**
+   * Compute each unit (seconds, minutes, hours, days) for further manipulation
+   * @protected
+   */
+
+
+  computeTimeUnits() {
+    if (!this.maxTimeUnit || this.maxTimeUnit === 'day') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600 % 24);
+      this.days = Math.floor(this.tickCounter / 3600 / 24);
+    } else if (this.maxTimeUnit === 'second') {
+      this.seconds = this.tickCounter;
+      this.minutes = 0;
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'minute') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60);
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'hour') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600);
+      this.days = 0;
+    }
+
+    this.renderText();
+  }
+  /**
+   * Start tick count, base of this component
+   * @protected
+   */
+
+
+  startTickCount() {
+    const that = this;
+    that.timeoutId = setInterval(function () {
+      let counter;
+
+      if (that.countdown) {
+        // Compute finish counter for countdown
+        counter = that.tickCounter;
+
+        if (that.startTime > that.endTime) {
+          counter = that.tickCounter - that.endTime - 1;
+        }
+      } else {
+        // Compute finish counter for timer
+        counter = that.tickCounter - that.startTime;
+
+        if (that.endTime > that.startTime) {
+          counter = that.endTime - that.tickCounter - 1;
+        }
+      }
+
+      that.computeTimeUnits();
+      const timer = {
+        seconds: that.seconds,
+        minutes: that.minutes,
+        hours: that.hours,
+        days: that.days,
+        timer: that.timeoutId,
+        tick_count: that.tickCounter
+      };
+      that.onTick.emit(timer);
+
+      if (counter < 0) {
+        that.stop();
+        that.onComplete.emit(that);
+        return;
+      }
+
+      if (that.countdown) {
+        that.tickCounter--;
+      } else {
+        that.tickCounter++;
+      }
+    }, 1000); // Each seconds
+  }
+
+}
+
+CdTimerComponent.ɵfac = function CdTimerComponent_Factory(t) {
+  return new (t || CdTimerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
+};
+
+CdTimerComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+  type: CdTimerComponent,
+  selectors: [["cd-timer"]],
+  inputs: {
+    startTime: "startTime",
+    endTime: "endTime",
+    countdown: "countdown",
+    autoStart: "autoStart",
+    maxTimeUnit: "maxTimeUnit",
+    format: "format"
+  },
+  outputs: {
+    onStart: "onStart",
+    onStop: "onStop",
+    onTick: "onTick",
+    onComplete: "onComplete"
+  },
+  ngContentSelectors: _c0,
+  decls: 1,
+  vars: 0,
+  template: function CdTimerComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
+    }
+  },
+  encapsulation: 2
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerComponent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
+    args: [{
+      selector: 'cd-timer',
+      template: ' <ng-content></ng-content>'
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }];
+  }, {
+    startTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    endTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    countdown: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    autoStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    maxTimeUnit: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    format: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onStop: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onTick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onComplete: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }]
+  });
+})();
+
+class CdTimerModule {}
+
+CdTimerModule.ɵfac = function CdTimerModule_Factory(t) {
+  return new (t || CdTimerModule)();
+};
+
+CdTimerModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+  type: CdTimerModule,
+  declarations: [CdTimerComponent],
+  exports: [CdTimerComponent]
+});
+CdTimerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+  imports: [[]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
+    args: [{
+      declarations: [CdTimerComponent],
+      imports: [],
+      exports: [CdTimerComponent]
+    }]
+  }], null, null);
+})();
+/*
+ * Public API Surface of angular-cd-timer
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+
 /***/ })
 
 }]);

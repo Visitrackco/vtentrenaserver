@@ -93,14 +93,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "NettSegurPage": () => (/* binding */ NettSegurPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _nett_segur_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nett-segur.page.html?ngResource */ 60522);
 /* harmony import */ var _nett_segur_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nett-segur.page.scss?ngResource */ 79879);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
-/* harmony import */ var src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/components/asignacionnettsegur/asignacionnettsegur.component */ 8638);
-/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ 56908);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/components/asignacionnettsegur/asignacionnettsegur.component */ 8638);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+
 
 
 
@@ -142,9 +145,10 @@ let NettSegurPage = class NettSegurPage {
         });
     }
     getActivities() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            this.api.getMyActivities(this.tkn).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            this.api.getActivities2(this.tkn, moment__WEBPACK_IMPORTED_MODULE_2__().subtract(3, 'months').format('YYYY-MM-DD HH:mm'), moment__WEBPACK_IMPORTED_MODULE_2__().format('YYYY-MM-DD HH:mm'), 'CE30E8A1-9D77-4CD6-97A2-8EC72826E920').subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
                 console.log(data);
+                data = data.filter((it) => it.CompanyStatusName == 'CREADO');
                 if (!data) {
                     this.load = true;
                     return;
@@ -166,9 +170,9 @@ let NettSegurPage = class NettSegurPage {
         });
     }
     asignar(data) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalCtrl.create({
-                component: src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_2__.AsignacionnettsegurComponent,
+                component: src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_3__.AsignacionnettsegurComponent,
                 componentProps: {
                     tkn: '538670140830D5E9B8D5C473F050E9E3',
                     data
@@ -185,13 +189,13 @@ let NettSegurPage = class NettSegurPage {
     }
 };
 NettSegurPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.MenuController },
-    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController },
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_4__.ApiService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute }
 ];
-NettSegurPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+NettSegurPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-nett-segur',
         template: _nett_segur_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_nett_segur_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
