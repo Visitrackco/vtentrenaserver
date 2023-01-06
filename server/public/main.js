@@ -597,11 +597,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -757,6 +757,13 @@ let ApiService = class ApiService {
             ActivityGUID: data.guid,
         }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
+    changeOnlyStatus(data) {
+        return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_API}Surveys/SetDatetime`, {
+            AccessToken: data.tkn,
+            DispachDateTime: data.date,
+            ActivityGUID: data.guid,
+        }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
+    }
     postLoginExte(login) {
         return this.Http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environments.URL_NODE}/customers/login`, login).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.retryWhen)(error => this.HandlerError(error)));
     }
@@ -905,10 +912,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
 
 
 
@@ -1446,8 +1453,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1665,7 +1672,7 @@ const routes = [
     },
     {
         path: 'interfaces/cdosupervisores',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_Pages_interfaces_cdosupervisores_cdosupervisores_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdosupervisores/cdosupervisores.module */ 67341)).then(m => m.CdosupervisoresPageModule)
     },
     {
         path: 'interfaces/agilissa-calendario',
@@ -1685,7 +1692,7 @@ const routes = [
     },
     {
         path: 'interfaces/inverpack/mantenimientos',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_Pages_interfaces_inverpack_mantenimientos_mantenimientos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/inverpack/mantenimientos/mantenimientos.module */ 49683)).then(m => m.MantenimientosPageModule)
     },
     {
         path: 'interfaces/asignacion-diamante',
@@ -3022,6 +3029,7 @@ let CargaTaskComponent = class CargaTaskComponent {
         this.api = api;
         this.load = true;
         this.list = [];
+        this.list2 = [];
         this.mes = '';
         this.mesMuestra = '';
         this.semana = '';
@@ -3130,6 +3138,12 @@ let CargaTaskComponent = class CargaTaskComponent {
     }
     loadActivities() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            if (this.ejecutadas.length > 0) {
+                for (const element of this.ejecutadas) {
+                    yield this.change(element.guid, element.date);
+                    this.list2.push(element);
+                }
+            }
             for (const item of this.data.task) {
                 const resp = yield this.createOnlyActivity(item);
                 if (resp) {
@@ -3257,6 +3271,22 @@ let CargaTaskComponent = class CargaTaskComponent {
             }
         });
     }
+    change(guid, date) {
+        return new Promise((resolve, reject) => {
+            console.log({
+                tkn: this.tkn,
+                guid
+            });
+            this.api.changeUser({
+                tkn: this.tkn,
+                date,
+                guid
+            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+                console.log(dat);
+                resolve(dat);
+            }), () => resolve(true));
+        });
+    }
     reassing(guid, user, date) {
         return new Promise((resolve, reject) => {
             console.log({
@@ -3290,7 +3320,8 @@ CargaTaskComponent.propDecorators = {
     mode: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
     users: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
     userGUID: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
-    data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }]
+    data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    ejecutadas: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }]
 };
 CargaTaskComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
@@ -4862,12 +4893,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -5559,7 +5590,7 @@ module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  jus
 /***/ ((module) => {
 
 "use strict";
-module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.flex h4 {\n  font-size: 18px;\n}\n\n.flexbt {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDSjs7QUFBSTtFQUNJLGVBQUE7QUFFUjs7QUFFQTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtBQUNKIiwiZmlsZSI6ImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBtYXJnaW46IDIwcHggMDtcbiAgICBwYWRkaW5nOiAxMHB4O1xufVxuXG4uZmxleCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBoNCB7XG4gICAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICB9XG59XG5cbi5mbGV4YnQge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufSJdfQ== */";
+module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 16px;\n  text-align: center;\n  font-weight: bold;\n  margin: 20px 0;\n  padding: 10px;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.flex h4 {\n  font-weight: bold;\n  font-size: 22px;\n}\n\n.flexbt {\n  display: flex;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmdhLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDSjs7QUFBSTtFQUNJLGlCQUFBO0VBQ0EsZUFBQTtBQUVSOztBQUVBO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0FBQ0oiLCJmaWxlIjoiY2FyZ2EtdGFzay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2FkaW5nIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmb250LXNpemU6IDE2cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIG1hcmdpbjogMjBweCAwO1xuICAgIHBhZGRpbmc6IDEwcHg7XG59XG5cbi5mbGV4IHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGg0IHtcbiAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgICAgIGZvbnQtc2l6ZTogMjJweDtcbiAgICB9XG59XG5cbi5mbGV4YnQge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufSJdfQ== */";
 
 /***/ }),
 
@@ -5867,7 +5898,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <i
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli' && mode == 'month' \">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'dupli' && mode == 'week' \">\n        <div class=\"flex\">\n            <h4>Programar para la semana siguiente</h4>\n        </div>\n\n        <ion-item>\n            <ion-button slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ semana }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n\n                <div class=\"flex\">\n                    <h4>Actividades Actualizadas</h4>\n                    <h4>{{list2.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli' && mode == 'month' \">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'dupli' && mode == 'week' \">\n        <div class=\"flex\">\n            <h4>Programar para la semana siguiente</h4>\n        </div>\n\n        <ion-item>\n            <ion-button slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ semana }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
 
 /***/ }),
 

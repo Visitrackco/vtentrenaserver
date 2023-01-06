@@ -1,9 +1,9 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
-/***/ 72943:
+/***/ 95479:
 /*!*********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/button-active-8251f533.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/button-active-1542e4b9.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "c": () => (/* binding */ createButtonActiveGesture)
 /* harmony export */ });
 /* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-8e692445.js */ 91559);
-/* harmony import */ var _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-029a46f6.js */ 12815);
+/* harmony import */ var _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-683b3b3c.js */ 70634);
 /* harmony import */ var _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f8d8aa5a.js */ 69286);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -82,11 +82,11 @@ const createButtonActiveGesture = (el, isButton) => {
     el,
     gestureName: 'buttonActiveDrag',
     threshold: 0,
-    onStart: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.a),
-    onMove: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.b),
+    onStart: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.a),
+    onMove: ev => activateButtonAtPoint(ev.currentX, ev.currentY, _haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.b),
     onEnd: () => {
       clearActiveButton(true);
-      (0,_haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__.h)();
+      (0,_haptic_683b3b3c_js__WEBPACK_IMPORTED_MODULE_1__.h)();
       initialTouchedButton = undefined;
     }
   });
@@ -214,9 +214,9 @@ const startFocusVisible = rootEl => {
 
 /***/ }),
 
-/***/ 65921:
+/***/ 9553:
 /*!**************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-073a0b65.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-82cc7646.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -226,8 +226,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_santigovelascofernandez_visitrack_interfaces_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 
 
 /*!
@@ -236,7 +236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const attachComponent = /*#__PURE__*/function () {
-  var _ref = (0,_Users_santigovelascofernandez_visitrack_interfaces_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+  var _ref = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
     var _a;
 
     if (delegate) {
@@ -258,7 +258,7 @@ const attachComponent = /*#__PURE__*/function () {
     }
 
     container.appendChild(el);
-    yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+    yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
     return el;
   });
 
@@ -285,7 +285,7 @@ const CoreDelegate = () => {
   let Reference;
 
   const attachViewToDom = /*#__PURE__*/function () {
-    var _ref2 = (0,_Users_santigovelascofernandez_visitrack_interfaces_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+    var _ref2 = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
       var _a, _b;
 
       BaseComponent = parentElement;
@@ -319,25 +319,16 @@ const CoreDelegate = () => {
          */
 
         BaseComponent.appendChild(el);
-        yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+        yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       } else if (BaseComponent.children.length > 0) {
-        const root = BaseComponent.children[0];
+        // If there is no component, then we need to create a new parent
+        // element to apply the css classes to.
+        const el = (_b = BaseComponent.ownerDocument) === null || _b === void 0 ? void 0 : _b.createElement('div');
+        cssClasses.forEach(c => el.classList.add(c)); // Move each child from the original template to the new parent element.
 
-        if (!root.classList.contains('ion-delegate-host')) {
-          /**
-           * If the root element is not a delegate host, it means
-           * that the overlay has not been presented yet and we need
-           * to create the containing element with the specified classes.
-           */
-          const el = (_b = BaseComponent.ownerDocument) === null || _b === void 0 ? void 0 : _b.createElement('div'); // Add a class to track if the root element was created by the delegate.
+        el.append(...BaseComponent.children); // Append the new parent element to the original parent element.
 
-          el.classList.add('ion-delegate-host');
-          cssClasses.forEach(c => el.classList.add(c)); // Move each child from the original template to the new parent element.
-
-          el.append(...BaseComponent.children); // Append the new parent element to the original parent element.
-
-          BaseComponent.appendChild(el);
-        }
+        BaseComponent.appendChild(el);
       }
       /**
        * Get the root of the app and
@@ -385,9 +376,9 @@ const CoreDelegate = () => {
 
 /***/ }),
 
-/***/ 12815:
+/***/ 70634:
 /*!**************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/haptic-029a46f6.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/haptic-683b3b3c.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -411,30 +402,7 @@ const HapticEngine = {
   },
 
   available() {
-    var _a;
-
-    const win = window;
-    const engine = this.getEngine();
-
-    if (!engine) {
-      return false;
-    }
-    /**
-     * Developers can manually import the
-     * Haptics plugin in their app which will cause
-     * getEngine to return the Haptics engine. However,
-     * the Haptics engine will throw an error if
-     * used in a web browser that does not support
-     * the Vibrate API. This check avoids that error
-     * if the browser does not support the Vibrate API.
-     */
-
-
-    if (((_a = win.Capacitor) === null || _a === void 0 ? void 0 : _a.getPlatform()) === 'web') {
-      return typeof navigator !== 'undefined' && navigator.vibrate !== undefined;
-    }
-
-    return true;
+    return !!this.getEngine();
   },
 
   isCordova() {
@@ -522,21 +490,12 @@ const HapticEngine = {
 
 };
 /**
- * Check to see if the Haptic Plugin is available
- * @return Returns `true` or false if the plugin is available
- */
-
-const hapticAvailable = () => {
-  return HapticEngine.available();
-};
-/**
  * Trigger a selection changed haptic event. Good for one-time events
  * (not for gestures)
  */
 
-
 const hapticSelection = () => {
-  hapticAvailable() && HapticEngine.selection();
+  HapticEngine.selection();
 };
 /**
  * Tell the haptic engine that a gesture for a selection change is starting.
@@ -544,7 +503,7 @@ const hapticSelection = () => {
 
 
 const hapticSelectionStart = () => {
-  hapticAvailable() && HapticEngine.selectionStart();
+  HapticEngine.selectionStart();
 };
 /**
  * Tell the haptic engine that a selection changed during a gesture.
@@ -552,7 +511,7 @@ const hapticSelectionStart = () => {
 
 
 const hapticSelectionChanged = () => {
-  hapticAvailable() && HapticEngine.selectionChanged();
+  HapticEngine.selectionChanged();
 };
 /**
  * Tell the haptic engine we are done with a gesture. This needs to be
@@ -561,7 +520,7 @@ const hapticSelectionChanged = () => {
 
 
 const hapticSelectionEnd = () => {
-  hapticAvailable() && HapticEngine.selectionEnd();
+  HapticEngine.selectionEnd();
 };
 /**
  * Use this to indicate success/failure/warning to the user.
@@ -570,16 +529,78 @@ const hapticSelectionEnd = () => {
 
 
 const hapticImpact = options => {
-  hapticAvailable() && HapticEngine.impact(options);
+  HapticEngine.impact(options);
 };
 
 
 
 /***/ }),
 
-/***/ 33081:
+/***/ 2002:
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-5d0c8232.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-40bb69ee.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "a": () => (/* binding */ arrowBackSharp),
+/* harmony export */   "b": () => (/* binding */ closeCircle),
+/* harmony export */   "c": () => (/* binding */ chevronBack),
+/* harmony export */   "d": () => (/* binding */ closeSharp),
+/* harmony export */   "e": () => (/* binding */ searchSharp),
+/* harmony export */   "f": () => (/* binding */ checkmarkOutline),
+/* harmony export */   "g": () => (/* binding */ ellipseOutline),
+/* harmony export */   "h": () => (/* binding */ caretBackSharp),
+/* harmony export */   "i": () => (/* binding */ arrowDown),
+/* harmony export */   "j": () => (/* binding */ reorderThreeOutline),
+/* harmony export */   "k": () => (/* binding */ reorderTwoSharp),
+/* harmony export */   "l": () => (/* binding */ chevronDown),
+/* harmony export */   "m": () => (/* binding */ chevronForwardOutline),
+/* harmony export */   "n": () => (/* binding */ ellipsisHorizontal),
+/* harmony export */   "o": () => (/* binding */ chevronForward),
+/* harmony export */   "p": () => (/* binding */ caretUpSharp),
+/* harmony export */   "q": () => (/* binding */ caretDownSharp),
+/* harmony export */   "r": () => (/* binding */ removeOutline),
+/* harmony export */   "s": () => (/* binding */ searchOutline),
+/* harmony export */   "t": () => (/* binding */ close),
+/* harmony export */   "u": () => (/* binding */ menuOutline),
+/* harmony export */   "v": () => (/* binding */ menuSharp)
+/* harmony export */ });
+/*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */
+
+/* Ionicons v6.0.3, ES Modules */
+const arrowBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Arrow Back</title><path stroke-linecap='square' stroke-miterlimit='10' stroke-width='48' d='M244 400L100 256l144-144M120 256h292' class='ionicon-fill-none'/></svg>";
+const arrowDown = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Arrow Down</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 268l144 144 144-144M256 392V100' class='ionicon-fill-none'/></svg>";
+const caretBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Back</title><path d='M368 64L144 256l224 192V64z'/></svg>";
+const caretDownSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Down</title><path d='M64 144l192 224 192-224H64z'/></svg>";
+const caretUpSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Up</title><path d='M448 368L256 144 64 368h384z'/></svg>";
+const checkmarkOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Checkmark</title><path stroke-linecap='round' stroke-linejoin='round' d='M416 128L192 384l-96-96' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const chevronBack = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Back</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M328 112L184 256l144 144' class='ionicon-fill-none'/></svg>";
+const chevronDown = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Down</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 184l144 144 144-144' class='ionicon-fill-none'/></svg>";
+const chevronForward = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Forward</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144' class='ionicon-fill-none'/></svg>";
+const chevronForwardOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Forward</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144' class='ionicon-fill-none'/></svg>";
+const close = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close</title><path d='M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z'/></svg>";
+const closeCircle = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close Circle</title><path d='M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm75.31 260.69a16 16 0 11-22.62 22.62L256 278.63l-52.69 52.68a16 16 0 01-22.62-22.62L233.37 256l-52.68-52.69a16 16 0 0122.62-22.62L256 233.37l52.69-52.68a16 16 0 0122.62 22.62L278.63 256z'/></svg>";
+const closeSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close</title><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>";
+const ellipseOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Ellipse</title><circle cx='256' cy='256' r='192' stroke-linecap='round' stroke-linejoin='round' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const ellipsisHorizontal = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Ellipsis Horizontal</title><circle cx='256' cy='256' r='48'/><circle cx='416' cy='256' r='48'/><circle cx='96' cy='256' r='48'/></svg>";
+const menuOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Menu</title><path stroke-linecap='round' stroke-miterlimit='10' d='M80 160h352M80 256h352M80 352h352' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const menuSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Menu</title><path d='M64 384h384v-42.67H64zm0-106.67h384v-42.66H64zM64 128v42.67h384V128z'/></svg>";
+const removeOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Remove</title><path stroke-linecap='round' stroke-linejoin='round' d='M400 256H112' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const reorderThreeOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Reorder Three</title><path stroke-linecap='round' stroke-linejoin='round' d='M96 256h320M96 176h320M96 336h320' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const reorderTwoSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Reorder Two</title><path stroke-linecap='square' stroke-linejoin='round' stroke-width='44' d='M118 304h276M118 208h276' class='ionicon-fill-none'/></svg>";
+const searchOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Search</title><path d='M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z' stroke-miterlimit='10' class='ionicon-fill-none ionicon-stroke-width'/><path stroke-linecap='round' stroke-miterlimit='10' d='M338.29 338.29L448 448' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
+const searchSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Search</title><path d='M464 428L339.92 303.9a160.48 160.48 0 0030.72-94.58C370.64 120.37 298.27 48 209.32 48S48 120.37 48 209.32s72.37 161.32 161.32 161.32a160.48 160.48 0 0094.58-30.72L428 464zM209.32 319.69a110.38 110.38 0 11110.37-110.37 110.5 110.5 0 01-110.37 110.37z'/></svg>";
+
+
+/***/ }),
+
+/***/ 24293:
+/*!*************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/index-fe2c1c1f.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -597,8 +618,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "r": () => (/* binding */ resetContentScrollY),
 /* harmony export */   "s": () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var _Users_santigovelascofernandez_visitrack_interfaces_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 /* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 99273);
 
 
@@ -634,9 +655,9 @@ const isIonContent = el => el.tagName === ION_CONTENT_TAG_NAME;
 
 
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,_Users_santigovelascofernandez_visitrack_interfaces_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,_Users_visitracksas_Proyectos_entranamiento_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
-      yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
+      yield new Promise(resolve => (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();
     }
 
@@ -755,68 +776,6 @@ const resetContentScrollY = (contentEl, initialScrollY) => {
   }
 };
 
-
-
-/***/ }),
-
-/***/ 48953:
-/*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-da396832.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "a": () => (/* binding */ arrowBackSharp),
-/* harmony export */   "b": () => (/* binding */ closeCircle),
-/* harmony export */   "c": () => (/* binding */ chevronBack),
-/* harmony export */   "d": () => (/* binding */ closeSharp),
-/* harmony export */   "e": () => (/* binding */ searchSharp),
-/* harmony export */   "f": () => (/* binding */ checkmarkOutline),
-/* harmony export */   "g": () => (/* binding */ ellipseOutline),
-/* harmony export */   "h": () => (/* binding */ caretBackSharp),
-/* harmony export */   "i": () => (/* binding */ arrowDown),
-/* harmony export */   "j": () => (/* binding */ reorderThreeOutline),
-/* harmony export */   "k": () => (/* binding */ reorderTwoSharp),
-/* harmony export */   "l": () => (/* binding */ chevronDown),
-/* harmony export */   "m": () => (/* binding */ chevronForwardOutline),
-/* harmony export */   "n": () => (/* binding */ ellipsisHorizontal),
-/* harmony export */   "o": () => (/* binding */ chevronForward),
-/* harmony export */   "p": () => (/* binding */ caretUpSharp),
-/* harmony export */   "q": () => (/* binding */ caretDownSharp),
-/* harmony export */   "r": () => (/* binding */ removeOutline),
-/* harmony export */   "s": () => (/* binding */ searchOutline),
-/* harmony export */   "t": () => (/* binding */ close),
-/* harmony export */   "u": () => (/* binding */ menuOutline),
-/* harmony export */   "v": () => (/* binding */ menuSharp)
-/* harmony export */ });
-/*!
- * (C) Ionic http://ionicframework.com - MIT License
- */
-
-/* Ionicons v6.0.4, ES Modules */
-const arrowBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Arrow Back</title><path stroke-linecap='square' stroke-miterlimit='10' stroke-width='48' d='M244 400L100 256l144-144M120 256h292' class='ionicon-fill-none'/></svg>";
-const arrowDown = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Arrow Down</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 268l144 144 144-144M256 392V100' class='ionicon-fill-none'/></svg>";
-const caretBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Back</title><path d='M368 64L144 256l224 192V64z'/></svg>";
-const caretDownSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Down</title><path d='M64 144l192 224 192-224H64z'/></svg>";
-const caretUpSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Caret Up</title><path d='M448 368L256 144 64 368h384z'/></svg>";
-const checkmarkOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Checkmark</title><path stroke-linecap='round' stroke-linejoin='round' d='M416 128L192 384l-96-96' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const chevronBack = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Back</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M328 112L184 256l144 144' class='ionicon-fill-none'/></svg>";
-const chevronDown = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Down</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 184l144 144 144-144' class='ionicon-fill-none'/></svg>";
-const chevronForward = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Forward</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144' class='ionicon-fill-none'/></svg>";
-const chevronForwardOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Chevron Forward</title><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144' class='ionicon-fill-none'/></svg>";
-const close = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close</title><path d='M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z'/></svg>";
-const closeCircle = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close Circle</title><path d='M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm75.31 260.69a16 16 0 11-22.62 22.62L256 278.63l-52.69 52.68a16 16 0 01-22.62-22.62L233.37 256l-52.68-52.69a16 16 0 0122.62-22.62L256 233.37l52.69-52.68a16 16 0 0122.62 22.62L278.63 256z'/></svg>";
-const closeSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Close</title><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>";
-const ellipseOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Ellipse</title><circle cx='256' cy='256' r='192' stroke-linecap='round' stroke-linejoin='round' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const ellipsisHorizontal = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Ellipsis Horizontal</title><circle cx='256' cy='256' r='48'/><circle cx='416' cy='256' r='48'/><circle cx='96' cy='256' r='48'/></svg>";
-const menuOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Menu</title><path stroke-linecap='round' stroke-miterlimit='10' d='M80 160h352M80 256h352M80 352h352' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const menuSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Menu</title><path d='M64 384h384v-42.67H64zm0-106.67h384v-42.66H64zM64 128v42.67h384V128z'/></svg>";
-const removeOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Remove</title><path stroke-linecap='round' stroke-linejoin='round' d='M400 256H112' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const reorderThreeOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Reorder Three</title><path stroke-linecap='round' stroke-linejoin='round' d='M96 256h320M96 176h320M96 336h320' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const reorderTwoSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Reorder Two</title><path stroke-linecap='square' stroke-linejoin='round' stroke-width='44' d='M118 304h276M118 208h276' class='ionicon-fill-none'/></svg>";
-const searchOutline = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Search</title><path d='M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z' stroke-miterlimit='10' class='ionicon-fill-none ionicon-stroke-width'/><path stroke-linecap='round' stroke-miterlimit='10' d='M338.29 338.29L448 448' class='ionicon-fill-none ionicon-stroke-width'/></svg>";
-const searchSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Search</title><path d='M464 428L339.92 303.9a160.48 160.48 0 0030.72-94.58C370.64 120.37 298.27 48 209.32 48S48 120.37 48 209.32s72.37 161.32 161.32 161.32a160.48 160.48 0 0094.58-30.72L428 464zM209.32 319.69a110.38 110.38 0 11110.37-110.37 110.5 110.5 0 01-110.37 110.37z'/></svg>";
 
 
 /***/ }),
@@ -1214,9 +1173,9 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ 64114:
+/***/ 20374:
 /*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-5351da01.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-9347ea5f.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1224,7 +1183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createSwipeBackGesture": () => (/* binding */ createSwipeBackGesture)
 /* harmony export */ });
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 29259);
+/* harmony import */ var _helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-2914b3be.js */ 84244);
 /* harmony import */ var _dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dir-e8b767a8.js */ 17481);
 /* harmony import */ var _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f8d8aa5a.js */ 69286);
 /* harmony import */ var _gesture_controller_17060b7c_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gesture-controller-17060b7c.js */ 56379);
@@ -1300,7 +1259,7 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
      */
 
 
-    onEndHandler(shouldComplete, stepValue <= 0 ? 0.01 : (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__.l)(0, stepValue, 0.9999), realDur);
+    onEndHandler(shouldComplete, stepValue <= 0 ? 0.01 : (0,_helpers_2914b3be_js__WEBPACK_IMPORTED_MODULE_0__.l)(0, stepValue, 0.9999), realDur);
   };
 
   return (0,_index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_2__.createGesture)({
@@ -1314,6 +1273,413 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
     onEnd
   });
 };
+
+
+
+/***/ }),
+
+/***/ 36832:
+/*!*********************************************************************!*\
+  !*** ./node_modules/angular-cd-timer/fesm2015/angular-cd-timer.mjs ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CdTimerComponent": () => (/* binding */ CdTimerComponent),
+/* harmony export */   "CdTimerModule": () => (/* binding */ CdTimerModule)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
+const _c0 = ["*"];
+
+class CdTimerComponent {
+  constructor(elt, renderer) {
+    this.elt = elt;
+    this.renderer = renderer;
+    this.onStart = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onStop = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onTick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter();
+    this.onComplete = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.EventEmitter(); // Initialization
+
+    this.autoStart = true;
+    this.startTime = 0;
+    this.endTime = 0;
+    this.timeoutId = null;
+    this.countdown = false;
+    this.format = 'default';
+  }
+
+  ngAfterViewInit() {
+    const ngContentNode = this.elt.nativeElement.lastChild; // Get last child, defined by user or span
+
+    this.ngContentSchema = ngContentNode ? ngContentNode.nodeValue : '';
+
+    if (this.autoStart === undefined || this.autoStart === true) {
+      this.start();
+    }
+  }
+
+  ngOnDestroy() {
+    this.resetTimeout();
+  }
+  /**
+   * Start the timer
+   */
+
+
+  start() {
+    this.initVar();
+    this.resetTimeout();
+    this.computeTimeUnits();
+    this.startTickCount();
+    this.onStart.emit(this);
+  }
+  /**
+   * Resume the timer
+   */
+
+
+  resume() {
+    this.resetTimeout();
+    this.startTickCount();
+  }
+  /**
+   * Stop the timer
+   */
+
+
+  stop() {
+    this.clear();
+    this.onStop.emit(this);
+  }
+  /**
+   * Reset the timer
+   */
+
+
+  reset() {
+    this.initVar();
+    this.resetTimeout();
+    this.clear();
+    this.computeTimeUnits();
+    this.renderText();
+  }
+  /**
+   * Get the time information
+   * @returns TimeInterface
+   */
+
+
+  get() {
+    return {
+      seconds: this.seconds,
+      minutes: this.minutes,
+      hours: this.hours,
+      days: this.days,
+      timer: this.timeoutId,
+      tick_count: this.tickCounter
+    };
+  }
+  /**
+   * Initialize variable before start
+   */
+
+
+  initVar() {
+    this.startTime = this.startTime || 0;
+    this.endTime = this.endTime || 0;
+    this.countdown = this.countdown || false;
+    this.tickCounter = this.startTime; // Disable countdown if start time not defined
+
+    if (this.countdown && this.startTime === 0) {
+      this.countdown = false;
+    } // Determine auto format
+
+
+    if (!this.format) {
+      this.format = this.ngContentSchema.length > 5 ? 'user' : 'default';
+    }
+  }
+  /**
+   * Reset timeout
+   */
+
+
+  resetTimeout() {
+    if (this.timeoutId) {
+      clearInterval(this.timeoutId);
+    }
+  }
+  /**
+   * Render the time to DOM
+   */
+
+
+  renderText() {
+    let outputText;
+
+    if (this.format === 'user') {
+      // User presentation
+      const items = {
+        'seconds': this.seconds,
+        'minutes': this.minutes,
+        'hours': this.hours,
+        'days': this.days
+      };
+      outputText = this.ngContentSchema;
+
+      for (const key of Object.keys(items)) {
+        outputText = outputText.replace('[' + key + ']', items[key].toString());
+      }
+    } else if (this.format === 'intelli') {
+      // Intelli presentation
+      outputText = '';
+
+      if (this.days > 0) {
+        outputText += this.days.toString() + 'day' + (this.days > 1 ? 's' : '') + ' ';
+      }
+
+      if (this.hours > 0 || this.days > 0) {
+        outputText += this.hours.toString() + 'h ';
+      }
+
+      if ((this.minutes > 0 || this.hours > 0) && this.days === 0) {
+        outputText += this.minutes.toString().padStart(2, '0') + 'min ';
+      }
+
+      if (this.hours === 0 && this.days === 0) {
+        outputText += this.seconds.toString().padStart(2, '0') + 's';
+      }
+    } else if (this.format === 'hms') {
+      // Hms presentation
+      outputText = this.hours.toString().padStart(2, '0') + ':';
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else if (this.format === 'ms') {
+      // ms presentation
+      outputText = '';
+
+      if (this.hours > 0) {
+        outputText = this.hours.toString().padStart(2, '0') + ':';
+      }
+
+      outputText += this.minutes.toString().padStart(2, '0') + ':';
+      outputText += this.seconds.toString().padStart(2, '0');
+    } else {
+      // Default presentation
+      outputText = this.days.toString() + 'd ';
+      outputText += this.hours.toString() + 'h ';
+      outputText += this.minutes.toString() + 'm ';
+      outputText += this.seconds.toString() + 's';
+    }
+
+    this.renderer.setProperty(this.elt.nativeElement, 'innerHTML', outputText);
+  }
+
+  clear() {
+    this.resetTimeout();
+    this.timeoutId = null;
+  }
+  /**
+   * Compute each unit (seconds, minutes, hours, days) for further manipulation
+   * @protected
+   */
+
+
+  computeTimeUnits() {
+    if (!this.maxTimeUnit || this.maxTimeUnit === 'day') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600 % 24);
+      this.days = Math.floor(this.tickCounter / 3600 / 24);
+    } else if (this.maxTimeUnit === 'second') {
+      this.seconds = this.tickCounter;
+      this.minutes = 0;
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'minute') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60);
+      this.hours = 0;
+      this.days = 0;
+    } else if (this.maxTimeUnit === 'hour') {
+      this.seconds = Math.floor(this.tickCounter % 60);
+      this.minutes = Math.floor(this.tickCounter / 60 % 60);
+      this.hours = Math.floor(this.tickCounter / 3600);
+      this.days = 0;
+    }
+
+    this.renderText();
+  }
+  /**
+   * Start tick count, base of this component
+   * @protected
+   */
+
+
+  startTickCount() {
+    const that = this;
+    that.timeoutId = setInterval(function () {
+      let counter;
+
+      if (that.countdown) {
+        // Compute finish counter for countdown
+        counter = that.tickCounter;
+
+        if (that.startTime > that.endTime) {
+          counter = that.tickCounter - that.endTime - 1;
+        }
+      } else {
+        // Compute finish counter for timer
+        counter = that.tickCounter - that.startTime;
+
+        if (that.endTime > that.startTime) {
+          counter = that.endTime - that.tickCounter - 1;
+        }
+      }
+
+      that.computeTimeUnits();
+      const timer = {
+        seconds: that.seconds,
+        minutes: that.minutes,
+        hours: that.hours,
+        days: that.days,
+        timer: that.timeoutId,
+        tick_count: that.tickCounter
+      };
+      that.onTick.emit(timer);
+
+      if (counter < 0) {
+        that.stop();
+        that.onComplete.emit(that);
+        return;
+      }
+
+      if (that.countdown) {
+        that.tickCounter--;
+      } else {
+        that.tickCounter++;
+      }
+    }, 1000); // Each seconds
+  }
+
+}
+
+CdTimerComponent.ɵfac = function CdTimerComponent_Factory(t) {
+  return new (t || CdTimerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2));
+};
+
+CdTimerComponent.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+  type: CdTimerComponent,
+  selectors: [["cd-timer"]],
+  inputs: {
+    startTime: "startTime",
+    endTime: "endTime",
+    countdown: "countdown",
+    autoStart: "autoStart",
+    maxTimeUnit: "maxTimeUnit",
+    format: "format"
+  },
+  outputs: {
+    onStart: "onStart",
+    onStop: "onStop",
+    onTick: "onTick",
+    onComplete: "onComplete"
+  },
+  ngContentSelectors: _c0,
+  decls: 1,
+  vars: 0,
+  template: function CdTimerComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
+    }
+  },
+  encapsulation: 2
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerComponent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Component,
+    args: [{
+      selector: 'cd-timer',
+      template: ' <ng-content></ng-content>'
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Renderer2
+    }];
+  }, {
+    startTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    endTime: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    countdown: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    autoStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    maxTimeUnit: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    format: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    onStart: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onStop: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onTick: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }],
+    onComplete: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Output
+    }]
+  });
+})();
+
+class CdTimerModule {}
+
+CdTimerModule.ɵfac = function CdTimerModule_Factory(t) {
+  return new (t || CdTimerModule)();
+};
+
+CdTimerModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
+  type: CdTimerModule,
+  declarations: [CdTimerComponent],
+  exports: [CdTimerComponent]
+});
+CdTimerModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
+  imports: [[]]
+});
+
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CdTimerModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.NgModule,
+    args: [{
+      declarations: [CdTimerComponent],
+      imports: [],
+      exports: [CdTimerComponent]
+    }]
+  }], null, null);
+})();
+/*
+ * Public API Surface of angular-cd-timer
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
 
 
 
