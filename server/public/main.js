@@ -1702,6 +1702,10 @@ const routes = [
         path: 'interfaces/brillantex',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_brillantex_brillantex_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/brillantex/brillantex.module */ 15059)).then(m => m.BrillantexPageModule)
     },
+    {
+        path: 'interfaces/cronograma-sst',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdo_cronograma-sst_cronograma-sst_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdo/cronograma-sst/cronograma-sst.module */ 80565)).then(m => m.CronogramaSSTPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -2916,6 +2920,7 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
     createOnlyActivity(guid, data) {
         return new Promise((resolve, reject) => {
             const novedad = this.data.Values.filter((item) => item.apiId == 'OBSERVACIONES');
+            const ubicacion = this.data.Values.filter((item) => item.apiId == 'UBICACION');
             this.api.aceptActivity({
                 AccessToken: this.tkn,
                 FormGUID: '1gp0JCZkra',
@@ -2927,6 +2932,9 @@ let AsignacionnettsegurComponent = class AsignacionnettsegurComponent {
                 Values: JSON.stringify([{
                         apiId: 'TRABAJOASIGNADO',
                         Value: novedad.length > 0 ? novedad[0].Value : ''
+                    }, {
+                        apiId: 'UBICACIONP',
+                        Value: ubicacion.length > 0 ? ubicacion[0] : ''
                     }]),
                 ActivityGUID: '',
                 ParentGUID: this.data.GUID,

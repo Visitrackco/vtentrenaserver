@@ -174,7 +174,7 @@ let NettSegurPage = class NettSegurPage {
             const modal = yield this.modalCtrl.create({
                 component: src_app_components_asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_3__.AsignacionnettsegurComponent,
                 componentProps: {
-                    tkn: '538670140830D5E9B8D5C473F050E9E3',
+                    tkn: this.tkn,
                     data
                 }
             });
