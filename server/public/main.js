@@ -1706,6 +1706,10 @@ const routes = [
         path: 'interfaces/cronograma-sst',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdo_cronograma-sst_cronograma-sst_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdo/cronograma-sst/cronograma-sst.module */ 80565)).then(m => m.CronogramaSSTPageModule)
     },
+    {
+        path: 'interfaces/seguimiento-sst',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdo_seguimiento-sst_seguimiento-sst_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdo/seguimiento-sst/seguimiento-sst.module */ 13312)).then(m => m.SeguimientoSSTPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
