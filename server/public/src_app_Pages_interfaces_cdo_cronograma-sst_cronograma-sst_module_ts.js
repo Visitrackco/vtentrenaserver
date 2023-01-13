@@ -90,18 +90,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CronogramaSSTPage": () => (/* binding */ CronogramaSSTPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _cronograma_sst_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cronograma-sst.page.html?ngResource */ 45990);
 /* harmony import */ var _cronograma_sst_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cronograma-sst.page.scss?ngResource */ 80013);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
-/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment-timezone */ 92469);
-/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
-/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! xlsx */ 4126);
-
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! xlsx */ 4126);
 
 
 
@@ -120,8 +117,6 @@ let CronogramaSSTPage = class CronogramaSSTPage {
         this.loading = loading;
         this.actividades = [];
         this.locs = [];
-        this.prepare = false;
-        this.users = [];
     }
     ngOnInit() {
     }
@@ -140,27 +135,23 @@ let CronogramaSSTPage = class CronogramaSSTPage {
     ionViewWillEnter() {
         this.route.queryParams.subscribe((param) => {
             console.log(param);
-            this.tkn = param.accesstoken;
+            this.tkn = param.tkn;
             this.cargarData();
         });
     }
     cargarData() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.api.getLocs({
                 AccessToken: this.tkn,
                 LocationTypeID: "C32BBEFC-B6A2-40B6-A305-4DE81671DE24"
             }).subscribe((data) => {
                 this.locs = data;
-                this.api.getUsers(this.tkn).subscribe((dt) => {
-                    this.users = dt;
-                    console.log(this.users);
-                    this.load = true;
-                });
+                console.log(data, 'respoinse');
+                this.load = true;
             });
         });
     }
     seleccionar() {
-        this.actividades = [];
         console.log();
         const fileUpload = this.fileUpload.nativeElement;
         fileUpload.onchange = (e) => {
@@ -172,19 +163,17 @@ let CronogramaSSTPage = class CronogramaSSTPage {
             reader.onload = (e) => {
                 /* create workbook */
                 const binarystr = e.target.result;
-                const wb = xlsx__WEBPACK_IMPORTED_MODULE_6__.read(binarystr, { type: 'binary' });
+                const wb = xlsx__WEBPACK_IMPORTED_MODULE_5__.read(binarystr, { type: 'binary' });
                 /* selected the first sheet */
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
                 /* save data */
-                const data = xlsx__WEBPACK_IMPORTED_MODULE_6__.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
+                const data = xlsx__WEBPACK_IMPORTED_MODULE_5__.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
                 console.log(data);
                 // Data will be logged in array format containing objects
                 if (data.length > 0) {
                     data.forEach((element) => {
                         this.actividades.push({
-                            estado: 'PENDIENTE',
-                            load: true,
                             area: element.AREA,
                             responsable: element.RESPONSABLE,
                             fechas: element.FECHA,
@@ -194,110 +183,6 @@ let CronogramaSSTPage = class CronogramaSSTPage {
             };
         };
         fileUpload.click();
-    }
-    crear() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            this.actividades.forEach(locData => {
-                const loc = this.locs.filter((item) => {
-                    if (locData.area == item.Name) {
-                        return item;
-                    }
-                });
-                const user = this.users.filter((item) => {
-                    if (locData.responsable.toUpperCase().includes(item.FirstName.toUpperCase())) {
-                        return item;
-                    }
-                });
-                console.log(user);
-                if (loc.length > 0) {
-                    if (user.length > 0) {
-                        console.log(loc);
-                        locData.loc = loc[0].GUID;
-                        locData.estado = 'LISTO PARA SUBIR';
-                        locData.user = user[0].ID;
-                    }
-                    else {
-                        locData.estado = 'ERROR, NO SE ENCUENTRA EL USUARIO EN VT';
-                        console.log('No esta', locData);
-                    }
-                }
-                else {
-                    locData.estado = 'ERROR, NO SE ENCUENTRA EL AREA EN VT';
-                    console.log('No esta', locData);
-                }
-            });
-            this.prepare = true;
-        });
-    }
-    procesar() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            for (let item of this.actividades) {
-                item.load = false;
-                if (item.loc) {
-                    let fechas = item.fechas.split(',');
-                    if (fechas.length > 0) {
-                        console.log(fechas);
-                        for (let fec of fechas) {
-                            const rs = yield this.createOnlyActivity(item.loc, item.user, moment_timezone__WEBPACK_IMPORTED_MODULE_3__(fec + ' 00:00').format('YYYY-MM-DD HH:mm'));
-                            if (rs) {
-                                item.estado = 'CREADO';
-                            }
-                            else {
-                                item.estado = 'ERROR, NO SE PUDO CREAR';
-                            }
-                        }
-                        item.load = true;
-                    }
-                    else {
-                        item.estado = 'ERROR, LAS FECHAS NO SON VÁLIDAS';
-                        item.load = true;
-                    }
-                    this.load = true;
-                }
-                else {
-                    item.load = true;
-                    this.load = true;
-                }
-            }
-            this.prepare = false;
-            //    this.actividades = [];
-        });
-    }
-    createOnlyActivity(loc, user, date) {
-        return new Promise((resolve, reject) => {
-            console.log({
-                AccessToken: this.tkn,
-                FormGUID: 'A64B1EB5-C279-4F96-9F90-3EC5325BF53D',
-                LocationGUID: loc,
-                AssetGUID: '',
-                UserGUID: user,
-                Duration: "60",
-                DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_3__(date).format('YYYY-MM-DD HH:mm'),
-                Values: JSON.stringify([]),
-                ActivityGUID: '',
-                CompanyStatusGUID: '621E3550-8D92-4D1C-B0B1-83488C9B2321'
-            });
-            this.api.aceptActivity({
-                AccessToken: this.tkn,
-                FormGUID: 'A64B1EB5-C279-4F96-9F90-3EC5325BF53D',
-                LocationGUID: loc,
-                AssetGUID: '',
-                UserGUID: user,
-                Duration: "60",
-                DispachDateTime: moment_timezone__WEBPACK_IMPORTED_MODULE_3__(date).format('YYYY-MM-DD HH:mm'),
-                Values: JSON.stringify([]),
-                ActivityGUID: '',
-                CompanyStatusGUID: '621E3550-8D92-4D1C-B0B1-83488C9B2321'
-            }).subscribe((dat) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-                console.log(dat);
-                if (dat.Status === 'OK') {
-                    resolve(dat);
-                }
-                else {
-                    resolve(false);
-                }
-            }));
-        });
     }
     onFileChange(event) {
         /* wire up file reader */
@@ -310,12 +195,12 @@ let CronogramaSSTPage = class CronogramaSSTPage {
         reader.onload = (e) => {
             /* create workbook */
             const binarystr = e.target.result;
-            const wb = xlsx__WEBPACK_IMPORTED_MODULE_6__.read(binarystr, { type: 'binary' });
+            const wb = xlsx__WEBPACK_IMPORTED_MODULE_5__.read(binarystr, { type: 'binary' });
             /* selected the first sheet */
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
             /* save data */
-            const data = xlsx__WEBPACK_IMPORTED_MODULE_6__.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
+            const data = xlsx__WEBPACK_IMPORTED_MODULE_5__.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
             console.log(data);
             // Data will be logged in array format containing objects
             if (data.length > 0) {
@@ -332,16 +217,16 @@ let CronogramaSSTPage = class CronogramaSSTPage {
 };
 CronogramaSSTPage.ctorParameters = () => [
     { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.PopoverController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.ActivatedRoute },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController },
-    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__.LoadingService }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.PopoverController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_3__.LoadingService }
 ];
 CronogramaSSTPage.propDecorators = {
-    fileUpload: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild, args: ['fileUpload', { static: false },] }]
+    fileUpload: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: ['fileUpload', { static: false },] }]
 };
-CronogramaSSTPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+CronogramaSSTPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-cronograma-sst',
         template: _cronograma_sst_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_cronograma_sst_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
