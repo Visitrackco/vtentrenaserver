@@ -597,11 +597,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -912,10 +912,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
 
 
 
@@ -1453,8 +1453,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1709,6 +1709,10 @@ const routes = [
     {
         path: 'interfaces/seguimiento-sst',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_cdo_seguimiento-sst_seguimiento-sst_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/cdo/seguimiento-sst/seguimiento-sst.module */ 13312)).then(m => m.SeguimientoSSTPageModule)
+    },
+    {
+        path: 'interfaces/laboratorio/revision',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_laboratorio_revision_revision_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/laboratorio/revision/revision.module */ 66821)).then(m => m.RevisionPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -3046,6 +3050,7 @@ let CargaTaskComponent = class CargaTaskComponent {
         this.mesMuestra = '';
         this.semana = '';
         this.executesTask = [];
+        this.cont = 0;
     }
     ngOnInit() { }
     close() {
@@ -3089,6 +3094,7 @@ let CargaTaskComponent = class CargaTaskComponent {
         if (this.mode == 'week') {
             this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).subtract(1, 'weeks').format('YYYY-MM-DD HH:mm');
             this.semana = 'Desde el ' + moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).format('LL');
+            this.cont -= 1;
         }
         else {
             this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).subtract(1, 'months').format('YYYY-MM');
@@ -3098,6 +3104,7 @@ let CargaTaskComponent = class CargaTaskComponent {
     next() {
         moment_timezone__WEBPACK_IMPORTED_MODULE_2__.locale('es');
         if (this.mode == 'week') {
+            this.cont += 1;
             this.mes = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).add(1, 'weeks').format('YYYY-MM-DD HH:mm');
             console.log(this.mes);
             this.semana = 'Desde el ' + moment_timezone__WEBPACK_IMPORTED_MODULE_2__(this.mes).format('LL');
@@ -3115,14 +3122,13 @@ let CargaTaskComponent = class CargaTaskComponent {
             for (const acivity of this.executes) {
                 let programacion = '';
                 if (this.mode == 'week') {
-                    programacion = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(acivity.DispatchDateTime).add(7, 'days').format('YYYY-MM-DD HH:mm:ss');
+                    programacion = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(acivity.DispatchDateTime).add(this.cont * 7, 'days').format('YYYY-MM-DD HH:mm:ss');
                 }
                 else if (this.mode == 'month') {
                     programacion = moment_timezone__WEBPACK_IMPORTED_MODULE_2__(acivity.DispatchDateTime).add(diff, 'months').format('YYYY-MM-DD HH:mm:ss');
                 }
                 const sector = acivity.Values.filter((it) => it.apiId == 'SECTOR');
                 const tipo = acivity.Values.filter((it) => it.apiId == 'TAREA');
-                console.log(programacion, acivity);
                 const resp = yield this.createOnlyActivity({
                     loc: acivity.LocationGUID,
                     ass: acivity.AssetGUID,
@@ -4905,12 +4911,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -5910,7 +5916,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <i
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n\n                <div class=\"flex\">\n                    <h4>Actividades Actualizadas</h4>\n                    <h4>{{list2.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli' && mode == 'month' \">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'dupli' && mode == 'week' \">\n        <div class=\"flex\">\n            <h4>Programar para la semana siguiente</h4>\n        </div>\n\n        <ion-item>\n            <ion-button slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ semana }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n\n                <div class=\"flex\">\n                    <h4>Actividades Actualizadas</h4>\n                    <h4>{{list2.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli' && mode == 'month' \">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'dupli' && mode == 'week' \">\n        <div class=\"flex\">\n            <h4>Programar para la semana siguiente</h4>\n        </div>\n\n        <ion-item>\n            <ion-button *ngIf=\"cont > 0\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ semana }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
 
 /***/ }),
 
