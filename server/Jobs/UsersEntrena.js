@@ -613,7 +613,7 @@ async function fnOszford(guid) {
                             if (leido[0].Value != 'SI') {
 
                                 moment.locale('es')
-                                const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
+                                const pussh = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
                                 //    await sendEmailOszford(it.GUID, 'Recuerda que se programò la gestiòn de <strong>' + gestion[0].Value + '</strong> del cliente <strong>' + it.LocationName + '</strong> para el <strong>' + moment(dia[0].Value).format('LL') + '</strong>');
                                 arr.push(it);
@@ -623,7 +623,8 @@ async function fnOszford(guid) {
 
                             console.log('NADA')
                             moment.locale('es')
-                            const push = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
+                            console.log()
+                            const pussh = await push('31CA0D6B-1A7F-4778-9F5D-07145AFF14FE', it.AssignedTo, 'RECORDATORIO ' + it.LocationName, 'Recuerda que se programò la gestiòn de ' + gestion[0].Value + ' del cliente ' + it.LocationName + ' para el ' + moment(dia[0].Value).format('LL') + '')
 
 
                             console.log(pussh, 'push')
@@ -715,7 +716,7 @@ async function sendEmailOszford(guid, msg) {
 }
 
 
-const oszford = job.schedule('*/30 * * * *', async() => {
+const oszford = job.schedule('* * * * *', async() => {
 
 
     try {
