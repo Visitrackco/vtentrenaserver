@@ -716,7 +716,7 @@ async function sendEmailOszford(guid, msg) {
 }
 
 
-const oszford = job.schedule('* * * * *', async() => {
+const oszford = job.schedule('*/30 * * * *', async() => {
 
 
     try {
