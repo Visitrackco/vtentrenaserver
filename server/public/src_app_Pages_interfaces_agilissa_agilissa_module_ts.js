@@ -931,6 +931,8 @@ let AgilissaPage = class AgilissaPage {
         this.task = [];
         this.metas = [];
         this.turno = [];
+        this.reloadTask = false;
+        this.calendarRef.nativeElement.getApi().setOption('slotDuration', '00:01:00');
         this.transformDataGestion();
     }
     borrarUsuario() {
@@ -1077,7 +1079,7 @@ let AgilissaPage = class AgilissaPage {
                         });
                         if ((lunesDesde && lunesHasta) || (martesDesde && martesHasta) || (miercolesDesde && miercolesHasta) || (juevesDesde && juevesHasta) || (viernesDesde && viernesHasta) || (sabadoDesde && sabadoHasta)) {
                             this.reloadTask = false;
-                            this.calendarRef.nativeElement.getApi().setOption("hiddenDays", [0]);
+                            //  this.calendarRef.nativeElement.getApi().setOption("hiddenDays",[0])
                             this.calendarRef.nativeElement.getApi().setOption("slotMinTime", horas[0]);
                             this.calendarRef.nativeElement.getApi().setOption("slotMaxTime", horas[horas.length - 1]);
                             this.calendarRef.nativeElement.getApi().setOption('slotDuration', '00:01:00');

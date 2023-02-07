@@ -597,11 +597,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -912,10 +912,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
 
 
 
@@ -1285,6 +1285,28 @@ let StorageWebService = class StorageWebService {
             return yield this.storage.get('login');
         });
     }
+    getLoginInterface() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.storage.get('logininterface');
+        });
+    }
+    setLoginInterface(data) {
+        this.storage.get('logininterface').then((dataForm) => (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            if (dataForm.length > 0) {
+                dataForm = [];
+            }
+            dataForm.push(data);
+            yield this.storage.set('logininterface', dataForm);
+            console.log('Insertado!');
+        })).catch((err) => {
+            console.log('Error ', err);
+        });
+    }
+    deletelogininterfaces() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.set('logininterface', []);
+        });
+    }
     closeSession() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.storage.set('login', []);
@@ -1453,8 +1475,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -1713,6 +1735,10 @@ const routes = [
     {
         path: 'interfaces/laboratorio/revision',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_laboratorio_revision_revision_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/laboratorio/revision/revision.module */ 66821)).then(m => m.RevisionPageModule)
+    },
+    {
+        path: 'interfaces/circulo',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_Pages_interfaces_circulo_circulo_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./Pages/interfaces/circulo/circulo.module */ 5203)).then(m => m.CirculoPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -3353,6 +3379,51 @@ CargaTaskComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
+/***/ 49445:
+/*!***********************************************************************!*\
+  !*** ./src/app/components/circulocerrado/circulocerrado.component.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CirculocerradoComponent": () => (/* binding */ CirculocerradoComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _circulocerrado_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./circulocerrado.component.html?ngResource */ 64871);
+/* harmony import */ var _circulocerrado_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./circulocerrado.component.scss?ngResource */ 77893);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 93819);
+
+
+
+
+
+let CirculocerradoComponent = class CirculocerradoComponent {
+    constructor(popover) {
+        this.popover = popover;
+    }
+    ngOnInit() { }
+    exit() {
+        this.popover.dismiss(1);
+    }
+};
+CirculocerradoComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.PopoverController }
+];
+CirculocerradoComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+        selector: 'app-circulocerrado',
+        template: _circulocerrado_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_circulocerrado_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], CirculocerradoComponent);
+
+
+
+/***/ }),
+
 /***/ 45642:
 /*!*************************************************!*\
   !*** ./src/app/components/components.module.ts ***!
@@ -3364,12 +3435,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -3387,7 +3458,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
@@ -3397,6 +3468,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./oszford/proximos/proximos.component */ 80118);
 /* harmony import */ var _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./menu-oszford/menu-oszford.component */ 38311);
 /* harmony import */ var _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./users-diamante/users-diamante.component */ 87798);
+/* harmony import */ var _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./circulocerrado/circulocerrado.component */ 49445);
+
 
 
 
@@ -3432,8 +3505,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_28__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_29__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_29__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_30__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -3461,12 +3534,13 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_28__.__decorate)([
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
             _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
-            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent
+            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent,
+            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_30__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_31__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_32__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_31__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_32__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_33__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -3496,7 +3570,8 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_28__.__decorate)([
             _Inverpack_usarios_inver_usarios_inver_component__WEBPACK_IMPORTED_MODULE_24__.UsariosInverComponent,
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
             _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
-            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent
+            _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent,
+            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent
         ]
     })
 ], ComponentsModule);
@@ -4911,12 +4986,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -5612,6 +5687,17 @@ module.exports = ".loading {\n  display: flex;\n  flex-direction: column;\n  jus
 
 /***/ }),
 
+/***/ 77893:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/circulocerrado/circulocerrado.component.scss?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "ion-item {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNpcmN1bG9jZXJyYWRvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtBQUNKIiwiZmlsZSI6ImNpcmN1bG9jZXJyYWRvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWl0ZW0ge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */";
+
+/***/ }),
+
 /***/ 9351:
 /*!**************************************************************************************************!*\
   !*** ./src/app/components/controlcdoasistencial/controlcdoasistencial.component.scss?ngResource ***!
@@ -5917,6 +6003,17 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"tertiary\">\n        <i
 
 "use strict";
 module.exports = "<ion-header>\n    <ion-toolbar color=\"agilissa\">\n        <ion-title>Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <div *ngIf=\"!type\">\n        <ion-item lines=\"none\">\n            <ion-label>\n                <div class=\"flex\">\n                    <h4>Actividades subidas</h4>\n                    <h4>{{list.length}}</h4>\n\n                </div>\n\n                <div class=\"flex\">\n                    <h4>Actividades Actualizadas</h4>\n                    <h4>{{list2.length}}</h4>\n\n                </div>\n            </ion-label>\n        </ion-item>\n\n        <ion-list>\n            <ion-item *ngFor=\"let item of list\">\n                <ion-icon name=\"checkmark\" slot=\"start\"></ion-icon>\n                <ion-label>{{ item.tipo }} </ion-label>\n            </ion-item>\n        </ion-list>\n\n        <div class=\"loading\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n    </div>\n\n    <div *ngIf=\"type == 'dupli' && mode == 'month' \">\n        <div class=\"flex\">\n            <h4>Escoge el Mes </h4>\n        </div>\n        <ion-item>\n            <ion-button [disabled]=\"actual == mes\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ mesMuestra }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"actual != mes\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'dupli' && mode == 'week' \">\n        <div class=\"flex\">\n            <h4>Programar para la semana siguiente</h4>\n        </div>\n\n        <ion-item>\n            <ion-button *ngIf=\"cont > 0\" slot=\"start\" color=\"agilissabtn\" mode=\"ios\" (click)=\"prev()\">\n                <ion-icon name=\"chevron-back-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n            <ion-label style=\"text-align: center; text-transform: uppercase;\">{{ semana }}</ion-label>\n\n            <ion-button slot=\"end\" color=\"agilissabtn\" mode=\"ios\" (click)=\"next()\">\n                <ion-icon name=\"chevron-forward-outline\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-item> <br>\n\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n\n\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executes.length }}</ion-label>\n\n\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" (click)=\"process()\">Procesar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Creando actividades</h3>\n        </div>\n\n    </div>\n\n\n    <div *ngIf=\"type == 'reassigned'\">\n        <div class=\"flex\">\n            <h4>Escoge el usuario para asignarles las tareas </h4>\n        </div>\n\n        <ion-item>\n\n            <ion-select placeholder=\"Seleccionar Usuario\" (ionChange)=\"select($event)\">\n                <ion-select-option *ngFor=\"let user of users\" [value]=\"user.ID\" class=\"ion-text-wrap\">{{ user.FirstName }} {{ user.LastName }}</ion-select-option>\n            </ion-select>\n\n\n        </ion-item> <br>\n\n        <ion-item lines=\"none\" *ngIf=\"carga\">\n            <ion-label style=\"text-align: center; text-transform: uppercase; font-weight: bold;\">{{ list.length }} Actividades procesadas de {{ executesTask.length }}</ion-label>\n        </ion-item>\n\n        <br>\n        <ion-button expand=\"block\" mode=\"ios\" color=\"agilissa\" *ngIf=\"userSelect\" (click)=\"processReassgined()\">Reasignar tareas</ion-button>\n\n\n        <div class=\"loading\" *ngIf=\"carga\">\n            <ion-spinner name=\"crescent\"></ion-spinner>\n            <h3>Reasignando actividades</h3>\n        </div>\n\n    </div>\n</ion-content>";
+
+/***/ }),
+
+/***/ 64871:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/circulocerrado/circulocerrado.component.html?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-item (click)=\"exit()\">\n    <ion-icon name=\"power\" slot=\"start\"></ion-icon>\n    <ion-label class=\"ion-text-wrap\">Cerrar sesión</ion-label>\n</ion-item>";
 
 /***/ }),
 
