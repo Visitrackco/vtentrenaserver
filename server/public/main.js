@@ -1824,6 +1824,7 @@ let AppComponent = class AppComponent {
             const forms = yield this.storage.get('forms');
             const formsActive = yield this.storage.get('formActive');
             const chats = yield this.storage.get('chats');
+            const logininterface = yield this.storage.get('logininterface');
             if (!login) {
                 yield this.storage.set('login', []);
             }
@@ -1858,6 +1859,9 @@ let AppComponent = class AppComponent {
             }
             if (!chats) {
                 yield this.storage.set('chats', []);
+            }
+            if (!logininterface) {
+                yield this.storage.set('logininterface', []);
             }
         });
     }
