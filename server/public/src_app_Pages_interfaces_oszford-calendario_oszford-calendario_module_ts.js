@@ -393,11 +393,7 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
                        //  arg.draggedEl.parentNode.removeChild(arg.draggedEl);
                    //  }
                  }, */
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
+                headerToolbar: false,
                 eventClick: this.eventClick.bind(this),
                 datesSet: this.getDate.bind(this),
             };
@@ -816,7 +812,28 @@ let OszfordCalendarioPage = class OszfordCalendarioPage {
         if (width < 600) {
             console.log('Menor');
             setTimeout(() => {
-                this.calendarRef.nativeElement.getApi().setOption('headerToolbar', false);
+                this.calendarRef.nativeElement.getApi().setOption('customButtons', {
+                    myCustomButton: {
+                        text: 'Siguiente!',
+                        click: function () {
+                            alert('clicked the custom button!');
+                        }
+                    }
+                });
+                this.calendarRef.nativeElement.getApi().setOption('headerToolbar', {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: ''
+                });
+            }, 1000);
+        }
+        else {
+            setTimeout(() => {
+                this.calendarRef.nativeElement.getApi().setOption('headerToolbar', {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                });
             }, 1000);
         }
     }
