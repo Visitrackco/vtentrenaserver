@@ -597,11 +597,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 86942);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19019);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 45398);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 87580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 78947);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ 92469);
 /* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
@@ -913,10 +913,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../environments/environment.prod */ 89019);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 55217);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 46774);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 45398);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 86942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 5716);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 8838);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 78947);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 50635);
 
 
 
@@ -1476,8 +1476,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 84505);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 12378);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 76317);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 90833);
 /* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-socket-io */ 84935);
 /* harmony import */ var _Storage_StorageWeb_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage/StorageWeb.service */ 95829);
 /* harmony import */ var _Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utilities/Toast.service */ 46050);
@@ -3440,12 +3440,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _modal_assents_modal_assents_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal-assents/modal-assents.component */ 66676);
 /* harmony import */ var _modal_users_modal_users_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal-users/modal-users.component */ 47887);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu/menu.component */ 85819);
 /* harmony import */ var _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FTYS/title/title.component */ 70476);
 /* harmony import */ var _FTYS_text_line_text_line_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FTYS/text-line/text-line.component */ 58481);
@@ -3463,7 +3463,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FTYS_date_time_date_time_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./FTYS/date-time/date-time.component */ 73274);
 /* harmony import */ var _FTYS_hyperlink_hyperlink_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./FTYS/hyperlink/hyperlink.component */ 72541);
 /* harmony import */ var _FTYS_forms_forms_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./FTYS/forms/forms.component */ 61184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/forms */ 90587);
 /* harmony import */ var _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../Pipes/pipes.module */ 7844);
 /* harmony import */ var _asignacionnettsegur_asignacionnettsegur_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./asignacionnettsegur/asignacionnettsegur.component */ 8638);
 /* harmony import */ var _opciones_cdo_opciones_cdo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./opciones-cdo/opciones-cdo.component */ 67786);
@@ -3474,6 +3474,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./menu-oszford/menu-oszford.component */ 38311);
 /* harmony import */ var _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./users-diamante/users-diamante.component */ 87798);
 /* harmony import */ var _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./circulocerrado/circulocerrado.component */ 49445);
+/* harmony import */ var _sst_activities_sst_activities_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./sst-activities/sst-activities.component */ 44085);
+/* harmony import */ var _sst_activitiesdelete_sst_activitiesdelete_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./sst-activitiesdelete/sst-activitiesdelete.component */ 26916);
+
+
 
 
 
@@ -3510,8 +3514,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_29__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_30__.NgModule)({
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_31__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_32__.NgModule)({
         declarations: [
             _menu_menu_component__WEBPACK_IMPORTED_MODULE_2__.MenuComponent,
             _FTYS_title_title_component__WEBPACK_IMPORTED_MODULE_3__.TitleComponent,
@@ -3540,12 +3544,14 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_29__.__decorate)([
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
             _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
             _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent,
-            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent
+            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent,
+            _sst_activities_sst_activities_component__WEBPACK_IMPORTED_MODULE_29__.SstActivitiesComponent,
+            _sst_activitiesdelete_sst_activitiesdelete_component__WEBPACK_IMPORTED_MODULE_30__.SstActivitiesdeleteComponent
         ],
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_31__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_32__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_33__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_33__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_34__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_35__.IonicModule,
             _Pipes_pipes_module__WEBPACK_IMPORTED_MODULE_19__.PipesModule
         ],
         exports: [
@@ -3576,7 +3582,9 @@ ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_29__.__decorate)([
             _oszford_proximos_proximos_component__WEBPACK_IMPORTED_MODULE_25__.ProximosComponent,
             _menu_oszford_menu_oszford_component__WEBPACK_IMPORTED_MODULE_26__.MenuOszfordComponent,
             _users_diamante_users_diamante_component__WEBPACK_IMPORTED_MODULE_27__.UsersDiamanteComponent,
-            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent
+            _circulocerrado_circulocerrado_component__WEBPACK_IMPORTED_MODULE_28__.CirculocerradoComponent,
+            _sst_activities_sst_activities_component__WEBPACK_IMPORTED_MODULE_29__.SstActivitiesComponent,
+            _sst_activitiesdelete_sst_activitiesdelete_component__WEBPACK_IMPORTED_MODULE_30__.SstActivitiesdeleteComponent
         ]
     })
 ], ComponentsModule);
@@ -4458,6 +4466,208 @@ ProximosComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
 
 /***/ }),
 
+/***/ 44085:
+/*!***********************************************************************!*\
+  !*** ./src/app/components/sst-activities/sst-activities.component.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SstActivitiesComponent": () => (/* binding */ SstActivitiesComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _sst_activities_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sst-activities.component.html?ngResource */ 77128);
+/* harmony import */ var _sst_activities_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sst-activities.component.scss?ngResource */ 91133);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ 56908);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/Services/Utilities/Loading.service */ 62082);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+
+
+
+
+
+
+
+
+
+let SstActivitiesComponent = class SstActivitiesComponent {
+    constructor(modalCtrl, alertCtrl, api, toas, loading) {
+        this.modalCtrl = modalCtrl;
+        this.alertCtrl = alertCtrl;
+        this.api = api;
+        this.toas = toas;
+        this.loading = loading;
+        this.txt = '';
+    }
+    ngOnInit() { }
+    ionViewWillEnter() {
+        console.log(this.activities);
+    }
+    close() {
+        this.modalCtrl.dismiss();
+    }
+    deleteACT(item) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            const alert = yield this.alertCtrl.create({
+                header: 'Atención!',
+                message: '¿ Está segura de reenviar esta actividad?',
+                buttons: [
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Aceptar',
+                        handler: () => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+                            this.reenviar(item);
+                        })
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
+    reenviar(item) {
+        console.log(item);
+        this.loading.createLoading('Reenviando Planeación');
+        this.api.changeDispath({
+            tkn: this.tkn,
+            user: item.Updated_GUID,
+            status: item.CompanyStatusGUID,
+            date: moment__WEBPACK_IMPORTED_MODULE_2__().add(2, 'minutes').format('YYYY-MM-DD HH:mm'),
+            guid: item.GUID
+        }).subscribe((data) => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            if (data) {
+                this.toas.newCreatedToast('Inspecciòn reenviada', true);
+            }
+            this.loading.cancelLoading();
+        }), (err) => {
+            this.loading.cancelLoading();
+        });
+    }
+    cambio(event) {
+        this.txt = event.detail.value;
+    }
+};
+SstActivitiesComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_3__.ApiService },
+    { type: src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_5__.ToastService },
+    { type: src_app_Services_Utilities_Loading_service__WEBPACK_IMPORTED_MODULE_4__.LoadingService }
+];
+SstActivitiesComponent.propDecorators = {
+    tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.Input }],
+    activities: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.Input }]
+};
+SstActivitiesComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+        selector: 'app-sst-activities',
+        template: _sst_activities_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_sst_activities_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], SstActivitiesComponent);
+
+
+
+/***/ }),
+
+/***/ 26916:
+/*!***********************************************************************************!*\
+  !*** ./src/app/components/sst-activitiesdelete/sst-activitiesdelete.component.ts ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SstActivitiesdeleteComponent": () => (/* binding */ SstActivitiesdeleteComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _sst_activitiesdelete_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sst-activitiesdelete.component.html?ngResource */ 80082);
+/* harmony import */ var _sst_activitiesdelete_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sst-activitiesdelete.component.scss?ngResource */ 46721);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 93819);
+/* harmony import */ var src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/Services/Api/Api.service */ 93954);
+/* harmony import */ var src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/Services/Utilities/Toast.service */ 46050);
+
+
+
+
+
+
+
+let SstActivitiesdeleteComponent = class SstActivitiesdeleteComponent {
+    constructor(modalCtrl, alertCtrl, api, toas) {
+        this.modalCtrl = modalCtrl;
+        this.alertCtrl = alertCtrl;
+        this.api = api;
+        this.toas = toas;
+        this.txt = '';
+    }
+    ngOnInit() { }
+    ionViewWillEnter() {
+        console.log(this.activities);
+    }
+    close() {
+        this.modalCtrl.dismiss();
+    }
+    deleteACT(id, i) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const alert = yield this.alertCtrl.create({
+                header: 'Atención!',
+                message: '¿ Está segura de eliminar esta actividad? recuerde que se eliminará de todo Visitrack',
+                buttons: [
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Aceptar',
+                        handler: () => (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+                            this.api.deleteActivity({ AccessToken: this.tkn, ActivityGUID: id }).subscribe((data) => {
+                                this.activities.splice(i, 1);
+                                this.toas.newCreatedToast('Actividad eliminada', true);
+                            });
+                        })
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
+    cambio(event) {
+        this.txt = event.detail.value;
+    }
+};
+SstActivitiesdeleteComponent.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController },
+    { type: src_app_Services_Api_Api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService },
+    { type: src_app_Services_Utilities_Toast_service__WEBPACK_IMPORTED_MODULE_3__.ToastService }
+];
+SstActivitiesdeleteComponent.propDecorators = {
+    tkn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }],
+    activities: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.Input }]
+};
+SstActivitiesdeleteComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+        selector: 'app-sst-activitiesdelete',
+        template: _sst_activitiesdelete_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_sst_activitiesdelete_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], SstActivitiesdeleteComponent);
+
+
+
+/***/ }),
+
 /***/ 87798:
 /*!***********************************************************************!*\
   !*** ./src/app/components/users-diamante/users-diamante.component.ts ***!
@@ -4991,12 +5201,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		17950,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		79689,
-		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
+		"default-node_modules_ionic_core_dist_esm_parse-decd0f85_js-node_modules_ionic_core_dist_esm_t-a92c48",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -5780,6 +5990,28 @@ module.exports = ".rosa {\n  background-color: #E85B6A;\n}\n\n.amarillo {\n  bac
 
 /***/ }),
 
+/***/ 91133:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/sst-activities/sst-activities.component.scss?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzc3QtYWN0aXZpdGllcy5jb21wb25lbnQuc2NzcyJ9 */";
+
+/***/ }),
+
+/***/ 46721:
+/*!************************************************************************************************!*\
+  !*** ./src/app/components/sst-activitiesdelete/sst-activitiesdelete.component.scss?ngResource ***!
+  \************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzc3QtYWN0aXZpdGllc2RlbGV0ZS5jb21wb25lbnQuc2NzcyJ9 */";
+
+/***/ }),
+
 /***/ 76528:
 /*!************************************************************************************!*\
   !*** ./src/app/components/users-diamante/users-diamante.component.scss?ngResource ***!
@@ -6096,6 +6328,28 @@ module.exports = "<ion-list>\n    <ion-item *ngFor=\"let item of opciones\" (cli
 
 "use strict";
 module.exports = "<ion-header>\n  <ion-toolbar color=\"oszford\">\n      <ion-title>Actividades</ion-title>\n      <ion-buttons slot=\"end\">\n          <ion-button (click)=\"close()\">\n              <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n \n  <ion-list *ngIf=\"type == 1\">\n    <ion-item *ngFor=\"let item of list\">\n      <ion-avatar class=\"{{item.clase}}\" slot=\"start\"></ion-avatar>\n      <ion-label>\n        <div><strong>{{ item.gestion }}</strong> </div> <br>\n        <div><strong>Descripciòn: </strong>{{ item.desc }} </div> <br>\n        <div><strong>Comercial: </strong> {{ item.AssignedToName }}</div>\n\n        <div><strong>Programado: </strong>{{ item.fecha }} </div>\n        <div *ngIf=\"item.dur > 0\">El tiempo de esta gestiòn se cumple en <strong>( {{ item.dur }} )</strong> dìas </div>\n        <div *ngIf=\"item.dur < 0\">El tiempo de esta gestiòn se cumpliò hace <strong>( {{ item.dur }} )</strong> dìas </div>\n        <div *ngIf=\"item.dur == 0\">El tiempo de esta gestiòn se cumpliò hoy </div>\n      </ion-label>\n    </ion-item> <br>\n  </ion-list>\n\n  <div class=\"evento\" *ngIf=\"type == 2 && evento\">\n\n    <div class=\"flex\">\n\n       <h3>{{ evento.gestion }}</h3>\n\n       <ion-avatar  class=\"{{evento.clase}}\"></ion-avatar>\n    </div> <br>\n\n\n    <div class=\"info\">\n\n      <ion-grid>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Cliente</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.LocationName }}</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Comercial</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.AssignedToName }}</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class=\"titulo\" size=\"6\">Programado</ion-col>\n          <ion-col class=\"\" size=\"6\">{{ evento.fecha }}</ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col size=\"12\" class=\"tit\">\n            <div *ngIf=\"evento.dur > 0\">El tiempo de esta gestiòn se cumple en <strong>( {{ evento.dur }} )</strong> dìas </div>\n            <div *ngIf=\"evento.dur < 0\">El tiempo de esta gestiòn se cumpliò hace <strong>( {{ evento.dur }} )</strong> dìas </div>\n            <div *ngIf=\"evento.dur == 0\">El tiempo de esta gestiòn se cumpliò hoy </div>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col class=\"\" size=\"12\">\n            <div>\n              <strong>Descripciòn</strong>\n            </div>\n            <p>{{ evento.desc }}</p>\n          </ion-col>\n       \n        </ion-row>\n      </ion-grid>\n\n\n  \n\n   \n    </div> <br>\n\n    <ion-button *ngIf=\"evento.realizado == 'NO'\" color=\"oszford\" (click)=\"guardar()\" mode=\"ios\" expand=\"block\">Cerrar evento</ion-button>\n\n   \n\n  </div>\n\n  <div class=\"evento\" *ngIf=\"type == 3\">\n\n  <div class=\"center\">\n    <img class=\"\" src=\"/assets/cumple.png\" width=\"80%\" alt=\"\">\n    <br>\n\n    <h3 class=\"\">{{ evento }}</h3>\n  </div>\n\n\n  \n\n  </div>\n\n\n  <div class=\"evento\" *ngIf=\"type == 4\">\n\n    <div class=\"center\">\n  <img class=\"\" src=\"/assets/venci.png\" width=\"70%\" alt=\"\">\n    <br>\n\n    <h3 class=\"\">VENCIMIENTO DE CONTRATO PARA {{ evento }}</h3>\n    </div>\n\n\n\n  \n  \n\n\n  \n\n  </div>\n\n  <div class=\"evento\" *ngIf=\"type == 5\">\n\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"12\">Clientes Cumpleañeros</ion-col>\n     \n      </ion-row>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"6\">Nombre</ion-col>\n        <ion-col class=\"titulo center\" size=\"6\">Fecha</ion-col>\n      </ion-row>\n   \n\n      <ion-row *ngFor=\"let ite of list\">\n        <ion-col size=\"6\" >\n          {{ite.name}}\n        </ion-col>\n        <ion-col size=\"6\" >\n          {{ite.fecha}}\n        </ion-col>\n      </ion-row>\n\n     \n    </ion-grid>\n  \n\n    </div>\n\n\n  <div class=\"evento\" *ngIf=\"type == 6\">\n\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"12\">Clientes a Vencer</ion-col>\n     \n      </ion-row>\n      <ion-row>\n        <ion-col class=\"titulo center\" size=\"6\">Nombre</ion-col>\n        <ion-col class=\"titulo center\" size=\"6\">Fecha</ion-col>\n      </ion-row>\n   \n\n      <ion-row *ngFor=\"let ite of list\">\n        <ion-col size=\"6\" >\n          {{ite.name}}\n        </ion-col>\n        <ion-col size=\"6\" >\n          {{ite.fecha}}\n        </ion-col>\n      </ion-row>\n\n     \n    </ion-grid>\n  \n\n    </div>\n\n\n</ion-content>";
+
+/***/ }),
+
+/***/ 77128:
+/*!************************************************************************************!*\
+  !*** ./src/app/components/sst-activities/sst-activities.component.html?ngResource ***!
+  \************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title>Reenviar Actividades Asignadas</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <ion-item *ngFor=\"let item of activities | agilissacliente : txt : 'LocationName'; let i = index;\">\n        <ion-label class=\"ion-text-wrap\">\n            <div>\n                <strong>AREA: {{ item.LocationName }}</strong>\n            </div> <br>\n            <div>\n                <strong>Creada en: </strong> {{ item.creado }}\n            </div>\n            <div>\n                <strong>Programado para: </strong> {{ item.programado }}\n            </div>\n\n            <div>\n                <strong>Para: </strong> {{ item.creadoName }}\n            </div>\n\n            <div>\n                <strong>ID: </strong> {{ item.ID }}\n            </div>\n\n            <br>\n\n\n            <ion-button mode=\"ios\" expand=\"block\" color=\"primary\" (click)=\"deleteACT(item)\">Reenviar</ion-button>\n\n\n        </ion-label>\n    </ion-item>\n</ion-content>";
+
+/***/ }),
+
+/***/ 80082:
+/*!************************************************************************************************!*\
+  !*** ./src/app/components/sst-activitiesdelete/sst-activitiesdelete.component.html?ngResource ***!
+  \************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title>Eliminar Actividades</ion-title>\n        <ion-buttons slot=\"end\">\n            <ion-button (click)=\"close()\">\n                <ion-icon name=\"close\" slot=\"icon-only\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n\n    <ion-searchbar mode=\"ios\" placeholder=\"Buscar Solcicitud\" (ionChange)=\"cambio($event)\"></ion-searchbar>\n\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n    <ion-item *ngFor=\"let item of activities | agilissacliente : txt : 'LocationName'; let i = index;\">\n        <ion-label class=\"ion-text-wrap\">\n            <div>\n                <strong>AREA: {{ item.LocationName }}</strong>\n            </div> <br>\n            <div>\n                <strong>Creada en: </strong> {{ item.creado }}\n            </div>\n            <div>\n                <strong>Programado para: </strong> {{ item.programado }}\n            </div>\n\n            <div>\n                <strong>Para: </strong> {{ item.creadoName }}\n            </div>\n\n            <div>\n                <strong>ID: </strong> {{ item.ID }}\n            </div>\n\n            <br>\n\n\n            <ion-button mode=\"ios\" expand=\"block\" color=\"danger\" (click)=\"deleteACT(item.GUID, i)\">Eliminar</ion-button>\n\n\n        </ion-label>\n    </ion-item>\n</ion-content>";
 
 /***/ }),
 
