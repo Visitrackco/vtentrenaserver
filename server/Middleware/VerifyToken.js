@@ -19,10 +19,10 @@ const verifyToken = (req, res, next) => {
 }
 
 const properties = (req, res, next) => {
-    const tkn = req.query('AccessToken');
-    const from = req.query('From');
-    const to = req.query('To');
-    const FormGUID = req.query('FormGUID');
+    const tkn = req.query.AccessToken;
+    const from = req.query.From;
+    const to = req.query.To;
+    const FormGUID = req.query.FormGUID;
 
     if (!from) {
         return res.json({
