@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const { properties } = require('../../Middleware/VerifyToken');
-
+const moment = require('moment-timezone');
 
 async function getActivities(tkn, FormGUID, from, to) {
     try {
@@ -13,7 +13,7 @@ async function getActivities(tkn, FormGUID, from, to) {
             FormGUID: FormGUID,
         })
 
-        var arrDataSurveysAnswer = [];
+        let arrDataSurveysAnswer = [];
 
         if (rs) {
             for (const activity of rs) {
@@ -35,6 +35,7 @@ async function getActivities(tkn, FormGUID, from, to) {
 function getInfo(tkn, GUID) {
     return new Promise(async(resolve, reject) => {
         const rsData = await axios.get('https://api.visitrack.com/api/Surveys/Activity?AccessToken=' + tkn + '&GUID=' + GUID + '&ListValues=false')
+        resolve(rsData)
     })
 }
 
