@@ -49,7 +49,8 @@ router.get('/SurveyAnswersByForm', [properties], async(req, res) => {
 
         return res.json({
             status: true,
-            response: rs
+            response: rs,
+            properties: req.properties
         })
 
     } catch (error) {
