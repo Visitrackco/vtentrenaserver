@@ -15,6 +15,8 @@ async function getActivities(tkn, FormGUID, from, to) {
 
         let arrDataSurveysAnswer = [];
 
+        console.log(rs)
+
         if (rs) {
             for (const activity of rs) {
 
