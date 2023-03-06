@@ -26,6 +26,7 @@ const properties = (req, res, next) => {
 
     if (!from) {
         return res.json({
+            from,
             error: 'From indefinido, por favor especificar el parámetro dentro del body del request'
         })
     }
