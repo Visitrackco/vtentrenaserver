@@ -34,7 +34,7 @@ async function getActivities(tkn, FormGUID, from, to) {
 
 function getInfo(tkn, GUID) {
     return new Promise(async(resolve, reject) => {
-        const rsData = await axios.get('https://api.visitrack.com/api/Surveys/Activity?AccessToken=' + tkn + '&GUID=' + GUID + '&ListValues=false')
+        const rsData = await axios.get('https://api.visitrack.com/api/Surveys/Activity?AccessToken=' + tkn + '&GUID=' + GUID + '&ListValues=true')
         resolve(rsData.data)
     })
 }
