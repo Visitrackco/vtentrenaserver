@@ -24,11 +24,10 @@ async function getActivities(tkn, FormGUID, from, to) {
             }
         }
 
+        return arrDataSurveysAnswer;
+
     } catch (error) {
-        return {
-            resp: false,
-            error
-        }
+        return error
     }
 
 }
@@ -41,11 +40,24 @@ function getInfo(tkn, GUID) {
 
 
 
-router.get('/SurveyAnswersByForm', [properties], (req, res) => {
-    return res.json({
-        status: true,
-        repsonse: req.properties
-    })
+router.get('/SurveyAnswersByForm', [properties], async(req, res) => {
+
+    try {
+
+        const rs = await getActivities(req.properties.tkn, req.properties.FormGUID, req.properties.from, req.properties.to)
+
+        return res.json({
+            status: true,
+            response: rs
+        })
+
+    } catch (error) {
+        return res.json({
+            status: false,
+            error: error
+        })
+    }
+
 })
 
 module.exports = router;
