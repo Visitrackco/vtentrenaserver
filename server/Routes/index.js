@@ -11,5 +11,6 @@ app.use(require('./VTEntrena/Designer.js'));
 app.use(require('./VTEntrena/Answer.js'));
 app.use(require('./VTEntrena/Preferences.js'))
 app.use(require('./VTEntrena/Comments.js'))
+app.use(require('./Customs/SurveysAnswerbyForm'))
 
 module.exports = app;
