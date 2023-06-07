@@ -373,6 +373,13 @@ let MantenimientosPage = class MantenimientosPage {
             for (const item of data) {
                 const miData = yield this.getInfo(item.GUID);
                 if (miData) {
+                    const habilitar = miData.Values.filter((l) => l.apiId == 'HABILITAR');
+                    if (item.form && habilitar.length == 0) {
+                        break;
+                    }
+                    if (item.form && habilitar[0].Value != 'SI') {
+                        break;
+                    }
                     miData.jefe = item.form ? true : false;
                     miData.color = this.color(miData.CompanyStatusName);
                     miData.icolor = this.color(miData.CompanyStatusName, true);
