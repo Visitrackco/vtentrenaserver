@@ -370,16 +370,12 @@ let MantenimientosPage = class MantenimientosPage {
                 dat.form = 'jefe';
                 data.push(dat);
             });
+            console.log(data);
             for (const item of data) {
                 const miData = yield this.getInfo(item.GUID);
                 if (miData) {
-                    const habilitar = miData.Values.filter((l) => l.apiId == 'HABILITAR');
-                    if (item.form && habilitar.length == 0) {
-                        break;
-                    }
-                    if (item.form && habilitar[0].Value != 'SI') {
-                        break;
-                    }
+                    let habilitar = miData.Values.filter((l) => l.apiId == 'HABILITAR');
+                    console.log(habilitar, miData.ID);
                     miData.jefe = item.form ? true : false;
                     miData.color = this.color(miData.CompanyStatusName);
                     miData.icolor = this.color(miData.CompanyStatusName, true);
@@ -432,12 +428,22 @@ let MantenimientosPage = class MantenimientosPage {
                                 }
                                 miData.tiempo = tiempo;
                                 miData.prio = prio;
-                                this.actividades.push(miData);
+                                if (item.form && habilitar.length > 0 && habilitar[0].Value == 'SI') {
+                                    this.actividades.push(miData);
+                                }
+                                else if (!item.form) {
+                                    this.actividades.push(miData);
+                                }
                             }
                         }
                     }
                     else {
-                        this.actividades.push(miData);
+                        if (item.form && habilitar.length > 0 && habilitar[0].Value == 'SI') {
+                            this.actividades.push(miData);
+                        }
+                        else if (!item.form) {
+                            this.actividades.push(miData);
+                        }
                     }
                 }
             }
