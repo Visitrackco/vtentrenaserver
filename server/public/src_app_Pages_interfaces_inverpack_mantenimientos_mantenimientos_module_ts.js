@@ -143,7 +143,7 @@ let MantenimientosPage = class MantenimientosPage {
     ngOnInit() {
         setInterval(() => {
             this.cargarData();
-        }, 60000);
+        }, 120000);
     }
     getInfo(guid) {
         return new Promise((resolve, reject) => {
